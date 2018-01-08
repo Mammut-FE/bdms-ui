@@ -1,0 +1,82 @@
+$base-color: #09f;
+
+// common colors
+$white-color            : #ffffff;
+$primary-dark-color     : #1d2a36;
+$secondary-dark-color   : #2a343e;
+$third-dark-color       : #243240;
+$blue-color             : #3287ea;
+$black-color            : #000000;
+
+// status-color
+$success-color          : #33cc99;
+$error-color            : #e65c5c;
+$running-color          : #1aabff;
+$preparing-color        : #cccccc;
+$warning-color          : #f3b230;
+$invalid-color          : #e65c5c;
+$disabled-color         : #999999;
+
+// btn-color
+$btn-blue-text          : #0987e5;
+$btn-blue-default       : #0099ff;
+$btn-blue-hover         : #29A9FF;
+$btn-blue-disabled      : #999;
+$btn-blue-active        : #0080D6;
+$btn-grey-default       : #fff;
+$btn-dark-default       : #223141;
+$btn-disabled			: #f5f5f5;
+
+// font-color
+$font-default-color     : #333333;
+$font-white-color       : $white-color;
+$font-blue-color        : $blue-color;
+$font-dark-color        : #aaa;
+$font-grey-color        : #cccccc;
+$font-black-color       : $black-color;
+$font-disabled-color	: #999;
+
+// input
+$input-dark-bg          : #25313d;
+$input-dark-focus-bg    : #2c3946;
+$input-dark-ph-color    : #606f7f;
+$input-border-grey      : #cccccc;
+$input-white-bg         : $white-color;
+$input-white-focus-bg   : $white-color;
+$input-white-ph-color   : #999;
+
+// job-type-color
+$noop-color             : #e75751;
+$sqoop-color            : #5b87e8;
+$Stream-color           : #ff6b39;
+$script-color           : #ef8c42;
+$hive-color             : #00b7e5;
+$spark-color            : #57b079;
+$cube-color             : #d9b70a;
+$mr-color               : #a1c85b;
+$command-color          : #dc254c;
+$loaddata-color         : #c76cdb;
+$kfk_import-color       : #D40C5B;
+$kfk_archive-color      : #1D98FF;
+
+// bg-color
+$bg-base                : $primary-dark-color;
+$bg-menu                : $secondary-dark-color;
+$bg-white               : $white-color;
+$bg-blue                : $blue-color;
+
+// border
+$border-default-color   : #dddddd;
+
+// table
+$table-header-bg        : #eceeef;
+$table-header-hover-bg  : #d7dce0;
+
+// mask-color
+$mask-color             : rgba(0, 0, 0, .5);
+
+// sidebar-color
+$sidebar-color          : #2a343e;
+
+// hover
+$hover-color            : #f2f9ff;

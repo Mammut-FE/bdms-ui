@@ -1,0 +1,41 @@
+@import '../../style/color.scss';
+
+.u-switch {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+    &+.u-switch {
+        margin-left: 15px;
+    }
+    &.open {
+        background: $base-color;
+        .switch-button {
+            margin-left: 2px;
+        } 
+    }
+    &.disabled {
+        cursor: not-allowed;
+        .switch-button {
+            background: #999;
+        }
+        &.open {
+            background: #ccc;
+        }
+    }
+    .switch-button {
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 50%;
+        margin-left: -18px;
+        transition: all .25s ease-in-out;
+    }
+}

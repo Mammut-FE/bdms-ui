@@ -1,0 +1,32 @@
+.u-menu {
+  width: 160px;
+  max-height: 450px;
+  border: 1px solid #ccc;
+  padding: 4px 0;
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 2px; }
+
+.u-menu-item {
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+  padding-left: 12px;
+  position: relative; }
+  .u-menu-item:hover {
+    background: rgba(0, 153, 255, 0.1); }
+  .u-menu-item.disabled {
+    cursor: not-allowed;
+    color: #ccc; }
+    .u-menu-item.disabled:hover {
+      background: transparent; }
+  .u-menu-item.divided:after {
+    content: '';
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    top: 100%;
+    left: 0; }

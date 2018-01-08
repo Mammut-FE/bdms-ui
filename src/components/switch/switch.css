@@ -1,0 +1,31 @@
+.u-switch {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: all .25s ease-in-out; }
+  .u-switch + .u-switch {
+    margin-left: 15px; }
+  .u-switch.open {
+    background: #09f; }
+    .u-switch.open .switch-button {
+      margin-left: 2px; }
+  .u-switch.disabled {
+    cursor: not-allowed; }
+    .u-switch.disabled .switch-button {
+      background: #999; }
+    .u-switch.disabled.open {
+      background: #ccc; }
+  .u-switch .switch-button {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    margin-left: -18px;
+    transition: all .25s ease-in-out; }

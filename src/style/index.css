@@ -1,0 +1,487 @@
+@charset "UTF-8";
+/* 定义字体 */
+@font-face {
+  font-family: 'FontMammut';
+  font-weight: normal;
+  font-style: normal;
+  src: url("./font/mammut.eot");
+  src: url("./font/mammut.eot") format("embedded-opentype"), url("./font/mammut.woff") format("woff"), url("./font/mammut.ttf") format("truetype"), url("./font/mammut.svg") format("svg"); }
+
+.icon {
+  display: inline-block;
+  vertical-align: middle; }
+  .icon:hover {
+    cursor: pointer; }
+  .icon:before, .icon.icon-order:after {
+    content: attr(data-icon);
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'FontMammut', serif;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-decoration: inherit;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased; }
+  .icon.icon-small {
+    font-size: 12px; }
+  .icon.icon-big {
+    font-size: 24px; }
+  .icon.icon-logo {
+    font-size: 28px; }
+  .icon.icon-placeholder:before {
+    content: '占';
+    font-family: sans-serif;
+    background-color: #3287ea;
+    padding: 4px;
+    color: #fff; }
+  .icon.disabled, .icon.display:hover {
+    cursor: not-allowed;
+    color: #999; }
+  .icon.disabled[data-icon]:before, .icon.disabled:before {
+    cursor: not-allowed; }
+  .icon.f-csd:hover, .icon.f-csd:before {
+    cursor: default; }
+  .icon.icon-button {
+    color: #666; }
+    .icon.icon-button:hover {
+      color: #0987e5; }
+
+span.zeroclipboard-is-hover {
+  cursor: pointer; }
+
+.icon-add:before {
+  content: '\f100'; }
+
+.icon-add2:before {
+  content: '\f159'; }
+
+.icon-copy:before {
+  content: '\f10c'; }
+
+.icon-authmanage:before {
+  content: '\f102'; }
+
+.icon-authsetting:before {
+  content: '\f103'; }
+
+.icon-arrow:before {
+  content: '\f101'; }
+
+.icon-back:before {
+  content: '\f104'; }
+
+.icon-calendar:before {
+  content: '\f105'; }
+
+.icon-caret-down:before {
+  content: '\f106'; }
+
+.icon-caret-right:before {
+  content: '\f107'; }
+
+.icon-chevron-down:before, .icon-down:before {
+  content: '\f108'; }
+
+.icon-chevron-down, .icon-down {
+  color: #999; }
+
+.icon-chevron-up:before, .icon-up:before {
+  content: '\f109'; }
+
+.icon-chevron-up, .icon-up {
+  color: #999; }
+
+.icon-close:before {
+  content: '\f10a'; }
+
+.icon-noop:before {
+  content: '\f113'; }
+
+.icon-filter:before {
+  content: '\f115'; }
+
+.icon-folder-closed:before {
+  content: '\f116'; }
+
+.icon-folder-open:before {
+  content: '\f117'; }
+
+.icon-format:before {
+  content: '\f118'; }
+
+.icon-left:before {
+  content: '\f11b'; }
+
+.icon-left {
+  color: #999; }
+
+.icon-log:before {
+  content: '\f11d'; }
+
+.icon-mammut:before {
+  content: '\e90f'; }
+
+.icon-message:before {
+  content: '\f11f'; }
+
+.icon-node:before {
+  content: '\f136'; }
+
+.icon-original:before {
+  content: '\f122'; }
+
+.icon-package:before {
+  content: '\f123'; }
+
+.icon-project:before {
+  content: '\f126'; }
+
+.icon-project-open:before {
+  content: '\f127'; }
+
+.icon-right:before {
+  content: '\f12a'; }
+
+.icon-right {
+  color: #999; }
+
+.icon-run:before {
+  content: '\f12b'; }
+
+.icon-save:before {
+  content: '\f12d'; }
+
+.icon-script:before {
+  content: '\f12e'; }
+
+.icon-search:before {
+  content: '\f12f'; }
+
+.icon-hive:before, .icon-cube:before, .icon-mr:before, .icon-spark:before {
+  content: '\f131'; }
+
+.icon-sqoop:before {
+  content: '\f133'; }
+
+.icon-taskflows:before {
+  content: '\f120'; }
+
+.icon-time:before {
+  content: '\f137'; }
+
+.icon-zoomin:before {
+  content: '\f13f'; }
+
+.icon-zoomout:before {
+  content: '\f140'; }
+
+.icon-tasklist:before {
+  content: '\f144'; }
+
+.icon-close-circle:before {
+  content: '\f10b'; }
+
+.icon-warning:before {
+  content: '\f13e'; }
+
+.icon-database:before {
+  content: '\f10d'; }
+
+.icon-table:before {
+  content: '\f135'; }
+
+.icon-refresh:before {
+  content: '\f129'; }
+
+.icon-setting:before {
+  content: '\f130'; }
+
+.icon-error:before {
+  content: '\f110'; }
+
+.icon-failed_finishing:before {
+  content: '\f112'; }
+
+.icon-loaddata:before {
+  content: '\f11c'; }
+
+.icon-failed:before {
+  content: '\f111'; }
+
+.icon-ok:before {
+  content: '\f121'; }
+
+.icon-killed:before {
+  content: '\f11a'; }
+
+.icon-paused:before {
+  content: '\f124'; }
+
+.icon-preparing:before {
+  content: '\f125'; }
+
+.icon-running:before {
+  content: '\f12c'; }
+
+.icon-view:before {
+  content: '\f13c'; }
+
+.icon-waiting:before {
+  content: '\f13d'; }
+
+.icon-user:before {
+  content: '\f141'; }
+
+.icon-user-solid:before {
+  content: '\f13b'; }
+
+.icon-admin:before {
+  content: '\f13a'; }
+
+.icon-true:before {
+  content: '\f139'; }
+
+.icon-top:before {
+  content: '\f138'; }
+
+.icon-statistics:before {
+  content: '\f132'; }
+
+.icon-projectcenter:before {
+  content: '\f128'; }
+
+.icon-instance:before {
+  content: '\f119'; }
+
+.icon-field:before {
+  content: '\f142'; }
+
+.icon-fault:before {
+  content: '\f149'; }
+
+.icon-edit:before {
+  content: '\f10f'; }
+
+.icon-delete:before {
+  content: '\f10e'; }
+
+.icon-succeeded:before, .icon-unchecked:before, .icon-checked:before {
+  content: '\f134'; }
+
+.icon-logo:before {
+  content: '\f11e'; }
+
+.icon-order-down:before {
+  content: '\f147'; }
+
+.icon-order-up:before {
+  content: '\f148'; }
+
+.icon.icon-order {
+  letter-spacing: -8px; }
+  .icon.icon-order::before {
+    content: '\f147'; }
+  .icon.icon-order.desc::before {
+    color: #d9614e; }
+  .icon.icon-order::after {
+    content: '\f148'; }
+  .icon.icon-order.asc::after {
+    color: #d9614e; }
+
+.icon-choose:before {
+  content: '\f14a'; }
+
+.icon-choose-cancle:before {
+  content: '\f14b'; }
+
+.icon-stop:before {
+  content: '\f14c'; }
+
+.icon-log-big:before {
+  content: '\f14e'; }
+
+.icon-datasource:before {
+  content: '\f14d'; }
+
+.icon-more:before {
+  content: '\f157'; }
+
+.icon-notebook:before {
+  content: '\f155'; }
+
+.icon-query:before {
+  content: '\f156'; }
+
+.icon-left-sidebar:before {
+  content: '\f153'; }
+
+.icon-right-sidebar:before {
+  content: '\f154'; }
+
+.icon-sidebar-up:before {
+  content: '\f15d'; }
+
+.icon-sidebar-down:before {
+  content: '\f15c'; }
+
+.icon-format2:before {
+  content: '\f14f'; }
+
+.icon-fullscreen:before {
+  content: '\f150'; }
+
+.icon-run2:before {
+  content: '\f151'; }
+
+.icon-save2:before {
+  content: '\f152'; }
+
+.icon-download:before {
+  content: '\f158'; }
+
+.icon-light-off:before {
+  content: '\f15a'; }
+
+.icon-light-on:before {
+  content: '\f15b'; }
+
+.icon-rerun:before {
+  content: '\f15f'; }
+
+.icon-cancel:before {
+  content: '\f164'; }
+
+.icon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #00ABFB;
+  border: 4px solid transparent;
+  box-sizing: content-box;
+  background-clip: content-box; }
+
+.icon-disable:before {
+  content: '\f160'; }
+
+.icon-result:before {
+  content: '\f163'; }
+
+.icon-info:before {
+  content: '\f161'; }
+
+.icon-release:before {
+  content: '\f162'; }
+
+.icon-add-round:before {
+  content: '\f165'; }
+
+.icon-activity:before {
+  content: '\f167'; }
+
+.icon-role:before {
+  content: '\f168'; }
+
+.icon-permission:before {
+  content: '\f169'; }
+
+.icon-fixed:before {
+  content: '\f16a'; }
+
+.icon-resources:before {
+  content: '\f16c'; }
+
+.icon-application:before {
+  content: '\f16b'; }
+
+.icon-switch-in:before {
+  content: '\f16d'; }
+
+.icon-switch-out:before {
+  content: '\f16e'; }
+
+.icon-right-all:before {
+  content: '\f16f'; }
+
+.icon-right-none:before {
+  content: '\f170'; }
+
+.icon-right-part:before {
+  content: '\f171'; }
+
+.icon-fullscreen-quit:before {
+  content: '\f172'; }
+
+.icon-database-flow:before {
+  content: '\f173'; }
+
+.icon-table-flow:before {
+  content: '\f174'; }
+
+.icon-kfk_archive:before {
+  content: '\f175'; }
+
+.icon-kfk_import:before {
+  content: '\f176'; }
+
+.icon-file:before {
+  content: '\f177'; }
+
+.icon-streamcompute:before {
+  content: '\f17c'; }
+
+.icon-check:before {
+  content: '\f17d'; }
+
+.icon-toggle {
+  position: relative;
+  height: 1em;
+  width: 1em;
+  border-radius: 2px;
+  border: 1px solid currentColor; }
+  .icon-toggle:before {
+    content: '\f159';
+    position: absolute;
+    top: .1em;
+    left: 50%;
+    margin-left: -.5em;
+    font-size: .9em;
+    color: currentColor; }
+  .icon-toggle.open:before {
+    content: '';
+    top: .5em;
+    width: .7em;
+    margin-left: -.35em;
+    border-top: 1px solid currentColor; }
+
+/* 结果预览图标大小及颜色设置 */
+.icon-preparing, .icon-running, .icon-succeeded, .icon-failed_finishing, .icon-failed, .icon-paused, .icon-killed, .icon-warning, .icon-unchecked, .icon-checked {
+  font-size: 20px; }
+
+.icon-preparing:before, .icon-running:before, .icon-succeeded:before, .icon-failed_finishing:before, .icon-failed:before, .icon-paused:before, .icon-killed:before, .icon-warning:before, .icon-unchecked:before, .icon-checked:before {
+  background-image: radial-gradient(circle, #fff 0, #fff 40%, transparent 40%);
+  background-image: -webkit-radial-gradient(circle, #fff 0, #fff 40%, transparent 40%);
+  background-image: -moz-radial-gradient(circle, #fff 0, #fff 40%, transparent 40%); }
+
+.icon-unchecked {
+  color: #e3e3e3; }
+
+/* 结果预览状态颜色 */
+.icon-preparing {
+  color: #cccccc; }
+
+.icon-running:before {
+  color: #1aabff; }
+
+.icon-succeeded:before, .icon-checked:before {
+  color: #33cc99; }
+
+.icon-failed_finishing:before, .icon-failed:before, .icon-killed:before, .icon-paused {
+  color: #e65c5c; }
+
+.icon-warning:before {
+  color: #f3b230; }
