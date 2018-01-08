@@ -16,6 +16,8 @@
   text-align: left;
   padding-left: 12px;
   position: relative; }
+  .u-menu-item .icon {
+    margin-right: 5px; }
   .u-menu-item:hover {
     background: rgba(0, 153, 255, 0.1); }
   .u-menu-item.disabled {
@@ -30,3 +32,11 @@
     position: absolute;
     top: 100%;
     left: 0; }
+
+.u-menu-title {
+  font-size: 12px;
+  color: #999999;
+  text-align: left;
+  padding-left: 12px;
+  height: 24px;
+  line-height: 24px; }

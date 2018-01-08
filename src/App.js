@@ -2,11 +2,12 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-08 14:49:29
+ * @Last Modified time: 2018-01-08 16:33:02
  */
 import React, { Component } from 'react';
 import './App.css';
 
+import Icon from './components/icon'
 import Button from './components/button'
 import Radio from './components/radio'
 import CheckBox from './components/checkbox'
@@ -54,6 +55,14 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Welcome!</h2>
+        </div>
+        <div className="components">
+          <div className="item">
+            <Icon name='table'></Icon>
+            <Icon name='folder-closed'></Icon>
+            <Icon name='folder-open'></Icon>
+            <Icon name='message'></Icon>
+          </div>
         </div>
         <div className="components">
           <Button className='item' type="primary" icon="search" onClick={this.clickButton}>默认文字</Button>
@@ -104,9 +113,14 @@ class App extends Component {
         <div className="components">
           <div className="item">
             <Menu onCommand={this.onItemClick.bind(this)}>
-              <Menu.Item command="1" disabled>项目一</Menu.Item>
-              <Menu.Item command="2" divided>项目二</Menu.Item>
-              <Menu.Item command="3">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="1">项目一</Menu.Item>
+              <Menu.Item command="2" disabled>项目二</Menu.Item>
+              <Menu.Item command="3" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="1" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="2" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="3" iconName="folder-open">项目三</Menu.Item>
             </Menu>
           </div>
         </div>
