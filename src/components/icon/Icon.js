@@ -1,8 +1,8 @@
 /*
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-08 16:25:30 
- * @Last Modified by:   jessica(hzgujing@corp.netease.com) 
- * @Last Modified time: 2018-01-08 16:25:30 
+ * @Last Modified by: jessica(hzgujing@corp.netease.com)
+ * @Last Modified time: 2018-01-09 10:47:44
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
@@ -10,8 +10,8 @@ import classNames from 'classnames'
 
 export default class Icon extends Component{
     render() {
-        const {name} = this.props;
-        const iconClass = classNames('icon', `icon-${name}`)
+        const {name, className} = this.props;
+        const iconClass = classNames('icon', className,  `icon-${name}`)
         return (
             <i className = {iconClass}></i>
         )

@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-08 16:33:02
+ * @Last Modified time: 2018-01-09 10:51:32
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -43,7 +43,7 @@ class App extends Component {
   switchChange(open) {
     console.log(open)
   }
-  onItemClick(command) {
+  onItemClick(command, instance) {
     console.log(command)
   }
 
@@ -112,15 +112,27 @@ class App extends Component {
         </div> */}
         <div className="components">
           <div className="item">
-            <Menu onCommand={this.onItemClick.bind(this)}>
+            <Menu onCommand={this.onItemClick.bind(this)} selected="3" tickSelect>
               <Menu.Title>分组一</Menu.Title>
               <Menu.Item command="1">项目一</Menu.Item>
               <Menu.Item command="2" disabled>项目二</Menu.Item>
               <Menu.Item command="3" divided>项目三</Menu.Item>
               <Menu.Title>分组二</Menu.Title>
-              <Menu.Item command="1" iconName="folder-open">项目一</Menu.Item>
-              <Menu.Item command="2" iconName="folder-open">项目二</Menu.Item>
-              <Menu.Item command="3" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="4" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="5" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="6" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="7" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+            </Menu>
+            <Menu onCommand={this.onItemClick.bind(this)} selected="3">
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="1-1">项目一</Menu.Item>
+              <Menu.Item command="2-1" disabled>项目二</Menu.Item>
+              <Menu.Item command="3-1" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="4-1" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="5-1" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="6-1" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="7-1" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
             </Menu>
           </div>
         </div>
