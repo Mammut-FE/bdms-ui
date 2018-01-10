@@ -2,9 +2,10 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:12:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-10 10:32:43
+ * @Last Modified time: 2018-01-10 15:17:26
  */
 import React, { Component} from 'react'
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
 import './menu.css'
 import '../../style/index.css'
@@ -25,8 +26,10 @@ export default class Menu extends Component {
             overflowBottom: false,
             offsetHeight: 0,
             scrollHeight: 0,
-            scrollTop: 0
+            scrollTop: 0,
+            baseScrollTop: 0
         }
+        this.menuContent = null
     }
 
     getSelected(props) {
@@ -75,18 +78,44 @@ export default class Menu extends Component {
         })
     }
 
-    scrollUp() {
-        const scrollTop = this.state.scrollTop - SCROLL_UNIT
+    setBaseScrollTop(scrollTop) {
         this.setState({
-            scrollTop: scrollTop
+            baseScrollTop: scrollTop
         })
     }
 
+    getMenuContent(content) {
+        this.menuContent = content;
+    }
+
+    scrollUp() {
+        const scrollTop = this.state.scrollTop - SCROLL_UNIT
+        this.setScrollTop(scrollTop)
+        this.slideScroll(scrollTop)
+    }
+
     scrollDown() {
-        const scrollTop = this.state.scrollTop + SCROLL_UNIT
-        this.setState({
-            scrollTop: scrollTop
-        })
+        const el = ReactDOM.findDOMNode(this.menuContent)
+        let scrollTop = this.state.scrollTop + SCROLL_UNIT
+        console.log(el.scrollTop, el.scrollHeight, el.offsetHeight, scrollTop)
+        if (scrollTop > el.scrollHeight - el.offsetHeight) {
+            scrollTop = el.scrollHeight - el.offsetHeight
+        }
+        this.setScrollTop(scrollTop)
+        this.slideScroll(scrollTop)
+    }
+
+    slideScroll(scrollTop) {
+        const el = ReactDOM.findDOMNode(this.menuContent)
+        let time = setInterval( () => {
+            if (el.scrollTop < scrollTop) {
+                el.scrollTop += 40;
+            } else if (el.scrollTop === scrollTop) {
+                clearInterval(time)
+            } else if (el.scrollTop > scrollTop) {
+                el.scrollTop -= 40;
+            }
+        }, 5)
     }
 
     render() {
@@ -108,7 +137,7 @@ export default class Menu extends Component {
                         </div>
                     )
                 }
-                <MenuContent scrollTop={scrollTop}>
+                <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}>
                     {children}
                 </MenuContent>
                 {

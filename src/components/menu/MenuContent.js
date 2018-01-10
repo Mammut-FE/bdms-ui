@@ -17,7 +17,6 @@ export default class MenuContent extends MixinComponent {
         this.state = {
             scrollTop: 0
         }
-        this.time = null
     }
 
 
@@ -26,32 +25,6 @@ export default class MenuContent extends MixinComponent {
         this.scrollControl(el)
     }
 
-    componentWillUnmount() {
-        clearInterval(this.time)
-    }
-
-    componentWillReceiveProps(props) {
-        if (props.scrollTop === 0) return
-        setTimeout( () => {
-            const scrollTop = props.scrollTop < 0 ? 0 : props.scrollTop
-            const el = ReactDOM.findDOMNode(this);
-
-            // this.time = setInterval( () => {
-            //     this.setState({
-            //         scrolling: true
-            //     })
-            //     if (el.scrollTop < scrollTop) {
-            //         el.scrollTop += 10;
-            //     } else if (el.scrollTop === scrollTop) {
-            //         clearInterval(this.time)
-            //     } else if (el.scrollTop > scrollTop) {
-            //         el.scrollTop -= 10;
-            //     }
-            // }, 10)
-            
-            el.scrollTop = scrollTop
-        }, 10)
-    }
 
     scrollControl(el) {
         const parent = this.parent()
@@ -75,7 +48,6 @@ export default class MenuContent extends MixinComponent {
     handleScroll(e) {
         const el = ReactDOM.findDOMNode(this);
         const parent = this.parent()
-        const { scrolling } = this.state
         this.scrollControl(el)
         parent.setScrollTop(el.scrollTop)
     }
