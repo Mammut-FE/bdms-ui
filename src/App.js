@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-09 10:51:32
+ * @Last Modified time: 2018-01-09 13:52:25
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -122,6 +122,78 @@ class App extends Component {
               <Menu.Item command="5" iconName="folder-open">项目二</Menu.Item>
               <Menu.Item command="6" iconName="folder-open">项目三</Menu.Item>
               <Menu.Item command="7" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="11">项目一</Menu.Item>
+              <Menu.Item command="22" disabled>项目二</Menu.Item>
+              <Menu.Item command="33" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="44" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="55" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="66" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="77" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="111">项目一</Menu.Item>
+              <Menu.Item command="222" disabled>项目二</Menu.Item>
+              <Menu.Item command="333" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="444" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="555" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="666" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="777" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="1111">项目一</Menu.Item>
+              <Menu.Item command="2222" disabled>项目二</Menu.Item>
+              <Menu.Item command="3333" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="4444" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="5555" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="6666" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="7777" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="12">项目一</Menu.Item>
+              <Menu.Item command="23" disabled>项目二</Menu.Item>
+              <Menu.Item command="34" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="45" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="56" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="67" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="78" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="122">项目一</Menu.Item>
+              <Menu.Item command="233" disabled>项目二</Menu.Item>
+              <Menu.Item command="344" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="455" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="566" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="677" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="788" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="1222">项目一</Menu.Item>
+              <Menu.Item command="2333" disabled>项目二</Menu.Item>
+              <Menu.Item command="3444" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="4555" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="5666" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="6777" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="7888" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="121">项目一</Menu.Item>
+              <Menu.Item command="221" disabled>项目二</Menu.Item>
+              <Menu.Item command="321" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="421" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="521" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="621" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="721" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+              <Menu.Title>分组一</Menu.Title>
+              <Menu.Item command="131">项目一</Menu.Item>
+              <Menu.Item command="231" disabled>项目二</Menu.Item>
+              <Menu.Item command="331" divided>项目三</Menu.Item>
+              <Menu.Title>分组二</Menu.Title>
+              <Menu.Item command="431" iconName="folder-open">项目一</Menu.Item>
+              <Menu.Item command="531" iconName="folder-open">项目二</Menu.Item>
+              <Menu.Item command="631" iconName="folder-open">项目三</Menu.Item>
+              <Menu.Item command="731" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
             </Menu>
             <Menu onCommand={this.onItemClick.bind(this)} selected="3">
               <Menu.Title>分组一</Menu.Title>

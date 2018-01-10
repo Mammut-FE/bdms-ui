@@ -55,6 +55,13 @@ address@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
 
+after-transition@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/after-transition/-/after-transition-0.0.4.tgz#1653560507893d820e50323ddbbaaefd2ae17555"
+  dependencies:
+    css-emitter-component "~0.1.1"
+    has-transitions "~0.3.0"
+
 ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
@@ -1456,6 +1463,14 @@ commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
 
+component-emitter@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
+
+component-query@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/component-query/-/component-query-0.0.3.tgz#07f49dab7071fa9606725df53e607f468acdaacf"
+
 compressible@~2.0.10:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.11.tgz#16718a75de283ed8e604041625a2064586797d8a"
@@ -1650,6 +1665,16 @@ crypto-browserify@^3.11.0:
 css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
+
+css-ease@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/css-ease/-/css-ease-0.0.1.tgz#537679b67c9fc7c52968825b6fdd21f7492ca86c"
+
+css-emitter-component@~0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/css-emitter-component/-/css-emitter-component-0.1.1.tgz#fb5e4c4dab3cd62c930acac837b6e34d87ab2a8e"
+  dependencies:
+    event-component "~0.1.0"
 
 css-loader@0.28.4:
   version "0.28.4"
@@ -2322,6 +2347,10 @@ etag@~1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz#6f631aef336d6c46362b51764044ce216be3c051"
 
+event-component@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/event-component/-/event-component-0.1.0.tgz#80455579d134ab27e3bb80bb2869bf96a76e9e68"
+
 event-emitter@~0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/event-emitter/-/event-emitter-0.3.5.tgz#df8c69eef1647923c7157b9ce83840610b02cc39"
@@ -2888,6 +2917,16 @@ has-flag@^1.0.0:
 has-flag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
+
+has-transitions@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/has-transitions/-/has-transitions-0.3.0.tgz#066437c589613a8d7ba0aaa3cbd408eccb408f10"
+
+has-translate3d@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/has-translate3d/-/has-translate3d-0.0.3.tgz#ee0157ad5b4ca8a1a33514a9e7ef45415a132103"
+  dependencies:
+    transform-property "0.0.1"
 
 has-unicode@^2.0.0:
   version "2.0.1"
@@ -4174,6 +4213,16 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+move-js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/move-js/-/move-js-0.5.0.tgz#19f42dee61fe6ae9252436c27796c122614c3d2c"
+  dependencies:
+    after-transition "0.0.4"
+    component-emitter "^1.2.0"
+    component-query "0.0.3"
+    css-ease "0.0.1"
+    has-translate3d "0.0.3"
 
 ms@2.0.0:
   version "2.0.0"
@@ -6188,6 +6237,10 @@ tough-cookie@^2.3.2, tough-cookie@~2.3.0:
 tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+
+transform-property@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/transform-property/-/transform-property-0.0.1.tgz#4863662f9d5e5bb8f0c00648eff08beb14fd65f2"
 
 trim-newlines@^1.0.0:
   version "1.0.0"

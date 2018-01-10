@@ -2,9 +2,9 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:11:56 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-09 10:53:43
+ * @Last Modified time: 2018-01-09 14:19:24
  */
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -15,9 +15,9 @@ import MixinComponent from './MixinComponent'
 import Icon from '../icon'
 
 export default class MenuItem extends MixinComponent {
-    constructor(props) {
-        super (props)
-    }
+    // constructor(props) {
+    //     super (props)
+    // }
 
     componentDidMount() {
         setTimeout(() => {
@@ -36,7 +36,7 @@ export default class MenuItem extends MixinComponent {
     }
 
     render() {
-        const {className, children, disabled, divided, iconName, subDesc, selected} = this.props
+        const {className, children, disabled, divided, iconName, subDesc} = this.props
         const parent = this.parent()
         const tickSelect = parent.props.tickSelect
         const meneItemClass = classNames('u-menu-item', className, {

@@ -2,9 +2,9 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-08 16:25:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-08 16:27:56
+ * @Last Modified time: 2018-01-09 14:18:25
  */
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -22,4 +22,8 @@ export default class MenuTitle extends MixinComponent {
             <div className={meneItemClass}>{children}</div>
         )
     }
+}
+
+MenuTitle.propTypes = {
+    className: PropTypes.string
 }

@@ -2,13 +2,55 @@
 
 .u-menu {
     width: 160px;
-    max-height: 450px;
     border: 1px solid #ccc;
-    padding: 4px 0;
     background: #FFFFFF;
     box-shadow: 0 2px 6px 0 rgba(0,0,0,0.06);
     border-radius: 2px;
-    overflow-y: auto;
+    overflow: hidden;
+    position: relative;
+    transition: all .3s ease-in-out;
+    &.pdb-change {
+        padding-bottom: 25px;
+    }
+    &.pdt-change {
+        padding-top: 25px;
+    }
+    .content {
+        max-height: 450px;
+        padding: 4px 0;
+        overflow-y: auto;
+        transition: all .3s ease-in-out;
+    }
+    .handle-top {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        background: #fff;
+        z-index: 4;
+        cursor: pointer;
+        animation: topMove 5s;
+        -moz-animation: topMove .1s; /* Firefox */
+        -webkit-animation: topMove .1s; /* Safari and Chrome */
+        -o-animation: topMove .1s; /* Opera */
+    }
+    .handle-bottom {
+        position: absolute;
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+        background: #fff;
+        z-index: 4;
+        cursor: pointer;animation: topMove 5s;
+        -moz-animation: bottomMove .1s; /* Firefox */
+        -webkit-animation: bottomMove .1s; /* Safari and Chrome */
+        -o-animation: bottomMove .1s; /* Opera */
+    }
 }
 .u-menu-item {
     height: 32px;
@@ -69,3 +111,54 @@
     line-height: 24px;
 }
 
+@keyframes topMove {
+    from {
+        top: -25px;
+    }
+    to {
+        top: 0
+    }
+}
+
+@-moz-keyframes topMove {
+    from {
+        top: -25px;
+    }
+    to {
+        top: 0
+    }
+}
+@-webkit-keyframes topMove {
+    from {
+        top: -25px;
+    }
+    to {
+        top: 0
+    }
+}
+
+@keyframes bottomMove {
+    from {
+        bottom: -25px;
+    }
+    to {
+        top: 0
+    }
+}
+
+@-moz-keyframes bottomMove {
+    from {
+        bottom: -25px;
+    }
+    to {
+        top: 0
+    }
+}
+@-webkit-keyframes bottomMove {
+    from {
+        bottom: -25px;
+    }
+    to {
+        top: 0
+    }
+}
