@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:12:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-10 15:17:26
+ * @Last Modified time: 2018-01-10 15:27:20
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
@@ -89,7 +89,11 @@ export default class Menu extends Component {
     }
 
     scrollUp() {
-        const scrollTop = this.state.scrollTop - SCROLL_UNIT
+        const el = ReactDOM.findDOMNode(this.menuContent)
+        let scrollTop = this.state.scrollTop - SCROLL_UNIT
+        if (scrollTop < 0) {
+            scrollTop = 0
+        }
         this.setScrollTop(scrollTop)
         this.slideScroll(scrollTop)
     }
@@ -97,7 +101,6 @@ export default class Menu extends Component {
     scrollDown() {
         const el = ReactDOM.findDOMNode(this.menuContent)
         let scrollTop = this.state.scrollTop + SCROLL_UNIT
-        console.log(el.scrollTop, el.scrollHeight, el.offsetHeight, scrollTop)
         if (scrollTop > el.scrollHeight - el.offsetHeight) {
             scrollTop = el.scrollHeight - el.offsetHeight
         }

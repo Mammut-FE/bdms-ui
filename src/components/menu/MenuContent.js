@@ -51,13 +51,25 @@ export default class MenuContent extends MixinComponent {
         this.scrollControl(el)
         parent.setScrollTop(el.scrollTop)
     }
+
+    /**
+     * 防止下拉到最低端时页面也随之滚动
+     * @param {domEvent} e wheel事件
+     */
+    handleWheel(e) {
+        const deltaY = e.deltaY
+        const el = ReactDOM.findDOMNode(this);
+        if (deltaY > 0 && el.scrollTop === el.scrollHeight - el.offsetHeight) {
+            e.preventDefault()
+        }
+    }
     
     render() {
         const {className, children} = this.props
         const contentClass = classNames('content', className)
 
         return (
-            <div className={contentClass} onScroll={this.handleScroll}>
+            <div className={contentClass} onScroll={this.handleScroll} onWheel={this.handleWheel.bind(this)}>
                 {children}
             </div>
         )
