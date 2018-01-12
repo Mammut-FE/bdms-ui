@@ -6,7 +6,8 @@
  * 布局间距定义
  */
 .u-input-wrapper {
-  position: relative; }
+  position: relative;
+  max-width: 100%; }
   .u-input-wrapper-xsmall {
     width: 146px;
     height: 28px; }

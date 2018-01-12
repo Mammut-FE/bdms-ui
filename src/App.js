@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 16:00:53
+ * @Last Modified time: 2018-01-12 16:48:49
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -14,6 +14,7 @@ import CheckBox from './components/checkbox'
 import Switch from './components/switch'
 import Menu from './components/menu'
 import Input from './components/input'
+import Select from './components/select'
 // import Dropdown from './components/dropdown'
 
 class App extends Component {
@@ -262,6 +263,15 @@ class App extends Component {
           </div>
           <div className="item">
             <Input type="text" name="test" placeholder="请输入数字" value="e" onChange={this.checkError.bind(this)} error={this.state.errorShow} errorMessage = "不能超过长度5" iconName="search" onIconClick={this.handleIconClick.bind(this)}></Input>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+            <Select></Select>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
           </div>
         </div>
         <div className="components">

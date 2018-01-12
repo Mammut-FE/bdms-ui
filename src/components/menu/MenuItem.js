@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:11:56 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 10:04:45
+ * @Last Modified time: 2018-01-12 16:54:35
  */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -32,7 +32,7 @@ export default class MenuItem extends MixinComponent {
 
     active() {
         const parent = this.parent()
-        return parent.state.selected === this.props.command
+        return parent.state.selected === this.props.command && ! this.props.disabled
     }
 
     render() {

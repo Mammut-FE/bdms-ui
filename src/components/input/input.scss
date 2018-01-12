@@ -4,6 +4,7 @@
 
 .u-input-wrapper {
     position: relative;
+    max-width: 100%;
     @at-root #{&}-xsmall {
         width: $xsmall-width;
         height: 28px;
