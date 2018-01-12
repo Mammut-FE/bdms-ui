@@ -11,19 +11,29 @@ export default class Checkbox extends Component {
         }
     }
 
+
     getChecked(props) {
         return Boolean(props.checked)
+    }
+    
+    setChecked(checked) {
+        this.setState({
+            checked
+        })
     }
 
     onChange = (e) => {
         const checked = e.target.checked;
-        const onChange = this.props.onChange;
-        this.setState({ checked })
+        const { onChange, handleCheck } = this.props;
+        // this.setState({ checked })
+        this.setChecked(checked)
 
         if (onChange) {
             onChange(this.props.value, checked)
         }
-        
+        if (handleCheck) {
+            handleCheck(this.props.command, checked)
+        }
     }
 
     render() {

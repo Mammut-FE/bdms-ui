@@ -6,11 +6,17 @@
         margin-left: 15px;
     }
     position: relative;
+    padding-left: 24px;
 
     .u-checkbox-input {
-        position: relative;
+        position: absolute;
+        font-size: 0;
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
         vertical-align: middle;
-        margin-right: 8px;
         cursor: pointer;
         &.checked {
             .u-checkbox-inner {

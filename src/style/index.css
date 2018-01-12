@@ -485,3 +485,6 @@ span.zeroclipboard-is-hover {
 
 .icon-warning:before {
   color: #f3b230; }
+
+.f-ib {
+  display: inline-block; }

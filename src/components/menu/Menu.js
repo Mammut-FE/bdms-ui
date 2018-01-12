@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:12:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-10 15:27:20
+ * @Last Modified time: 2018-01-12 10:07:05
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
@@ -13,6 +13,7 @@ import '../../style/index.css'
 import Icon from '../icon'
 import MenuContent from './MenuContent'
 import classNames from 'classnames'
+import _ from 'lodash'
 
 const SCROLL_UNIT = 400
 
@@ -27,9 +28,11 @@ export default class Menu extends Component {
             offsetHeight: 0,
             scrollHeight: 0,
             scrollTop: 0,
-            baseScrollTop: 0
+            baseScrollTop: 0,
+            checkItem: []
         }
         this.menuContent = null
+        this.handleCheck = this.handleCheck.bind(this)
     }
 
     getSelected(props) {
@@ -89,7 +92,6 @@ export default class Menu extends Component {
     }
 
     scrollUp() {
-        const el = ReactDOM.findDOMNode(this.menuContent)
         let scrollTop = this.state.scrollTop - SCROLL_UNIT
         if (scrollTop < 0) {
             scrollTop = 0
@@ -121,8 +123,24 @@ export default class Menu extends Component {
         }, 5)
     }
 
+    handleCheck(command, checked) {
+        let checkItem = this.state.checkItem;
+        if (checked) {
+            checkItem.push(command)
+        } else {
+            checkItem.splice(_.indexOf(command), 1)
+        }
+        this.setState({
+            checkItem: checkItem
+        })
+
+        if (this.props.onCheck) {
+            this.props.onCheck(checkItem)
+        }
+    }
+
     render() {
-        const {className, children} = this.props
+        const {className, children, style} = this.props
         const {overflowBottom, overflowTop, scrollTop} = this.state
 
 
@@ -132,7 +150,7 @@ export default class Menu extends Component {
         })
 
         return (
-            <div className={menuClass}>
+            <div className={menuClass} style={style}>
                 {
                     overflowTop && (
                         <div className='handle-top' onClick={this.scrollUp.bind(this)}>
@@ -156,7 +174,9 @@ export default class Menu extends Component {
 }
 
 Menu.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    selected: PropTypes.string,
+    withCheck: PropTypes.bool
 }
 
 Menu.childContextTypes = {

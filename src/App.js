@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-09 13:52:25
+ * @Last Modified time: 2018-01-11 17:43:27
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -36,6 +36,10 @@ class App extends Component {
     console.log(value, checked)
   }
 
+  changeCheckBox(value, checked) {
+    console.log(value, checked)
+  }
+
   onCheckboxGroupChange(lists) {
     console.log(lists)
   }
@@ -45,6 +49,9 @@ class App extends Component {
   }
   onItemClick(command, instance) {
     console.log(command)
+  }
+  onItemCheck(itemCheck) {
+    console.log(itemCheck)
   }
 
   render() {
@@ -88,7 +95,7 @@ class App extends Component {
         </div>
         <div className="components">
           <div className="item">
-            <CheckBox value='check-off'></CheckBox>
+            <CheckBox value='check-off' onChange={this.changeCheckBox.bind(this)}></CheckBox>
             <CheckBox value='check-on' checked></CheckBox>
             <CheckBox value='checked-disabled' checked disabled></CheckBox>
             <CheckBox value='disabled' disabled></CheckBox>
@@ -112,7 +119,7 @@ class App extends Component {
         </div> */}
         <div className="components">
           <div className="item">
-            <Menu onCommand={this.onItemClick.bind(this)} selected="3" tickSelect>
+            <Menu className="f-ib" onCommand={this.onItemClick.bind(this)} selected="3" tickSelect>
               <Menu.Title>分组一</Menu.Title>
               <Menu.Item command="1">项目一</Menu.Item>
               <Menu.Item command="2" disabled>项目二</Menu.Item>
@@ -195,7 +202,9 @@ class App extends Component {
               <Menu.Item command="631" iconName="folder-open">项目三</Menu.Item>
               <Menu.Item command="731" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
             </Menu>
-            <Menu onCommand={this.onItemClick.bind(this)} selected="3">
+          </div>
+          <div className="item">
+            <Menu className="f-ib" onCommand={this.onItemClick.bind(this)} selected="3">
               <Menu.Title>分组一</Menu.Title>
               <Menu.Item command="1-1">项目一</Menu.Item>
               <Menu.Item command="2-1" disabled>项目二</Menu.Item>
@@ -205,6 +214,22 @@ class App extends Component {
               <Menu.Item command="5-1" iconName="folder-open">项目二</Menu.Item>
               <Menu.Item command="6-1" iconName="folder-open">项目三</Menu.Item>
               <Menu.Item command="7-1" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
+            </Menu>
+          </div>
+          <div className="item">
+            <Menu className="f-ib" onCheck={this.onItemCheck.bind(this)}withCheck>
+              <Menu.Item command="aa">
+                <CheckBox value='是么'></CheckBox>
+              </Menu.Item>
+              <Menu.Item command="ss">
+                <CheckBox value='ss'></CheckBox>
+              </Menu.Item>
+              <Menu.Item command="dd">
+                <CheckBox value='dd'></CheckBox>
+              </Menu.Item>
+              <Menu.Item command="ee" subDesc="Ctrl+C">
+                <CheckBox value='ff'></CheckBox>
+              </Menu.Item>
             </Menu>
           </div>
         </div>

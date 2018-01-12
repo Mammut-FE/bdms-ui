@@ -1,12 +1,18 @@
 .u-label {
   cursor: pointer;
-  position: relative; }
+  position: relative;
+  padding-left: 24px; }
   .u-label + .u-label {
     margin-left: 15px; }
   .u-label .u-checkbox-input {
-    position: relative;
+    position: absolute;
+    font-size: 0;
+    width: 16px;
+    height: 16px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     vertical-align: middle;
-    margin-right: 8px;
     cursor: pointer; }
     .u-label .u-checkbox-input.checked .u-checkbox-inner {
       background: #09f;
