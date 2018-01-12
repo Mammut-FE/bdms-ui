@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-11 17:43:27
+ * @Last Modified time: 2018-01-12 16:00:53
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -13,14 +13,16 @@ import Radio from './components/radio'
 import CheckBox from './components/checkbox'
 import Switch from './components/switch'
 import Menu from './components/menu'
-import Dropdown from './components/dropdown'
+import Input from './components/input'
+// import Dropdown from './components/dropdown'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this)
     this.state = {
-      value: '选项一'
+      value: '选项一',
+      errorShow: false
     }
   }
   clickButton(e) {
@@ -52,6 +54,27 @@ class App extends Component {
   }
   onItemCheck(itemCheck) {
     console.log(itemCheck)
+  }
+
+  changeInput(value) {
+    console.log(value)
+  }
+
+  checkError(value) {
+    if (value.length > 5) {
+      this.setState({
+        errorShow: true
+      })
+    } else {
+      this.setState({
+        errorShow: false
+      })
+    }
+    
+  }
+
+  handleIconClick(e) {
+    console.log(e)
   }
 
   render() {
@@ -231,6 +254,22 @@ class App extends Component {
                 <CheckBox value='ff'></CheckBox>
               </Menu.Item>
             </Menu>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+            <Input type="text" name="test" placeholder="请输入" value="e" onChange={this.changeInput.bind(this)}></Input>
+          </div>
+          <div className="item">
+            <Input type="text" name="test" placeholder="请输入数字" value="e" onChange={this.checkError.bind(this)} error={this.state.errorShow} errorMessage = "不能超过长度5" iconName="search" onIconClick={this.handleIconClick.bind(this)}></Input>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
           </div>
         </div>
       </div>

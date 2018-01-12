@@ -1,0 +1,157 @@
+@mixin autofix($attr, $value...) {
+    -webkit-#{$attr}: $value;
+    #{$attr}: $value;
+}
+
+// transition
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin transform($args...) {
+    -webkit-transform: $args;
+    -moz-transform: $args;
+    -ms-transform: $args;
+    -o-transform: $args;
+    transform: $args;
+}
+
+// animation
+@mixin animation($args...) {
+    -webkit-animation: $args;
+    -o-animation: $args;
+    animation: $args;
+}
+
+//keyframes
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content
+    }
+    @-webkit-keyframes #{$name} {
+        @content
+    }
+}
+
+@mixin flex() {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+// height
+@mixin height($height) {
+    height: $height;
+    line-height: $height;
+}
+
+// inline-block hack
+@mixin inlineBlock($children: li) {
+    letter-spacing: -.33em;
+    &>#{$children} {
+        display: inline-block;
+        letter-spacing: 0;
+    }
+}
+
+// ellipsis
+@mixin ellipsis() {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// display:inline-block IE6
+@mixin dib() {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+// clearfix
+@mixin clearfix {
+    &:after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        line-height: 0;
+        overflow: hidden;
+    }
+    *height: 1%;
+}
+
+// min-height IE6
+@mixin minHeight($min-height) {
+    min-height: $min-height;
+    height: auto !important;
+    height: $min-height;
+}
+
+// placeholder
+@mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+        color: $color
+    }
+    &::-moz-placeholder {
+        color: $color
+    }
+    &:-ms-input-placeholder {
+        color: $color
+    }
+}
+
+// vertical center
+@mixin vertical-center($height) {
+    position: absolute;
+    height: $height;
+    top: 50%;
+    margin-top: -$height / 2;
+}
+
+@mixin scroll-light () {
+    &::-webkit-scrollbar {
+        width: 18px;
+        height: 18px;
+        background-color: #fff;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: #fff;
+        box-shadow: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        background-color: #dcdcdc;
+        box-shadow: inset 0 0 0 4px #fff;
+    }
+    &::-webkit-scrollbar-corner {
+        background: #fff;
+    }
+}
+
+@mixin scroll-dark () {
+    &::-webkit-scrollbar {
+        width: 18px;
+        background-color: #2A343E;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: #2A343E;
+        box-shadow: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        background-color: #37414b;
+        box-shadow: inset 0 0 0 4px #2A343E;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: #2A343E;
+    }
+}
