@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-15 16:21:12
+ * @Last Modified time: 2018-01-15 17:02:53
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -125,7 +125,7 @@ class App extends Component {
             <CheckBox value='disabled' disabled></CheckBox>
           </div>
           <div className="item">
-            <CheckBox.Group onChange={this.onCheckboxGroupChange} data={checkGroupData}>
+            <CheckBox.Group indeterminate={false} onChange={this.onCheckboxGroupChange} data={checkGroupData}>
             </CheckBox.Group>
           </div>
         </div>
