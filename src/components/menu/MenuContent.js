@@ -78,5 +78,5 @@ export default class MenuContent extends MixinComponent {
 
 MenuContent.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.array,
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]),
 }

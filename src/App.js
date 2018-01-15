@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 16:48:49
+ * @Last Modified time: 2018-01-15 16:21:12
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -79,7 +79,7 @@ class App extends Component {
   }
 
   render() {
-    const checkGroupData = [{value: '苹果', checked: false}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
+    const checkGroupData = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
 
 
     return (
@@ -242,18 +242,8 @@ class App extends Component {
           </div>
           <div className="item">
             <Menu className="f-ib" onCheck={this.onItemCheck.bind(this)}withCheck>
-              <Menu.Item command="aa">
-                <CheckBox value='是么'></CheckBox>
-              </Menu.Item>
-              <Menu.Item command="ss">
-                <CheckBox value='ss'></CheckBox>
-              </Menu.Item>
-              <Menu.Item command="dd">
-                <CheckBox value='dd'></CheckBox>
-              </Menu.Item>
-              <Menu.Item command="ee" subDesc="Ctrl+C">
-                <CheckBox value='ff'></CheckBox>
-              </Menu.Item>
+              <CheckBox.Group onChange={this.onCheckboxGroupChange} data={checkGroupData}>
+              </CheckBox.Group>
             </Menu>
           </div>
         </div>

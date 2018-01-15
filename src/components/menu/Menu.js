@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:12:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 10:07:05
+ * @Last Modified time: 2018-01-12 17:49:05
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
@@ -141,13 +141,27 @@ export default class Menu extends Component {
 
     render() {
         const {className, children, style} = this.props
-        const {overflowBottom, overflowTop, scrollTop} = this.state
+        const {overflowBottom, overflowTop, scrollTop, selected} = this.state
 
 
         const menuClass = classNames('u-menu', className, {
             'pdb-change': overflowBottom,
             'pdt-change': overflowTop
         })
+
+        const childrenWithProps = React.Children.map(this.props.children, (child, index) => {
+            if (!child) {
+              return null;
+            }
+      
+            return React.cloneElement(
+              child,
+              Object.assign({}, child.props, {
+                selected: selected
+              })
+            );
+          });
+
 
         return (
             <div className={menuClass} style={style}>
@@ -159,7 +173,7 @@ export default class Menu extends Component {
                     )
                 }
                 <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}>
-                    {children}
+                    {childrenWithProps}
                 </MenuContent>
                 {
                     overflowBottom && (

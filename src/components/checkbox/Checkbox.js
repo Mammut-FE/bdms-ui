@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import './checkbox.css'
 import '../../style/index.css'
 
@@ -22,6 +23,12 @@ export default class Checkbox extends Component {
         })
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({
+            checked: props.checked
+        })
+    }
+
     onChange = (e) => {
         const checked = e.target.checked;
         const { onChange, handleCheck } = this.props;
@@ -37,12 +44,20 @@ export default class Checkbox extends Component {
     }
 
     render() {
-        const {children, value, disabled, className} = this.props
+        const {children, value, disabled, className, isIndeterminate} = this.props
         const {checked} = this.state
 
+        const lableClass = classNames('u-label', className) 
+        const inputClass = classNames('u-checkbox-input', {
+            'checked': checked,
+            'disabled-on': disabled && checked,
+            'disabled-off': disabled && !checked,
+            'indeterminate': isIndeterminate
+        })
+
         return (
-            <label className={`u-label ${className ? className : ''}`}>
-                <span className={`u-checkbox-input ${checked ? 'checked' : ''} ${disabled && checked ? 'disabled-on' : ''} ${disabled && !checked ? 'disabled-off' : ''}`}>
+            <label className={lableClass}>
+                <span className={inputClass}>
                     <span className="u-checkbox-inner"></span>
                     <input 
                     type="checkbox" 
@@ -61,4 +76,5 @@ Checkbox.propTypes = {
     value: PropTypes.string,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
+    isIndeterminate: PropTypes.bool
 }
