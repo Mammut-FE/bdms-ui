@@ -8,8 +8,7 @@
   src: url("./font/mammut.eot") format("embedded-opentype"), url("./font/mammut.woff") format("woff"), url("./font/mammut.ttf") format("truetype"), url("./font/mammut.svg") format("svg"); }
 
 .icon {
-  display: inline-block;
-  vertical-align: middle; }
+  display: inline-block; }
   .icon:hover {
     cursor: pointer; }
   .icon:before, .icon.icon-order:after {

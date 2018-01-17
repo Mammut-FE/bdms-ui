@@ -8,19 +8,23 @@ import '../../style/index.css'
 import Icon from '../icon/index'
 
 export default class Input extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: this.props.value
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         value: this.props.value
+    //     }
+    // }
+
+    fixControlledValue(value) {
+        if (typeof value === 'undefined' || value === null) {
+            return '';
         }
+        return value;
     }
 
     onChangeHandler(e) {
         const value = e.target.value
         const { onChange } = this.props
-        this.setState({
-            value: value
-        })
 
         if (onChange) {
             onChange(value)
@@ -43,7 +47,10 @@ export default class Input extends Component {
 
     render() {
         const { type, className, style, name, placeholder, size, error, errorMessage, iconName, onMouseEnter, onMouseLeave, onIconClick,  ...otherProps } = this.props
-        const { value } = this.state
+
+        if ('value' in this.props) {
+            otherProps.value = this.fixControlledValue(this.props.value);
+        }
 
         const inputClass = classNames('u-input',  {
             'error': error 
@@ -53,7 +60,7 @@ export default class Input extends Component {
         })
         return (
             <div className = {wrapperClass} style = {style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                <input {...otherProps} type = {type} className = {inputClass} name = {name} placeholder = {placeholder} value = {value} onChange={this.onChangeHandler.bind(this)} onFocus={this.onFocusHandler.bind(this)} onBlur={this.onBlurHandler.bind(this)} />
+                <input {...otherProps} type = {type} className = {inputClass} name = {name} placeholder = {placeholder} onChange={this.onChangeHandler.bind(this)} onFocus={this.onFocusHandler.bind(this)} onBlur={this.onBlurHandler.bind(this)} />
                 { error && (
                     <div className='error-message'>{errorMessage}</div>
                 )}

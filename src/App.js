@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-15 17:02:53
+ * @Last Modified time: 2018-01-17 14:42:58
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -15,6 +15,7 @@ import Switch from './components/switch'
 import Menu from './components/menu'
 import Input from './components/input'
 import Select from './components/select'
+import Tag from './components/tag'
 // import Dropdown from './components/dropdown'
 
 class App extends Component {
@@ -23,7 +24,10 @@ class App extends Component {
     this.onChange = this.onChange.bind(this)
     this.state = {
       value: '选项一',
-      errorShow: false
+      checkboxVal: false,
+      errorShow: false,
+      inputValue: '',
+      inputValue2: ''
     }
   }
   clickButton(e) {
@@ -41,6 +45,9 @@ class App extends Component {
 
   changeCheckBox(value, checked) {
     console.log(value, checked)
+    this.setState({
+      checkboxVal: checked
+    })
   }
 
   onCheckboxGroupChange(lists) {
@@ -58,9 +65,10 @@ class App extends Component {
   }
 
   changeInput(value) {
-    console.log(value)
+    this.setState({
+      inputValue: value
+    })
   }
-
   checkError(value) {
     if (value.length > 5) {
       this.setState({
@@ -71,7 +79,9 @@ class App extends Component {
         errorShow: false
       })
     }
-    
+    this.setState({
+      inputValue2: value
+    })
   }
 
   handleIconClick(e) {
@@ -80,6 +90,35 @@ class App extends Component {
 
   render() {
     const checkGroupData = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
+    const checkGroupData2 = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
+    const checkGroupData3 = [{value: '苹果', checked: false}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
+
+    const selectOptionList = [{
+      command: 'a',
+      name: '哈姆雷特',
+      disabled: false,
+      divided: false
+    },{
+      command: 's',
+      name: '金星',
+      disabled: false,
+      divided: false
+    },{
+      command: 'd',
+      name: '水星',
+      disabled: false,
+      divided: false
+    },{
+      command: 'f',
+      name: '火星',
+      disabled: false,
+      divided: false
+    },{
+      command: 'g',
+      name: '木星',
+      disabled: false,
+      divided: false
+    }]
 
 
     return (
@@ -119,7 +158,7 @@ class App extends Component {
         </div>
         <div className="components">
           <div className="item">
-            <CheckBox value='check-off' onChange={this.changeCheckBox.bind(this)}></CheckBox>
+            <CheckBox value='check-off' checked={this.state.checkboxVal} onChange={this.changeCheckBox.bind(this)}></CheckBox>
             <CheckBox value='check-on' checked></CheckBox>
             <CheckBox value='checked-disabled' checked disabled></CheckBox>
             <CheckBox value='disabled' disabled></CheckBox>
@@ -242,22 +281,50 @@ class App extends Component {
           </div>
           <div className="item">
             <Menu className="f-ib" onCheck={this.onItemCheck.bind(this)}withCheck>
-              <CheckBox.Group onChange={this.onCheckboxGroupChange} data={checkGroupData}>
+              <CheckBox.Group onChange={this.onCheckboxGroupChange} data={checkGroupData2}>
               </CheckBox.Group>
             </Menu>
           </div>
         </div>
         <div className="components">
           <div className="item">
-            <Input type="text" name="test" placeholder="请输入" value="e" onChange={this.changeInput.bind(this)}></Input>
+            <Input type="text" name="test" placeholder="请输入" value={this.state.inputValue} onChange={this.changeInput.bind(this)}></Input>
           </div>
           <div className="item">
-            <Input type="text" name="test" placeholder="请输入数字" value="e" onChange={this.checkError.bind(this)} error={this.state.errorShow} errorMessage = "不能超过长度5" iconName="search" onIconClick={this.handleIconClick.bind(this)}></Input>
+            <Input type="text" name="test" placeholder="请输入数字" value={this.state.inputValue2} onChange={this.checkError.bind(this)} error={this.state.errorShow} errorMessage = "不能超过长度5" iconName="search" onIconClick={this.handleIconClick.bind(this)}></Input>
           </div>
         </div>
         <div className="components">
           <div className="item">
-            <Select></Select>
+            <Select selectOptions={checkGroupData3} multiple></Select>
+          </div>
+          <div className="item">
+            <Select selectOptions={selectOptionList} selected="火星"></Select>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+            <Tag>你好</Tag><Tag>恩</Tag><Tag>呵呵</Tag><Tag>嘿嘿</Tag><Tag>啦啦啦</Tag><Tag>喔喔喔</Tag>
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
+          </div>
+        </div>
+        <div className="components">
+          <div className="item">
           </div>
         </div>
         <div className="components">

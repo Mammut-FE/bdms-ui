@@ -1,0 +1,25 @@
+.u-tag {
+    display: inline-block;
+    height: 28px;
+    line-height: 26px;
+    white-space: nowrap;
+    padding: 0 8px;
+    margin-right: 5px;
+    border-radius: 2px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #666;
+    @at-root #{&}-small {
+        height: 22px;
+        line-height: 20px;
+        font-size: 12px;
+    }
+    .icon {
+        margin-right: 4px;
+    }
+    .icon-close {
+        margin-left: 4px;
+        margin-right: 0;
+    }
+}

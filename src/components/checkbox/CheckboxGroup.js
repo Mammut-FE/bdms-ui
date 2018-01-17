@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes, { func } from 'prop-types'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import _ from 'lodash'
+
 import './checkbox.css'
 import '../../style/index.css'
 import Checkbox from './Checkbox'
@@ -19,9 +21,17 @@ export default class CheckboxGroup extends Component {
     componentDidMount() {
         this.updateIsIndeterminate()
     }
+    componentWillReceiveProps(nextProps) {
+        if (_.isEqual(nextProps.data, this.props.data)) {
+            this.setState({
+                checkLists: nextProps.data
+            });
+            this.updateIsIndeterminate()
+        }
+    }
 
     updateIsIndeterminate() {
-        const {checkLists, isIndeterminate} = this.state;
+        const {checkLists} = this.state;
         let checkedNum = 0
         const checkLen = checkLists.length
         checkLists.forEach((item) => {
@@ -65,6 +75,10 @@ export default class CheckboxGroup extends Component {
         this.setState({
             checkLists: checkLists
         })
+
+        if (this.props.onChange) {
+            this.props.onChange(checkLists)
+        }
     }
 
     onChange = (value, checked) => {
@@ -100,8 +114,10 @@ export default class CheckboxGroup extends Component {
         const {checkLists, isIndeterminate, checkAll} = this.state;
         const {className, indeterminate} = this.props;
 
+        const gourpClassName = classNames('checbox-group', className)
+
         return (
-            <div className={`checbox-group ${className ? className : ''}`}>
+            <div className={gourpClassName}>
                 {
                     indeterminate && (<Checkbox isIndeterminate={isIndeterminate} checked={checkAll} value="全选" onChange={this.changeAll}></Checkbox>)
                 }

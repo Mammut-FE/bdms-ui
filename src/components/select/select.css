@@ -1,2 +1,71 @@
-.u-search {
-  position: relative; }
+@charset "UTF-8";
+.f-ib {
+  display: inline-block; }
+
+/**
+ * 布局间距定义
+ */
+.u-select {
+  position: relative;
+  cursor: pointer;
+  max-width: 100%; }
+  .u-select input {
+    cursor: pointer; }
+  .u-select .u-menu {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    animation: slideShow .5s; }
+  .u-select .multi-selected {
+    font-size: 14px;
+    min-height: 32px;
+    height: auto;
+    line-height: 30px;
+    border-radius: 2px;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0 12px;
+    vertical-align: middle;
+    position: relative;
+    text-align: left; }
+    .u-select .multi-selected-xsmall {
+      width: 146px;
+      height: 28px; }
+    .u-select .multi-selected-small {
+      width: 240px; }
+    .u-select .multi-selected-normal {
+      width: 376px; }
+    .u-select .multi-selected-large {
+      width: 480px; }
+    .u-select .multi-selected .icon-chevron-down, .u-select .multi-selected .icon-chevron-up {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa; }
+
+@keyframes slideShow {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes slideShow {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes slideShow {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-o-keyframes slideShow {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }

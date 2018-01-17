@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2018-01-05 16:12:23 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 17:49:05
+ * @Last Modified time: 2018-01-15 17:17:05
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
@@ -149,7 +149,7 @@ export default class Menu extends Component {
             'pdt-change': overflowTop
         })
 
-        const childrenWithProps = React.Children.map(this.props.children, (child, index) => {
+        const childrenWithProps = React.Children.map(children, (child, index) => {
             if (!child) {
               return null;
             }

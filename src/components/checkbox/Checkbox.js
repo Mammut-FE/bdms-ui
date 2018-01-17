@@ -5,47 +5,17 @@ import './checkbox.css'
 import '../../style/index.css'
 
 export default class Checkbox extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            checked: this.getChecked(props)
-        }
-    }
-
-
-    getChecked(props) {
-        return Boolean(props.checked)
-    }
-    
-    setChecked(checked) {
-        this.setState({
-            checked
-        })
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            checked: props.checked
-        })
-    }
-
     onChange = (e) => {
         const checked = e.target.checked;
-        const { onChange, handleCheck } = this.props;
-        // this.setState({ checked })
-        this.setChecked(checked)
+        const { onChange } = this.props;
 
         if (onChange) {
             onChange(this.props.value, checked)
         }
-        if (handleCheck) {
-            handleCheck(this.props.command, checked)
-        }
     }
 
     render() {
-        const {children, value, disabled, className, isIndeterminate} = this.props
-        const {checked} = this.state
+        const {children, value, disabled, className, isIndeterminate, checked} = this.props
 
         const lableClass = classNames('u-label', className) 
         const inputClass = classNames('u-checkbox-input', {
