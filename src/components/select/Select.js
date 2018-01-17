@@ -33,7 +33,7 @@ export default class Select extends Component {
         const insertSelect = this.options
         if (!this.options) return
         if (insertSelect.contains(e.target)) return 
-        if (e.target.className.indexOf('icon-close') !== 1) return 
+        if (e.target.className.indexOf('icon-close') !== -1) return 
         this.setState({
             showOptions: false
         })
