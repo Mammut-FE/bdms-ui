@@ -2,7 +2,6 @@ import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import _ from 'lodash'
 
 import './select.css'
 import '../../style/index.css'
@@ -19,8 +18,8 @@ export default class Select extends Component {
         this.state = {
             showOptions: false,
             selected: this.getSelected(),
-            selectedTags: this.getSelectedTags(),
-            selectOptions: this.initSelectOptions()
+            selectOptions: this.initSelectOptions(),
+            currentPlaceholder: this.props.placeholder || ''
         }
     }
     componentDidMount() {
@@ -41,14 +40,17 @@ export default class Select extends Component {
     getSelected() {
         return this.props.selected || ''
     }
-    getSelectedTags() {
-        return this.props.selectedTags || []
-    }
     initSelectOptions() {
         return this.props.selectOptions || []
     }
     toggle() {
-        const showOptions = this.state.showOptions;
+        const { showOptions, selected } = this.state;
+        if (!showOptions) {
+            this.setState({
+                selected: '',
+                currentPlaceholder:selected
+            })
+        }
         this.setState({
             showOptions: !showOptions
         })
@@ -60,25 +62,17 @@ export default class Select extends Component {
         })
     }
     onCheckboxGroupChange(lists) {
-        let selectedTags = []
-        lists.forEach((item) => {
-            if (item.checked) {
-                selectedTags.push(item)
-            }
-        }) 
         this.setState({
-            selectedTags: selectedTags
+            selectOptions: lists
         })
     }
     deleteTag(index) {
-        const { selectedTags, selectOptions } = this.state
-        const _index = _.findIndex(selectOptions, selectedTags[index])
-        selectOptions[_index].checked =false
-        selectedTags.splice(index, 1)
+        const { selectOptions } = this.state
+        selectOptions[index].checked =false
         this.setState({
             selectOptions: selectOptions
         })
-    } 
+    }
     handleCommand(command, instance) {
         this.toggle()
         const name = instance.props.children
@@ -95,7 +89,7 @@ export default class Select extends Component {
         if (multiple) {
             return (
                 <Menu>
-                    <CheckBox.Group onChange={this.onCheckboxGroupChange.bind(this)} data={selectOptions}>
+                    <CheckBox.Group data={selectOptions} onChange={this.onCheckboxGroupChange.bind(this)}>
                     </CheckBox.Group>
                 </Menu>
             )
@@ -118,7 +112,7 @@ export default class Select extends Component {
     }
     render() {
         const { className, style, size, searchable, multiple } = this.props
-        const { showOptions, selected, selectedTags } = this.state
+        const { showOptions, selected, selectOptions, currentPlaceholder } = this.state
         const selectClass = classNames('u-select', className)
         const multiClass = classNames('multi-selected', `multi-selected-${size}`)
         const SelectOptions = this.getSelectOptions()
@@ -127,8 +121,10 @@ export default class Select extends Component {
                 <div className={selectClass} style={style} ref={this.setOption.bind(this)}>
                     <div className={multiClass} onClick={this.toggle.bind(this)}>
                     { 
-                        selectedTags.map((tag, index) => {
-                            return <Tag key={tag.value} onClose={this.deleteTag.bind(this, index)}>{tag.value}</Tag>
+                        selectOptions.map((tag, index) => {
+                            if (tag.checked)
+                               return <Tag key={tag.value} onClose={this.deleteTag.bind(this, index)}>{tag.value}</Tag>
+                            else return null
                         }) 
                     }
                     <Icon name={ showOptions ? "chevron-up" : "chevron-down"}></Icon>
@@ -139,7 +135,7 @@ export default class Select extends Component {
         } else {
             return (
                 <div className={selectClass} style={style} ref={this.setOption.bind(this)}>
-                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)} />
+                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} placeholder={currentPlaceholder} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)} />
                     {showOptions && SelectOptions}
                 </div>
             )
@@ -150,7 +146,8 @@ export default class Select extends Component {
 Select.propTypes = {
     size: PropTypes.string,
     multiple: PropTypes.bool,
-    searchable: PropTypes.bool
+    searchable: PropTypes.bool,
+    placeholder: PropTypes.string
 }
 Select.defaultProps = {
     size: 'small',

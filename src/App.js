@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-17 14:42:58
+ * @Last Modified time: 2018-01-18 14:11:08
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -91,7 +91,7 @@ class App extends Component {
   render() {
     const checkGroupData = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
     const checkGroupData2 = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
-    const checkGroupData3 = [{value: '苹果', checked: false}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
+    const checkGroupData3 = [{value: '苹果', checked: true}, {value: '香蕉', checked: false}, {value: '桃子', checked: false}, {value: '梨子', checked: false}]
 
     const selectOptionList = [{
       command: 'a',
@@ -300,6 +300,9 @@ class App extends Component {
           </div>
           <div className="item">
             <Select selectOptions={selectOptionList} selected="火星"></Select>
+          </div>
+          <div className="item">
+            <Select selectOptions={selectOptionList} placeholder="请选择"></Select>
           </div>
         </div>
         <div className="components">
