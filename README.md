@@ -1,1 +1,2 @@
-自己写的基于react的ui框架。
+基于react的ui框架
+起服务： `yarn start`
