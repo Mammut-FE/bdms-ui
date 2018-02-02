@@ -19,7 +19,8 @@ export default class Select extends Component {
             showOptions: false,
             selected: this.getSelected(),
             selectOptions: this.initSelectOptions(),
-            currentPlaceholder: this.props.placeholder || ''
+            currentPlaceholder: this.props.placeholder || '',
+            filterKey: ''
         }
     }
     componentDidMount() {
@@ -48,7 +49,8 @@ export default class Select extends Component {
         if (!showOptions) {
             this.setState({
                 selected: '',
-                currentPlaceholder:selected
+                currentPlaceholder:selected,
+                filterKey: ''
             })
         }
         this.setState({
@@ -57,8 +59,18 @@ export default class Select extends Component {
     }
     inputChangeHanlder(value) {
         this.toggle()
+        console.log(value)
         this.setState({
             selected: value
+        })
+    }
+    onKeyUpHandler(e) {
+        const value = e.target.value
+        this.setState(() => {
+            return {
+                filterKey: value,
+                showOptions: true
+            }
         })
     }
     onCheckboxGroupChange(lists) {
@@ -85,7 +97,7 @@ export default class Select extends Component {
     }
     getSelectOptions() {
         const { multiple } = this.props
-        const { selectOptions } = this.state
+        const { selectOptions, filterKey } = this.state
         if (multiple) {
             return (
                 <Menu>
@@ -98,12 +110,15 @@ export default class Select extends Component {
                 <Menu onCommand={this.handleCommand.bind(this)}>
                     {
                         selectOptions.map((option, index) => {
-                            if (option.title) {
-                                return <Menu.Title>option.name</Menu.Title>
+                            if (option.name.indexOf(filterKey) !== -1 || !filterKey) {
+                                if (option.title) {
+                                    return <Menu.Title>option.name</Menu.Title>
+                                } else {
+                                    return <Menu.Item key={option.command} command={option.command} disabled={option.disabled} divided={option.divided}  iconName={option.iconName}>{option.name}</Menu.Item>
+                                }
                             } else {
-                                return <Menu.Item key={option.command} command={option.command} disabled={option.disabled} divided={option.divided}  iconName={option.iconName}>{option.name}</Menu.Item>
+                                return null
                             }
-                            
                         })
                     }
                 </Menu>
@@ -135,7 +150,7 @@ export default class Select extends Component {
         } else {
             return (
                 <div className={selectClass} style={style} ref={this.setOption.bind(this)}>
-                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} placeholder={currentPlaceholder} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)} />
+                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} placeholder={currentPlaceholder} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)} onKeyUp={this.onKeyUpHandler.bind(this)}/>
                     {showOptions && SelectOptions}
                 </div>
             )
@@ -151,5 +166,5 @@ Select.propTypes = {
 }
 Select.defaultProps = {
     size: 'small',
-    searchable: true
+    searchable: false
 }
