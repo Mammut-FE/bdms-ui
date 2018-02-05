@@ -8,12 +8,12 @@ import '../../style/index.css'
 import Icon from '../icon/index'
 
 export default class Input extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         value: this.props.value
-    //     }
-    // }
+    constructor(props) {
+        super(props)
+        this.state = {
+            isComposition: false
+        }
+    }
 
     fixControlledValue(value) {
         if (typeof value === 'undefined' || value === null) {
@@ -28,6 +28,7 @@ export default class Input extends Component {
 
         if (onChange) {
             onChange(value)
+            
         }
     }
 
@@ -45,6 +46,24 @@ export default class Input extends Component {
         }
     }
 
+    onCompositionStartHandler(e) {
+        this.setState({
+            isComposition: true
+        })
+
+        const { onCompositionStart } = this.props
+        if (onCompositionStart) onCompositionStart(e)
+    }
+
+    onCompositionEndHandler(e) {
+        this.setState({
+            isComposition: false
+        })
+
+        const { onCompositionEnd } = this.props
+        if (onCompositionEnd) onCompositionEnd(e)
+    }
+
     render() {
         const { type, className, style, name, placeholder, size, error, errorMessage, iconName, onMouseEnter, onMouseLeave, onIconClick,  ...otherProps } = this.props
 
@@ -60,7 +79,7 @@ export default class Input extends Component {
         })
         return (
             <div className = {wrapperClass} style = {style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                <input {...otherProps} type = {type} className = {inputClass} name = {name} placeholder = {placeholder} onChange={this.onChangeHandler.bind(this)} onFocus={this.onFocusHandler.bind(this)} onBlur={this.onBlurHandler.bind(this)} />
+                <input {...otherProps} type = {type} className = {inputClass} name = {name} placeholder = {placeholder} onChange={this.onChangeHandler.bind(this)} onFocus={this.onFocusHandler.bind(this)} onBlur={this.onBlurHandler.bind(this)} onCompositionStart={this.onCompositionStartHandler.bind(this)} onCompositionEnd={this.onCompositionEndHandler.bind(this)} />
                 { error && (
                     <div className='error-message'>{errorMessage}</div>
                 )}

@@ -20,6 +20,7 @@ export default class Select extends Component {
             selected: this.getSelected(),
             selectOptions: this.initSelectOptions(),
             currentPlaceholder: this.props.placeholder || '',
+            cachePlaceHolder: '',
             filterKey: ''
         }
     }
@@ -45,11 +46,11 @@ export default class Select extends Component {
         return this.props.selectOptions || []
     }
     toggle() {
-        const { showOptions, selected } = this.state;
+        const { showOptions, selected, cachePlaceHolder } = this.state;
         if (!showOptions) {
             this.setState({
                 selected: '',
-                currentPlaceholder:selected,
+                currentPlaceholder: cachePlaceHolder,
                 filterKey: ''
             })
         }
@@ -58,18 +59,13 @@ export default class Select extends Component {
         })
     }
     inputChangeHanlder(value) {
-        this.toggle()
+        // this.toggle()
         console.log(value)
-        this.setState({
-            selected: value
-        })
-    }
-    onKeyUpHandler(e) {
-        const value = e.target.value
         this.setState(() => {
             return {
                 filterKey: value,
-                showOptions: true
+                showOptions: true,
+                selected: value
             }
         })
     }
@@ -89,7 +85,8 @@ export default class Select extends Component {
         this.toggle()
         const name = instance.props.children
         this.setState({
-            selected: name
+            selected: name,
+            cachePlaceHolder: name
         })
     }
     setOption(dom) {
@@ -150,7 +147,7 @@ export default class Select extends Component {
         } else {
             return (
                 <div className={selectClass} style={style} ref={this.setOption.bind(this)}>
-                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} placeholder={currentPlaceholder} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)} onKeyUp={this.onKeyUpHandler.bind(this)}/>
+                    <Input type="text" readOnly={!searchable} size={size} iconName={showOptions ? "chevron-up" : "chevron-down"} value={selected} placeholder={currentPlaceholder} onClick={this.toggle.bind(this)} onChange={this.inputChangeHanlder.bind(this)}/>
                     {showOptions && SelectOptions}
                 </div>
             )
