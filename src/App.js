@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com) 
  * @Date: 2017-10-18 14:18:29 
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-02-02 13:52:10
+ * @Last Modified time: 2018-02-05 16:04:54
  */
 import React, { Component } from 'react';
 import './App.css';
@@ -16,6 +16,7 @@ import Menu from './components/menu'
 import Input from './components/input'
 import Select from './components/select'
 import Tag from './components/tag'
+import Calendar from './components/date-picker'
 // import Dropdown from './components/dropdown'
 
 class App extends Component {
@@ -312,6 +313,7 @@ class App extends Component {
         </div>
         <div className="components">
           <div className="item">
+            <Calendar></Calendar>
           </div>
         </div>
         <div className="components">

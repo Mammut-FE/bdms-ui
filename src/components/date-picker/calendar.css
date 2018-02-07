@@ -1,0 +1,36 @@
+.u-calendar {
+  width: 246px;
+  border: 1px solid #ccc;
+  padding: 14px 10px;
+  color: #333; }
+  .u-calendar .icon-left-double {
+    width: 16px;
+    color: #999;
+    letter-spacing: -10px;
+    text-indent: -4px; }
+    .u-calendar .icon-left-double:before {
+      content: '\f11b\f11b'; }
+  .u-calendar .icon-right-double {
+    width: 16px;
+    color: #999;
+    letter-spacing: -10px;
+    text-indent: -4px; }
+    .u-calendar .icon-right-double:before {
+      content: '\f12a\f12a'; }
+
+.calendar-header {
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 12px; }
+
+.calendar-week ul li {
+  width: 16px;
+  float: left;
+  margin: 4px 8px; }
+
+.calendar-days ul li {
+  width: 16px;
+  float: left;
+  margin: 4px 8px;
+  cursor: pointer; }

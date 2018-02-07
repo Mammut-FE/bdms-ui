@@ -2,6 +2,22 @@
 .f-ib {
   display: inline-block; }
 
+.f-fl {
+  float: left; }
+
+.f-fr {
+  float: right; }
+
+.f-cb {
+  zoom: 1; }
+  .f-cb:after {
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    content: "."; }
+
 /**
  * 布局间距定义
  */
