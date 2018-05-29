@@ -46,7 +46,7 @@ export default class Select extends Component {
         return this.props.selectOptions || []
     }
     toggle() {
-        const { showOptions, selected, cachePlaceHolder } = this.state;
+        const { showOptions, cachePlaceHolder } = this.state;
         if (!showOptions) {
             this.setState({
                 selected: '',

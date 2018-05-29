@@ -2,7 +2,8 @@
   width: 246px;
   border: 1px solid #ccc;
   padding: 14px 10px;
-  color: #333; }
+  color: #333;
+  font-size: 12px; }
   .u-calendar .icon-left-double {
     width: 16px;
     color: #999;
@@ -22,15 +23,38 @@
   text-align: center;
   height: 20px;
   line-height: 20px;
-  margin-bottom: 12px; }
+  margin-bottom: 12px;
+  cursor: pointer; }
 
 .calendar-week ul li {
-  width: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
   float: left;
-  margin: 4px 8px; }
+  margin: 4px;
+  color: #999; }
 
 .calendar-days ul li {
-  width: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
   float: left;
-  margin: 4px 8px;
-  cursor: pointer; }
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 2px; }
+  .calendar-days ul li:hover {
+    background: #d0e8fe;
+    color: #fff; }
+  .calendar-days ul li.disabled {
+    color: #999;
+    cursor: not-allowed; }
+    .calendar-days ul li.disabled:hover {
+      background: #fff;
+      color: #999;
+      cursor: not-allowed; }
+  .calendar-days ul li.selected {
+    color: #fff;
+    background: #0987E5; }
+    .calendar-days ul li.selected:hover {
+      color: #fff;
+      background: #0987E5; }

@@ -3,6 +3,7 @@
     border: 1px solid #ccc;
     padding: 14px 10px;
     color: #333;
+    font-size: 12px;
     .icon-left-double {
         width: 16px;
         color: #999;
@@ -27,16 +28,19 @@
     height: 20px;
     line-height: 20px;
     margin-bottom: 12px;
+    cursor: pointer;
 }
 .calendar-body {
-   
 }
 .calendar-week {
     ul {
         li {
-            width: 16px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
             float: left;
-            margin: 4px 8px;
+            margin: 4px;
+            color: #999;
         }
     }
 }
@@ -44,10 +48,34 @@
 .calendar-days {
     ul {
         li {
-            width: 16px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
             float: left;
-            margin: 4px 8px;
+            margin: 4px;
             cursor: pointer;
+            border-radius: 2px;
+            &:hover {
+                background: #d0e8fe;
+                color: #fff;
+            }
+            &.disabled {
+                color: #999;
+                cursor: not-allowed;
+                &:hover {
+                    background: #fff;
+                    color: #999;
+                    cursor: not-allowed;
+                }
+            }
+            &.selected {
+                color: #fff;
+                background: #0987E5;
+                &:hover {
+                    color: #fff;
+                    background: #0987E5;
+                }
+            }
         }
     }
 }
