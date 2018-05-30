@@ -2,8 +2,8 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import './input.css'
-import '../../style/index.css'
+import './input.scss'
+import '../../style/index.scss'
 
 import Icon from '../icon/index'
 
@@ -72,7 +72,7 @@ export default class Input extends Component {
         }
 
         const inputClass = classNames('u-input',  {
-            'error': error 
+            'error': error
         })
         const wrapperClass = classNames('u-input-wrapper', className, {
             [`u-input-wrapper-${size}`] : size

@@ -1,11 +1,11 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com) 
- * @Date: 2017-10-18 14:18:29 
+ * @Author: jessica(hzgujing@corp.netease.com)
+ * @Date: 2017-10-18 14:18:29
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
  * @Last Modified time: 2018-02-05 16:04:54
  */
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 
 import Icon from './components/icon'
 import Button from './components/button'

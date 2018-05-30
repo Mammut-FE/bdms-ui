@@ -1,13 +1,13 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com) 
- * @Date: 2017-10-23 15:03:17 
- * @Last Modified by:   jessica(hzgujing@corp.netease.com) 
- * @Last Modified time: 2017-10-23 15:03:17 
+ * @Author: jessica(hzgujing@corp.netease.com)
+ * @Date: 2017-10-23 15:03:17
+ * @Last Modified by:   jessica(hzgujing@corp.netease.com)
+ * @Last Modified time: 2017-10-23 15:03:17
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './radio.css'
-import '../../style/index.css'
+import './radio.scss'
+import '../../style/index.scss'
 
 export default class Radio extends Component {
     constructor(props) {
@@ -48,15 +48,15 @@ export default class Radio extends Component {
             <label className={`u-label ${className ? className : ''}`}>
                 <span className='u-radio-input'>
                     <span className={`u-radio-inner ${checked ? 'checked' : ''} ${disabled && checked ? 'disabled-on' : ''} ${disabled && !checked ? 'disabled-off' : ''}`}></span>
-                    <input 
-                    type="radio" 
+                    <input
+                    type="radio"
                     checked={checked}
                     disabled={disabled}
                     onChange={this.onChange}
                     />
                 </span>
                 <span className={`u-radio-text ${disabled? 'disabled' : ''}`}>{children || value}</span>
-            </label>   
+            </label>
         )
     }
 }

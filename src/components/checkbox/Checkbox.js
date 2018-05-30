@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import './checkbox.css'
-import '../../style/index.css'
+import './checkbox.scss'
+import '../../style/index.scss'
 
 export default class Checkbox extends Component {
     onChange = (e) => {
@@ -17,7 +17,7 @@ export default class Checkbox extends Component {
     render() {
         const {children, value, disabled, className, isIndeterminate, checked} = this.props
 
-        const lableClass = classNames('u-label', className) 
+        const lableClass = classNames('u-label', className)
         const inputClass = classNames('u-checkbox-input', {
             'checked': checked,
             'disabled-on': disabled && checked,
@@ -29,8 +29,8 @@ export default class Checkbox extends Component {
             <label className={lableClass}>
                 <span className={inputClass}>
                     <span className="u-checkbox-inner"></span>
-                    <input 
-                    type="checkbox" 
+                    <input
+                    type="checkbox"
                     checked={checked}
                     disabled={disabled}
                     onChange={this.onChange}

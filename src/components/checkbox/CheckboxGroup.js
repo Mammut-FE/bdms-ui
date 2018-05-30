@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
 
-import './checkbox.css'
-import '../../style/index.css'
+import './checkbox.scss'
+import '../../style/index.scss'
 import Checkbox from './Checkbox'
 
 export default class CheckboxGroup extends Component {
@@ -122,7 +122,7 @@ export default class CheckboxGroup extends Component {
                     indeterminate && (<Checkbox isIndeterminate={isIndeterminate} checked={checkAll} value="全选" onChange={this.changeAll}></Checkbox>)
                 }
                 {
-                    checkLists.map((item, index) => 
+                    checkLists.map((item, index) =>
                         <Checkbox checked={item.checked} value={item.value} disabled={item.disabled} key={index} onChange={this.onChange}></Checkbox>)
                 }
             </div>

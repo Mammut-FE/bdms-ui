@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './button.css'
-import '../../style/index.css'
+import './button.scss'
+import '../../style/index.scss'
 
 export default class Button extends Component {
     onClick = (e) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './switch.css'
-import '../../style/index.css'
+import './switch.scss'
+import '../../style/index.scss'
 
 export default class Switch extends Component {
     constructor(props) {

@@ -1,12 +1,12 @@
 import React from 'react';
-import './button.css'
-import '../../style/index.css'
+import './button.scss'
+import '../../style/index.scss'
 
 
 const ButtonGroup = (props) => (
     <div className='u-button-group'>
         {props.children}
-    </div>  
+    </div>
 )
 
 export default ButtonGroup;

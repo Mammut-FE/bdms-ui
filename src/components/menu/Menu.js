@@ -1,14 +1,14 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com) 
- * @Date: 2018-01-05 16:12:23 
+ * @Author: jessica(hzgujing@corp.netease.com)
+ * @Date: 2018-01-05 16:12:23
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
  * @Last Modified time: 2018-01-15 17:17:05
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
-import './menu.css'
-import '../../style/index.css'
+import './menu.scss'
+import '../../style/index.scss'
 
 import Icon from '../icon'
 import MenuContent from './MenuContent'

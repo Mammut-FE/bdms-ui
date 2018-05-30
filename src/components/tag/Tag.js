@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import './tag.css'
-import '../../style/index.css'
+import './tag.scss'
+import '../../style/index.scss'
 import Icon from '../icon/Icon';
 
 export default class Tag extends Component {

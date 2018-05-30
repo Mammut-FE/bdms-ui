@@ -3,8 +3,8 @@ import React, { Component} from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import './calendar.css'
-import '../../style/index.css'
+import './calendar.scss'
+import '../../style/index.scss'
 import Icon from '../icon'
 
 export default class Calendar extends Component {
@@ -127,8 +127,8 @@ export default class Calendar extends Component {
                          <ul className="f-cb">
                             {
                                 daysArray.map( (day, index) => {
-                                    return <li 
-                                        key={'now' + index} 
+                                    return <li
+                                        key={'now' + index}
                                         className={classNames({'disabled': day.disabled, 'selected': (selectedDay === day.day) && !day.disabled})}
                                         onClick={this.select.bind(this,day)}>{day.day}
                                     </li>

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import './select.css'
-import '../../style/index.css'
+import './select.scss'
+import '../../style/index.scss'
 
 import Input from '../input'
 import Menu from '../menu'
@@ -33,8 +33,8 @@ export default class Select extends Component {
     handleGlobalClick(e) {
         const insertSelect = this.options
         if (!this.options) return
-        if (insertSelect.contains(e.target)) return 
-        if (e.target.className.indexOf('icon-close') !== -1) return 
+        if (insertSelect.contains(e.target)) return
+        if (e.target.className.indexOf('icon-close') !== -1) return
         this.setState({
             showOptions: false
         })
@@ -132,12 +132,12 @@ export default class Select extends Component {
             return (
                 <div className={selectClass} style={style} ref={this.setOption.bind(this)}>
                     <div className={multiClass} onClick={this.toggle.bind(this)}>
-                    { 
+                    {
                         selectOptions.map((tag, index) => {
                             if (tag.checked)
                                return <Tag key={tag.value} onClose={this.deleteTag.bind(this, index)}>{tag.value}</Tag>
                             else return null
-                        }) 
+                        })
                     }
                     <Icon name={ showOptions ? "chevron-up" : "chevron-down"}></Icon>
                     </div>

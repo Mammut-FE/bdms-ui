@@ -1,6 +1,6 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com) 
- * @Date: 2018-01-05 16:11:56 
+ * @Author: jessica(hzgujing@corp.netease.com)
+ * @Date: 2018-01-05 16:11:56
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
  * @Last Modified time: 2018-01-12 17:39:38
  */
@@ -8,8 +8,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import './menu.css'
-import '../../style/index.css'
+import './menu.scss'
+import '../../style/index.scss'
 
 import MixinComponent from './MixinComponent'
 import Icon from '../icon'
@@ -38,7 +38,7 @@ export default class MenuItem extends MixinComponent {
     render() {
         const {className, children, disabled, divided, iconName, subDesc, command} = this.props
         const parent = this.parent()
-        const { tickSelect, withCheck}= parent.props 
+        const { tickSelect, withCheck}= parent.props
         const handleCheck = parent.handleCheck
         
         const meneItemClass = classNames('u-menu-item', className, {
@@ -47,7 +47,7 @@ export default class MenuItem extends MixinComponent {
             'bg-selected': this.active() && !tickSelect && !withCheck,
             'pdl-change': tickSelect && !withCheck
         })
-            
+        
         if (!withCheck) {
             return (
                 <div className={meneItemClass} onClick={this.handleItemClick.bind(this)}>
@@ -57,7 +57,7 @@ export default class MenuItem extends MixinComponent {
                         )
                     }
                     { iconName && (
-                        <Icon name={iconName}></Icon>   
+                        <Icon name={iconName}></Icon>
                     )}
                     {children}
                     { subDesc && (

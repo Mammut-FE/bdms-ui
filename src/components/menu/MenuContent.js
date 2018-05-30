@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
 // import _ from 'lodash'
 
-import './menu.css'
-import '../../style/index.css'
+import './menu.scss'
+import '../../style/index.scss'
 
 import classNames from 'classnames'
 
