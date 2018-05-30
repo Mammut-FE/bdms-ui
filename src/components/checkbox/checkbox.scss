@@ -1,4 +1,4 @@
-@import '../../style/color.scss';
+@import 'color.scss';
 
 .u-label {
     cursor: pointer;
@@ -23,7 +23,7 @@
                 background: $base-color;
                 border-color: $base-color;
                 &:after {
-                    transform: rotate(45deg) scaleY(1); 
+                    transform: rotate(45deg) scaleY(1);
                 }
             }
             &:hover {
@@ -31,7 +31,7 @@
                     background: $base-color;
                     border-color: $base-color;
                     &:after {
-                        transform: rotate(45deg) scaleY(1); 
+                        transform: rotate(45deg) scaleY(1);
                     }
                 }
             }
@@ -68,7 +68,7 @@
                     cursor: not-allowed;
                     background: #fff;
                     border-color: #999;
-                    transform: rotate(45deg) scaleY(1); 
+                    transform: rotate(45deg) scaleY(1);
                 }
             }
             &:hover {
@@ -80,7 +80,7 @@
                         cursor: not-allowed;
                         background: #fff;
                         border-color: #999;
-                        transform: rotate(45deg) scaleY(1); 
+                        transform: rotate(45deg) scaleY(1);
                     }
                 }
             }
