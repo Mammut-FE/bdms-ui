@@ -65,7 +65,6 @@ export default class MenuContent extends MixinComponent {
     
     render() {
         const {className, children} = this.props
-        const contentClass = classNames('content', className)
 
         let cx = classNames.bind(menuClass);
         const contentClasses = cx('content', className)

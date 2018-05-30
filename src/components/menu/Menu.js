@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2018-01-05 16:12:23
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-30 19:31:29
+ * @Last Modified time: 2018-05-30 19:45:59
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
@@ -146,9 +146,11 @@ export default class Menu extends Component {
         let cx = classNames.bind(menuClass);
 
         const menuClasses = cx('u-menu', className, {
-            'pdb-change': overflowBottom,
-            'pdt-change': overflowTop
-          });
+          'pdb-change': overflowBottom,
+          'pdt-change': overflowTop
+        });
+        
+        console.log(menuClasses)
 
 
         const childrenWithProps = React.Children.map(children, (child, index) => {
@@ -169,7 +171,7 @@ export default class Menu extends Component {
             <div className={menuClasses} style={style}>
                 {
                     overflowTop && (
-                        <div className='handle-top' onClick={this.scrollUp.bind(this)}>
+                        <div className={cx('handle-top')} onClick={this.scrollUp.bind(this)}>
                             <Icon name='chevron-up'></Icon>
                         </div>
                     )
@@ -179,7 +181,7 @@ export default class Menu extends Component {
                 </MenuContent>
                 {
                     overflowBottom && (
-                        <div className='handle-bottom' onClick={this.scrollDown.bind(this)}>
+                        <div className={cx('handle-bottom')} onClick={this.scrollDown.bind(this)}>
                             <Icon name='chevron-down'></Icon>
                         </div>
                     )

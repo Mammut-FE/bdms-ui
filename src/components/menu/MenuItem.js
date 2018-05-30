@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2018-01-05 16:11:56
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-30 19:36:07
+ * @Last Modified time: 2018-05-30 19:47:11
  */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -54,7 +54,7 @@ export default class MenuItem extends MixinComponent {
                 <div className={meneItemClass} onClick={this.handleItemClick.bind(this)}>
                     {
                         tickSelect && this.active() && (
-                            <Icon name='right-all' className="tick-icon"></Icon>
+                            <Icon name='right-all' className={cx("tick-icon")}></Icon>
                         )
                     }
                     { iconName && (
@@ -62,7 +62,7 @@ export default class MenuItem extends MixinComponent {
                     )}
                     {children}
                     { subDesc && (
-                        <span className="subtitle">{subDesc}</span>
+                        <span className={cx("subtitle")}>{subDesc}</span>
                     )}
                 </div>
             )
@@ -72,7 +72,7 @@ export default class MenuItem extends MixinComponent {
                 <div className={meneItemClass}>
                     {childrenWithProps}
                     { subDesc && (
-                        <span className="subtitle">{subDesc}</span>
+                        <span className={cx("subtitle")}>{subDesc}</span>
                     )}
                 </div>
             )
