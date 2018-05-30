@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import './input.scss'
-import '../../style/index.scss'
 
 import Icon from '../icon/index'
 

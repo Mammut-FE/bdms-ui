@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import './calendar.scss'
-import '../../style/index.scss'
 import Icon from '../icon'
 
 export default class Calendar extends Component {

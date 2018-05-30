@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import _ from 'lodash'
 
 import './checkbox.scss'
-import '../../style/index.scss'
 import Checkbox from './Checkbox'
 
 export default class CheckboxGroup extends Component {

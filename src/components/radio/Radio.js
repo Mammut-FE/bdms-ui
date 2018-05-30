@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './radio.scss'
-import '../../style/index.scss'
 
 export default class Radio extends Component {
     constructor(props) {

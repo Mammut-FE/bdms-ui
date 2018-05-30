@@ -1,173 +1,52 @@
-@import "./base.scss";
-@import "./color.scss";
-@import "./global.scss";
-
-/* reset */
-* {
-  box-sizing: border-box;
-}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v3.0 | 20180413
+   License: none (public domain)
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center, button,
+b, u, i, center,
 dl, dt, dd, ol, ul, li,
-fieldset, form, input, label, legend,
+fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
-figure, figcaption, footer, header,
-menu, nav, output, ruby, section, summary,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
+  vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+  display: none;
+}
 body {
   line-height: 1;
 }
-
 ol, ul {
   list-style: none;
 }
-
 blockquote, q {
   quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
+  content: '';
   content: none;
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-[hidefocus], summary, textarea, input, button, select, keygen, legend {
-  outline: 0;
-  font-size: 100%;
-  font-family: inherit;
-}
-
-/* 文本样式 */
-h1, h2, h3, h4, h5, h6, em, strong, b {
-  font-weight: bold;
-}
-
-sup, sub {
-  font-size: 83%;
-}
-
-caption, th {
-  font-weight: normal;
-  text-align: left;
-}
-
-del, ins, u, s, a, a:hover {
-  text-decoration: none;
-}
-
-input, img, label {
-  vertical-align: middle;
-  outline: none;
-}
-
-/* 行为修改 */
-textarea {
-  overflow: auto;
-  resize: none;
-  padding: 6px 0;
-}
-
-a {
-  display: block;
-  height: 100%;
-  cursor: pointer;
-  color: currentColor;
-  background-color: transparent;
-}
-
-a.disabled {
-  cursor: not-allowed;
-  color: #999!important;
-
-  .icon {
-    color: #999 !important;
-    &:before {
-      cursor: not-allowed;
-    }
-  }
-}
-
-button {
-  cursor: pointer;
-  outline: 0;
-  border: 0;
-}
-
-input::-ms-clear{
-  display: none;
-}
-
-input[type='checkbox'], input[type='radio'] {
-  cursor: pointer;
-}
-
-input[type=text], input[type=password], textarea, select {
-  max-width: 100%;
-  @include placeholder($input-white-ph-color);
-}
-
-input[type="text"][disabled], select[disabled], textarea[disabled] {
-  background-color: #e0e0e0;
-  color: #666;
-  border: 1px solid #ccc;
-  cursor: not-allowed;
-}
-
-/* 白色滚动条样式 */
-::-webkit-scrollbar {
-  width: 18px;
-  height: 18px;
-  background-color: #fff;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 0;
-  background-color: #fff;
-  box-shadow: none;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 12px;
-  background-color: #dcdcdc;
-  box-shadow: inset 0 0 0 4px #fff;
-  min-height: 24px;
-}
-
-::-webkit-scrollbar-corner {
-  background: #fff;
-}
-
-/* textarea */
-textarea::-webkit-scrollbar {
-  background-color: #fff;
-}
-
-textarea::-webkit-scrollbar-track {
-  background-color: #fff;
-}
-
-textarea::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 0 4px #fff;
-}
-
-textarea::-webkit-scrollbar-corner {
-  background: #fff;
 }

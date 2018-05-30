@@ -1,20 +1,22 @@
-.f-ib {
+:global {
+  .f-ib {
     display: inline-block;
-}
-.f-fl {
+  }
+  .f-fl {
     float: left;
-}
-.f-fr {
+  }
+  .f-fr {
     float: right;
-}
-.f-cb {
+  }
+  .f-cb {
     zoom: 1;
     &:after {
-        display: block;
-        clear: both;
-        visibility: hidden;
-        height: 0;
-        overflow: hidden;
-        content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+      content: ".";
     }
+  }
 }

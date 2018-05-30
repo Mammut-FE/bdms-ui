@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import './select.scss'
-import '../../style/index.scss'
 
 import Input from '../input'
 import Menu from '../menu'

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import './tag.scss'
-import '../../style/index.scss'
 import Icon from '../icon/Icon';
 
 export default class Tag extends Component {

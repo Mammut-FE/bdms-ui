@@ -8,7 +8,6 @@ import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
 import './menu.scss'
-import '../../style/index.scss'
 
 import Icon from '../icon'
 import MenuContent from './MenuContent'

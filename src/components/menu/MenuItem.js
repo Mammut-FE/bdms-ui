@@ -9,7 +9,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import './menu.scss'
-import '../../style/index.scss'
 
 import MixinComponent from './MixinComponent'
 import Icon from '../icon'

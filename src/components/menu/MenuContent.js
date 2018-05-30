@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
-// import _ from 'lodash'
 
 import './menu.scss'
-import '../../style/index.scss'
 
 import classNames from 'classnames'
 
