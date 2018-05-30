@@ -2,10 +2,10 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2017-10-18 14:18:29
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-02-05 16:04:54
+ * @Last Modified time: 2018-05-30 19:22:51
  */
 import React, { Component } from 'react';
-import './App.scss';
+import styles from './App.scss';
 
 import Icon from './components/icon'
 import Button from './components/button'
@@ -123,67 +123,67 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <div className="App-header">
+      <div className={styles.App}>
+        <div className={styles['App-header']}>
           <h2>Welcome!</h2>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Icon name='table'></Icon>
             <Icon name='folder-closed'></Icon>
             <Icon name='folder-open'></Icon>
             <Icon name='message'></Icon>
           </div>
         </div>
-        <div className="components">
-          <Button className='item' type="primary" icon="search" onClick={this.clickButton}>默认文字</Button>
+        <div className={styles.components}>
+          <Button className={styles.item} type="primary" icon="search" onClick={this.clickButton}>默认文字</Button>
           <Button type="primary" icon="search" onClick={this.clickButton} size='small'>默认文字</Button>
           <Button icon="search" onClick={this.clickButton}>默认文字</Button>
           <Button icon="search" onClick={this.clickButton} size='small'>默认文字</Button>
           <Button type="text" onClick={this.clickButton}>默认文字</Button>
           <Button type="text" size='small' onClick={this.clickButton}>默认文字</Button>
           <Button.Group>
-            <Button className='item' onClick={this.clickButton}>默认文字1</Button>
-            <Button className='item' onClick={this.clickButton}>默认文字2</Button>
+            <Button className={styles.item} onClick={this.clickButton}>默认文字1</Button>
+            <Button className={styles.item} onClick={this.clickButton}>默认文字2</Button>
           </Button.Group>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Radio value='选项一' onChange={this.onChange} checked={this.state.value === '选项一'}></Radio>
             <Radio value='选项二' onChange={this.onChange} checked={this.state.value === '选项二'}></Radio>
           </div>
-          <div className="item">
+          <div className={styles.item}>
             <Radio value='one' onChange={this.onChange} checked disabled >我是选中disabled的</Radio>
             <Radio value='two' onChange={this.onChange} disabled >我是未选中disabled的</Radio>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <CheckBox value='check-off' checked={this.state.checkboxVal} onChange={this.changeCheckBox.bind(this)}></CheckBox>
             <CheckBox value='check-on' checked></CheckBox>
             <CheckBox value='checked-disabled' checked disabled></CheckBox>
             <CheckBox value='disabled' disabled></CheckBox>
           </div>
-          <div className="item">
+          <div className={styles.item}>
             <CheckBox.Group indeterminate={false} onChange={this.onCheckboxGroupChange} data={checkGroupData}>
             </CheckBox.Group>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Switch onChange={this.switchChange}></Switch>
             <Switch disabled onChange={this.switchChange}></Switch>
             <Switch disabled open onChange={this.switchChange}></Switch>
           </div>
         </div>
-        {/* <div className="components">
-          <div className="item">
+        {/* <div className={styles.components}>
+          <div className={styles.item}>
             <Dropdown></Dropdown>
           </div>
         </div> */}
-        <div className="components">
-          <div className="item">
-            <Menu className="f-ib" onCommand={this.onItemClick.bind(this)} selected="3" tickSelect>
+        <div className={styles.components}>
+          <div className={styles.item}>
+            <Menu className='f-ib' onCommand={this.onItemClick.bind(this)} selected="3" tickSelect>
               <Menu.Title>分组一</Menu.Title>
               <Menu.Item command="1">项目一</Menu.Item>
               <Menu.Item command="2" disabled>项目二</Menu.Item>
@@ -267,8 +267,8 @@ class App extends Component {
               <Menu.Item command="731" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
             </Menu>
           </div>
-          <div className="item">
-            <Menu className="f-ib" onCommand={this.onItemClick.bind(this)} selected="3">
+          <div className={styles.item}>
+            <Menu className='f-ib' onCommand={this.onItemClick.bind(this)} selected="3">
               <Menu.Title>分组一</Menu.Title>
               <Menu.Item command="1-1">项目一</Menu.Item>
               <Menu.Item command="2-1" disabled>项目二</Menu.Item>
@@ -280,68 +280,68 @@ class App extends Component {
               <Menu.Item command="7-1" iconName="folder-open" subDesc="Ctrl+C">项目三</Menu.Item>
             </Menu>
           </div>
-          <div className="item">
-            <Menu className="f-ib" onCheck={this.onItemCheck.bind(this)}withCheck>
+          <div className={styles.item}>
+            <Menu className='f-ib' onCheck={this.onItemCheck.bind(this)}withCheck>
               <CheckBox.Group onChange={this.onCheckboxGroupChange} data={checkGroupData2}>
               </CheckBox.Group>
             </Menu>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Input type="text" name="test" placeholder="请输入" value={this.state.inputValue} onChange={this.changeInput.bind(this)}></Input>
           </div>
-          <div className="item">
+          <div className={styles.item}>
             <Input type="text" name="test" placeholder="请输入数字" value={this.state.inputValue2} onChange={this.checkError.bind(this)} error={this.state.errorShow} errorMessage = "不能超过长度5" iconName="search" onIconClick={this.handleIconClick.bind(this)}></Input>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Select selectOptions={checkGroupData3} multiple></Select>
           </div>
-          <div className="item">
+          <div className={styles.item}>
             <Select selectOptions={selectOptionList} selected="火星"></Select>
           </div>
-          <div className="item">
+          <div className={styles.item}>
             <Select selectOptions={selectOptionList} placeholder="请选择" searchable={true}></Select>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Tag>你好</Tag><Tag>恩</Tag><Tag>呵呵</Tag><Tag>嘿嘿</Tag><Tag>啦啦啦</Tag><Tag>喔喔喔</Tag>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
             <Calendar></Calendar>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
-        <div className="components">
-          <div className="item">
+        <div className={styles.components}>
+          <div className={styles.item}>
           </div>
         </div>
       </div>
