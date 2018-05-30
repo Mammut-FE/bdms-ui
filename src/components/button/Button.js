@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './button.scss';
+import classNames from 'classnames/bind'
+
+import buttonStyle from './button.scss';
 
 export default class Button extends Component {
   onClick = (e) => {
@@ -10,6 +12,16 @@ export default class Button extends Component {
   };
   
   render () {
+    const { className, disabled, icon, children } = this.props
+
+    
+    let cx = classNames.bind(buttonStyle);
+    
+    const classes = cx('u-btn', className, {
+      [`u-btn-${this.props.type}`]: true,
+      [`u-btn-${this.props.size}`]: true
+    });
+
     return (
       <button className={`u-btn u-btn-${this.props.type} u-btn-${this.props.size} ${this.props.className}`}
               disabled={this.props.disabled} onClick={this.onClick}>

@@ -2,13 +2,13 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2018-01-05 16:11:56
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-12 17:39:38
+ * @Last Modified time: 2018-05-30 19:47:11
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 
-import './menu.scss'
+import menuClass from './menu.scss'
 
 import MixinComponent from './MixinComponent'
 import Icon from '../icon'
@@ -39,8 +39,10 @@ export default class MenuItem extends MixinComponent {
         const parent = this.parent()
         const { tickSelect, withCheck}= parent.props
         const handleCheck = parent.handleCheck
+
+        let cx = classNames.bind(menuClass);
         
-        const meneItemClass = classNames('u-menu-item', className, {
+        const meneItemClass = cx('u-menu-item', className, {
             'disabled': disabled,
             'divided': divided,
             'bg-selected': this.active() && !tickSelect && !withCheck,
@@ -52,7 +54,7 @@ export default class MenuItem extends MixinComponent {
                 <div className={meneItemClass} onClick={this.handleItemClick.bind(this)}>
                     {
                         tickSelect && this.active() && (
-                            <Icon name='right-all' className="tick-icon"></Icon>
+                            <Icon name='right-all' className={cx("tick-icon")}></Icon>
                         )
                     }
                     { iconName && (
@@ -60,7 +62,7 @@ export default class MenuItem extends MixinComponent {
                     )}
                     {children}
                     { subDesc && (
-                        <span className="subtitle">{subDesc}</span>
+                        <span className={cx("subtitle")}>{subDesc}</span>
                     )}
                 </div>
             )
@@ -70,7 +72,7 @@ export default class MenuItem extends MixinComponent {
                 <div className={meneItemClass}>
                     {childrenWithProps}
                     { subDesc && (
-                        <span className="subtitle">{subDesc}</span>
+                        <span className={cx("subtitle")}>{subDesc}</span>
                     )}
                 </div>
             )
