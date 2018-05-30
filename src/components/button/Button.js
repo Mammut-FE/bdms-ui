@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './button.scss';
-import '../../style/index.scss';
+import classNames from 'classnames'
+
+import buttonStyle from './button.scss';
+import commonStyle from '../../style/index.scss';
 
 export default class Button extends Component {
   onClick = (e) => {
@@ -11,11 +13,21 @@ export default class Button extends Component {
   };
   
   render () {
+    const { className, disabled, icon, children } = this.props
+
+    
+    let cx = classNames.bind(buttonStyle);
+    
+    const classes = cx('u-btn', className, {
+      [`u-btn-${this.props.type}`]: true,
+      [`u-btn-${this.props.size}`]: true
+    });
+
     return (
-      <button className={`u-btn u-btn-${this.props.type} u-btn-${this.props.size} ${this.props.className}`}
-              disabled={this.props.disabled} onClick={this.onClick}>
-        {this.props.icon && <i className={`icon icon-${this.props.icon}`}></i>}
-        <span style={{paddingLeft: this.props.icon && this.props.children ? '8px' : ''}}>{this.props.children}</span>
+      <button className={classes}
+              disabled={disabled} onClick={this.onClick}>
+        {icon && <i className={`icon icon-${icon}`}></i>}
+        <span style={{paddingLeft: icon && children ? '8px' : ''}}>{children}</span>
       </button>
     );
   }
