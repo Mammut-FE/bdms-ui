@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind'
 
 import buttonStyle from './button.scss';
-import commonStyle from '../../style/index.scss';
 
 export default class Button extends Component {
   onClick = (e) => {

@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
 // import _ from 'lodash'
 
-import './menu.scss'
-import '../../style/index.scss'
+import menuClass from './menu.scss'
 
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 
 import MixinComponent from './MixinComponent'
 
@@ -68,8 +67,11 @@ export default class MenuContent extends MixinComponent {
         const {className, children} = this.props
         const contentClass = classNames('content', className)
 
+        let cx = classNames.bind(menuClass);
+        const contentClasses = cx('content', className)
+
         return (
-            <div className={contentClass} onScroll={this.handleScroll} onWheel={this.handleWheel.bind(this)}>
+            <div className={contentClasses} onScroll={this.handleScroll} onWheel={this.handleWheel.bind(this)}>
                 {children}
             </div>
         )

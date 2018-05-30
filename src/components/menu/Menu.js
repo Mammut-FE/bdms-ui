@@ -2,17 +2,16 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2018-01-05 16:12:23
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-15 17:17:05
+ * @Last Modified time: 2018-05-30 19:31:29
  */
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
-import './menu.scss'
-import '../../style/index.scss'
+import menuClass from './menu.scss'
 
 import Icon from '../icon'
 import MenuContent from './MenuContent'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 import _ from 'lodash'
 
 const SCROLL_UNIT = 400
@@ -144,10 +143,13 @@ export default class Menu extends Component {
         const {overflowBottom, overflowTop, scrollTop, selected} = this.state
 
 
-        const menuClass = classNames('u-menu', className, {
+        let cx = classNames.bind(menuClass);
+
+        const menuClasses = cx('u-menu', className, {
             'pdb-change': overflowBottom,
             'pdt-change': overflowTop
-        })
+          });
+
 
         const childrenWithProps = React.Children.map(children, (child, index) => {
             if (!child) {
@@ -164,7 +166,7 @@ export default class Menu extends Component {
 
 
         return (
-            <div className={menuClass} style={style}>
+            <div className={menuClasses} style={style}>
                 {
                     overflowTop && (
                         <div className='handle-top' onClick={this.scrollUp.bind(this)}>
