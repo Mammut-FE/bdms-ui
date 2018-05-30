@@ -23,10 +23,10 @@ export default class Button extends Component {
     });
 
     return (
-      <button className={`u-btn u-btn-${this.props.type} u-btn-${this.props.size} ${this.props.className}`}
-              disabled={this.props.disabled} onClick={this.onClick}>
-        {this.props.icon && <i className={`icon icon-${this.props.icon}`}></i>}
-        <span style={{paddingLeft: this.props.icon && this.props.children ? '8px' : ''}}>{this.props.children}</span>
+      <button className={classes}
+              disabled={disabled} onClick={this.onClick}>
+        {icon && <i className={`icon icon-${icon}`}></i>}
+        <span style={{paddingLeft: icon && children ? '8px' : ''}}>{children}</span>
       </button>
     );
   }
