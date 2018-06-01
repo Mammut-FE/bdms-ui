@@ -4,7 +4,11 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
-      "src/**/*.js"
+      "src/**/*.js",
+      "src/lesson/**"
     ]
+  },
+  "rules": {
+    "no-console": false
   }
 }
