@@ -2,7 +2,7 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2018-01-05 16:12:23
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-30 20:00:37
+ * @Last Modified time: 2018-05-31 18:29:52
  */
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
@@ -168,7 +168,7 @@ export default class Menu extends Component {
             <Icon name="chevron-up" />
           </div>
         )}
-        <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}>
+        <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}> 
           {childrenWithProps}
         </MenuContent>
         {overflowBottom && (
