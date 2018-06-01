@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import classNames from 'classnames/bind'
 import _ from 'lodash'
 
-import './checkbox.scss'
+import checkboxClass from './checkbox.scss'
 import Checkbox from './Checkbox'
 
 export default class CheckboxGroup extends Component {
@@ -113,7 +113,9 @@ export default class CheckboxGroup extends Component {
         const {checkLists, isIndeterminate, checkAll} = this.state;
         const {className, indeterminate} = this.props;
 
-        const gourpClassName = classNames('checbox-group', className)
+        let cx = classNames.bind(checkboxClass);
+
+        const gourpClassName = cx('checbox-group', className)
 
         return (
             <div className={gourpClassName}>
