@@ -5,6 +5,7 @@
  * @Last Modified time: 2018-05-30 19:22:51
  */
 import React, { Component } from 'react';
+import styles from './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +13,14 @@ class App extends Component {
   }
 
   public render() {
-    return (<h1>Hello world</h1>);
+    return (<div className={styles.wrap}>
+        <div className={styles.sidebar}>
+          sidebar
+        </div>
+        <div className={styles.main}>
+          main
+        </div>
+      </div>);
   }
 }
 
