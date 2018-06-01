@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 
 import buttonStyle from './button.scss';
 import ButtonGroup from './ButtonGroup';
@@ -9,12 +9,21 @@ interface IButtonProps {
   disabled?: boolean;
   icon?: string;
   type?: string;
-  size?: string;
-  onClick?: (e: Event) => void;
+  size?: 'small' | 'normal';
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 export default class Button extends Component<IButtonProps> {
   public static Group = ButtonGroup;
+
+  constructor(props) {
+    super(props);
+    const initialState = {
+      size: 'normal',
+      type: 'default'
+    };
+    this.state = Object.assign({}, initialState, props);
+  }
 
   public onClick = e => {
     if (this.props.onClick) {
@@ -23,13 +32,13 @@ export default class Button extends Component<IButtonProps> {
   };
 
   public render() {
-    const {className, disabled, icon, children} = this.props;
+    const {className, disabled, icon, children, type, size} = this.props;
 
     const cx = classNames.bind(buttonStyle);
 
     const classes = cx('u-btn', className, {
-      [`u-btn-${this.props.type}`]: true,
-      [`u-btn-${this.props.size}`]: true
+      [`u-btn-${type}`]: true,
+      [`u-btn-${size}`]: true
     });
 
     return (<button className={classes} disabled={disabled} onClick={this.onClick}>
