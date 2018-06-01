@@ -3,9 +3,15 @@
     <words>
       <w>autoprefixer</w>
       <w>eslint</w>
+      <w>esnext</w>
       <w>flexbox</w>
       <w>ident</w>
+      <w>linter</w>
       <w>postcss</w>
+      <w>transpile</w>
+      <w>tsconfig</w>
+      <w>tslint</w>
+      <w>webpacks</w>
       <w>xsmall</w>
     </words>
   </dictionary>
