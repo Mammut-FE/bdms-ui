@@ -1,14 +1,25 @@
-import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import React, { Component } from 'react';
+
 import styles from './checkbox.scss';
+
 const cx = classNames.bind(styles);
+
+
 type CheckboxProps = {
-  value?: string,
-  checked?: boolean,
-  disabled?: boolean,
-  isIndeterminate?: boolean
+  value: string,
+  checked: boolean,
+  disabled: boolean,
+  isIndeterminate?: boolean,
+  onChange: (value: string, checked: boolean) => void,
+  className?: string
 };
-export default class Checkbox extends Component<CheckboxProps, {}> {
+export default class Checkbox extends Component<CheckboxProps, any> {
+
+  constructor(props: CheckboxProps) {
+    super(props)
+  }
+
   onChange = e => {
     const checked = e.target.checked;
     const { onChange } = this.props;
