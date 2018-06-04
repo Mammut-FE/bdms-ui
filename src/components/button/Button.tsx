@@ -13,7 +13,7 @@ interface IButtonProps {
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
-export default class Button extends Component<IButtonProps> {
+export default class Button extends Component<IButtonProps, any> {
   public static Group = ButtonGroup;
 
   constructor(props: IButtonProps) {
