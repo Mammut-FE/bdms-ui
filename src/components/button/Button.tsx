@@ -16,7 +16,7 @@ interface IButtonProps {
 export default class Button extends Component<IButtonProps> {
   public static Group = ButtonGroup;
 
-  constructor(props) {
+  constructor(props: IButtonProps) {
     super(props);
     const initialState = {
       size: 'normal',
