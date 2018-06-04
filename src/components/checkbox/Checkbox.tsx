@@ -1,35 +1,41 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './checkbox.scss';
-
 const cx = classNames.bind(styles);
-
-export default class Checkbox extends Component {
-  onChange = (e) => {
+type CheckboxProps = {
+  value?: string,
+  checked?: boolean,
+  disabled?: boolean,
+  isIndeterminate?: boolean
+};
+export default class Checkbox extends Component<CheckboxProps, {}> {
+  onChange = e => {
     const checked = e.target.checked;
-    const {onChange} = this.props;
-    
+    const { onChange } = this.props;
     if (onChange) {
       onChange(this.props.value, checked);
     }
   };
-  
-  render () {
-    const {children, value, disabled, className, isIndeterminate, checked} = this.props;
-    
+  render() {
+    const {
+      children,
+      value,
+      disabled,
+      className,
+      isIndeterminate,
+      checked
+    } = this.props;
     const labelClass = cx('u-label', className);
     const inputClass = cx('u-checkbox-input', {
-      'checked': checked,
+      checked: checked,
       'disabled-on': disabled && checked,
       'disabled-off': disabled && !checked,
-      'indeterminate': isIndeterminate
+      indeterminate: isIndeterminate
     });
-    
     return (
       <label className={labelClass}>
         <span className={inputClass}>
-          <span className={cx('u-checkbox-inner')}/>
+          <span className={cx('u-checkbox-inner')} />
           <input
             type="checkbox"
             checked={checked}
@@ -42,10 +48,3 @@ export default class Checkbox extends Component {
     );
   }
 }
-
-Checkbox.propTypes = {
-  value: PropTypes.string,
-  checked: PropTypes.bool,
-  disabled: PropTypes.bool,
-  isIndeterminate: PropTypes.bool
-};
