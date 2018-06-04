@@ -4,5 +4,10 @@ import App from './App';
 import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
+
