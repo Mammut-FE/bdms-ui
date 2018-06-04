@@ -30,8 +30,8 @@ export default class Checkbox extends Component<ICheckboxProps, any> {
     const labelClass = cx("u-label", className);
     const inputClass = cx("u-checkbox-input", {
       checked,
-      "disabled-on": disabled && checked,
       "disabled-off": disabled && !checked,
+      "disabled-on": disabled && checked,
       indeterminate: isIndeterminate
     });
     return (

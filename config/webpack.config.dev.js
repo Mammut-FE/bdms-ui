@@ -222,6 +222,7 @@ module.exports = {
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
+                  sourceMap: true,
                   plugins: () => [
                     require('postcss-flexbugs-fixes'),
                     autoprefixer({
@@ -239,7 +240,7 @@ module.exports = {
               {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  includePaths: ['/Users/lleohao/Projects/Mammut-FE/bdms-ui/src'],
+                  includePaths: [path.resolve(__dirname, '../src/style')],
                   sourceMap: true
                 }
               }
