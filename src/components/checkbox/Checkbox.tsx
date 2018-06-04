@@ -12,11 +12,42 @@ interface ICheckboxProps {
   isIndeterminate?: boolean;
   onChange: (value: string, checked: boolean) => void;
   className?: string;
-};
+}
 export default class Checkbox extends Component<ICheckboxProps, any> {
-
   constructor(props: ICheckboxProps) {
-    super(props)
+    super(props);
+  }
+
+  public render(): any {
+    const {
+      children,
+      value,
+      disabled,
+      className,
+      isIndeterminate,
+      checked
+    } = this.props;
+    const labelClass = cx("u-label", className);
+    const inputClass = cx("u-checkbox-input", {
+      checked,
+      "disabled-on": disabled && checked,
+      "disabled-off": disabled && !checked,
+      indeterminate: isIndeterminate
+    });
+    return (
+      <label className={labelClass}>
+        <span className={inputClass}>
+          <span className={cx("u-checkbox-inner")} />
+          <input
+            type="checkbox"
+            checked={checked}
+            disabled={disabled}
+            onChange={this.onChange}
+          />
+        </span>
+        <span className={cx("u-checkbox-text")}>{children || value}</span>
+      </label>
+    );
   }
 
   private onChange = e => {
@@ -26,35 +57,4 @@ export default class Checkbox extends Component<ICheckboxProps, any> {
       onChange(this.props.value, checked);
     }
   };
-  private render() {
-    const {
-      children,
-      value,
-      disabled,
-      className,
-      isIndeterminate,
-      checked
-    } = this.props;
-    const labelClass = cx('u-label', className);
-    const inputClass = cx('u-checkbox-input', {
-      checked: checked,
-      'disabled-on': disabled && checked,
-      'disabled-off': disabled && !checked,
-      indeterminate: isIndeterminate
-    });
-    return (
-      <label className={labelClass}>
-        <span className={inputClass}>
-          <span className={cx('u-checkbox-inner')} />
-          <input
-            type="checkbox"
-            checked={checked}
-            disabled={disabled}
-            onChange={this.onChange}
-          />
-        </span>
-        <span className={cx('u-checkbox-text')}>{children || value}</span>
-      </label>
-    );
-  }
 }
