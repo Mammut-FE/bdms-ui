@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import _ from 'lodash';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import _ from "lodash";
 
-import checkboxClass from './checkbox.scss';
-import Checkbox from './Checkbox';
+import checkboxClass from "./checkbox.scss";
+import Checkbox from "./Checkbox";
 
 export default class CheckboxGroup extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       checkLists: this.getCheckLists(props),
@@ -16,12 +16,12 @@ export default class CheckboxGroup extends Component {
     };
     this.changeAll = this.changeAll.bind(this);
   }
-  
-  componentDidMount () {
+
+  componentDidMount() {
     this.updateIsIndeterminate();
   }
-  
-  componentWillReceiveProps (nextProps) {
+
+  componentWillReceiveProps(nextProps) {
     if (_.isEqual(nextProps.data, this.props.data)) {
       this.setState({
         checkLists: nextProps.data
@@ -29,17 +29,17 @@ export default class CheckboxGroup extends Component {
       this.updateIsIndeterminate();
     }
   }
-  
-  updateIsIndeterminate () {
-    const {checkLists} = this.state;
+
+  updateIsIndeterminate() {
+    const { checkLists } = this.state;
     let checkedNum = 0;
     const checkLen = checkLists.length;
-    checkLists.forEach((item) => {
+    checkLists.forEach(item => {
       if (item.checked) {
         checkedNum++;
       }
     });
-    
+
     if (checkedNum > 0 && checkedNum < checkLen) {
       this.setState({
         isIndeterminate: true,
@@ -57,78 +57,90 @@ export default class CheckboxGroup extends Component {
       });
     }
   }
-  
-  getCheckLists (props) {
+
+  getCheckLists(props) {
     return props.data;
   }
-  
-  changeAll (value, checked) {
+
+  changeAll(value, checked) {
     console.log(value, checked);
-    const {checkLists} = this.state;
+    const { checkLists } = this.state;
     this.setState({
       isIndeterminate: false,
       checkAll: checked
     });
-    checkLists.forEach(function (item) {
+    checkLists.forEach(function(item) {
       item.checked = checked;
     });
     this.setState({
       checkLists: checkLists
     });
-    
+
     if (this.props.onChange) {
       this.props.onChange(checkLists);
     }
   }
-  
+
   onChange = (value, checked) => {
-    
     let checkLists = this.state.checkLists;
     const index = this.getIndex(checkLists, value);
-    
+
     checkLists[index].checked = checked;
-    
+
     this.setState({
       checkLists: checkLists
     });
     this.updateIsIndeterminate();
-    
+
     if (this.props.onChange) {
       this.props.onChange(checkLists);
     }
   };
-  
-  getIndex (array, value) {
+
+  getIndex(array, value) {
     let index = -1;
-    
-    array.forEach(function (item, _index) {
+
+    array.forEach(function(item, _index) {
       if (item.value === value) {
         index = _index;
       }
     });
-    
+
     return index;
   }
-  
-  render () {
-    const {checkLists, isIndeterminate, checkAll} = this.state;
-    const {className, indeterminate} = this.props;
-    
+
+  render() {
+    const { checkLists, isIndeterminate, checkAll } = this.state;
+    const { className, indeterminate } = this.props;
+
     let cx = classNames.bind(checkboxClass);
-    
-    const gourpClassName = cx('checbox-group', className);
-    
+
+    const gourpClassName = cx("checbox-group", className);
+
     return (
       <div className={gourpClassName}>
-        {
-          indeterminate && (<Checkbox isIndeterminate={isIndeterminate} checked={checkAll} value="全选"
-                                      onChange={this.changeAll}></Checkbox>)
-        }
-        {
-          checkLists.map((item, index) =>
-            <Checkbox checked={item.checked} value={item.value} disabled={item.disabled} key={index}
-                      onChange={this.onChange}></Checkbox>)
-        }
+        {" "}
+        {indeterminate && (
+          <Checkbox
+            isIndeterminate={isIndeterminate}
+            checked={checkAll}
+            value="全选"
+            onChange={this.changeAll}
+          >
+            {" "}
+          </Checkbox>
+        )}{" "}
+        {checkLists.map((item, index) => (
+          <Checkbox
+            checked={item.checked}
+            value={item.value}
+            disabled={item.disabled}
+            key={index}
+            onChange={this.onChange}
+          >
+            {" "}
+          </Checkbox>
+        ))}{" "}
       </div>
     );
   }
