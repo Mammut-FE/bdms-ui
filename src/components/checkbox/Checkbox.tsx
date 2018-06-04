@@ -5,29 +5,28 @@ import styles from './checkbox.scss';
 
 const cx = classNames.bind(styles);
 
-
-type CheckboxProps = {
-  value: string,
-  checked: boolean,
-  disabled: boolean,
-  isIndeterminate?: boolean,
-  onChange: (value: string, checked: boolean) => void,
-  className?: string
+interface ICheckboxProps {
+  value: string;
+  checked: boolean;
+  disabled: boolean;
+  isIndeterminate?: boolean;
+  onChange: (value: string, checked: boolean) => void;
+  className?: string;
 };
-export default class Checkbox extends Component<CheckboxProps, any> {
+export default class Checkbox extends Component<ICheckboxProps, any> {
 
-  constructor(props: CheckboxProps) {
+  constructor(props: ICheckboxProps) {
     super(props)
   }
 
-  onChange = e => {
+  private onChange = e => {
     const checked = e.target.checked;
     const { onChange } = this.props;
     if (onChange) {
       onChange(this.props.value, checked);
     }
   };
-  render() {
+  private render() {
     const {
       children,
       value,
