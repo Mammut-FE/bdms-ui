@@ -7,10 +7,10 @@ const cx = classNames.bind(styles);
 
 interface ICheckboxProps {
   value: string;
-  checked: boolean;
+  checked?: boolean;
   disabled?: boolean;
   isIndeterminate?: boolean;
-  onChange: (value: string, checked: boolean) => void;
+  onChange?: (value: string, checked: boolean) => void;
   className?: string;
 }
 export default class Checkbox extends Component<ICheckboxProps, {}> {
@@ -52,9 +52,9 @@ export default class Checkbox extends Component<ICheckboxProps, {}> {
 
   private onChange = e => {
     const checked = e.target.checked;
-    const { onChange } = this.props;
+    const { onChange, value } = this.props;
     if (onChange) {
-      onChange(this.props.value, checked);
+      onChange(value, checked);
     }
   };
 }

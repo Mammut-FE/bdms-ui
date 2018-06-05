@@ -128,9 +128,9 @@ export default class CheckboxGroup extends Component<
   public getIndex(array, value) {
     let index = -1;
 
-    array.forEach((item, _index) => {
+    array.forEach((item, index2) => {
       if (item.value === value) {
-        index = _index;
+        index = index2;
       }
     });
 
