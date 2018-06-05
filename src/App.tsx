@@ -2,20 +2,20 @@
  * @Author: jessica(hzgujing@corp.netease.com)
  * @Date: 2017-10-18 14:18:29
  * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-30 19:22:51
+ * @Last Modified time: 2018-06-04 19:26:51
  */
-import React, { Component } from "react";
-import styles from "./App.scss";
+import React, { Component } from 'react';
 
-import Button from "./components/button/Button";
+import styles from './App.scss';
+import Button from './components/button/Button';
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
 
-  public clickButton() {
-    console.log("button click");
+  public clickButton(e) {
+    console.log("button click", e);
   }
 
   public render() {
