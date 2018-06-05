@@ -9,20 +9,20 @@ interface IButtonProps {
   disabled?: boolean;
   icon?: string;
   type?: string;
-  size?: 'small' | 'normal';
+  size?: "small" | "normal";
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 export default class Button extends Component<IButtonProps, any> {
   public static Group = ButtonGroup;
 
+  public static defaultProps: Partial<IButtonProps> = {
+    size: "normal",
+    type: "default"
+  };
+
   constructor(props: IButtonProps) {
     super(props);
-    const initialState = {
-      size: 'normal',
-      type: 'default'
-    };
-    this.state = Object.assign({}, initialState, props);
   }
 
   public onClick = e => {
@@ -32,20 +32,29 @@ export default class Button extends Component<IButtonProps, any> {
   };
 
   public render() {
-    const {className, disabled, icon, children, type, size} = this.props;
+    const { className, disabled, children, type, size, ...others } = this.props;
 
     const cx = classNames.bind(buttonStyle);
 
-    const classes = cx('u-btn', className, {
+    const classes = cx("u-btn", className, {
       [`u-btn-${type}`]: true,
       [`u-btn-${size}`]: true
     });
 
-    return (<button className={classes} disabled={disabled} onClick={this.onClick}>
-      {icon && <i className={`icon icon-${icon}`}/>}
-      <span style={{paddingLeft: icon && children ? '8px' : ''}}>
+    console.log(classes);
+
+    return (
+      <button
+        className={classes}
+        disabled={disabled}
+        onClick={this.onClick}
+        {...others}
+      >
+        {others.icon && <i className={`icon icon-${others.icon}`} />}
+        <span style={{ paddingLeft: others.icon && children ? "8px" : "" }}>
           {children}
         </span>
-    </button>);
+      </button>
+    );
   }
 }

@@ -1,138 +1,138 @@
-@import 'color.scss';
+@import "color.scss";
 
 .u-btn {
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-    padding: 0 12px;
-    cursor: pointer;
-    &:focus {
-        outline: none;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+  padding: 0 12px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background: #f1f1f1;
+    border: 1px solid #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+    &.u-btn-normal {
+      line-height: 30px;
     }
-    &:disabled {
-        background: #f1f1f1;
-        border: 1px solid #e0e0e0;
-        color: #aaa;
-        cursor: not-allowed;
-        &.u-btn-normal {
-            line-height: 30px;
-        }
-        &.u-btn-small {
-            line-height: 26px;
-        }
-        &:active {
-            background: #f1f1f1;
-            border: 1px solid #e0e0e0;
-            color: #aaa;
-            cursor: not-allowed;
-        }
+    &.u-btn-small {
+      line-height: 26px;
     }
+    &:active {
+      background: #f1f1f1;
+      border: 1px solid #e0e0e0;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+  }
 }
 
 .u-btn-primary {
-    border: none;
-    background: $base-color;
-    color: #fff;
-    &:hover {
-        opacity: 0.8;
-    }
-    &:active {
-        background: rgb(24, 146, 237);
-    }
+  border: none;
+  background: $base-color;
+  color: #fff;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    background: rgb(24, 146, 237);
+  }
 }
 
 .u-btn-default {
-    background: #fff;
-    border: 1px solid #999;
-    color: #333;
-    &:hover {
-        background: #f1f1f1;
-    }
-    &:active {
-        background: #ccc;
-    }
-    &.u-btn-normal {
-        line-height: 30px;
-    }
-    &.u-btn-small {
-        line-height: 26px;
-    }
+  background: #fff;
+  border: 1px solid #999;
+  color: #333;
+  &:hover {
+    background: #f1f1f1;
+  }
+  &:active {
+    background: #ccc;
+  }
+  &.u-btn-normal {
+    line-height: 30px;
+  }
+  &.u-btn-small {
+    line-height: 26px;
+  }
 }
 .u-btn-text {
+  border: 1px solid transparent;
+  background: #fff;
+  color: #333;
+  &:hover {
+    border: 1px solid #999;
+    background: #fff;
+  }
+  &:active {
+    border: 1px solid #999;
+    background: #f1f1f1;
+  }
+  &.u-btn-normal {
+    line-height: 30px;
+  }
+  &.u-btn-small {
+    line-height: 26px;
+  }
+  &:disabled {
+    color: #999;
     border: 1px solid transparent;
     background: #fff;
-    color: #333;
-    &:hover {
-        border: 1px solid #999;
-        background: #fff;
-    }
     &:active {
-        border: 1px solid #999;
-        background: #f1f1f1;
+      background: #fff;
+      border: 1px solid transparent;
+      color: #999;
+      cursor: not-allowed;
     }
-    &.u-btn-normal {
-        line-height: 30px;
-    }
-    &.u-btn-small {
-        line-height: 26px;
-    }
-    &:disabled {
-        color: #999;
-        border: 1px solid transparent;
-        background: #fff;
-        &:active {
-            background: #fff;
-            border: 1px solid transparent;
-            color: #999;
-            cursor: not-allowed;
-        }
-    }
+  }
 }
 
 .u-btn-normal {
-    height: 32px;
-    line-height: 32px;
-    font-size: 14px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
 }
 
 .u-btn-small {
-    height: 28px;
-    line-height: 28px;
-    font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
 }
 
 .u-button-group {
-    button {
-        border-radius: 0;
-        &:first-child {
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-        }
-        &:last-child {
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-        }
+  button {
+    border-radius: 0;
+    &:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
     }
-    .u-btn-primary {
-        border-right: 1px solid #fff;
-        &:last-child {
-            border-right: none;
-        }
+    &:last-child {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
     }
-    .u-btn-default {
-        border-right: none;
-        &:last-child {
-            border-right: 1px solid #999;
-        }
+  }
+  .u-btn-primary {
+    border-right: 1px solid #fff;
+    &:last-child {
+      border-right: none;
     }
-    .u-btn-text {
-        &:last-child {
-            border-right: 1px solid transparent;
-            &:hover {
-                border-right: 1px solid #999;
-            }
-            &:active {
-                border: 1px solid #999;
-            }
-        }
+  }
+  .u-btn-default {
+    border-right: none;
+    &:last-child {
+      border-right: 1px solid #999;
     }
+  }
+  .u-btn-text {
+    &:last-child {
+      border-right: 1px solid transparent;
+      &:hover {
+        border-right: 1px solid #999;
+      }
+      &:active {
+        border: 1px solid #999;
+      }
+    }
+  }
 }
