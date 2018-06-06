@@ -8,7 +8,7 @@ interface IButtonProps {
   className?: string;
   disabled?: boolean;
   icon?: string;
-  type?: string;
+  type?: "primary" | "default" | "text";
   size?: "small" | "normal";
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
@@ -41,7 +41,9 @@ export default class Button extends Component<IButtonProps, any> {
       [`u-btn-${size}`]: true
     });
 
-    console.log(classes);
+    const iconNode = others.icon ? (
+      <i className={`icon icon-${others.icon}`} />
+    ) : null;
 
     return (
       <button
@@ -50,7 +52,7 @@ export default class Button extends Component<IButtonProps, any> {
         onClick={this.onClick}
         {...others}
       >
-        {others.icon && <i className={`icon icon-${others.icon}`} />}
+        {iconNode}
         <span style={{ paddingLeft: others.icon && children ? "8px" : "" }}>
           {children}
         </span>

@@ -1,10 +1,9 @@
 /*
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
- * @Last Modified by:   jessica(gujing_hy@163.com) 
- * @Last Modified time: 2018-06-06 13:42:37 
+ * @Last Modified by: jessica(gujing_hy@163.com)
+ * @Last Modified time: 2018-06-06 15:57:56
  */
-
 import React, { Component } from 'react';
 
 import { Cartesian, Detail, Example, Library } from '@compositor/kit';
@@ -42,7 +41,7 @@ class App extends Component<any, any> {
           <Detail>
             <Cartesian
               component={Button}
-              type={["primary", "default"]}
+              type={["primary", "default", "text"]}
               size={["small", "normal"]}
               children={["默认文字"]}
               onClick={this.clickButton}
