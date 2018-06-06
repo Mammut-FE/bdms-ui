@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import React, { Component, MouseEvent } from 'react';
 
+import Icon from '../icon';
 import buttonStyle from './button.scss';
 import ButtonGroup from './ButtonGroup';
 
@@ -42,9 +43,7 @@ export default class Button extends Component<IButtonProps, any> {
       [`u-btn-${size}`]: true
     });
 
-    const iconNode = others.icon ? (
-      <i className={`icon icon-${others.icon}`} />
-    ) : null;
+    const iconNode = others.icon ? <Icon name={others.icon} /> : null;
 
     const ComponentProp = others.href ? "a" : "button";
 

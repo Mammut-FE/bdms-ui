@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-06 16:25:43
+ * @Last Modified time: 2018-06-06 16:27:11
  */
 import React, { Component } from 'react';
 
@@ -137,7 +137,9 @@ class App extends Component<any, any> {
       <Library>
         <Example name={"button"}>
           <Button>按钮</Button>
-          <Button href="www.baidu.com">链接</Button>
+          <Button href="www.baidu.com" icon="arrow">
+            链接
+          </Button>
           <Detail>
             <Cartesian
               component={Button}
