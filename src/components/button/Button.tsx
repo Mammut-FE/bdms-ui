@@ -10,8 +10,11 @@ interface IButtonProps {
   icon?: string;
   type?: "primary" | "default" | "text";
   size?: "small" | "normal";
+  href?: string;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
+
+const cx = classNames.bind(buttonStyle);
 
 export default class Button extends Component<IButtonProps, any> {
   public static Group = ButtonGroup;
@@ -34,8 +37,6 @@ export default class Button extends Component<IButtonProps, any> {
   public render() {
     const { className, disabled, children, type, size, ...others } = this.props;
 
-    const cx = classNames.bind(buttonStyle);
-
     const classes = cx("u-btn", className, {
       [`u-btn-${type}`]: true,
       [`u-btn-${size}`]: true
@@ -45,8 +46,10 @@ export default class Button extends Component<IButtonProps, any> {
       <i className={`icon icon-${others.icon}`} />
     ) : null;
 
+    const ComponentProp = others.href ? "a" : "button";
+
     return (
-      <button
+      <ComponentProp
         className={classes}
         disabled={disabled}
         onClick={this.onClick}
@@ -56,7 +59,7 @@ export default class Button extends Component<IButtonProps, any> {
         <span style={{ paddingLeft: others.icon && children ? "8px" : "" }}>
           {children}
         </span>
-      </button>
+      </ComponentProp>
     );
   }
 }
