@@ -1,9 +1,10 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com)
- * @Date: 2018-01-05 16:11:56
- * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-30 20:00:02
+ * @Author: jessica(gujing_hy@163.com) 
+ * @Date: 2018-06-06 13:43:14 
+ * @Last Modified by:   jessica(gujing_hy@163.com) 
+ * @Last Modified time: 2018-06-06 13:43:14 
  */
+
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";

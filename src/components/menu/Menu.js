@@ -1,9 +1,10 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com)
- * @Date: 2018-01-05 16:12:23
- * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-05-31 18:29:52
+ * @Author: jessica(gujing_hy@163.com) 
+ * @Date: 2018-06-06 13:43:07 
+ * @Last Modified by:   jessica(gujing_hy@163.com) 
+ * @Last Modified time: 2018-06-06 13:43:07 
  */
+
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
@@ -168,7 +169,7 @@ export default class Menu extends Component {
             <Icon name="chevron-up" />
           </div>
         )}
-        <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}> 
+        <MenuContent scrollTop={scrollTop} ref={this.getMenuContent.bind(this)}>
           {childrenWithProps}
         </MenuContent>
         {overflowBottom && (

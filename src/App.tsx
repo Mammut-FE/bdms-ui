@@ -1,11 +1,12 @@
+/*
+ * @Author: jessica(gujing_hy@163.com) 
+ * @Date: 2018-06-06 13:42:37 
+ * @Last Modified by:   jessica(gujing_hy@163.com) 
+ * @Last Modified time: 2018-06-06 13:42:37 
+ */
+
 import React, { Component } from 'react';
 
-/*
- * @Author: jessica(hzgujing@corp.netease.com)
- * @Date: 2017-10-18 14:18:29
- * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-06-05 11:06:19
- */
 import { Cartesian, Detail, Example, Library } from '@compositor/kit';
 
 import styles from './App.scss';

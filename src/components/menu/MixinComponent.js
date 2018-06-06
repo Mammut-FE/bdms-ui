@@ -1,11 +1,12 @@
 /*
- * @Author: jessica(hzgujing@corp.netease.com) 
- * @Date: 2018-01-09 10:08:34 
- * @Last Modified by: jessica(hzgujing@corp.netease.com)
- * @Last Modified time: 2018-01-09 14:17:06
+ * @Author: jessica(gujing_hy@163.com) 
+ * @Date: 2018-06-06 13:43:25 
+ * @Last Modified by:   jessica(gujing_hy@163.com) 
+ * @Last Modified time: 2018-06-06 13:43:25 
  */
-import { Component } from 'react'
-import PropTypes from 'prop-types'
+
+import { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class MixinComponent extends Component {
   parent() {
