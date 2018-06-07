@@ -8,23 +8,23 @@ import checkboxClass from './checkbox.scss';
 interface ICheckData {
   checked: boolean;
   value: string;
-  disabled: boolean;
+  disabled?: boolean;
+  [propName: string]: any;
 }
 
 interface ICheckboxGroupProps {
-  indeterminate: boolean;
+  indeterminate?: boolean;
   data: ICheckData[];
   onChange?: (lists: ICheckData[]) => void;
-  className: string;
+  className?: string;
 }
 
 interface ICheckboxGroupState {
-  checkLists: ICheckData[];
-  isIndeterminate: boolean;
-  checkAll: boolean;
+  readonly checkLists: ICheckData[];
+  readonly isIndeterminate: boolean;
+  readonly checkAll: boolean;
 }
 
-type State = Readonly<ICheckboxGroupState>;
 
 /**
  * @param {Array} data  checkbox列表数组，数组中每个项是对象，必须包含字段：checked,value
@@ -38,7 +38,7 @@ export default class CheckboxGroup extends Component<
     indeterminate: true
   };
 
-  public readonly state: State = {
+  public readonly state: Readonly<ICheckboxGroupState> = {
     checkAll: false,
     checkLists: this.getCheckLists(this.props),
     isIndeterminate: false

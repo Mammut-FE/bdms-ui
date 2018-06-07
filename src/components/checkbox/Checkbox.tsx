@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 
 import styles from './checkbox.scss';
 import CheckboxGroup from './CheckboxGroup';
@@ -13,6 +13,7 @@ interface ICheckboxProps {
   isIndeterminate?: boolean;
   onChange?: (value: string, checked: boolean) => void;
   className?: string;
+  children?: ReactNode;
 }
 export default class Checkbox extends Component<ICheckboxProps, any> {
   public static Group = CheckboxGroup;

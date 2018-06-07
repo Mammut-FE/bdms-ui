@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-06 16:27:11
+ * @Last Modified time: 2018-06-07 14:52:16
  */
 import React, { Component } from 'react';
 
@@ -131,6 +131,10 @@ class App extends Component<any, any> {
     });
   }
 
+  public checkGroupChange(checkLists: object[]) {
+    console.log(checkLists);
+  }
+
   public render() {
     const { checboxCheck } = this.state;
     return (
@@ -174,6 +178,12 @@ class App extends Component<any, any> {
           >
             哈哈
           </Checkbox>
+        </Example>
+        <Example name={"checkbox-group"}>
+          <Checkbox.Group
+            data={[{value: 'en', checked: false},{value:'check-2', checked: true}]}
+            onChange={this.checkGroupChange}
+          />
         </Example>
       </Library>
     );
