@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import React, { Component } from 'react';
 
 import styles from './checkbox.scss';
+import CheckboxGroup from './CheckboxGroup';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +14,8 @@ interface ICheckboxProps {
   onChange?: (value: string, checked: boolean) => void;
   className?: string;
 }
-export default class Checkbox extends Component<ICheckboxProps, {}> {
+export default class Checkbox extends Component<ICheckboxProps, any> {
+  public static Group = CheckboxGroup;
   constructor(props: ICheckboxProps) {
     super(props);
   }

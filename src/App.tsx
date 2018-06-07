@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 
 import { Cartesian, Detail, Example, Library } from '@compositor/kit';
 
-import styles from './App.scss';
+// import styles from './App.scss';
 import Button from './components/button/index';
 import Checkbox from './components/checkbox/index';
 import Icon from './components/icon';
@@ -145,15 +145,19 @@ class App extends Component<any, any> {
               component={Button}
               type={["primary", "default", "text"]}
               size={["small", "normal"]}
+              disabled={[true, false]}
               children={["默认文字"]}
               onClick={this.clickButton}
             />
             <Button.Group>
-              <Button className={styles.item} onClick={this.clickButton}>
+              <Button onClick={this.clickButton}>
                 默认文字1
               </Button>
-              <Button className={styles.item} onClick={this.clickButton}>
+              <Button onClick={this.clickButton}>
                 默认文字2
+              </Button>
+              <Button onClick={this.clickButton}>
+                默认文字3
               </Button>
             </Button.Group>
           </Detail>

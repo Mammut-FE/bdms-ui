@@ -24,6 +24,8 @@ interface ICheckboxGroupState {
   checkAll: boolean;
 }
 
+type State = Readonly<ICheckboxGroupState>;
+
 /**
  * @param {Array} data  checkbox列表数组，数组中每个项是对象，必须包含字段：checked,value
  */
@@ -36,13 +38,14 @@ export default class CheckboxGroup extends Component<
     indeterminate: true
   };
 
+  public readonly state: State = {
+    checkAll: false,
+    checkLists: this.getCheckLists(this.props),
+    isIndeterminate: false
+  };
+
   constructor(props: ICheckboxGroupProps) {
     super(props);
-    this.state = {
-      checkAll: false,
-      checkLists: this.getCheckLists(props),
-      isIndeterminate: false
-    };
     this.changeAll = this.changeAll.bind(this);
   }
 
