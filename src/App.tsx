@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-08 17:06:24
+ * @Last Modified time: 2018-06-08 17:06:50
  */
 import React, { Component } from "react";
 
@@ -215,51 +215,6 @@ class App extends Component<any, any> {
             />
           </Row>
         </Grid>
-        {/* <Library>
-          <Example name={"button"}>
-            <Button>按钮</Button>
-            <Button href="www.baidu.com" icon="arrow">
-              链接
-            </Button>
-            <Detail>
-              <Cartesian
-                component={Button}
-                type={["primary", "default", "text"]}
-                size={["small", "normal"]}
-                disabled={[true, false]}
-                children={["默认文字"]}
-                onClick={this.clickButton}
-              />
-              <Button.Group>
-                <Button onClick={this.clickButton}>默认文字2</Button>
-                <Button onClick={this.clickButton}>默认文字2</Button>
-                <Button onClick={this.clickButton}>默认文字1</Button>
-              </Button.Group>
-            </Detail>
-          </Example>
-          <Example name={"icon"}>
-            <Icon name="table" />
-            <Cartesian component={Icon} name={icons} />
-          </Example>
-          <Example name={"checkbox"}>
-            <Checkbox
-              value="haha"
-              checked={checboxCheck}
-              onChange={this.checkChange}
-            >
-              哈哈
-            </Checkbox>
-          </Example>
-          <Example name={"checkbox-group"}>
-            <Checkbox.Group
-              data={[
-                { value: "en", checked: false },
-                { value: "check-2", checked: true }
-              ]}
-              onChange={this.checkGroupChange}
-            />
-          </Example>
-        </Library> */}
       </Layout>
     );
   }
