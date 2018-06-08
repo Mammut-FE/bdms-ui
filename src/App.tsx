@@ -2,16 +2,18 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-07 14:52:16
+ * @Last Modified time: 2018-06-08 17:06:24
  */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Cartesian, Detail, Example, Library } from '@compositor/kit';
+// import { Cartesian, Detail, Example, Library } from "@compositor/kit";
 
 // import styles from './App.scss';
-import Button from './components/button/index';
-import Checkbox from './components/checkbox/index';
-import Icon from './components/icon';
+import Button from "./components/button/index";
+import Checkbox from "./components/checkbox/index";
+import { Col, Grid, Row } from "./components/grid";
+import Icon from "./components/icon";
+import Layout from "./components/layout";
 
 const icons = [
   "order-down",
@@ -138,54 +140,127 @@ class App extends Component<any, any> {
   public render() {
     const { checboxCheck } = this.state;
     return (
-      <Library>
-        <Example name={"button"}>
-          <Button>按钮</Button>
-          <Button href="www.baidu.com" icon="arrow">
-            链接
-          </Button>
-          <Detail>
-            <Cartesian
-              component={Button}
-              type={["primary", "default", "text"]}
-              size={["small", "normal"]}
-              disabled={[true, false]}
-              children={["默认文字"]}
-              onClick={this.clickButton}
+      <Layout>
+        <Grid>
+          <Row>
+            <Col xs={2}>
+              <Button>按钮</Button>
+            </Col>
+            <Col xs={2}>
+              <Button href="www.baidu.com" icon="arrow">
+                链接
+              </Button>
+            </Col>
+            <Col xs={2}>
+              <Button type="primary" icon="table">
+                primary
+              </Button>
+            </Col>
+            <Col xs={2}>
+              <Button type="default" icon="table">
+                default
+              </Button>
+            </Col>
+            <Col xs={2}>
+              <Button type="text">text</Button>
+            </Col>
+            <Col xs={2}>
+              <Button type="primary" size="small" icon="table">
+                primary-small
+              </Button>
+            </Col>
+            <Col xs={2}>
+              <Button type="default" size="normal" icon="table">
+                default-normal
+              </Button>
+            </Col>
+            <Col xs={2} sm={3} md={2}>
+              <Button type="text" size="normal">
+                text
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button.Group>
+                <Button onClick={this.clickButton}>默认文字2</Button>
+                <Button onClick={this.clickButton}>默认文字2</Button>
+                <Button onClick={this.clickButton}>默认文字1</Button>
+              </Button.Group>
+            </Col>
+          </Row>
+          <Row>
+            {icons.map((icon, iconIndex) => (
+              <Col xs={2}>
+                <Icon name={icon} key={iconIndex} />
+              </Col>
+            ))}
+          </Row>
+          <Row>
+            <Checkbox
+              value="haha"
+              checked={checboxCheck}
+              onChange={this.checkChange}
+            >
+              哈哈
+            </Checkbox>
+          </Row>
+          <Row>
+            <Checkbox.Group
+              data={[
+                { value: "en", checked: false },
+                { value: "check-2", checked: true }
+              ]}
+              onChange={this.checkGroupChange}
             />
-            <Button.Group>
-              <Button onClick={this.clickButton}>
-                默认文字1
-              </Button>
-              <Button onClick={this.clickButton}>
-                默认文字2
-              </Button>
-              <Button onClick={this.clickButton}>
-                默认文字3
-              </Button>
-            </Button.Group>
-          </Detail>
-        </Example>
-        <Example name={"icon"}>
-          <Icon name="table" />
-          <Cartesian component={Icon} name={icons} />
-        </Example>
-        <Example name={"checkbox"}>
-          <Checkbox
-            value="haha"
-            checked={checboxCheck}
-            onChange={this.checkChange}
-          >
-            哈哈
-          </Checkbox>
-        </Example>
-        <Example name={"checkbox-group"}>
-          <Checkbox.Group
-            data={[{value: 'en', checked: false},{value:'check-2', checked: true}]}
-            onChange={this.checkGroupChange}
-          />
-        </Example>
-      </Library>
+          </Row>
+        </Grid>
+        {/* <Library>
+          <Example name={"button"}>
+            <Button>按钮</Button>
+            <Button href="www.baidu.com" icon="arrow">
+              链接
+            </Button>
+            <Detail>
+              <Cartesian
+                component={Button}
+                type={["primary", "default", "text"]}
+                size={["small", "normal"]}
+                disabled={[true, false]}
+                children={["默认文字"]}
+                onClick={this.clickButton}
+              />
+              <Button.Group>
+                <Button onClick={this.clickButton}>默认文字2</Button>
+                <Button onClick={this.clickButton}>默认文字2</Button>
+                <Button onClick={this.clickButton}>默认文字1</Button>
+              </Button.Group>
+            </Detail>
+          </Example>
+          <Example name={"icon"}>
+            <Icon name="table" />
+            <Cartesian component={Icon} name={icons} />
+          </Example>
+          <Example name={"checkbox"}>
+            <Checkbox
+              value="haha"
+              checked={checboxCheck}
+              onChange={this.checkChange}
+            >
+              哈哈
+            </Checkbox>
+          </Example>
+          <Example name={"checkbox-group"}>
+            <Checkbox.Group
+              data={[
+                { value: "en", checked: false },
+                { value: "check-2", checked: true }
+              ]}
+              onChange={this.checkGroupChange}
+            />
+          </Example>
+        </Library> */}
+      </Layout>
     );
   }
 }

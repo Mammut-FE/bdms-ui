@@ -1,0 +1,12 @@
+.u-layout {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  height: 100%;
+}
+
+.u-header,
+.u-footer,
+.u-sider {
+  flex: 0 0 auto;
+}
