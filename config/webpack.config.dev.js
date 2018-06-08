@@ -200,6 +200,7 @@ module.exports = {
                 },
               },
             ],
+            include: /flexboxgrid/
           },
           // scss
           {
