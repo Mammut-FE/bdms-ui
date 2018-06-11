@@ -239,7 +239,7 @@ module.exports = {
               {
                 loader: require.resolve('sass-loader'),
                 options: {
-                  includePaths: [path.resolve(__dirname, '../src/style')],
+                  includePaths: [paths.stylePath],
                   sourceMap: true
                 }
               }
