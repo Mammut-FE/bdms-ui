@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-08 17:14:15
+ * @Last Modified time: 2018-06-08 17:46:54
  */
 import React, { Component } from "react";
 
@@ -22,12 +22,9 @@ const icons = [
   "choose-cancle",
   "stop",
   "log-big",
-  "datasource",
   "more",
   "notebook",
   "query",
-  "left-sidebar",
-  "right-sidebar",
   "sidebar-up",
   "sidebar-down",
   "format2",
@@ -39,7 +36,6 @@ const icons = [
   "light-on",
   "rerun",
   "cancel",
-  "dot",
   "disable",
   "result",
   "info",
@@ -57,9 +53,6 @@ const icons = [
   "warning",
   "error",
   "script",
-  "hive",
-  "sqoop",
-  "noop",
   "loaddata",
   "top",
   "save",
@@ -68,9 +61,6 @@ const icons = [
   "run",
   "refresh",
   "setting",
-  "admin",
-  "user-solid",
-  "failed_finishing",
   "preparing",
   "running",
   "killed",
@@ -81,9 +71,6 @@ const icons = [
   "statistics",
   "instance",
   "tasklist",
-  "authmanage",
-  "authsetting",
-  "user",
   "projectcenter",
   "zoomin",
   "zoomout",
@@ -93,12 +80,9 @@ const icons = [
   "add",
   "close-circle",
   "filter",
-  "true",
   "close",
-  "fault",
   "chevron-down",
   "chevron-up",
-  "caret-right",
   "caret-down",
   "message",
   "calendar",
@@ -147,7 +131,7 @@ class App extends Component<any, any> {
               <Button>按钮</Button>
             </Col>
             <Col xs={2}>
-              <Button href="www.baidu.com" icon="arrow">
+              <Button href="www.baidu.com" icon="add">
                 链接
               </Button>
             </Col>
@@ -191,8 +175,8 @@ class App extends Component<any, any> {
           </Row>
           <Row>
             {icons.map((icon, iconIndex) => (
-              <Col xs={2}>
-                <Icon name={icon} key={iconIndex} />
+              <Col xs={2} key={iconIndex}>
+                <Icon name={icon} />
               </Col>
             ))}
           </Row>
