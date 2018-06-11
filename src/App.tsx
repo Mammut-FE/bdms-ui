@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-08 17:46:54
+ * @Last Modified time: 2018-06-11 16:06:27
  */
 import React, { Component } from "react";
 
@@ -16,6 +16,7 @@ import Icon from "./components/icon";
 import Layout from "./components/layout";
 
 const icons = [
+  "file-mini",
   "order-down",
   "order-up",
   "choose",
