@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-11 16:06:27
+ * @Last Modified time: 2018-06-11 17:16:16
  */
 import React, { Component } from "react";
 
@@ -126,7 +126,7 @@ class App extends Component<any, any> {
     const { checboxCheck } = this.state;
     return (
       <Layout>
-        <Grid>
+        <Grid fluid={true}>
           <Row>
             <Col xs={2}>
               <Button>按钮</Button>
@@ -159,14 +159,14 @@ class App extends Component<any, any> {
                 default-normal
               </Button>
             </Col>
-            <Col xs={2} sm={3} md={2}>
+            <Col xs={2}>
               <Button type="text" size="normal">
                 text
               </Button>
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col xs={12}>
               <Button.Group>
                 <Button onClick={this.clickButton}>默认文字2</Button>
                 <Button onClick={this.clickButton}>默认文字2</Button>
