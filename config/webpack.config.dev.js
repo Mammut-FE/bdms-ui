@@ -199,8 +199,7 @@ module.exports = {
                   ],
                 },
               }
-            ],
-            include: path.resolve(paths.appNodeModules, 'flexboxgrid2')
+            ]
           },
           // scss
           {
