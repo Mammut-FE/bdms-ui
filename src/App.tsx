@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-11 17:16:16
+ * @Last Modified time: 2018-06-12 10:08:21
  */
 import React, { Component } from "react";
 
@@ -129,7 +129,7 @@ class App extends Component<any, any> {
         <Grid fluid={true}>
           <Row>
             <Col xs={2}>
-              <Button>按钮</Button>
+              <Button>按钮s</Button>
             </Col>
             <Col xs={2}>
               <Button href="www.baidu.com" icon="add">
