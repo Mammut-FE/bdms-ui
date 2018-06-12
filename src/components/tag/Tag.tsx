@@ -5,7 +5,7 @@ import Icon from '../icon/Icon';
 import styles from './tag.scss';
 
 interface ITagState {
-  visible: boolean;
+  readonly visible: boolean;
 }
 
 interface ITagProps {
@@ -23,11 +23,12 @@ export default class Tag extends Component<ITagProps, ITagState> {
     size: 'small'
   };
 
-  constructor(props) {
+  public readonly state: Readonly<ITagState> = {
+    visible: true
+  };
+
+  constructor(props: ITagProps) {
     super(props);
-    this.state = {
-      visible: true
-    };
     this.closeTag = this.closeTag.bind(this);
   }
 

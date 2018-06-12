@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-12 11:11:09
+ * @Last Modified time: 2018-06-12 15:48:17
  */
 import React, { Component } from 'react';
 
@@ -14,6 +14,7 @@ import Checkbox from './components/checkbox/index';
 import { Col, Grid, Row } from './components/grid';
 import Icon from './components/icon';
 import Layout from './components/layout';
+import Switch from './components/switch';
 import Tag from './components/tag';
 
 const cx = classNames.bind(styles);
@@ -228,6 +229,28 @@ class App extends Component<any, any> {
               <div className={cx('item')}>
                 <Tag>你好</Tag>
                 <Tag>你好hsh</Tag>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Switch />
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Switch open={true} />
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Switch open={true} disabled={true} />
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Switch disabled={true} />
               </div>
             </Col>
           </Row>
