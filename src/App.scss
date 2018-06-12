@@ -20,10 +20,13 @@
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-between;
+  ;
   align-items: center;
 }
+
 .item {
+  margin-bottom: 10px;
 }
 
 .App-intro {
@@ -31,14 +34,17 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .wrap {
   height: 100%;
   background-color: #FFFFFF;
-
   display: flex;
 }
 
