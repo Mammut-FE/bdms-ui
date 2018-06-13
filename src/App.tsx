@@ -2,15 +2,15 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-13 16:05:02
+ * @Last Modified time: 2018-06-13 16:46:13
  */
 import React, { Component } from 'react';
 
 // import { Cartesian, Detail, Example, Library } from "@compositor/kit";
 import classNames from 'classnames/bind';
 import styles from './App.scss';
-import Button from './components/button/index';
-import Checkbox from './components/checkbox/index';
+import Button from './components/button';
+import Checkbox from './components/checkbox';
 import { Col, Grid, Row } from './components/grid';
 import Icon from './components/icon';
 import Layout from './components/layout';
