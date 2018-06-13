@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import menuClass from './menu.scss';
@@ -19,7 +18,7 @@ interface IMenuTitle {
   className?: string;
 }
 
-export default class MenuTitle extends MixinComponent {
+export default class MenuTitle extends MixinComponent<IMenuTitle, any> {
   public render() {
     const { className, children } = this.props;
 

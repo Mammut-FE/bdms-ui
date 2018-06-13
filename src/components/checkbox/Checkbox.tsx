@@ -14,6 +14,7 @@ interface ICheckboxProps {
   onChange?: (value: string, checked: boolean) => void;
   className?: string;
   children?: ReactNode;
+  box?: boolean;
 }
 export default class Checkbox extends Component<ICheckboxProps, any> {
   public static Group = CheckboxGroup;
@@ -22,33 +23,23 @@ export default class Checkbox extends Component<ICheckboxProps, any> {
   }
 
   public render(): any {
-    const {
-      children,
-      value,
-      disabled,
-      className,
-      isIndeterminate,
-      checked
-    } = this.props;
-    const labelClass = cx("u-label", className);
-    const inputClass = cx("u-checkbox-input", {
+    const { children, value, disabled, className, isIndeterminate, checked, box } = this.props;
+    const labelClass = cx('u-label', className, {
+      'u-label-box': box
+    });
+    const inputClass = cx('u-checkbox-input', {
       checked,
-      "disabled-off": disabled && !checked,
-      "disabled-on": disabled && checked,
+      'disabled-off': disabled && !checked,
+      'disabled-on': disabled && checked,
       indeterminate: isIndeterminate
     });
     return (
       <label className={labelClass}>
         <span className={inputClass}>
-          <span className={cx("u-checkbox-inner")} />
-          <input
-            type="checkbox"
-            checked={checked}
-            disabled={disabled}
-            onChange={this.onChange}
-          />
+          <span className={cx('u-checkbox-inner')} />
+          <input type="checkbox" checked={checked} disabled={disabled} onChange={this.onChange} />
         </span>
-        <span className={cx("u-checkbox-text")}>{children || value}</span>
+        <span className={cx('u-checkbox-text')}>{children || value}</span>
       </label>
     );
   }

@@ -2,11 +2,10 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:43:14 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-12 19:08:28
+ * @Last Modified time: 2018-06-13 15:42:55
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import menuClass from './menu.scss';
@@ -19,16 +18,14 @@ const cx = classNames.bind(menuClass);
 interface IMenuItemProps {
   className?: string;
   children?: any;
-  disabled?: bool;
-  divided?: bool;
+  disabled?: boolean;
+  divided?: boolean;
   iconName?: string;
-  subtitle?: string;
-  tickSelect?: string;
   command?: string;
   subDesc?: string;
 }
 
-export default class MenuItem extends MixinComponent {
+export default class MenuItem extends MixinComponent<IMenuItemProps, any> {
   constructor(props: IMenuItemProps) {
     super(props);
     this.handleItemClick = this.handleItemClick.bind(this);

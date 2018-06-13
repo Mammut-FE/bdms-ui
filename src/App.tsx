@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-12 15:48:17
+ * @Last Modified time: 2018-06-13 16:05:02
  */
 import React, { Component } from 'react';
 
@@ -16,6 +16,7 @@ import Icon from './components/icon';
 import Layout from './components/layout';
 import Switch from './components/switch';
 import Tag from './components/tag';
+import Menu from './components/menu';
 
 const cx = classNames.bind(styles);
 
@@ -123,6 +124,10 @@ class App extends Component<any, any> {
   }
 
   public checkGroupChange(checkLists: object[]) {
+    console.log(checkLists);
+  }
+
+  public checkMenuItem(checkLists) {
     console.log(checkLists);
   }
 
@@ -251,6 +256,78 @@ class App extends Component<any, any> {
             <Col xs={3}>
               <div className={cx('item')}>
                 <Switch disabled={true} />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Menu selected="1">
+                  <Menu.Title>组一</Menu.Title>
+                  <Menu.Item command="1">项目一</Menu.Item>
+                  <Menu.Item command="2" divided={true}>
+                    项目二
+                  </Menu.Item>
+                  <Menu.Title>组二</Menu.Title>
+                  <Menu.Item command="3" subDesc="ctrl c">
+                    项目三
+                  </Menu.Item>
+                  <Menu.Item command="4" subDesc="ctrl v">
+                    项目四
+                  </Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Menu selected="1" tickSelect={true}>
+                  <Menu.Item command="1">项目一</Menu.Item>
+                  <Menu.Item command="2">项目二</Menu.Item>
+                  <Menu.Item command="3" divided={true}>
+                    项目三
+                  </Menu.Item>
+                  <Menu.Item command="4">项目四</Menu.Item>
+                  <Menu.Item command="5">项目五</Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Menu selected="1" tickSelect={true}>
+                  <Menu.Item command="1" iconName="database">
+                    项目一
+                  </Menu.Item>
+                  <Menu.Item command="2" iconName="database">
+                    项目二
+                  </Menu.Item>
+                  <Menu.Item command="3" divided={true} iconName="database">
+                    项目三
+                  </Menu.Item>
+                  <Menu.Item command="4" iconName="database">
+                    项目四
+                  </Menu.Item>
+                  <Menu.Item command="5" iconName="database">
+                    项目五
+                  </Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Menu withCheck={true} onCheck={this.checkMenuItem}>
+                  <Checkbox.Group
+                    box={true}
+                    data={[
+                      { value: '选项一', checked: false },
+                      { value: '选项二', checked: true },
+                      { value: '选项三', checked: false },
+                      { value: '选项四', checked: false },
+                      { value: '选项五', checked: false },
+                      { value: '选项六', checked: false }
+                    ]}
+                    onChange={this.checkGroupChange}
+                  />
+                </Menu>
               </div>
             </Col>
           </Row>

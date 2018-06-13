@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:43:07 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-13 09:38:11
+ * @Last Modified time: 2018-06-13 15:40:57
  */
 
 import classNames from 'classnames/bind';
@@ -25,6 +25,7 @@ interface IMenuProps {
   selected?: string;
   withCheck?: boolean;
   style?: CSSProperties;
+  tickSelect?: boolean;
   onCommand?: (key: string, instance: Component) => void;
   onCheck?: (checkItem: any[]) => void;
 }
@@ -50,6 +51,10 @@ interface IMenuState {
 export default class Menu extends Component<IMenuProps, IMenuState> {
   public static Item = MenuItem;
   public static Title = MenuTitle;
+
+  public static childContextTypes = {
+    component: PropTypes.any
+  };
 
   public readonly state: Readonly<IMenuState> = {
     baseScrollTop: 0,
@@ -90,11 +95,11 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
   }
 
   public handleMenuItemClick(key, instance) {
+    this.setState({
+      selected: key
+    });
     if (this.props.onCommand) {
       this.props.onCommand(key, instance);
-      this.setState({
-        selected: key
-      });
     }
   }
 
@@ -221,7 +226,3 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     );
   }
 }
-
-Menu.childContextTypes = {
-  component: PropTypes.any
-};

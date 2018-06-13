@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 import menuClass from './menu.scss';
 
@@ -19,7 +18,7 @@ interface IMenuContentState {
 
 const cx = classNames.bind(menuClass);
 
-export default class MenuContent extends MixinComponent {
+export default class MenuContent extends MixinComponent<IMenuContentProps, IMenuContentState> {
   public readonly state: IMenuContentState = {
     scrollTop: 0
   };
@@ -56,8 +55,11 @@ export default class MenuContent extends MixinComponent {
   public handleScroll(e) {
     const el = ReactDOM.findDOMNode(this);
     const parent = this.parent();
-    this.scrollControl(el);
-    parent.setScrollTop(el.scrollTop);
+    if (el) {
+      const es = el as HTMLElement;
+      this.scrollControl(es);
+      parent.setScrollTop(es.scrollTop);
+    }
   }
 
   /**
@@ -67,8 +69,11 @@ export default class MenuContent extends MixinComponent {
   public handleWheel(e) {
     const deltaY = e.deltaY;
     const el = ReactDOM.findDOMNode(this);
-    if (deltaY > 0 && el.scrollTop === el.scrollHeight - el.offsetHeight) {
-      e.preventDefault();
+    if (el) {
+      const es = el as HTMLElement;
+      if (deltaY > 0 && es.scrollTop === es.scrollHeight - es.offsetHeight) {
+        e.preventDefault();
+      }
     }
   }
 
