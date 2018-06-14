@@ -1,4 +1,4 @@
-@import "../../style/color.scss";
+@import '../../style/color.scss';
 
 .u-menu {
   width: 160px;
@@ -75,6 +75,7 @@
   .tick-icon {
     position: absolute;
     left: 12px;
+    top: 9px;
   }
   &:hover {
     background: rgba(0, 153, 255, 0.1);
@@ -94,7 +95,7 @@
   }
   &.divided {
     &:after {
-      content: "";
+      content: '';
       width: 100%;
       border-bottom: 1px solid #ccc;
       position: absolute;
@@ -108,20 +109,6 @@
   padding: 4px 0;
   overflow-y: auto;
   transition: all 0.3s ease-in-out;
-}
-.u-label {
-  display: inline-block;
-  width: 100%;
-  margin-left: 0;
-  height: 32px;
-  line-height: 32px;
-  text-align: left;
-  padding-left: 36px;
-  color: #666;
-  font-size: 14px;
-}
-.u-checkbox-input {
-  left: 12px;
 }
 
 .u-menu-title {

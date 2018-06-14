@@ -17,6 +17,7 @@ interface ICheckboxGroupProps {
   data: ICheckData[];
   onChange?: (lists: ICheckData[]) => void;
   className?: string;
+  box?: boolean; // 是否让checkbox变成inline-block定位
 }
 
 interface ICheckboxGroupState {
@@ -25,15 +26,11 @@ interface ICheckboxGroupState {
   readonly checkAll: boolean;
 }
 
-
 /**
  * @param {Array} data  checkbox列表数组，数组中每个项是对象，必须包含字段：checked,value
  */
 
-export default class CheckboxGroup extends Component<
-  ICheckboxGroupProps,
-  ICheckboxGroupState
-> {
+export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheckboxGroupState> {
   public static defaultProps: Partial<ICheckboxGroupProps> = {
     indeterminate: true
   };
@@ -142,11 +139,11 @@ export default class CheckboxGroup extends Component<
 
   public render() {
     const { checkLists, isIndeterminate, checkAll } = this.state;
-    const { className, indeterminate } = this.props;
+    const { className, indeterminate, box } = this.props;
 
     const cx = classNames.bind(checkboxClass);
 
-    const gourpClassName = cx("checbox-group", className);
+    const gourpClassName = cx('checbox-group', className);
 
     return (
       <div className={gourpClassName}>
@@ -156,6 +153,7 @@ export default class CheckboxGroup extends Component<
             checked={checkAll}
             value="全选"
             onChange={this.changeAll}
+            box={box}
           />
         )}
         {checkLists.map((item, index) => (
@@ -165,6 +163,7 @@ export default class CheckboxGroup extends Component<
             disabled={item.disabled}
             key={index}
             onChange={this.onChange}
+            box={box}
           />
         ))}
       </div>
