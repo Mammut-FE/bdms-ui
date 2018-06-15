@@ -12,6 +12,7 @@ interface IButtonProps {
   type?: 'primary' | 'default' | 'text';
   size?: 'small' | 'normal';
   href?: string;
+  target?: string;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
@@ -21,6 +22,7 @@ export default class Button extends Component<IButtonProps, any> {
   public static Group = ButtonGroup;
 
   public static defaultProps: Partial<IButtonProps> = {
+    disabled: false,
     size: 'normal',
     type: 'default'
   };
