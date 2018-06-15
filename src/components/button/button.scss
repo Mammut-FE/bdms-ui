@@ -1,4 +1,4 @@
-@import "color.scss";
+@import 'color.scss';
 
 .u-btn {
   border-radius: 2px;
@@ -60,14 +60,14 @@
 .u-btn-text {
   border: 1px solid transparent;
   background: #fff;
-  color: #333;
+  color: $link-color;
   &:hover {
-    border: 1px solid #999;
+    border: 1px solid transparent;
     background: #fff;
   }
   &:active {
-    border: 1px solid #999;
-    background: #f1f1f1;
+    border: 1px solid transparent;
+    background: #fff;
   }
   &.u-btn-normal {
     line-height: 30px;

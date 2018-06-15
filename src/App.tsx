@@ -144,9 +144,7 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={2}>
               <div className={cx('item')}>
-                <Button href="www.baidu.com" icon="add">
-                  链接
-                </Button>
+                <Button icon="add">有icon</Button>
               </div>
             </Col>
             <Col xs={2}>
@@ -165,11 +163,6 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={2}>
               <div className={cx('item')}>
-                <Button type="text">text</Button>
-              </div>
-            </Col>
-            <Col xs={2}>
-              <div className={cx('item')}>
                 <Button type="primary" size="small" icon="table">
                   primary-small
                 </Button>
@@ -184,7 +177,14 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={2}>
               <div className={cx('item')}>
-                <Button type="text" size="normal">
+                <Button type="text" href="http://www.baidu.com">
+                  text
+                </Button>
+              </div>
+            </Col>
+            <Col xs={2}>
+              <div className={cx('item')}>
+                <Button type="text" size="normal" href="http://www.baidu.com" target="blank">
                   text
                 </Button>
               </div>
