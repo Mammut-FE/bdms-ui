@@ -129,14 +129,6 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]'
             }
           },
-          {
-            test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
-            loader: require.resolve('babel-loader'),
-            options: {
-              compact: true
-            }
-          },
 
           // Compile .tsx?
           {
@@ -206,7 +198,7 @@ module.exports = {
                 }
               }
             ],
-            include: /flexboxgrid/,
+            include: /flexboxgrid/
           },
           // scss
           {
