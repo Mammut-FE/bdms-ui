@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React, { Component, MouseEvent } from 'react';
 
-import Icon from '../icon/Icon';
+import Icon from '../icon/icon';
 import styles from './tag.scss';
 
 interface ITagState {

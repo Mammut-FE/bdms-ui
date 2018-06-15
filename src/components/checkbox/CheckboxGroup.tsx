@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import _ from 'lodash';
 import React, { Component } from 'react';
 
-import Checkbox from './Checkbox';
+import Checkbox from './checkbox';
 import checkboxClass from './checkbox.scss';
 
 interface ICheckData {

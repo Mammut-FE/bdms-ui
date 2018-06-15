@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import React, { Component, ReactNode } from 'react';
 
 import styles from './checkbox.scss';
-import CheckboxGroup from './CheckboxGroup';
+import CheckboxGroup from './checkboxGroup';
 
 const cx = classNames.bind(styles);
 
