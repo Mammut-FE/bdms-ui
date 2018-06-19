@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import _ from 'lodash';
+// import _ from 'lodash';
 import React, { Component } from 'react';
 
 import Checkbox from './checkbox';
@@ -9,6 +9,7 @@ interface ICheckData {
   checked: boolean;
   value: string;
   disabled?: boolean;
+  text?: string; // 显示的checkbox内容，若为空，则默认显示value值
   [propName: string]: any;
 }
 
@@ -17,7 +18,7 @@ interface ICheckboxGroupProps {
   data: ICheckData[];
   onChange?: (lists: ICheckData[]) => void;
   className?: string;
-  box?: boolean; // 是否让checkbox变成inline-block定位
+  mode?: 'horizontal' | 'vertical'; // 是否让checkbox变成inline-block定位
 }
 
 interface ICheckboxGroupState {
@@ -32,7 +33,8 @@ interface ICheckboxGroupState {
 
 export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheckboxGroupState> {
   public static defaultProps: Partial<ICheckboxGroupProps> = {
-    indeterminate: true
+    indeterminate: true,
+    mode: 'horizontal'
   };
 
   public readonly state: Readonly<ICheckboxGroupState> = {
@@ -48,15 +50,6 @@ export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheck
 
   public componentDidMount() {
     this.updateIsIndeterminate();
-  }
-
-  public componentWillReceiveProps(nextProps) {
-    if (_.isEqual(nextProps.data, this.props.data)) {
-      this.setState({
-        checkLists: nextProps.data
-      });
-      this.updateIsIndeterminate();
-    }
   }
 
   public updateIsIndeterminate() {
@@ -139,7 +132,7 @@ export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheck
 
   public render() {
     const { checkLists, isIndeterminate, checkAll } = this.state;
-    const { className, indeterminate, box } = this.props;
+    const { className, indeterminate, mode } = this.props;
 
     const cx = classNames.bind(checkboxClass);
 
@@ -153,7 +146,7 @@ export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheck
             checked={checkAll}
             value="全选"
             onChange={this.changeAll}
-            box={box}
+            mode={mode}
           />
         )}
         {checkLists.map((item, index) => (
@@ -163,8 +156,10 @@ export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheck
             disabled={item.disabled}
             key={index}
             onChange={this.onChange}
-            box={box}
-          />
+            mode={mode}
+          >
+            {item.text ? item.text : item.value}
+          </Checkbox>
         ))}
       </div>
     );
