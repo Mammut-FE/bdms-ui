@@ -35,6 +35,12 @@
       }
     }
     &.indeterminate {
+      &:hover {
+        .u-checkbox-inner {
+          background: $base-color;
+          border-color: $base-color;
+        }
+      }
       .u-checkbox-inner {
         background: $base-color;
         border-color: $base-color;
