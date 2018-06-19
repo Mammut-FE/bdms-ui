@@ -14,18 +14,21 @@ interface ICheckboxProps {
   onChange?: (value: string, checked: boolean) => void;
   className?: string;
   children?: ReactNode;
-  box?: boolean;
+  mode?: 'horizontal' | 'vertical';
 }
 export default class Checkbox extends Component<ICheckboxProps, any> {
   public static Group = CheckboxGroup;
+  public static defaultProps: Partial<ICheckboxProps> = {
+    mode: 'horizontal'
+  };
   constructor(props: ICheckboxProps) {
     super(props);
   }
 
   public render(): any {
-    const { children, value, disabled, className, isIndeterminate, checked, box } = this.props;
+    const { children, value, disabled, className, isIndeterminate, checked, mode } = this.props;
     const labelClass = cx('u-label', className, {
-      'u-label-box': box
+      'u-label-box': mode === 'vertical'
     });
     const inputClass = cx('u-checkbox-input', {
       checked,

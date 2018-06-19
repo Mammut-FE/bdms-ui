@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-13 16:46:13
+ * @Last Modified time: 2018-06-19 14:29:03
  */
 import React, { Component } from 'react';
 
@@ -228,6 +228,19 @@ class App extends Component<any, any> {
                 />
               </div>
             </Col>
+            <Col xs={2}>
+              <div className={cx('item')}>
+                <Checkbox.Group
+                  mode="vertical"
+                  data={[
+                    { value: 'en', checked: false, text: '中文' },
+                    { value: 'check-2', checked: true },
+                    { value: 'check3', checked: true, text: '英文' }
+                  ]}
+                  onChange={this.checkGroupChange}
+                />
+              </div>
+            </Col>
           </Row>
           <Row>
             <Col xs={4}>
@@ -316,7 +329,7 @@ class App extends Component<any, any> {
               <div className={cx('item')}>
                 <Menu withCheck={true} onCheck={this.checkMenuItem}>
                   <Checkbox.Group
-                    box={true}
+                    mode="vertical"
                     data={[
                       { value: '选项一', checked: false },
                       { value: '选项二', checked: true },
