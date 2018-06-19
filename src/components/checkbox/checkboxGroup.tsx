@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-// import _ from 'lodash';
 import React, { Component } from 'react';
 
 import Checkbox from './checkbox';
