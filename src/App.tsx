@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-19 14:29:03
+ * @Last Modified time: 2018-06-22 15:07:15
  */
 import React, { Component } from 'react';
 
@@ -22,6 +22,7 @@ const cx = classNames.bind(styles);
 
 const icons = [
   'file-mini',
+  'ture',
   'order-down',
   'order-up',
   'choose',
@@ -275,71 +276,125 @@ class App extends Component<any, any> {
           <Row>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu selected="1">
-                  <Menu.Title>组一</Menu.Title>
-                  <Menu.Item command="1">项目一</Menu.Item>
-                  <Menu.Item command="2" divided={true}>
-                    项目二
+                <Menu isTick={true}>
+                  <Menu.Item value="1" icon="table">
+                    dsdf
                   </Menu.Item>
-                  <Menu.Title>组二</Menu.Title>
-                  <Menu.Item command="3" subDesc="ctrl c">
-                    项目三
-                  </Menu.Item>
-                  <Menu.Item command="4" subDesc="ctrl v">
-                    项目四
-                  </Menu.Item>
+                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="3">dsdf</Menu.Item>
+                  <Menu.Item value="4">dsdf</Menu.Item>
+                  <Menu.Item value="5">dsdf</Menu.Item>
+                  <Menu.Item value="6">dsdf</Menu.Item>
+                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Item value="8">dsdf</Menu.Item>
+                  <Menu.Item value="9">dsdf</Menu.Item>
+                  <Menu.Item value="10">dsdf</Menu.Item>
+                  <Menu.Item value="11">dsdf</Menu.Item>
+                  <Menu.Item value="12">dsdf</Menu.Item>
+                  <Menu.Item value="13">dsdf</Menu.Item>
+                  <Menu.Item value="14">dsdf</Menu.Item>
+                  <Menu.Item value="15">dsdf</Menu.Item>
+                  <Menu.Item value="16">dsdf</Menu.Item>
+                  <Menu.Item value="17">dsdf</Menu.Item>
+                  <Menu.Item value="18">dsdf</Menu.Item>
+                  <Menu.Item value="19">dsdf</Menu.Item>
+                  <Menu.Item value="20">dsdf</Menu.Item>
+                  <Menu.Item value="21">dsdf</Menu.Item>
+                  <Menu.Item value="22">dsdf</Menu.Item>
+                  <Menu.Item value="23">dsdf</Menu.Item>
                 </Menu>
               </div>
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu selected="1" tickSelect={true}>
-                  <Menu.Item command="1">项目一</Menu.Item>
-                  <Menu.Item command="2">项目二</Menu.Item>
-                  <Menu.Item command="3" divided={true}>
-                    项目三
+                <Menu>
+                  <Menu.Item value="1" icon="table">
+                    dsdf
                   </Menu.Item>
-                  <Menu.Item command="4">项目四</Menu.Item>
-                  <Menu.Item command="5">项目五</Menu.Item>
+                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="3">dsdf</Menu.Item>
+                  <Menu.Item value="4">dsdf</Menu.Item>
+                  <Menu.Item value="5">dsdf</Menu.Item>
+                  <Menu.Item value="6">dsdf</Menu.Item>
+                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Item value="8">dsdf</Menu.Item>
+                  <Menu.Item value="9">dsdf</Menu.Item>
+                  <Menu.Item value="10">dsdf</Menu.Item>
+                  <Menu.Item value="11">dsdf</Menu.Item>
+                  <Menu.Item value="12">dsdf</Menu.Item>
+                  <Menu.Item value="13">dsdf</Menu.Item>
+                  <Menu.Item value="14">dsdf</Menu.Item>
+                  <Menu.Item value="15">dsdf</Menu.Item>
+                  <Menu.Item value="16">dsdf</Menu.Item>
+                  <Menu.Item value="17">dsdf</Menu.Item>
+                  <Menu.Item value="18">dsdf</Menu.Item>
+                  <Menu.Item value="19">dsdf</Menu.Item>
+                  <Menu.Item value="20">dsdf</Menu.Item>
+                  <Menu.Item value="21">dsdf</Menu.Item>
+                  <Menu.Item value="22">dsdf</Menu.Item>
+                  <Menu.Item value="23">dsdf</Menu.Item>
                 </Menu>
               </div>
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu selected="1" tickSelect={true}>
-                  <Menu.Item command="1" iconName="database">
-                    项目一
+                <Menu multiple={true}>
+                  <Menu.Item value="1" icon="table">
+                    dsdf
                   </Menu.Item>
-                  <Menu.Item command="2" iconName="database">
-                    项目二
-                  </Menu.Item>
-                  <Menu.Item command="3" divided={true} iconName="database">
-                    项目三
-                  </Menu.Item>
-                  <Menu.Item command="4" iconName="database">
-                    项目四
-                  </Menu.Item>
-                  <Menu.Item command="5" iconName="database">
-                    项目五
-                  </Menu.Item>
+                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="3">dsdf</Menu.Item>
+                  <Menu.Item value="4">dsdf</Menu.Item>
+                  <Menu.Item value="5">dsdf</Menu.Item>
+                  <Menu.Item value="6">dsdf</Menu.Item>
+                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Item value="8">dsdf</Menu.Item>
+                  <Menu.Item value="9">dsdf</Menu.Item>
+                  <Menu.Item value="10">dsdf</Menu.Item>
+                  <Menu.Item value="11">dsdf</Menu.Item>
+                  <Menu.Item value="12">dsdf</Menu.Item>
+                  <Menu.Item value="13">dsdf</Menu.Item>
+                  <Menu.Item value="14">dsdf</Menu.Item>
+                  <Menu.Item value="15">dsdf</Menu.Item>
+                  <Menu.Item value="16">dsdf</Menu.Item>
+                  <Menu.Item value="17">dsdf</Menu.Item>
+                  <Menu.Item value="18">dsdf</Menu.Item>
+                  <Menu.Item value="19">dsdf</Menu.Item>
+                  <Menu.Item value="20">dsdf</Menu.Item>
+                  <Menu.Item value="21">dsdf</Menu.Item>
+                  <Menu.Item value="22">dsdf</Menu.Item>
+                  <Menu.Item value="23">dsdf</Menu.Item>
                 </Menu>
               </div>
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu withCheck={true} onCheck={this.checkMenuItem}>
-                  <Checkbox.Group
-                    mode="vertical"
-                    data={[
-                      { value: '选项一', checked: false },
-                      { value: '选项二', checked: true },
-                      { value: '选项三', checked: false },
-                      { value: '选项四', checked: false },
-                      { value: '选项五', checked: false },
-                      { value: '选项六', checked: false }
-                    ]}
-                    onChange={this.checkGroupChange}
-                  />
+                <Menu multiple={true} isTick={true}>
+                  <Menu.Item value="1" icon="table">
+                    dsdf
+                  </Menu.Item>
+                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="3">dsdf</Menu.Item>
+                  <Menu.Item value="4">dsdf</Menu.Item>
+                  <Menu.Item value="5">dsdf</Menu.Item>
+                  <Menu.Item value="6">dsdf</Menu.Item>
+                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Item value="8">dsdf</Menu.Item>
+                  <Menu.Item value="9">dsdf</Menu.Item>
+                  <Menu.Item value="10">dsdf</Menu.Item>
+                  <Menu.Item value="11">dsdf</Menu.Item>
+                  <Menu.Item value="12">dsdf</Menu.Item>
+                  <Menu.Item value="13">dsdf</Menu.Item>
+                  <Menu.Item value="14">dsdf</Menu.Item>
+                  <Menu.Item value="15">dsdf</Menu.Item>
+                  <Menu.Item value="16">dsdf</Menu.Item>
+                  <Menu.Item value="17">dsdf</Menu.Item>
+                  <Menu.Item value="18">dsdf</Menu.Item>
+                  <Menu.Item value="19">dsdf</Menu.Item>
+                  <Menu.Item value="20">dsdf</Menu.Item>
+                  <Menu.Item value="21">dsdf</Menu.Item>
+                  <Menu.Item value="22">dsdf</Menu.Item>
+                  <Menu.Item value="23">dsdf</Menu.Item>
                 </Menu>
               </div>
             </Col>

@@ -8,6 +8,7 @@
     "lodash": "^4.17.4",
     "move-js": "^0.5.0",
     "promise": "8.0.1",
+    "rc-trigger": "^2.5.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-flexbox-grid": "^2.1.2"
