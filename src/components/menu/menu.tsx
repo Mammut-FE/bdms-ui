@@ -6,11 +6,17 @@ import Icon from '../icon';
 import { Provider } from './menuContext';
 import { IMenuContextType } from './menuContext';
 
+const MAX_HEIGHT = 458;
+const SCROLL_UNIT = 100;
+
 interface IMenuProps {
   mode?: 'horizontal' | 'vertical' | 'inline';
   className?: string;
+  scrollUnit?: number;
   multiple?: boolean; // 是否多选
   isTick?: boolean; // 是否是打钩选中
+  selected?: string | string[]; // 初始化选中的项目
+  onSelect?: (selected: string | string[]) => void; // 外部通过这个函数获取选中的value值
 }
 
 interface IMenuState {
@@ -19,16 +25,14 @@ interface IMenuState {
   readonly value: IMenuContextType;
 }
 
-const MAX_HEIGHT = 458;
-const SCROLL_UNIT = 100;
-
 const cx = classNames.bind(styles);
 export default class Menu extends Component<IMenuProps, IMenuState> {
   public static Item = MenuItem;
   public static defaultProps: Partial<IMenuProps> = {
     mode: 'vertical',
     multiple: false,
-    isTick: false
+    isTick: false,
+    scrollUnit: SCROLL_UNIT
   };
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
   public readonly state: Readonly<IMenuState> = {
@@ -36,8 +40,9 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     showTopOverflow: false,
     value: {
       clickItem: this.clickItem.bind(this),
-      selected: this.props.multiple ? [] : '',
-      isTick: this.props.isTick
+      selected: this.props.selected ? this.props.selected : this.props.multiple ? [] : '',
+      isTick: this.props.isTick,
+      mode: this.props.mode
     }
   };
   constructor(props: IMenuProps) {
@@ -49,7 +54,7 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     this.clickScrollBottom = this.clickScrollBottom.bind(this);
   }
   public clickItem(key) {
-    const { multiple } = this.props;
+    const { multiple, onSelect } = this.props;
     let value;
 
     if (!multiple) {
@@ -66,6 +71,9 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     this.setState({
       value
     });
+    if (onSelect) {
+      onSelect(value.selected);
+    }
   }
   public componentDidMount() {
     const contentDom = this.menuContentDom.current;
@@ -106,15 +114,17 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
   }
 
   public clickScrollUp(e) {
+    const { scrollUnit } = this.props;
     const el = this.menuContentDom.current;
     let scrollTop = el.scrollTop;
-    scrollTop -= SCROLL_UNIT;
+    scrollTop -= scrollUnit!;
     el.scrollTop = scrollTop;
   }
   public clickScrollBottom(e) {
+    const { scrollUnit } = this.props;
     const el = this.menuContentDom.current;
     let scrollTop = el.scrollTop;
-    scrollTop += SCROLL_UNIT;
+    scrollTop += scrollUnit!;
     el.scrollTop = scrollTop;
   }
 
@@ -130,14 +140,16 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     }
   }
   public render() {
-    const { className, children } = this.props;
+    const { className, children, mode } = this.props;
     const { showBottomOverflow, showTopOverflow } = this.state;
-    const menuClasses = cx('u-menu', className, {
-      'pdb-change': showBottomOverflow,
-      'pdt-change': showTopOverflow
-    });
-    return (
-      <Provider value={this.state.value}>
+    let menuClasses;
+    let menuCom;
+    if (mode === 'vertical') {
+      menuClasses = cx('u-menu', className, {
+        'pdb-change': showBottomOverflow,
+        'pdt-change': showTopOverflow
+      });
+      menuCom = (
         <div className={menuClasses}>
           {showTopOverflow && (
             <div className={cx('handle-top')} onClick={this.clickScrollUp}>
@@ -153,7 +165,18 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
             </div>
           )}
         </div>
-      </Provider>
-    );
+      );
+    } else if (mode === 'horizontal') {
+      menuClasses = cx('u-menu-horizontal', className);
+      menuCom = (
+        <div className={menuClasses}>
+          <div className={cx('content-horizontal')} ref={this.menuContentDom}>
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return <Provider value={this.state.value}>{menuCom}</Provider>;
   }
 }

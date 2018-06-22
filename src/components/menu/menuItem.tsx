@@ -23,13 +23,19 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     return (
       <Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick } = valueProp;
+          const { selected, clickItem, isTick, mode } = valueProp;
           let menuItemClasses;
           if (typeof selected === 'string') {
-            menuItemClasses = cx('u-menu-item', className, {
-              'bg-selected': (selected as string) === value && !isTick,
-              'pdl-change': isTick
-            });
+            if (mode === 'vertical') {
+              menuItemClasses = cx('u-menu-item', className, {
+                'bg-selected': (selected as string) === value && !isTick,
+                'pdl-change': isTick
+              });
+            } else if (mode === 'horizontal') {
+              menuItemClasses = cx('u-menu-item-horizontal', className, {
+                'horztl-selected': (selected as string) === value
+              });
+            }
           } else {
             menuItemClasses = cx('u-menu-item', className, {
               'bg-selected': (selected as string[]).indexOf(value!) !== -1 && !isTick,

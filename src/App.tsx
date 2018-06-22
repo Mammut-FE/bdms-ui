@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-22 15:07:15
+ * @Last Modified time: 2018-06-22 16:32:18
  */
 import React, { Component } from 'react';
 
@@ -111,6 +111,7 @@ class App extends Component<any, any> {
       checboxCheck: false
     };
     this.checkChange = this.checkChange.bind(this);
+    this.selectItem = this.selectItem.bind(this);
   }
 
   public clickButton(e) {
@@ -128,8 +129,8 @@ class App extends Component<any, any> {
     console.log(checkLists);
   }
 
-  public checkMenuItem(checkLists) {
-    console.log(checkLists);
+  public selectItem(selected) {
+    console.log(selected);
   }
 
   public render() {
@@ -276,7 +277,7 @@ class App extends Component<any, any> {
           <Row>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu isTick={true}>
+                <Menu isTick={true} onSelect={this.selectItem}>
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
@@ -307,7 +308,7 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu>
+                <Menu selected="3" onSelect={this.selectItem}>
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
@@ -338,7 +339,7 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu multiple={true}>
+                <Menu multiple={true} onSelect={this.selectItem}>
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
@@ -369,7 +370,7 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu multiple={true} isTick={true}>
+                <Menu multiple={true} isTick={true} onSelect={this.selectItem}>
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
@@ -395,6 +396,20 @@ class App extends Component<any, any> {
                   <Menu.Item value="21">dsdf</Menu.Item>
                   <Menu.Item value="22">dsdf</Menu.Item>
                   <Menu.Item value="23">dsdf</Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <div className={cx('item')}>
+                <Menu onSelect={this.selectItem} mode="horizontal">
+                  <Menu.Item value="数据开发">数据开发</Menu.Item>
+                  <Menu.Item value="任务运维">任务运维</Menu.Item>
+                  <Menu.Item value="自助分析">自助分析</Menu.Item>
+                  <Menu.Item value="数据管理">数据管理</Menu.Item>
+                  <Menu.Item value="实时流计算">实时流计算</Menu.Item>
+                  <Menu.Item value="项目中心">项目中心</Menu.Item>
                 </Menu>
               </div>
             </Col>
