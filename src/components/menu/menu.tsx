@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './menu.scss';
 import MenuItem from './menuItem';
+import Divider from './divider';
+import MenuItemGroup from './menuItemGroup';
+import SubMenu from './subMenu';
 import Icon from '../icon';
 import { Provider } from './menuContext';
 import { IMenuContextType } from './menuContext';
@@ -28,6 +31,9 @@ interface IMenuState {
 const cx = classNames.bind(styles);
 export default class Menu extends Component<IMenuProps, IMenuState> {
   public static Item = MenuItem;
+  public static Divider = Divider;
+  public static ItemGroup = MenuItemGroup;
+  public static SubMenu = SubMenu;
   public static defaultProps: Partial<IMenuProps> = {
     mode: 'vertical',
     multiple: false,

@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-22 16:32:18
+ * @Last Modified time: 2018-06-25 16:16:42
  */
 import React, { Component } from 'react';
 
@@ -284,9 +284,13 @@ class App extends Component<any, any> {
                   <Menu.Item value="2">dsdf</Menu.Item>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
-                  <Menu.Item value="5">dsdf</Menu.Item>
-                  <Menu.Item value="6">dsdf</Menu.Item>
-                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Divider />
+                  <Menu.ItemGroup title="组一">
+                    <Menu.Item value="5">dsdf</Menu.Item>
+                    <Menu.Item value="6">dsdf</Menu.Item>
+                    <Menu.Item value="7">dsdf</Menu.Item>
+                  </Menu.ItemGroup>
+                  <Menu.Divider />
                   <Menu.Item value="8">dsdf</Menu.Item>
                   <Menu.Item value="9">dsdf</Menu.Item>
                   <Menu.Item value="10">dsdf</Menu.Item>
@@ -313,11 +317,19 @@ class App extends Component<any, any> {
                     dsdf
                   </Menu.Item>
                   <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.SubMenu title="sub">
+                    <Menu.Item value="sub-2-1">子目录一</Menu.Item>
+                    <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                  </Menu.SubMenu>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
-                  <Menu.Item value="5">dsdf</Menu.Item>
-                  <Menu.Item value="6">dsdf</Menu.Item>
-                  <Menu.Item value="7">dsdf</Menu.Item>
+                  <Menu.Divider />
+                  <Menu.ItemGroup title="组一">
+                    <Menu.Item value="5">dsdf</Menu.Item>
+                    <Menu.Item value="6">dsdf</Menu.Item>
+                    <Menu.Item value="7">dsdf</Menu.Item>
+                  </Menu.ItemGroup>
+                  <Menu.Divider />
                   <Menu.Item value="8">dsdf</Menu.Item>
                   <Menu.Item value="9">dsdf</Menu.Item>
                   <Menu.Item value="10">dsdf</Menu.Item>

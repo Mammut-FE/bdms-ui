@@ -9,6 +9,7 @@ interface IMenuItemProps {
   style?: React.CSSProperties;
   value?: string;
   icon?: string;
+  title?: string; // 在group中有用，标记属于哪个group,在group中设置，其本身从group组建中获取，不需要额外写
 }
 
 const cx = classNames.bind(styles);
@@ -19,7 +20,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     super(props);
   }
   public render() {
-    const { className, style, children, value, icon } = this.props;
+    const { className, style, children, value, icon, ...otherProps } = this.props;
     return (
       <Consumer>
         {valueProp => {
@@ -49,6 +50,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
               onClick={() => {
                 clickItem(value);
               }}
+              {...otherProps}
             >
               {isTick &&
                 typeof selected === 'string' &&
