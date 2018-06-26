@@ -34,7 +34,7 @@ interface ICheckData {
 | 属性          | 说明                                                                          | 类型     | 默认值     |
 | ------------- | ----------------------------------------------------------------------------- | -------- | ---------- |
 | data          | checkbox 属性值，结构类似 ICheckData                                          | string   | -          |
-| indeterminate | 设置 indeterminate 状态，只负责样式控制                                       | boolean  | true       |
+| indeterminate | 是否显示 indeterminate 控制                                                   | boolean  | true       |
 | className     | 样式名                                                                        | string   | -          |
 | mode          | 设置 checkbox 呈内联水平放置还是垂直竖直放置，可选值为 horizontal 和 vertical | string   | horizontal |
 | onChange      | 变化时回调函数                                                                | function | -          |
