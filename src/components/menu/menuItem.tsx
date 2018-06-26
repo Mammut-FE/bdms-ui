@@ -10,6 +10,7 @@ interface IMenuItemProps {
   value?: string;
   icon?: string;
   title?: string; // 在group中有用，标记属于哪个group,在group中设置，其本身从group组建中获取，不需要额外写
+  disabled?: boolean;
 }
 
 const cx = classNames.bind(styles);
@@ -20,7 +21,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     super(props);
   }
   public render() {
-    const { className, style, children, value, icon, ...otherProps } = this.props;
+    const { className, style, children, value, icon, disabled, ...otherProps } = this.props;
     return (
       <Consumer>
         {valueProp => {
@@ -30,17 +31,20 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
             if (mode === 'vertical') {
               menuItemClasses = cx('u-menu-item', className, {
                 'bg-selected': (selected as string) === value && !isTick,
-                'pdl-change': isTick
+                'pdl-change': isTick,
+                disabled
               });
             } else if (mode === 'horizontal') {
               menuItemClasses = cx('u-menu-item-horizontal', className, {
-                'horztl-selected': (selected as string) === value
+                'horztl-selected': (selected as string) === value,
+                disabled
               });
             }
           } else {
             menuItemClasses = cx('u-menu-item', className, {
               'bg-selected': (selected as string[]).indexOf(value!) !== -1 && !isTick,
-              'pdl-change': isTick
+              'pdl-change': isTick,
+              disabled
             });
           }
           return (
@@ -48,7 +52,9 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
               className={menuItemClasses}
               style={style}
               onClick={() => {
-                clickItem(value);
+                if (!disabled) {
+                  clickItem(value);
+                }
               }}
               {...otherProps}
             >

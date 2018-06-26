@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import styles from './menu.scss';
 import MenuItem from './menuItem';
@@ -20,6 +20,7 @@ interface IMenuProps {
   isTick?: boolean; // 是否是打钩选中
   selected?: string | string[]; // 初始化选中的项目
   onSelect?: (selected: string | string[]) => void; // 外部通过这个函数获取选中的value值
+  getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
 
 interface IMenuState {
@@ -41,6 +42,7 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     scrollUnit: SCROLL_UNIT
   };
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
+  public isRootMenu = true;
   public readonly state: Readonly<IMenuState> = {
     showBottomOverflow: false,
     showTopOverflow: false,
@@ -151,10 +153,7 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     let menuClasses;
     let menuCom;
     if (mode === 'vertical') {
-      menuClasses = cx('u-menu', className, {
-        'pdb-change': showBottomOverflow,
-        'pdt-change': showTopOverflow
-      });
+      menuClasses = cx('u-menu', className);
       menuCom = (
         <div className={menuClasses}>
           {showTopOverflow && (
@@ -163,7 +162,9 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
             </div>
           )}
           <div className={cx('content')} ref={this.menuContentDom} onScroll={this.scroll} onWheel={this.wheel}>
-            {children}
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
           </div>
           {showBottomOverflow && (
             <div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
@@ -177,7 +178,9 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
       menuCom = (
         <div className={menuClasses}>
           <div className={cx('content-horizontal')} ref={this.menuContentDom}>
-            {children}
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
           </div>
         </div>
       );

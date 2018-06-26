@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-25 16:16:42
+ * @Last Modified time: 2018-06-26 10:17:35
  */
 import React, { Component } from 'react';
 
@@ -313,13 +313,17 @@ class App extends Component<any, any> {
             <Col xs={3}>
               <div className={cx('item')}>
                 <Menu selected="3" onSelect={this.selectItem}>
-                  <Menu.Item value="1" icon="table">
+                  <Menu.Item value="1" icon="table" disabled={true}>
                     dsdf
                   </Menu.Item>
                   <Menu.Item value="2">dsdf</Menu.Item>
                   <Menu.SubMenu title="sub">
                     <Menu.Item value="sub-2-1">子目录一</Menu.Item>
                     <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                    <Menu.SubMenu title="sub2">
+                      <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
+                      <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
+                    </Menu.SubMenu>
                   </Menu.SubMenu>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
@@ -332,20 +336,6 @@ class App extends Component<any, any> {
                   <Menu.Divider />
                   <Menu.Item value="8">dsdf</Menu.Item>
                   <Menu.Item value="9">dsdf</Menu.Item>
-                  <Menu.Item value="10">dsdf</Menu.Item>
-                  <Menu.Item value="11">dsdf</Menu.Item>
-                  <Menu.Item value="12">dsdf</Menu.Item>
-                  <Menu.Item value="13">dsdf</Menu.Item>
-                  <Menu.Item value="14">dsdf</Menu.Item>
-                  <Menu.Item value="15">dsdf</Menu.Item>
-                  <Menu.Item value="16">dsdf</Menu.Item>
-                  <Menu.Item value="17">dsdf</Menu.Item>
-                  <Menu.Item value="18">dsdf</Menu.Item>
-                  <Menu.Item value="19">dsdf</Menu.Item>
-                  <Menu.Item value="20">dsdf</Menu.Item>
-                  <Menu.Item value="21">dsdf</Menu.Item>
-                  <Menu.Item value="22">dsdf</Menu.Item>
-                  <Menu.Item value="23">dsdf</Menu.Item>
                 </Menu>
               </div>
             </Col>
