@@ -2,7 +2,7 @@
 
 ##  用法示例
 
-```javascript
+```typescript jsx
 <Layout>
   <Header style={{ backgroundColor: '#09f', color: '#fff', height: '80px' }}>头部</Header>
   <Content>
@@ -16,15 +16,16 @@
 ```
 
 ## API
-
+```typescript
 interface ISiderProps {
-className?: string;
-style?: React.CSSProperties;
-width?: number; // 组件宽度
-maxWidth?: number; // 可拖拽的最大宽度，仅当 draggable 为 true 有效，若不存在则为 560（窗口大于 1280）或窗口宽-680（窗口小于 1280）
-minWidth?: number; // 可拖拽的最小宽度
-draggable?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  width?: number; // 组件宽度
+  maxWidth?: number; // 可拖拽的最大宽度，仅当 draggable 为 true 有效，若不存在则为 560（窗口大于 1280）或窗口宽-680（窗口小于 1280）
+  minWidth?: number; // 可拖拽的最小宽度
+  draggable?: boolean;
 }
+```
 
 ### Layout
 
