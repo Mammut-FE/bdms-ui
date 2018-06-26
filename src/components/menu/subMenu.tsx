@@ -24,6 +24,7 @@ interface ISubMenuProps {
   builtinPlacements?: object;
   popupOffset?: any[]; // trigger组件的配置，详见https://github.com/react-component/trigger
   disabled?: boolean;
+  subtitle?: string;
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
 
@@ -36,7 +37,7 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
     super(props);
   }
   public render() {
-    const { children, className, title, builtinPlacements, popupOffset, disabled } = this.props;
+    const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle } = this.props;
     const subMenuClasses = cx('u-menu-item', className);
     const popupClassName = cx('u-submenu-pop');
     const getPopupContainer = triggerNode => triggerNode.parentNode;
@@ -61,10 +62,12 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
                   popupAlign={popupAlign}
                   builtinPlacements={Object.assign({}, placements, builtinPlacements)}
                   destroyPopupOnHide={true}
+                  stretch="height"
                 >
                   <div className={subMenuClasses}>
                     {title}
-                    <Icon name="right" style={{ position: 'absolute', right: 10, top: 10 }} />
+                    <Icon name="right" style={{ position: 'absolute', right: 10, top: 9 }} />
+                    {subtitle && <div className={cx("subtitle","subtitle-witah-arrow")}>{subtitle}</div>}
                   </div>
                 </Trigger>
               );

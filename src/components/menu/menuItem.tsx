@@ -11,6 +11,7 @@ interface IMenuItemProps {
   icon?: string;
   title?: string; // 在group中有用，标记属于哪个group,在group中设置，其本身从group组建中获取，不需要额外写
   disabled?: boolean;
+  subtitle?: string;
 }
 
 const cx = classNames.bind(styles);
@@ -21,7 +22,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     super(props);
   }
   public render() {
-    const { className, style, children, value, icon, disabled, ...otherProps } = this.props;
+    const { className, style, children, value, icon, disabled, subtitle, ...otherProps } = this.props;
     return (
       <Consumer>
         {valueProp => {
@@ -66,6 +67,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 (selected as string[]).indexOf(value!) !== -1 && <Icon className={cx('tick-icon')} name="ture" />}
               {icon && <Icon name={icon} />}
               {children}
+              {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
             </div>
           );
         }}

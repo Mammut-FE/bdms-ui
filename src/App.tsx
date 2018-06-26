@@ -281,7 +281,7 @@ class App extends Component<any, any> {
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
-                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="2" subtitle="复制">dsdf</Menu.Item>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
                   <Menu.Divider />
@@ -317,12 +317,13 @@ class App extends Component<any, any> {
                     dsdf
                   </Menu.Item>
                   <Menu.Item value="2">dsdf</Menu.Item>
-                  <Menu.SubMenu title="sub">
+                  <Menu.SubMenu title="sub" subtitle="test">
                     <Menu.Item value="sub-2-1">子目录一</Menu.Item>
                     <Menu.Item value="sub-2-2">子目录二</Menu.Item>
                     <Menu.SubMenu title="sub2">
                       <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
                       <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
+                      <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
                     </Menu.SubMenu>
                   </Menu.SubMenu>
                   <Menu.Item value="3">dsdf</Menu.Item>
