@@ -26,7 +26,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     return (
       <Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick, mode } = valueProp;
+          const { selected, clickItem, isTick, mode } = Object.assign({}, valueProp, otherProps);
           let menuItemClasses;
           if (typeof selected === 'string') {
             if (mode === 'vertical') {

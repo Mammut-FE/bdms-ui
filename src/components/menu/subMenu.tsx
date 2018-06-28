@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import Trigger from 'rc-trigger';
 
@@ -26,6 +26,7 @@ interface ISubMenuProps {
   disabled?: boolean;
   subtitle?: string;
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
+  isRoot?: boolean;  // 是否是第一级submenu，对于mode是horizontal的类型需要进行传递该prop，否则样式会不对
 }
 
 export default class SubMenu extends Component<ISubMenuProps, any> {
@@ -37,8 +38,8 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
     super(props);
   }
   public render() {
-    const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle } = this.props;
-    const subMenuClasses = cx('u-menu-item', className);
+    const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle, isRoot } = this.props;
+    let subMenuClasses ;
     const popupClassName = cx('u-submenu-pop');
     const getPopupContainer = triggerNode => triggerNode.parentNode;
     const popupAlign = popupOffset ? { offset: popupOffset } : {};
@@ -49,9 +50,13 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
           const { mode } = valueProp;
           const popupPlacement = popupPlacementMap[mode!];
           let subMenuCpt;
-          const subChildren = <MenuWrap>{children}</MenuWrap>;
+          const subChildren = <MenuWrap>{React.Children.map(children, (child: ReactElement<any>) => {
+            return React.cloneElement(child, {mode: 'vertical'});
+          })}
+           </MenuWrap>;
           switch (mode) {
             case 'vertical':
+              subMenuClasses = cx('u-menu-item', className)
               subMenuCpt = (
                 <Trigger
                   popupClassName={popupClassName}
@@ -71,6 +76,47 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
                   </div>
                 </Trigger>
               );
+              break;
+            case 'horizontal':  
+              if (isRoot) {
+                subMenuClasses = cx('u-menu-item-horizontal', className)
+              } else {
+                subMenuClasses = cx('u-menu-item', className)
+              }
+              
+              subMenuCpt = (
+                <Trigger
+                  popupClassName={popupClassName}
+                  action={disabled ? [] : ['hover']}
+                  popup={subChildren}
+                  getPopupContainer={getPopupContainer}
+                  popupPlacement={isRoot ? popupPlacement: popupPlacementMap.vertical}
+                  popupAlign={popupAlign}
+                  builtinPlacements={Object.assign({}, placements, builtinPlacements)}
+                  destroyPopupOnHide={true}
+                  stretch={isRoot ? "width" : "height"}
+                  zIndex={10}
+                >
+                  <div className={subMenuClasses}>
+                    {title}
+                    <Icon name="right" style={{ position: 'absolute', right: isRoot ? 2 : 10, top: isRoot ? 20 : 9 }} />
+                  </div>
+                </Trigger>
+              );
+              break;
+            case 'inline': 
+              const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
+                React.cloneElement(child, {visibility: false})
+              })
+              subMenuCpt = (
+                <div>
+                  <div className={subMenuClasses}>
+                    {title}
+                    <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />
+                  </div>
+                  {inlineChildren}
+                </div>
+              )
           }
           return subMenuCpt;
         }}

@@ -275,12 +275,41 @@ class App extends Component<any, any> {
             </Col>
           </Row>
           <Row>
+            <Col xs={12}>
+              <div className={cx('item')}>
+                <Menu onSelect={this.selectItem} mode="horizontal">
+                  <Menu.Item value="数据开发">数据开发</Menu.Item>
+                  <Menu.Item value="任务运维">任务运维</Menu.Item>
+                  <Menu.Item value="自助分析">自助分析</Menu.Item>
+                  <Menu.Item value="数据管理">数据管理</Menu.Item>
+                  <Menu.Item value="实时流计算">实时流计算</Menu.Item>
+                  <Menu.SubMenu title="sub" isRoot={true}>
+                    <Menu.Item value="sub-2-1">子目录一</Menu.Item>
+                    <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                    <Menu.SubMenu title="sub2">
+                      <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
+                      <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
+                      <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
+                    </Menu.SubMenu>
+                  </Menu.SubMenu>
+                  <Menu.Item value="项目中心">项目中心</Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+          </Row>
+          <Row>
             <Col xs={3}>
               <div className={cx('item')}>
                 <Menu isTick={true} onSelect={this.selectItem}>
-                  <Menu.Item value="1" icon="table">
-                    dsdf
-                  </Menu.Item>
+                  <Menu.SubMenu title="sub" subtitle="test">
+                    <Menu.Item value="sub-2-1">子目录一</Menu.Item>
+                    <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                    <Menu.SubMenu title="sub2">
+                      <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
+                      <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
+                      <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
+                    </Menu.SubMenu>
+                  </Menu.SubMenu>
                   <Menu.Item value="2" subtitle="复制">dsdf</Menu.Item>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
@@ -403,20 +432,7 @@ class App extends Component<any, any> {
               </div>
             </Col>
           </Row>
-          <Row>
-            <Col xs={12}>
-              <div className={cx('item')}>
-                <Menu onSelect={this.selectItem} mode="horizontal">
-                  <Menu.Item value="数据开发">数据开发</Menu.Item>
-                  <Menu.Item value="任务运维">任务运维</Menu.Item>
-                  <Menu.Item value="自助分析">自助分析</Menu.Item>
-                  <Menu.Item value="数据管理">数据管理</Menu.Item>
-                  <Menu.Item value="实时流计算">实时流计算</Menu.Item>
-                  <Menu.Item value="项目中心">项目中心</Menu.Item>
-                </Menu>
-              </div>
-            </Col>
-          </Row>
+          
         </Grid>
       </Layout>
     );

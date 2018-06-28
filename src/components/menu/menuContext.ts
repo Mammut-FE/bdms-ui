@@ -9,7 +9,7 @@ const menuContext = React.createContext<IMenuContextType>({
   clickItem: (key: string) => {},
   selected: '' || [],
   isTick: false,
-  mode: 'vertical'
+  mode: 'vertical',
 });
 
 export const Provider = menuContext.Provider;
