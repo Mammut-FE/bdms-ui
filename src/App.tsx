@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-26 10:17:35
+ * @Last Modified time: 2018-06-29 15:43:58
  */
 import React, { Component } from 'react';
 
@@ -369,13 +369,22 @@ class App extends Component<any, any> {
                 </Menu>
               </div>
             </Col>
-            <Col xs={3}>
+            <Col xs={3} style={{height: '500px'}}>
               <div className={cx('item')}>
-                <Menu multiple={true} onSelect={this.selectItem}>
+                <Menu onSelect={this.selectItem} mode='inline'>
                   <Menu.Item value="1" icon="table">
                     dsdf
                   </Menu.Item>
                   <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.SubMenu title="sub" subtitle="test">
+                    <Menu.Item value="sub-2-1">子目录一</Menu.Item>
+                    <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                    <Menu.SubMenu title="sub2">
+                      <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
+                      <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
+                      <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
+                    </Menu.SubMenu>
+                  </Menu.SubMenu>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
                   <Menu.Item value="5">dsdf</Menu.Item>

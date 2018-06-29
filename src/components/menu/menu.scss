@@ -130,6 +130,41 @@
     }
   }
 }
+.u-menu-inline {
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  overflow-y: auto;
+  max-height: 100%;
+}
+.u-menu-item-inline {
+  padding: 8px 0;
+  position: relative;
+  cursor: pointer;
+  a {
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    color: #666;
+    border-left: 4px solid transparent;
+    padding-left: 24px;
+  }
+  &:hover {
+    background: rgba(0,115,251,0.04);
+    color: $menu-active-color;
+    a {
+      color: $menu-active-color;
+      border-left-color: $menu-active-color;
+    }
+  }
+  &.selected {
+    background: rgba(0,115,251,0.04);
+    color: $menu-active-color;
+    a {
+      color: $menu-active-color;
+      border-left-color: $menu-active-color;
+    }
+  }
+}
 .content {
   max-height: 450px;
   padding: 4px 0;

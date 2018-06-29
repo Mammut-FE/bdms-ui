@@ -184,6 +184,17 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
           </div>
         </div>
       );
+    } else if (mode === 'inline') {
+      menuClasses = cx('u-menu-inline', className);
+      menuCom = (
+        <div className={menuClasses}>
+          <div className={cx('content-inline')} ref={this.menuContentDom}>
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
+          </div>
+        </div>
+      );
     }
 
     return <Provider value={this.state.value}>{menuCom}</Provider>;

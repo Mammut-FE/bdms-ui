@@ -40,6 +40,10 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 'horztl-selected': (selected as string) === value,
                 disabled
               });
+            } else if (mode === 'inline') {
+              menuItemClasses = cx('u-menu-item-inline', className, {
+                'selected': (selected as string) === value && !isTick,
+              })
             }
           } else {
             menuItemClasses = cx('u-menu-item', className, {

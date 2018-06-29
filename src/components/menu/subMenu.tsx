@@ -27,47 +27,81 @@ interface ISubMenuProps {
   subtitle?: string;
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
   isRoot?: boolean;  // 是否是第一级submenu，对于mode是horizontal的类型需要进行传递该prop，否则样式会不对
+  inlineVisible?: boolean; // 当mode是inline时，是否默认展开子目录
 }
 
-export default class SubMenu extends Component<ISubMenuProps, any> {
-  //   public static defaultProps: Partial<ISubMenuProps> = {
+interface ISubMenuState {
+  readonly popupVisible: boolean;
+  readonly inlineVisible: boolean;
+}
 
-  //   }
+export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
+  public static defaultProps: Partial<ISubMenuProps> = {
+    inlineVisible: false
+    }
+  public readonly state: Readonly<ISubMenuState> = {
+    popupVisible: false,
+    inlineVisible: this.props.inlineVisible!
+  }
+
   public isRootMenu = false;
   constructor(props: ISubMenuProps) {
     super(props);
+    this.popupVisibleChange = this.popupVisibleChange.bind(this);
+    this.inlVisiChange = this.inlVisiChange.bind(this);
+  }
+  public popupVisibleChange(visible) {
+    this.setState({
+      popupVisible: visible
+    })
+  }
+  public inlVisiChange() {
+    const {inlineVisible} = this.state;
+    console.log(inlineVisible)
+    this.setState({
+      inlineVisible: !inlineVisible
+    })
   }
   public render() {
     const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle, isRoot } = this.props;
+    const { popupVisible, inlineVisible } = this.state;
     let subMenuClasses ;
     const popupClassName = cx('u-submenu-pop');
-    const getPopupContainer = triggerNode => triggerNode.parentNode;
+    // const getPopupContainer = triggerNode => triggerNode.parentNode;
     const popupAlign = popupOffset ? { offset: popupOffset } : {};
 
     return (
       <Consumer>
         {valueProp => {
-          const { mode } = valueProp;
+          const { mode, isTick, selected } = valueProp;
           const popupPlacement = popupPlacementMap[mode!];
           let subMenuCpt;
           const subChildren = <MenuWrap>{React.Children.map(children, (child: ReactElement<any>) => {
-            return React.cloneElement(child, {mode: 'vertical'});
+            if (mode !== 'inline') {
+              return React.cloneElement(child, {mode: 'vertical'});
+            } else {
+              return React.cloneElement(child, {mode});
+            }
+              
           })}
            </MenuWrap>;
           switch (mode) {
             case 'vertical':
-              subMenuClasses = cx('u-menu-item', className)
+              subMenuClasses = cx('u-menu-item', className, {
+                'pdl-change': isTick
+              })
               subMenuCpt = (
                 <Trigger
                   popupClassName={popupClassName}
                   action={disabled ? [] : ['hover']}
                   popup={subChildren}
-                  getPopupContainer={getPopupContainer}
+                  // getPopupContainer={getPopupContainer}
                   popupPlacement={popupPlacement}
                   popupAlign={popupAlign}
                   builtinPlacements={Object.assign({}, placements, builtinPlacements)}
                   destroyPopupOnHide={true}
-                  stretch="height"
+                  stretch="width"
+                  onPopupVisibleChange={this.popupVisibleChange}
                 >
                   <div className={subMenuClasses}>
                     {title}
@@ -79,7 +113,9 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
               break;
             case 'horizontal':  
               if (isRoot) {
-                subMenuClasses = cx('u-menu-item-horizontal', className)
+                subMenuClasses = cx('u-menu-item-horizontal', className, {
+                  'horztl-selected': popupVisible
+                })
               } else {
                 subMenuClasses = cx('u-menu-item', className)
               }
@@ -89,13 +125,14 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
                   popupClassName={popupClassName}
                   action={disabled ? [] : ['hover']}
                   popup={subChildren}
-                  getPopupContainer={getPopupContainer}
-                  popupPlacement={isRoot ? popupPlacement: popupPlacementMap.vertical}
+                  // getPopupContainer={getPopupContainer}
+                  popupPlacement={isRoot ? popupPlacement : popupPlacementMap.vertical}
                   popupAlign={popupAlign}
                   builtinPlacements={Object.assign({}, placements, builtinPlacements)}
                   destroyPopupOnHide={true}
-                  stretch={isRoot ? "width" : "height"}
+                  stretch={"width"}
                   zIndex={10}
+                  onPopupVisibleChange={this.popupVisibleChange}
                 >
                   <div className={subMenuClasses}>
                     {title}
@@ -105,16 +142,17 @@ export default class SubMenu extends Component<ISubMenuProps, any> {
               );
               break;
             case 'inline': 
-              const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
-                React.cloneElement(child, {visibility: false})
+              subMenuClasses = cx('u-menu-item-inline', className, {
+                'selected': (selected as string) === title && !isTick,
               })
               subMenuCpt = (
                 <div>
-                  <div className={subMenuClasses}>
+                  <div className={subMenuClasses} onClick={this.inlVisiChange}>
                     {title}
-                    <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />
+                    {inlineVisible && <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />}
+                    {!inlineVisible && <Icon name="right" style={{ position: 'absolute', right: 10, top:  9 }} />}
                   </div>
-                  {inlineChildren}
+                  {inlineVisible && children}
                 </div>
               )
           }
