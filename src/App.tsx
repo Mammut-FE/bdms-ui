@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-29 15:43:58
+ * @Last Modified time: 2018-06-29 16:13:16
  */
 import React, { Component } from 'react';
 
@@ -372,40 +372,28 @@ class App extends Component<any, any> {
             <Col xs={3} style={{height: '500px'}}>
               <div className={cx('item')}>
                 <Menu onSelect={this.selectItem} mode='inline'>
-                  <Menu.Item value="1" icon="table">
-                    dsdf
+                  <Menu.Item value="1">
+                  <a href="javascript: void(0);">测试连接</a>
                   </Menu.Item>
-                  <Menu.Item value="2">dsdf</Menu.Item>
+                  <Menu.Item value="2"><a href="javascript: void(0);">测试连接</a></Menu.Item>
                   <Menu.SubMenu title="sub" subtitle="test">
-                    <Menu.Item value="sub-2-1">子目录一</Menu.Item>
-                    <Menu.Item value="sub-2-2">子目录二</Menu.Item>
+                    <Menu.Item value="sub-2-1"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                    <Menu.Item value="sub-2-2"><a href="javascript: void(0);">子目录一</a></Menu.Item>
                     <Menu.SubMenu title="sub2">
-                      <Menu.Item value="sub2-2-1">子目录一</Menu.Item>
-                      <Menu.Item value="sub2-2-2">子目录二</Menu.Item>
-                      <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
+                      <Menu.Item value="sub2-2-1"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                      <Menu.Item value="sub2-2-2"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                      <Menu.Item value="sub2-2-3"><a href="javascript: void(0);">子目录一</a></Menu.Item>
                     </Menu.SubMenu>
                   </Menu.SubMenu>
-                  <Menu.Item value="3">dsdf</Menu.Item>
-                  <Menu.Item value="4">dsdf</Menu.Item>
-                  <Menu.Item value="5">dsdf</Menu.Item>
-                  <Menu.Item value="6">dsdf</Menu.Item>
-                  <Menu.Item value="7">dsdf</Menu.Item>
-                  <Menu.Item value="8">dsdf</Menu.Item>
-                  <Menu.Item value="9">dsdf</Menu.Item>
-                  <Menu.Item value="10">dsdf</Menu.Item>
-                  <Menu.Item value="11">dsdf</Menu.Item>
-                  <Menu.Item value="12">dsdf</Menu.Item>
-                  <Menu.Item value="13">dsdf</Menu.Item>
-                  <Menu.Item value="14">dsdf</Menu.Item>
-                  <Menu.Item value="15">dsdf</Menu.Item>
-                  <Menu.Item value="16">dsdf</Menu.Item>
-                  <Menu.Item value="17">dsdf</Menu.Item>
-                  <Menu.Item value="18">dsdf</Menu.Item>
-                  <Menu.Item value="19">dsdf</Menu.Item>
-                  <Menu.Item value="20">dsdf</Menu.Item>
-                  <Menu.Item value="21">dsdf</Menu.Item>
-                  <Menu.Item value="22">dsdf</Menu.Item>
-                  <Menu.Item value="23">dsdf</Menu.Item>
+                  <Menu.Item value="3">
+                    <a href="javascript: void(0);">测试连接</a>
+                  </Menu.Item>
+                  <Menu.Item value="4"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="5"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="6"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="7"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="8"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="9"><a href="javascript: void(0);">子目录一</a></Menu.Item>
                 </Menu>
               </div>
             </Col>

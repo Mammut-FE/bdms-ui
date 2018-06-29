@@ -57,7 +57,6 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
   }
   public inlVisiChange() {
     const {inlineVisible} = this.state;
-    console.log(inlineVisible)
     this.setState({
       inlineVisible: !inlineVisible
     })
