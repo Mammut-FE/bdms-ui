@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-07-02 11:04:20
+ * @Last Modified time: 2018-07-02 15:30:18
  */
 import React, { Component } from 'react';
 
@@ -384,11 +384,6 @@ class App extends Component<any, any> {
                   <Menu.SubMenu title="sub" subtitle="test">
                     <Menu.Item value="sub-2-1"><a href="javascript: void(0);">子目录一</a></Menu.Item>
                     <Menu.Item value="sub-2-2"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                    <Menu.SubMenu title="sub2">
-                      <Menu.Item value="sub2-2-1"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                      <Menu.Item value="sub2-2-2"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                      <Menu.Item value="sub2-2-3"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                    </Menu.SubMenu>
                   </Menu.SubMenu>
                   <Menu.Item value="3">
                     <a href="javascript: void(0);">测试连接</a>

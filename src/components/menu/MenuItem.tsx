@@ -13,12 +13,15 @@ interface IMenuItemProps {
   title?: string; // 在group中有用，标记属于哪个group,在group中设置，其本身从group组建中获取，不需要额外写
   disabled?: boolean;
   subtitle?: string;
+  visible?: boolean;
 }
 
 const cx = classNames.bind(styles);
 
 export default class MenuItem extends Component<IMenuItemProps, any> {
-  public static key;
+  public static defaultProps: Partial<IMenuItemProps> = {
+    visible: true
+  };
   constructor(props: IMenuItemProps) {
     super(props);
   }

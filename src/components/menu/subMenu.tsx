@@ -1,6 +1,8 @@
 import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import Trigger from 'rc-trigger';
+import Animate from 'rc-animate';
+
 
 import styles from './menu.scss';
 import { Consumer } from './menuContext';
@@ -76,12 +78,7 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
           const popupPlacement = popupPlacementMap[mode!];
           let subMenuCpt;
           const subChildren = <MenuWrap>{React.Children.map(children, (child: ReactElement<any>) => {
-            if (mode !== 'inline') {
-              return React.cloneElement(child, {mode: 'vertical'});
-            } else {
-              return React.cloneElement(child, {mode});
-            }
-              
+            return React.cloneElement(child, {mode: 'vertical'});
           })}
            </MenuWrap>;
           switch (mode) {
@@ -142,17 +139,26 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
               break;
             case 'inline': 
               subMenuClasses = cx('u-menu-item-inline', className, {
-                'selected': (selected as string) === title && !isTick,
+                'selected': (selected as string) === title && !isTick
               })
+              const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
+                const childStyle = {
+                  display: inlineVisible ? 'block' : 'none'
+                }
+                return React.cloneElement(child, {visible: inlineVisible, style: childStyle});
+              })
+              
               subMenuCpt = (
-                <div>
-                  <div className={subMenuClasses} onClick={this.inlVisiChange}>
-                    {title}
-                    {inlineVisible && <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />}
-                    {!inlineVisible && <Icon name="right" style={{ position: 'absolute', right: 10, top:  9 }} />}
-                  </div>
-                  {inlineVisible && children}
-                </div>
+                <React.Fragment>
+                  <div className={subMenuClasses} style={{paddingLeft: 28}} onClick={this.inlVisiChange}>
+                   {title}
+                   {inlineVisible && <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />}
+                   {!inlineVisible && <Icon name="right" style={{ position: 'absolute', right: 10, top:  9 }} />}
+                 </div>
+                 <Animate showProp='visible' transitionName='fade'>
+                   {inlineChildren}
+                 </Animate>
+                </React.Fragment>
               )
           }
           return subMenuCpt;

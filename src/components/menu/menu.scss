@@ -139,6 +139,7 @@
 .u-menu-item-inline {
   padding: 8px 0;
   position: relative;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
   a {
     display: block;
@@ -209,22 +210,6 @@
   }
 }
 
-@-moz-keyframes topMove {
-  from {
-    top: -25px;
-  }
-  to {
-    top: 0;
-  }
-}
-@-webkit-keyframes topMove {
-  from {
-    top: -25px;
-  }
-  to {
-    top: 0;
-  }
-}
 
 @keyframes bottomMove {
   from {
@@ -235,19 +220,51 @@
   }
 }
 
-@-moz-keyframes bottomMove {
-  from {
-    bottom: -25px;
+.fade-enter {
+  opacity: 0;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-play-state: paused;
+}
+.fade-appear {
+  opacity: 0;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-play-state: paused;
+}
+.fade-leave {
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-play-state: paused;
+}
+.fade-enter.fade-enter-active {
+  animation-name: fadeIn;
+  animation-play-state: running;
+}
+.fade-appear.fade-appear-active {
+  animation-name: fadeIn;
+  animation-play-state: running;
+}
+.fade-leave.fade-leave-active {
+  animation-name: fadeOut;
+  animation-play-state: running;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  to {
-    top: 0;
+  100% {
+    opacity: 1;
   }
 }
-@-webkit-keyframes bottomMove {
-  from {
-    bottom: -25px;
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
   }
-  to {
-    top: 0;
+  100% {
+    opacity: 0;
   }
 }
