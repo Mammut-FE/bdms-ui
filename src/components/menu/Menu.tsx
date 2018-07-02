@@ -19,6 +19,7 @@ interface IMenuProps {
   multiple?: boolean; // 是否多选
   isTick?: boolean; // 是否是打钩选中
   selected?: string | string[]; // 初始化选中的项目
+  hasCheckBox?: boolean;  // 项目是否含有checkbox选项
   onSelect?: (selected: string | string[]) => void; // 外部通过这个函数获取选中的value值
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
@@ -39,7 +40,8 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     mode: 'vertical',
     multiple: false,
     isTick: false,
-    scrollUnit: SCROLL_UNIT
+    scrollUnit: SCROLL_UNIT,
+    hasCheckBox: false
   };
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
   public isRootMenu = true;
@@ -50,7 +52,8 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
       clickItem: this.clickItem.bind(this),
       selected: this.props.selected ? this.props.selected : this.props.multiple ? [] : '',
       isTick: this.props.isTick,
-      mode: this.props.mode
+      mode: this.props.mode,
+      hasCheckBox: this.props.hasCheckBox
     }
   };
   constructor(props: IMenuProps) {

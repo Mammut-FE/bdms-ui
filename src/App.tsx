@@ -2,7 +2,7 @@
  * @Author: jessica(gujing_hy@163.com) 
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
- * @Last Modified time: 2018-06-29 16:13:16
+ * @Last Modified time: 2018-07-02 11:04:20
  */
 import React, { Component } from 'react';
 
@@ -112,6 +112,7 @@ class App extends Component<any, any> {
     };
     this.checkChange = this.checkChange.bind(this);
     this.selectItem = this.selectItem.bind(this);
+    this.selectItemWithCheck = this.selectItemWithCheck.bind(this);
   }
 
   public clickButton(e) {
@@ -133,6 +134,10 @@ class App extends Component<any, any> {
     console.log(selected);
   }
 
+  public selectItemWithCheck(selected) {
+    console.log(selected)
+  }
+ 
   public render() {
     const { checboxCheck } = this.state;
     return (
@@ -399,32 +404,13 @@ class App extends Component<any, any> {
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
-                <Menu multiple={true} isTick={true} onSelect={this.selectItem}>
-                  <Menu.Item value="1" icon="table">
-                    dsdf
+                <Menu onSelect={this.selectItemWithCheck} multiple={true} hasCheckBox={true}>
+                  <Menu.Item value="haha">
+                   哈哈
                   </Menu.Item>
-                  <Menu.Item value="2">dsdf</Menu.Item>
-                  <Menu.Item value="3">dsdf</Menu.Item>
-                  <Menu.Item value="4">dsdf</Menu.Item>
-                  <Menu.Item value="5">dsdf</Menu.Item>
-                  <Menu.Item value="6">dsdf</Menu.Item>
-                  <Menu.Item value="7">dsdf</Menu.Item>
-                  <Menu.Item value="8">dsdf</Menu.Item>
-                  <Menu.Item value="9">dsdf</Menu.Item>
-                  <Menu.Item value="10">dsdf</Menu.Item>
-                  <Menu.Item value="11">dsdf</Menu.Item>
-                  <Menu.Item value="12">dsdf</Menu.Item>
-                  <Menu.Item value="13">dsdf</Menu.Item>
-                  <Menu.Item value="14">dsdf</Menu.Item>
-                  <Menu.Item value="15">dsdf</Menu.Item>
-                  <Menu.Item value="16">dsdf</Menu.Item>
-                  <Menu.Item value="17">dsdf</Menu.Item>
-                  <Menu.Item value="18">dsdf</Menu.Item>
-                  <Menu.Item value="19">dsdf</Menu.Item>
-                  <Menu.Item value="20">dsdf</Menu.Item>
-                  <Menu.Item value="21">dsdf</Menu.Item>
-                  <Menu.Item value="22">dsdf</Menu.Item>
-                  <Menu.Item value="23">dsdf</Menu.Item>
+                  <Menu.Item value="haha2">
+                    哈哈2
+                  </Menu.Item>
                 </Menu>
               </div>
             </Col>

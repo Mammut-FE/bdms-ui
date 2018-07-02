@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './menu.scss';
 import { Consumer } from './menuContext';
 import Icon from '../icon';
+import Checkbox from '../checkbox';
 
 interface IMenuItemProps {
   className?: string;
@@ -26,54 +27,77 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     return (
       <Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick, mode } = Object.assign({}, valueProp, otherProps);
+          const { selected, clickItem, isTick, mode, hasCheckBox } = Object.assign({}, valueProp, otherProps);
           let menuItemClasses;
-          if (typeof selected === 'string') {
-            if (mode === 'vertical') {
+          let menuItem;
+          if (!hasCheckBox) {
+            if (typeof selected === 'string') {
+              if (mode === 'vertical') {
+                menuItemClasses = cx('u-menu-item', className, {
+                  'bg-selected': (selected as string) === value && !isTick,
+                  'pdl-change': isTick,
+                  disabled
+                });
+              } else if (mode === 'horizontal') {
+                menuItemClasses = cx('u-menu-item-horizontal', className, {
+                  'horztl-selected': (selected as string) === value,
+                  disabled
+                });
+              } else if (mode === 'inline') {
+                menuItemClasses = cx('u-menu-item-inline', className, {
+                  'selected': (selected as string) === value && !isTick,
+                })
+              }
+            } else {
               menuItemClasses = cx('u-menu-item', className, {
-                'bg-selected': (selected as string) === value && !isTick,
+                'bg-selected': (selected as string[]).indexOf(value!) !== -1 && !isTick,
                 'pdl-change': isTick,
                 disabled
               });
-            } else if (mode === 'horizontal') {
-              menuItemClasses = cx('u-menu-item-horizontal', className, {
-                'horztl-selected': (selected as string) === value,
-                disabled
-              });
-            } else if (mode === 'inline') {
-              menuItemClasses = cx('u-menu-item-inline', className, {
-                'selected': (selected as string) === value && !isTick,
-              })
             }
           } else {
-            menuItemClasses = cx('u-menu-item', className, {
-              'bg-selected': (selected as string[]).indexOf(value!) !== -1 && !isTick,
-              'pdl-change': isTick,
-              disabled
-            });
+            menuItemClasses = cx('u-menu-checkbox', className);
           }
-          return (
-            <div
-              className={menuItemClasses}
-              style={style}
-              onClick={() => {
-                if (!disabled) {
+          
+          if (!hasCheckBox) {
+            menuItem = (
+              <div
+                className={menuItemClasses}
+                style={style}
+                onClick={() => {
+                  if (!disabled) {
+                    clickItem(value);
+                  }
+                }}
+                {...otherProps}
+              >
+                {isTick &&
+                  typeof selected === 'string' &&
+                  (selected as string) === value && <Icon className={cx('tick-icon')} name="ture" />}
+                {isTick &&
+                  selected instanceof Array &&
+                  (selected as string[]).indexOf(value!) !== -1 && <Icon className={cx('tick-icon')} name="ture" />}
+                {icon && <Icon name={icon} />}
+                {children}
+                {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
+              </div>
+            );
+          } else {
+            menuItem = (
+              <div
+                className={menuItemClasses}
+                style={style}
+                {...otherProps}
+              >
+                
+                <Checkbox value={value!} disabled={disabled} mode='vertical'   checked={(selected as string[]).indexOf(value!) !== -1} onChange={(value) => {
                   clickItem(value);
-                }
-              }}
-              {...otherProps}
-            >
-              {isTick &&
-                typeof selected === 'string' &&
-                (selected as string) === value && <Icon className={cx('tick-icon')} name="ture" />}
-              {isTick &&
-                selected instanceof Array &&
-                (selected as string[]).indexOf(value!) !== -1 && <Icon className={cx('tick-icon')} name="ture" />}
-              {icon && <Icon name={icon} />}
-              {children}
-              {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
-            </div>
-          );
+                }}>{children}</Checkbox>
+                {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
+              </div>
+            );
+          }
+          return menuItem;
         }}
       </Consumer>
     );

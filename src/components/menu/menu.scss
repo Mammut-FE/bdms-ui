@@ -188,6 +188,17 @@
   height: 24px;
   line-height: 24px;
 }
+.u-menu-checkbox {
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+  padding-left: 12px;
+  position: relative;
+  padding-right: 14px;
+}
 
 @keyframes topMove {
   from {
