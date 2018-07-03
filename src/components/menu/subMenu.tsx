@@ -2,6 +2,7 @@ import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import Trigger from 'rc-trigger';
 import Animate from 'rc-animate';
+import velocity from 'velocity-animate';
 
 
 import styles from './menu.scss';
@@ -62,6 +63,55 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
     this.setState({
       inlineVisible: !inlineVisible
     })
+  }
+  public animateEnter = (node, done) => {
+    let ok = false;
+
+    function complete() {
+      if (!ok) {
+        ok = true;
+        done();
+      }
+    }
+
+    node.style.display = 'none';
+
+    velocity(node, 'slideDown', {
+      duration: 100,
+      complete,
+    });
+    return {
+      stop() {
+        velocity(node, 'finish');
+        // velocity complete is async
+        complete();
+      },
+    };
+  }
+
+  public animateLeave = (node, done) => {
+    let ok = false;
+
+    function complete() {
+      if (!ok) {
+        ok = true;
+        done();
+      }
+    }
+
+    node.style.display = 'block';
+
+    velocity(node, 'slideUp', {
+      duration: 100,
+      complete,
+    });
+    return {
+      stop() {
+        velocity(node, 'finish');
+        // velocity complete is async
+        complete();
+      },
+    };
   }
   public render() {
     const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle, isRoot } = this.props;
@@ -141,6 +191,10 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
               subMenuClasses = cx('u-menu-item-inline', className, {
                 'selected': (selected as string) === title && !isTick
               })
+              const anim = {
+                enter: this.animateEnter,
+                leave: this.animateLeave,
+              };
               const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
                 const childStyle = {
                   display: inlineVisible ? 'block' : 'none'
@@ -155,7 +209,7 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
                    {inlineVisible && <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />}
                    {!inlineVisible && <Icon name="right" style={{ position: 'absolute', right: 10, top:  9 }} />}
                  </div>
-                 <Animate showProp='visible' transitionName='fade'>
+                 <Animate showProp='visible' animation={anim}>
                    {inlineChildren}
                  </Animate>
                 </React.Fragment>

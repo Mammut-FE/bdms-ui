@@ -1,5 +1,6 @@
 import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
+
 import styles from './menu.scss';
 import MenuItem from './menuItem';
 import Divider from './divider';
@@ -8,9 +9,10 @@ import SubMenu from './subMenu';
 import Icon from '../icon';
 import { Provider } from './menuContext';
 import { IMenuContextType } from './menuContext';
+import { scrollAnimation } from '../../lib/util';
 
 const MAX_HEIGHT = 458;
-const SCROLL_UNIT = 100;
+const SCROLL_UNIT = 200;
 
 interface IMenuProps {
   mode?: 'horizontal' | 'vertical' | 'inline';
@@ -19,7 +21,7 @@ interface IMenuProps {
   multiple?: boolean; // 是否多选
   isTick?: boolean; // 是否是打钩选中
   selected?: string | string[]; // 初始化选中的项目
-  hasCheckBox?: boolean;  // 项目是否含有checkbox选项
+  hasCheckBox?: boolean; // 项目是否含有checkbox选项
   onSelect?: (selected: string | string[]) => void; // 外部通过这个函数获取选中的value值
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
@@ -129,14 +131,22 @@ export default class Menu extends Component<IMenuProps, IMenuState> {
     const el = this.menuContentDom.current;
     let scrollTop = el.scrollTop;
     scrollTop -= scrollUnit!;
-    el.scrollTop = scrollTop;
+    if (scrollTop < 0) {
+      scrollTop = 0;
+    }
+    scrollAnimation(el, 'up', scrollTop);
   }
   public clickScrollBottom(e) {
     const { scrollUnit } = this.props;
     const el = this.menuContentDom.current;
+    const scrollHeight = el.scrollHeight;
+    const clientHeight = el.clientHeight;
     let scrollTop = el.scrollTop;
     scrollTop += scrollUnit!;
-    el.scrollTop = scrollTop;
+    if (scrollTop > scrollHeight - clientHeight) {
+      scrollTop = scrollHeight - clientHeight;
+    }
+    scrollAnimation(el, 'down', scrollTop);
   }
 
   /**
