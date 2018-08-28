@@ -21,12 +21,13 @@
   margin-right: auto;
   display: flex;
   justify-content: space-between;
-  ;
   align-items: center;
 }
 
 .item {
   margin-bottom: 10px;
+  position: relative;
+  height: 100%;
 }
 
 .App-intro {
@@ -44,7 +45,7 @@
 
 .wrap {
   height: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
 }
 

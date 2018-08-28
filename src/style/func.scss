@@ -16,7 +16,13 @@
       visibility: hidden;
       height: 0;
       overflow: hidden;
-      content: ".";
+      content: '.';
     }
+  }
+  .f-toe {
+    overflow: hidden;
+    word-wrap: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }

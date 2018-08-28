@@ -1,0 +1,33 @@
+.u-select {
+  width: 160px;
+  position: relative;
+}
+.input {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  outline: none;
+  display: inline-block;
+  padding-left: 12px;
+  border: 1px solid #ccc;
+  color: #333;
+  background-color: #fff;
+  border-radius: 2px;
+  font-size: 14px;
+  text-transform: inherit;
+  transition: ease-in-out 0.15s;
+  overflow: hidden;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.vareticon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+.selectmenu {
+  position: absolute;
+  z-index: 100;
+}
