@@ -17,6 +17,7 @@ import Layout from './components/layout';
 import Switch from './components/switch';
 import Tag from './components/tag';
 import Menu from './components/menu';
+import Select from './components/select';
 
 const cx = classNames.bind(styles);
 
@@ -104,6 +105,43 @@ const icons = [
   'arrow'
 ];
 
+const source = [
+  {
+    title: '数据开发',
+    options: [
+      {
+        name: '新建任务',
+        key: 'newTask',
+        filter: 9
+      },
+      {
+        name: '开放依赖授权',
+        key: 'exposeDependency',
+        filter: 46
+      },
+      {
+        name: '收回依赖授权',
+        key: 'withdrawDependency',
+        filter: 47
+      }
+    ]
+  },
+  {
+    name: '新增队列',
+    key: 'addQueue',
+    filter: 32
+  },
+  {
+    name: '移交Owner',
+    key: 'charge',
+    filter: 33
+  },
+  {
+    name: '新增Hive库',
+    key: 'addHive',
+    filter: 34
+  }
+];
 class App extends Component<any, any> {
   constructor(props) {
     super(props);
@@ -135,9 +173,9 @@ class App extends Component<any, any> {
   }
 
   public selectItemWithCheck(selected) {
-    console.log(selected)
+    console.log(selected);
   }
- 
+
   public render() {
     const { checboxCheck } = this.state;
     return (
@@ -315,7 +353,9 @@ class App extends Component<any, any> {
                       <Menu.Item value="sub2-2-3">子目录三</Menu.Item>
                     </Menu.SubMenu>
                   </Menu.SubMenu>
-                  <Menu.Item value="2" subtitle="复制">dsdf</Menu.Item>
+                  <Menu.Item value="2" subtitle="复制">
+                    dsdf
+                  </Menu.Item>
                   <Menu.Item value="3">dsdf</Menu.Item>
                   <Menu.Item value="4">dsdf</Menu.Item>
                   <Menu.Divider />
@@ -374,43 +414,70 @@ class App extends Component<any, any> {
                 </Menu>
               </div>
             </Col>
-            <Col xs={3} style={{height: '500px'}}>
+            <Col xs={3} style={{ height: '500px' }}>
               <div className={cx('item')}>
-                <Menu onSelect={this.selectItem} mode='inline'>
+                <Menu onSelect={this.selectItem} mode="inline">
                   <Menu.Item value="1">
-                  <a href="javascript: void(0);">测试连接</a>
+                    <a href="javascript: void(0);">测试连接</a>
                   </Menu.Item>
-                  <Menu.Item value="2"><a href="javascript: void(0);">测试连接</a></Menu.Item>
+                  <Menu.Item value="2">
+                    <a href="javascript: void(0);">测试连接</a>
+                  </Menu.Item>
                   <Menu.SubMenu title="sub" subtitle="test">
-                    <Menu.Item value="sub-2-1"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                    <Menu.Item value="sub-2-2"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                    <Menu.Item value="sub-2-1">
+                      <a href="javascript: void(0);">子目录一</a>
+                    </Menu.Item>
+                    <Menu.Item value="sub-2-2">
+                      <a href="javascript: void(0);">子目录一</a>
+                    </Menu.Item>
                   </Menu.SubMenu>
                   <Menu.Item value="3">
                     <a href="javascript: void(0);">测试连接</a>
                   </Menu.Item>
-                  <Menu.Item value="4"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                  <Menu.Item value="5"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                  <Menu.Item value="6"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                  <Menu.Item value="7"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                  <Menu.Item value="8"><a href="javascript: void(0);">子目录一</a></Menu.Item>
-                  <Menu.Item value="9"><a href="javascript: void(0);">子目录一</a></Menu.Item>
+                  <Menu.Item value="4">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
+                  <Menu.Item value="5">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
+                  <Menu.Item value="6">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
+                  <Menu.Item value="7">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
+                  <Menu.Item value="8">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
+                  <Menu.Item value="9">
+                    <a href="javascript: void(0);">子目录一</a>
+                  </Menu.Item>
                 </Menu>
               </div>
             </Col>
             <Col xs={3}>
               <div className={cx('item')}>
                 <Menu onSelect={this.selectItemWithCheck} multiple={true} hasCheckBox={true}>
-                  <Menu.Item value="haha">
-                   哈哈
-                  </Menu.Item>
-                  <Menu.Item value="haha2">
-                    哈哈2
-                  </Menu.Item>
+                  <Menu.Item value="haha">哈哈</Menu.Item>
+                  <Menu.Item value="haha2">哈哈2</Menu.Item>
                 </Menu>
               </div>
             </Col>
           </Row>
-          
+          <Row>
+            <Col xs={3}>
+              <div className={cx('item')}>
+                <Select source={source} title="全部动作">
+                  恩
+                </Select>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={3}>
+              <div style={{ height: 500 }} />
+            </Col>
+          </Row>
         </Grid>
       </Layout>
     );

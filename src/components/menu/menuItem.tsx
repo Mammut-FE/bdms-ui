@@ -30,7 +30,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     return (
       <Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick, mode, hasCheckBox } = Object.assign({}, valueProp, otherProps);
+          const { selected, clickItem, isTick, mode, hasCheckBox, visible } = Object.assign({}, valueProp, otherProps);
           let menuItemClasses;
           let menuItem;
           if (!hasCheckBox) {
@@ -38,7 +38,6 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
               if (mode === 'vertical') {
                 menuItemClasses = cx('u-menu-item', className, {
                   'bg-selected': (selected as string) === value && !isTick,
-                  'pdl-change': isTick,
                   disabled
                 });
               } else if (mode === 'horizontal') {
@@ -48,20 +47,19 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 });
               } else if (mode === 'inline') {
                 menuItemClasses = cx('u-menu-item-inline', className, {
-                  'selected': (selected as string) === value && !isTick,
-                })
+                  selected: (selected as string) === value && !isTick
+                });
               }
             } else {
               menuItemClasses = cx('u-menu-item', className, {
                 'bg-selected': (selected as string[]).indexOf(value!) !== -1 && !isTick,
-                'pdl-change': isTick,
                 disabled
               });
             }
           } else {
             menuItemClasses = cx('u-menu-checkbox', className);
           }
-          
+
           if (!hasCheckBox) {
             menuItem = (
               <div
@@ -82,25 +80,28 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                   (selected as string[]).indexOf(value!) !== -1 && <Icon className={cx('tick-icon')} name="ture" />}
                 {icon && <Icon name={icon} />}
                 {children}
-                {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
+                {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
               </div>
             );
           } else {
             menuItem = (
-              <div
-                className={menuItemClasses}
-                style={style}
-                {...otherProps}
-              >
-                
-                <Checkbox value={value!} disabled={disabled} mode='vertical'   checked={(selected as string[]).indexOf(value!) !== -1} onChange={(value) => {
-                  clickItem(value);
-                }}>{children}</Checkbox>
-                {subtitle && <div className={cx("subtitle")}>{subtitle}</div>}
+              <div className={menuItemClasses} style={style} {...otherProps}>
+                <Checkbox
+                  value={value!}
+                  disabled={disabled}
+                  mode="vertical"
+                  checked={(selected as string[]).indexOf(value!) !== -1}
+                  onChange={value => {
+                    clickItem(value);
+                  }}
+                >
+                  {children}
+                </Checkbox>
+                {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
               </div>
             );
           }
-          return menuItem;
+          return visible && menuItem;
         }}
       </Consumer>
     );

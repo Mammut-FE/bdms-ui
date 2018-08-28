@@ -9,6 +9,7 @@
     "no-empty": false,
     "jsx-no-lambda": false,
     "object-literal-sort-keys": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "jsdoc-format": false
   }
 }
