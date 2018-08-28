@@ -132,6 +132,9 @@ export default class Select extends Component<ISelectProps, ISelectState> {
       showMenu: !showMenu
     });
   }
+  public getSelected() {
+    return this.state.selected;
+  }
   public render() {
     const { className, style, source, title } = this.props;
     const { showMenu, value, searchKey, selected } = this.state;
