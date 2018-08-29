@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Layout, { Header, Footer, Content, Sider } from './components/layout';
+import Layout, { Header, Footer, Content, Sider } from '../src/components/layout/index';
 
 class Container extends Component<any, any> {
   constructor(props) {
