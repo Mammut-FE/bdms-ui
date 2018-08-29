@@ -8,4 +8,4 @@ export { Tag } from './components/tag';
 export { Menu } from './components/menu';
 export { Select } from './components/select';
 
-import 'index.scss';
+import './index.scss';
