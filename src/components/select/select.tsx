@@ -116,13 +116,20 @@ export class Select extends Component<ISelectProps, ISelectState> {
       });
     }
   }
-
-  public selectItem(e) {
+  
+  public selectItem(selected, current) {
     const { title } = this.props;
-    this.setState({
-      selected: e,
-      value: title.split('全部')[1] + '（已选' + e.length + '项）'
-    });
+    if (current === "ALL") {
+      this.setState({
+        selected: [],
+        value: title
+      })
+    } else {
+      this.setState({
+        selected,
+        value: selected.length ? title.split('全部')[1] + '（已选' + selected.length + '项）' : title
+      });
+    }
   }
 
   public search(e) {
