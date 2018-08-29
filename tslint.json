@@ -1,7 +1,7 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": ["config/**/*.js", "node_modules/**/*.ts", "src/**/*.js", "src/lesson/**"]
+    "exclude": ["node_modules/**/*.ts","lib/**/*.ts"]
   },
   "rules": {
     "no-console": false,

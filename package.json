@@ -1,8 +1,21 @@
 {
   "name": "bdms-ui",
   "version": "0.1.0",
-  "private": true,
+  "files": [
+    "lib",
+    "types"
+  ],
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
+    "build": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
+    "test": "exit 1;"
+  },
   "dependencies": {
+    "@types/classnames": "^2.2.4",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
     "@types/prop-types": "^15.5.3",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
@@ -16,17 +29,9 @@
     "react-flexbox-grid": "^2.1.2",
     "velocity-animate": "^1.5.1"
   },
-  "scripts": {
-    "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
-    "build": "webpack --config configs/webpack.start.js --mode=production",
-    "test": "exit 1;"
-  },
   "devDependencies": {
-    "@types/classnames": "^2.2.4",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.4",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
     "autoprefixer": "7.1.6",
     "css-loader": "0.28.7",
     "cz-conventional-changelog": "^2.1.0",

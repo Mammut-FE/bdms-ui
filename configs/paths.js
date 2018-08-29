@@ -9,5 +9,6 @@ module.exports = {
   libIndex: path.join(rootPath, 'src/index.ts'),
   libOut: path.join(rootPath, 'lib'),
   tmpOut: path.join(rootPath, 'tmp-out'),
-  devTsconfig: path.join(rootPath, 'tsconfig.json')
+  devTsconfig: path.join(rootPath, 'tsconfig.json'),
+  buildTsconfig: path.join(rootPath, 'tsconfig.build.json'),
 };

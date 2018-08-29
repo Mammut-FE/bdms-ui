@@ -3,7 +3,6 @@
     "module": "esnext",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
