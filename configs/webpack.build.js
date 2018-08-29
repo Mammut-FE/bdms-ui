@@ -6,7 +6,8 @@ module.exports = {
   entry: paths.libIndex,
   output: {
     path: paths.libOut,
-    filename: 'index.js'
+    filename: 'index.js',
+    libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -79,11 +80,6 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('style.css')
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
   externals: {
     'react': 'umd react',
     'react-dom': 'umd react-dom'
