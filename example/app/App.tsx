@@ -10,15 +10,15 @@ import React, { Component } from 'react';
 // import { Cartesian, Detail, Example, Library } from "@compositor/kit";
 import classNames from 'classnames/bind';
 import styles from './App.scss';
-import Button from '../src/components/button/index';
-import Checkbox from '../src/components/checkbox/index';
-import { Col, Grid, Row } from '../src/components/grid/index';
-import Icon from '../src/components/icon/index';
-import Layout from '../src/components/layout/index';
-import Switch from '../src/components/switch/index';
-import Tag from '../src/components/tag/index';
-import Menu from '../src/components/menu/index';
-import Select from '../src/components/select/index';
+import Button from '../../src/components/button/index';
+import Checkbox from '../../src/components/checkbox/index';
+import { Col, Grid, Row } from '../../src/components/grid/index';
+import Icon from '../../src/components/icon/index';
+import Layout from '../../src/components/layout/index';
+import Switch from '../../src/components/switch/index';
+import Tag from '../../src/components/tag/index';
+import Menu from '../../src/components/menu/index';
+import Select from '../../src/components/select/index';
 
 const cx = classNames.bind(styles);
 
