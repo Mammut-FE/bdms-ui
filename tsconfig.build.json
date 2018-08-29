@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "../types"
+    "declarationDir": "../types",
+    "sourceMap": true
   },
   "include": ["src", "declaration.d.ts"]
 }
