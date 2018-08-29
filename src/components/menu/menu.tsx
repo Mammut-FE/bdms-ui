@@ -22,7 +22,7 @@ interface IMenuProps {
   isTick?: boolean; // 是否是打钩选中
   selected?: string | string[]; // 初始化选中的项目
   hasCheckBox?: boolean; // 项目是否含有checkbox选项
-  onSelect?: (selected: string | string[]) => void; // 外部通过这个函数获取选中的value值
+  onSelect?: (selected: string | string[], current: string) => void; // 外部通过这个函数获取选中的value值
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
 
@@ -46,6 +46,12 @@ export class Menu extends Component<IMenuProps, IMenuState> {
     scrollUnit: SCROLL_UNIT,
     hasCheckBox: false
   };
+  public static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.selected && nextProps.selected !== prevState.value.selected) {
+      return Object.assign({}, prevState, {value: Object.assign({}, prevState.value, {selected: nextProps.selected})})
+    } 
+    return null;
+  }
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
   public isRootMenu = true;
   public readonly state: Readonly<IMenuState> = {
@@ -68,6 +74,7 @@ export class Menu extends Component<IMenuProps, IMenuState> {
     this.clickScrollUp = this.clickScrollUp.bind(this);
     this.clickScrollBottom = this.clickScrollBottom.bind(this);
   }
+  
 
   public clickItem(key) {
     const { multiple, onSelect } = this.props;
@@ -88,7 +95,7 @@ export class Menu extends Component<IMenuProps, IMenuState> {
       value
     });
     if (onSelect) {
-      onSelect(value.selected);
+      onSelect(value.selected, key);
     }
   }
 
