@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import React, { Component, MouseEvent } from 'react';
 
-import Icon from '../icon';
+import { Icon } from '../icon';
 import buttonStyle from './button.scss';
-import ButtonGroup from './buttonGroup';
+import { ButtonGroup } from './buttonGroup';
 
 interface IButtonProps {
   className?: string;
@@ -18,7 +18,7 @@ interface IButtonProps {
 
 const cx = classNames.bind(buttonStyle);
 
-export default class Button extends Component<IButtonProps, any> {
+export class Button extends Component<IButtonProps, any> {
   public static Group = ButtonGroup;
 
   public static defaultProps: Partial<IButtonProps> = {
@@ -45,15 +45,13 @@ export default class Button extends Component<IButtonProps, any> {
       [`u-btn-${size}`]: true
     });
 
-    const iconNode = others.icon ? <Icon name={others.icon} /> : null;
+    const iconNode = others.icon ? <Icon name={others.icon}/> : null;
 
     const ComponentProp = others.href ? 'a' : 'button';
 
-    return (
-      <ComponentProp className={classes} disabled={disabled} onClick={this.onClick} {...others}>
-        {iconNode}
-        <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
-      </ComponentProp>
-    );
+    return (<ComponentProp className={classes} disabled={disabled} onClick={this.onClick} {...others}>
+      {iconNode}
+      <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
+    </ComponentProp>);
   }
 }

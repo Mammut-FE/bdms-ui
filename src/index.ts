@@ -1,25 +1,11 @@
-import Button from './components/button';
-import Checkbox from './components/checkbox';
-import { Col, Grid, Row } from './components/grid';
-import Icon from './components/icon';
-import Layout from './components/layout';
-import Switch from './components/switch';
-import Tag from './components/tag';
-import Menu from './components/menu';
-import Select from './components/select';
+export { Button } from './components/button';
+export { Checkbox } from './components/checkbox';
+export * from './components/grid';
+export { Icon } from './components/icon';
+export * from './components/layout';
+export { Switch } from './components/switch';
+export { Tag } from './components/tag';
+export { Menu } from './components/menu';
+export { Select } from './components/select';
 
 import 'index.scss';
-
-export default {
-  Button,
-  Checkbox,
-  Col,
-  Grid,
-  Row,
-  Icon,
-  Layout,
-  Switch,
-  Tag,
-  Menu,
-  Select
-};

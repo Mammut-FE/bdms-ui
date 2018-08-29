@@ -16,11 +16,13 @@ interface ICheckboxProps {
   children?: ReactNode;
   mode?: 'horizontal' | 'vertical';
 }
-export default class Checkbox extends Component<ICheckboxProps, any> {
+
+export class Checkbox extends Component<ICheckboxProps, any> {
   public static Group = CheckboxGroup;
   public static defaultProps: Partial<ICheckboxProps> = {
     mode: 'horizontal'
   };
+
   constructor(props: ICheckboxProps) {
     super(props);
   }
@@ -36,15 +38,13 @@ export default class Checkbox extends Component<ICheckboxProps, any> {
       'disabled-on': disabled && checked,
       indeterminate: isIndeterminate
     });
-    return (
-      <label className={labelClass}>
+    return (<label className={labelClass}>
         <span className={inputClass}>
-          <span className={cx('u-checkbox-inner')} />
-          <input type="checkbox" checked={checked} disabled={disabled} onChange={this.onChange} />
+          <span className={cx('u-checkbox-inner')}/>
+          <input type="checkbox" checked={checked} disabled={disabled} onChange={this.onChange}/>
         </span>
         <span className={cx('u-checkbox-text')}>{children || value}</span>
-      </label>
-    );
+      </label>);
   }
 
   private onChange = e => {

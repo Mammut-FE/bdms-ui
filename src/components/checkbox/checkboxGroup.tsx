@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React, { Component } from 'react';
 
-import Checkbox from './checkbox';
+import { Checkbox} from './checkbox';
 import checkboxClass from './checkbox.scss';
 
 interface ICheckData {

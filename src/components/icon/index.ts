@@ -5,6 +5,4 @@
  * @Last Modified time: 2018-06-15 12:06:09
  */
 
-import Icon from './icon';
-
-export default Icon;
+export { Icon } from './icon';

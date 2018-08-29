@@ -5,8 +5,8 @@ import classNames from 'classnames/bind';
 import React, { Component } from 'react';
 
 import styles from './select.scss';
-import Menu from '../menu';
-import Icon from '../icon';
+import { Menu } from '../menu';
+import { Icon } from '../icon';
 
 const Item = Menu.Item;
 const ItemGroup = Menu.ItemGroup;
@@ -43,7 +43,7 @@ interface ISelectState {
 /**
  * source数据源示例：
  * const source = [
-  {
+ {
     title: '数据开发',
     options: [
       {
@@ -63,24 +63,24 @@ interface ISelectState {
       }
     ]
   },
-  {
+ {
     name: '新增队列',
     key: 'addQueue',
     filter: 32
   },
-  {
+ {
     name: '移交Owner',
     key: 'charge',
     filter: 33
   },
-  {
+ {
     name: '新增Hive库',
     key: 'addHive',
     filter: 34
   }];
  */
 
-export default class Select extends Component<ISelectProps, ISelectState> {
+export class Select extends Component<ISelectProps, ISelectState> {
   public static defaultProps: Partial<ISelectProps> = {
     title: '全部动作'
   };
@@ -91,6 +91,7 @@ export default class Select extends Component<ISelectProps, ISelectState> {
     searchKey: ''
   };
   public selectDom: React.RefObject<any> = React.createRef<any>();
+
   constructor(props) {
     super(props);
     this.selectItem = this.selectItem.bind(this);
@@ -98,6 +99,7 @@ export default class Select extends Component<ISelectProps, ISelectState> {
     this.search = this.search.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
   }
+
   public componentDidMount() {
     document.addEventListener('click', this.clickHandler);
   }
@@ -105,6 +107,7 @@ export default class Select extends Component<ISelectProps, ISelectState> {
   public componentWillUnmount() {
     document.removeEventListener('click', this.clickHandler);
   }
+
   public clickHandler(e) {
     const selectDom = this.selectDom.current;
     if (!selectDom.contains(e.target)) {
@@ -113,6 +116,7 @@ export default class Select extends Component<ISelectProps, ISelectState> {
       });
     }
   }
+
   public selectItem(e) {
     const { title } = this.props;
     this.setState({
@@ -120,79 +124,73 @@ export default class Select extends Component<ISelectProps, ISelectState> {
       value: title.split('全部')[1] + '（已选' + e.length + '项）'
     });
   }
+
   public search(e) {
     this.setState({
       searchKey: e.target.value,
       showMenu: true
     });
   }
+
   public changeDropDown() {
     const { showMenu } = this.state;
     this.setState({
       showMenu: !showMenu
     });
   }
+
   public getSelected() {
     return this.state.selected;
   }
+
   public render() {
     const { className, style, source, title } = this.props;
     const { showMenu, value, searchKey, selected } = this.state;
     const classes = cx('u-select', className);
     const inputClasses = cx('input');
-    return (
-      <div className={classes} style={style} ref={this.selectDom}>
-        <input
-          type="text"
-          className={inputClasses}
-          value={searchKey}
-          placeholder={value}
-          onClick={this.changeDropDown}
-          onChange={this.search}
-        />
-        <Icon name="caret-down" className={cx('vareticon')} />
-        {showMenu && (
-          <Menu
-            className={cx('selectmenu')}
-            isTick={true}
-            multiple={true}
-            onSelect={this.selectItem}
-            selected={selected}
-          >
-            <Item value="ALL">{title}</Item>
-            <Menu.Divider />
-            {source.map((item: SourceItem) => {
-              if ((item as ISourceGroup).title) {
-                return (
-                  <ItemGroup key={(item as ISourceGroup).title} title={(item as ISourceGroup).title}>
-                    {(item as ISourceGroup).options.map(option => {
-                      return (
-                        <Item
-                          key={option.key}
-                          value={option.key}
-                          visible={!searchKey || option.name.indexOf(searchKey) !== -1}
-                        >
-                          {option.name}
-                        </Item>
-                      );
-                    })}
-                  </ItemGroup>
-                );
-              } else {
-                return (
-                  <Item
-                    key={(item as ISourceOption).key}
-                    value={(item as ISourceOption).key}
-                    visible={!searchKey || (item as ISourceOption).name.indexOf(searchKey) !== -1}
-                  >
-                    {(item as ISourceOption).name}
-                  </Item>
-                );
-              }
-            })}
-          </Menu>
-        )}
-      </div>
-    );
+    return (<div className={classes} style={style} ref={this.selectDom}>
+      <input
+        type="text"
+        className={inputClasses}
+        value={searchKey}
+        placeholder={value}
+        onClick={this.changeDropDown}
+        onChange={this.search}
+      />
+      <Icon name="caret-down" className={cx('vareticon')}/>
+      {showMenu && (<Menu
+        className={cx('selectmenu')}
+        isTick={true}
+        multiple={true}
+        onSelect={this.selectItem}
+        selected={selected}
+      >
+        <Item value="ALL">{title}</Item>
+        <Menu.Divider/>
+        {source.map((item: SourceItem) => {
+          if ((item as ISourceGroup).title) {
+            return (<ItemGroup key={(item as ISourceGroup).title} title={(item as ISourceGroup).title}>
+              {(item as ISourceGroup).options.map(option => {
+                return (<Item
+                  key={option.key}
+                  value={option.key}
+                  visible={!searchKey || option.name.indexOf(searchKey) !== -1}
+                >
+                  {option.name}
+                </Item>);
+              })}
+            </ItemGroup>);
+          } else {
+            return (<Item
+              key={(item as ISourceOption).key}
+              value={(item as ISourceOption).key}
+              visible={!searchKey || (item as ISourceOption).name.indexOf(searchKey) !== -1}
+            >
+              {(item as ISourceOption).name}
+            </Item>);
+          }
+        })}
+      </Menu>)}
+    </div>);
   }
 }

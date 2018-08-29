@@ -2,7 +2,7 @@ import React, { Component, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './menu.scss';
-import Icon from '../icon';
+import { Icon } from '../icon';
 
 const MAX_HEIGHT = 458;
 const SCROLL_UNIT = 100;
@@ -37,6 +37,7 @@ export default class MenuWrap extends Component<IMenuWrapProps, IMenuWrapState> 
   };
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
   public isRootMenu = false;
+
   constructor(props: IMenuWrapProps) {
     super(props);
     this.scroll = this.scroll.bind(this);
@@ -44,26 +45,31 @@ export default class MenuWrap extends Component<IMenuWrapProps, IMenuWrapState> 
     this.clickScrollUp = this.clickScrollUp.bind(this);
     this.clickScrollBottom = this.clickScrollBottom.bind(this);
   }
+
   public componentDidMount() {
     const contentDom = this.menuContentDom.current;
     if (contentDom.scrollHeight > MAX_HEIGHT) {
       this.toggleBottomOverflow(true);
     }
   }
+
   public toggleBottomOverflow(showBottomOverflow) {
     this.setState({
       showBottomOverflow
     });
   }
+
   public toggleTopOverflow(showTopOverflow) {
     this.setState({
       showTopOverflow
     });
   }
+
   public scroll(e) {
     const el = this.menuContentDom.current;
     this.scrollControl(el);
   }
+
   public scrollControl(el) {
     if (el.offsetHeight < el.scrollHeight) {
       this.toggleBottomOverflow(true);
@@ -89,6 +95,7 @@ export default class MenuWrap extends Component<IMenuWrapProps, IMenuWrapState> 
     scrollTop -= scrollUnit!;
     el.scrollTop = scrollTop;
   }
+
   public clickScrollBottom(e) {
     const { scrollUnit } = this.props;
     const el = this.menuContentDom.current;
@@ -108,28 +115,23 @@ export default class MenuWrap extends Component<IMenuWrapProps, IMenuWrapState> 
       e.preventDefault();
     }
   }
+
   public render() {
     const { className, children } = this.props;
     const { showBottomOverflow, showTopOverflow } = this.state;
     const menuWrapClasses = cx('u-menu', className);
-    return (
-      <div className={menuWrapClasses}>
-        {showTopOverflow && (
-          <div className={cx('handle-top')} onClick={this.clickScrollUp}>
-            <Icon name="chevron-up" />
-          </div>
-        )}
+    return (<div className={menuWrapClasses}>
+        {showTopOverflow && (<div className={cx('handle-top')} onClick={this.clickScrollUp}>
+            <Icon name="chevron-up"/>
+          </div>)}
         <div className={cx('content')} ref={this.menuContentDom} onScroll={this.scroll} onWheel={this.wheel}>
           {React.Children.map(children, (child: ReactElement<any>) => {
             return React.cloneElement(child);
           })}
         </div>
-        {showBottomOverflow && (
-          <div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
-            <Icon name="chevron-down" />
-          </div>
-        )}
-      </div>
-    );
+        {showBottomOverflow && (<div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
+            <Icon name="chevron-down"/>
+          </div>)}
+      </div>);
   }
 }

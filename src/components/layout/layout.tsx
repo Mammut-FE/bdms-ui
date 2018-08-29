@@ -12,25 +12,19 @@ interface ILayoutProps {
   hasSider?: boolean;
 }
 
-export const Header = props => (
-  <div className={cx('u-header', props.className)} style={props.style}>
+export const Header = props => (<div className={cx('u-header', props.className)} style={props.style}>
     {props.children}
-  </div>
-);
+  </div>);
 
-export const Footer = props => (
-  <div className={cx('u-footer', props.className)} style={props.style}>
+export const Footer = props => (<div className={cx('u-footer', props.className)} style={props.style}>
     {props.children}
-  </div>
-);
+  </div>);
 
-export const Content = props => (
-  <div className={cx('u-content', props.className)} style={props.style}>
+export const Content = props => (<div className={cx('u-content', props.className)} style={props.style}>
     {props.children}
-  </div>
-);
+  </div>);
 
-export default class Layout extends Component<ILayoutProps, any> {
+export class Layout extends Component<ILayoutProps, any> {
   public static Header = Header;
   public static Footer = Footer;
   public static Content = Content;
@@ -39,16 +33,15 @@ export default class Layout extends Component<ILayoutProps, any> {
   public static defaultProps: Partial<ILayoutProps> = {
     hasSider: false
   };
+
   public render() {
     const { className, children, style, hasSider } = this.props;
 
     const classes = cx('u-layout', className, {
       'layout-with-sider': hasSider
     });
-    return (
-      <div className={classes} style={style}>
+    return (<div className={classes} style={style}>
         {children}
-      </div>
-    );
+      </div>);
   }
 }

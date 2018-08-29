@@ -8,7 +8,7 @@ import velocity from 'velocity-animate';
 import styles from './menu.scss';
 import { Consumer } from './menuContext';
 import MenuWrap from './menuWrap';
-import Icon from '../icon';
+import { Icon } from '../icon';
 
 import placements from './placements';
 
@@ -41,29 +41,33 @@ interface ISubMenuState {
 export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
   public static defaultProps: Partial<ISubMenuProps> = {
     inlineVisible: false
-    }
+  };
   public readonly state: Readonly<ISubMenuState> = {
     popupVisible: false,
     inlineVisible: this.props.inlineVisible!
-  }
+  };
 
   public isRootMenu = false;
+
   constructor(props: ISubMenuProps) {
     super(props);
     this.popupVisibleChange = this.popupVisibleChange.bind(this);
     this.inlVisiChange = this.inlVisiChange.bind(this);
   }
+
   public popupVisibleChange(visible) {
     this.setState({
       popupVisible: visible
-    })
+    });
   }
+
   public inlVisiChange() {
-    const {inlineVisible} = this.state;
+    const { inlineVisible } = this.state;
     this.setState({
       inlineVisible: !inlineVisible
-    })
+    });
   }
+
   public animateEnter = (node, done) => {
     let ok = false;
 
@@ -78,16 +82,16 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
 
     velocity(node, 'slideDown', {
       duration: 100,
-      complete,
+      complete
     });
     return {
       stop() {
         velocity(node, 'finish');
         // velocity complete is async
         complete();
-      },
+      }
     };
-  }
+  };
 
   public animateLeave = (node, done) => {
     let ok = false;
@@ -103,121 +107,133 @@ export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
 
     velocity(node, 'slideUp', {
       duration: 100,
-      complete,
+      complete
     });
     return {
       stop() {
         velocity(node, 'finish');
         // velocity complete is async
         complete();
-      },
+      }
     };
-  }
+  };
+
   public render() {
     const { children, className, title, builtinPlacements, popupOffset, disabled, subtitle, isRoot } = this.props;
     const { popupVisible, inlineVisible } = this.state;
-    let subMenuClasses ;
+    let subMenuClasses;
     const popupClassName = cx('u-submenu-pop');
     // const getPopupContainer = triggerNode => triggerNode.parentNode;
     const popupAlign = popupOffset ? { offset: popupOffset } : {};
 
-    return (
-      <Consumer>
-        {valueProp => {
-          const { mode, isTick, selected } = valueProp;
-          const popupPlacement = popupPlacementMap[mode!];
-          let subMenuCpt;
-          const subChildren = <MenuWrap>{React.Children.map(children, (child: ReactElement<any>) => {
-            return React.cloneElement(child, {mode: 'vertical'});
-          })}
-           </MenuWrap>;
-          switch (mode) {
-            case 'vertical':
-              subMenuClasses = cx('u-menu-item', className, {
-                'pdl-change': isTick
-              })
-              subMenuCpt = (
-                <Trigger
-                  popupClassName={popupClassName}
-                  action={disabled ? [] : ['hover']}
-                  popup={subChildren}
-                  // getPopupContainer={getPopupContainer}
-                  popupPlacement={popupPlacement}
-                  popupAlign={popupAlign}
-                  builtinPlacements={Object.assign({}, placements, builtinPlacements)}
-                  destroyPopupOnHide={true}
-                  stretch="width"
-                  onPopupVisibleChange={this.popupVisibleChange}
-                >
-                  <div className={subMenuClasses}>
-                    {title}
-                    <Icon name="right" style={{ position: 'absolute', right: 10, top: 9 }} />
-                    {subtitle && <div className={cx("subtitle","subtitle-witah-arrow")}>{subtitle}</div>}
-                  </div>
-                </Trigger>
-              );
-              break;
-            case 'horizontal':  
-              if (isRoot) {
-                subMenuClasses = cx('u-menu-item-horizontal', className, {
-                  'horztl-selected': popupVisible
-                })
-              } else {
-                subMenuClasses = cx('u-menu-item', className)
-              }
-              
-              subMenuCpt = (
-                <Trigger
-                  popupClassName={popupClassName}
-                  action={disabled ? [] : ['hover']}
-                  popup={subChildren}
-                  // getPopupContainer={getPopupContainer}
-                  popupPlacement={isRoot ? popupPlacement : popupPlacementMap.vertical}
-                  popupAlign={popupAlign}
-                  builtinPlacements={Object.assign({}, placements, builtinPlacements)}
-                  destroyPopupOnHide={true}
-                  stretch={"width"}
-                  zIndex={10}
-                  onPopupVisibleChange={this.popupVisibleChange}
-                >
-                  <div className={subMenuClasses}>
-                    {title}
-                    <Icon name="right" style={{ position: 'absolute', right: isRoot ? 2 : 10, top: isRoot ? 20 : 9 }} />
-                  </div>
-                </Trigger>
-              );
-              break;
-            case 'inline': 
-              subMenuClasses = cx('u-menu-item-inline', className, {
-                'selected': (selected as string) === title && !isTick
-              })
-              const anim = {
-                enter: this.animateEnter,
-                leave: this.animateLeave,
+    return (<Consumer>
+      {valueProp => {
+        const { mode, isTick, selected } = valueProp;
+        const popupPlacement = popupPlacementMap[mode!];
+        let subMenuCpt;
+        const subChildren = <MenuWrap>{React.Children.map(children, (child: ReactElement<any>) => {
+          return React.cloneElement(child, { mode: 'vertical' });
+        })}
+        </MenuWrap>;
+        switch (mode) {
+          case 'vertical':
+            subMenuClasses = cx('u-menu-item', className, {
+              'pdl-change': isTick
+            });
+            subMenuCpt = (<Trigger
+              popupClassName={popupClassName}
+              action={disabled ? [] : ['hover']}
+              popup={subChildren}
+              // getPopupContainer={getPopupContainer}
+              popupPlacement={popupPlacement}
+              popupAlign={popupAlign}
+              builtinPlacements={Object.assign({}, placements, builtinPlacements)}
+              destroyPopupOnHide={true}
+              stretch="width"
+              onPopupVisibleChange={this.popupVisibleChange}
+            >
+              <div className={subMenuClasses}>
+                {title}
+                <Icon name="right" style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: 9
+                }}/>
+                {subtitle && <div className={cx('subtitle', 'subtitle-witah-arrow')}>{subtitle}</div>}
+              </div>
+            </Trigger>);
+            break;
+          case 'horizontal':
+            if (isRoot) {
+              subMenuClasses = cx('u-menu-item-horizontal', className, {
+                'horztl-selected': popupVisible
+              });
+            } else {
+              subMenuClasses = cx('u-menu-item', className);
+            }
+
+            subMenuCpt = (<Trigger
+              popupClassName={popupClassName}
+              action={disabled ? [] : ['hover']}
+              popup={subChildren}
+              // getPopupContainer={getPopupContainer}
+              popupPlacement={isRoot ? popupPlacement : popupPlacementMap.vertical}
+              popupAlign={popupAlign}
+              builtinPlacements={Object.assign({}, placements, builtinPlacements)}
+              destroyPopupOnHide={true}
+              stretch={'width'}
+              zIndex={10}
+              onPopupVisibleChange={this.popupVisibleChange}
+            >
+              <div className={subMenuClasses}>
+                {title}
+                <Icon name="right" style={{
+                  position: 'absolute',
+                  right: isRoot ? 2 : 10,
+                  top: isRoot ? 20 : 9
+                }}/>
+              </div>
+            </Trigger>);
+            break;
+          case 'inline':
+            subMenuClasses = cx('u-menu-item-inline', className, {
+              'selected': (selected as string) === title && !isTick
+            });
+            const anim = {
+              enter: this.animateEnter,
+              leave: this.animateLeave
+            };
+            const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
+              const childStyle = {
+                display: inlineVisible ? 'block' : 'none'
               };
-              const inlineChildren = React.Children.map(children, (child: ReactElement<any>) => {
-                const childStyle = {
-                  display: inlineVisible ? 'block' : 'none'
-                }
-                return React.cloneElement(child, {visible: inlineVisible, style: childStyle});
-              })
-              
-              subMenuCpt = (
-                <React.Fragment>
-                  <div className={subMenuClasses} style={{paddingLeft: 28}} onClick={this.inlVisiChange}>
-                   {title}
-                   {inlineVisible && <Icon name="chevron-down" style={{ position: 'absolute', right: 10, top:  9 }} />}
-                   {!inlineVisible && <Icon name="right" style={{ position: 'absolute', right: 10, top:  9 }} />}
-                 </div>
-                 <Animate showProp='visible' animation={anim}>
-                   {inlineChildren}
-                 </Animate>
-                </React.Fragment>
-              )
-          }
-          return subMenuCpt;
-        }}
-      </Consumer>
-    );
+              return React.cloneElement(child, {
+                visible: inlineVisible,
+                style: childStyle
+              });
+            });
+
+            subMenuCpt = (<React.Fragment>
+              <div className={subMenuClasses} style={{ paddingLeft: 28 }} onClick={this.inlVisiChange}>
+                {title}
+                {inlineVisible && <Icon name="chevron-down" style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: 9
+                }}/>}
+                {!inlineVisible && <Icon name="right" style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: 9
+                }}/>}
+              </div>
+              <Animate showProp='visible' animation={anim}>
+                {inlineChildren}
+              </Animate>
+            </React.Fragment>);
+        }
+        return subMenuCpt;
+      }}
+    </Consumer>);
   }
 }

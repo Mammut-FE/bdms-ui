@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import styles from './menu.scss';
 import { Consumer } from './menuContext';
-import Icon from '../icon';
-import Checkbox from '../checkbox';
+import { Icon } from '../icon';
+import { Checkbox } from '../checkbox';
 
 interface IMenuItemProps {
   className?: string;
@@ -22,13 +22,14 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
   public static defaultProps: Partial<IMenuItemProps> = {
     visible: true
   };
+
   constructor(props: IMenuItemProps) {
     super(props);
   }
+
   public render() {
     const { className, style, children, value, icon, disabled, subtitle, ...otherProps } = this.props;
-    return (
-      <Consumer>
+    return (<Consumer>
         {valueProp => {
           const { selected, clickItem, isTick, mode, hasCheckBox, visible } = Object.assign({}, valueProp, otherProps);
           let menuItemClasses;
@@ -61,8 +62,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
           }
 
           if (!hasCheckBox) {
-            menuItem = (
-              <div
+            menuItem = (<div
                 className={menuItemClasses}
                 style={style}
                 onClick={() => {
@@ -72,20 +72,16 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 }}
                 {...otherProps}
               >
-                {isTick &&
-                  typeof selected === 'string' &&
-                  (selected as string) === value && <Icon className={cx('tick-icon')} name="ture" />}
-                {isTick &&
-                  selected instanceof Array &&
-                  (selected as string[]).indexOf(value!) !== -1 && <Icon className={cx('tick-icon')} name="ture" />}
-                {icon && <Icon name={icon} />}
+                {isTick && typeof selected === 'string' && (selected as string) === value &&
+                <Icon className={cx('tick-icon')} name="ture"/>}
+                {isTick && selected instanceof Array && (selected as string[]).indexOf(value!) !== -1 &&
+                <Icon className={cx('tick-icon')} name="ture"/>}
+                {icon && <Icon name={icon}/>}
                 {children}
                 {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
-              </div>
-            );
+              </div>);
           } else {
-            menuItem = (
-              <div className={menuItemClasses} style={style} {...otherProps}>
+            menuItem = (<div className={menuItemClasses} style={style} {...otherProps}>
                 <Checkbox
                   value={value!}
                   disabled={disabled}
@@ -98,12 +94,10 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                   {children}
                 </Checkbox>
                 {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
-              </div>
-            );
+              </div>);
           }
           return visible && menuItem;
         }}
-      </Consumer>
-    );
+      </Consumer>);
   }
 }

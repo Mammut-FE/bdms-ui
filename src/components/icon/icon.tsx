@@ -14,7 +14,7 @@ interface IIconProps {
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
-export default class Icon extends Component<IIconProps, any> {
+export class Icon extends Component<IIconProps, any> {
   public render() {
     const { name, className, onClick, style } = this.props;
     const iconClass = classNames('icon', className, `icon-${name}`);

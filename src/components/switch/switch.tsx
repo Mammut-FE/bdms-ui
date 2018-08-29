@@ -15,7 +15,7 @@ interface ISwitchState {
   readonly open: boolean;
 }
 
-export default class Switch extends Component<ISwitchProps, ISwitchState> {
+export class Switch extends Component<ISwitchProps, ISwitchState> {
   public static defaultProps: Partial<ISwitchProps> = {
     disabled: false,
     open: false
@@ -56,10 +56,8 @@ export default class Switch extends Component<ISwitchProps, ISwitchState> {
       open
     });
 
-    return (
-      <span className={classes} onClick={this.onChange}>
-        <span className={cx('switch-button')} />
-      </span>
-    );
+    return (<span className={classes} onClick={this.onChange}>
+        <span className={cx('switch-button')}/>
+      </span>);
   }
 }

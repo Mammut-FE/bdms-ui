@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React, { Component, MouseEvent } from 'react';
 
-import Icon from '../icon/icon';
+import { Icon } from '../icon/icon';
 import styles from './tag.scss';
 
 interface ITagState {
@@ -17,7 +17,7 @@ interface ITagProps {
 
 const cx = classNames.bind(styles);
 
-export default class Tag extends Component<ITagProps, ITagState> {
+export class Tag extends Component<ITagProps, ITagState> {
   public static defaultProps = {
     closable: true,
     size: 'small'
@@ -39,9 +39,11 @@ export default class Tag extends Component<ITagProps, ITagState> {
     }
     e.stopPropagation();
   }
+
   public componentWillUnmount() {
     console.log('tag component will unmount');
   }
+
   public render() {
     const { children, size, closable, iconName } = this.props;
     const { visible } = this.state;
@@ -57,13 +59,11 @@ export default class Tag extends Component<ITagProps, ITagState> {
     };
 
     if (visible) {
-      return (
-        <div className={tagClass}>
-          {iconName && <Icon name={iconName} style={iconStyle} />}
-          {children}
-          {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
-        </div>
-      );
+      return (<div className={tagClass}>
+        {iconName && <Icon name={iconName} style={iconStyle}/>}
+        {children}
+        {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle}/>}
+      </div>);
     } else {
       return null;
     }

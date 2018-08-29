@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Layout, { Header, Footer, Content, Sider } from '../../src/components/layout/index';
+import { Layout, Header, Footer, Content, Sider } from '../../src';
 
 class Container extends Component<any, any> {
   constructor(props) {
@@ -8,18 +8,20 @@ class Container extends Component<any, any> {
   }
 
   public render() {
-    return (
-      <Layout>
-        <Header style={{ backgroundColor: '#09f', color: '#fff', height: '80px' }}>头部</Header>
-        <Content>
-          <Layout hasSider={true}>
-            <Sider draggable={false}>侧边</Sider>
-            <Content>内容</Content>
-          </Layout>
-        </Content>
-        <Footer>底部</Footer>
-      </Layout>
-    );
+    return (<Layout>
+      <Header style={{
+        backgroundColor: '#09f',
+        color: '#fff',
+        height: '80px'
+      }}>头部</Header>
+      <Content>
+        <Layout hasSider={true}>
+          <Sider draggable={false}>侧边</Sider>
+          <Content>内容</Content>
+        </Layout>
+      </Content>
+      <Footer>底部</Footer>
+    </Layout>);
   }
 }
 

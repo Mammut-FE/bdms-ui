@@ -14,8 +14,4 @@
  * - `.container` width: $breakpoint - 16px
  * - `.col-*` padding: 8px
  */
-import { Col as Cols, Grid as Grids, Row as Rows } from "react-flexbox-grid";
-
-export const Grid = Grids;
-export const Row = Rows;
-export const Col = Cols;
+export { Col, Row, Grid } from 'react-flexbox-grid';
