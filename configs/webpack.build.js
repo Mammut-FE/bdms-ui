@@ -81,7 +81,15 @@ module.exports = {
     new ExtractTextPlugin('style.css')
   ],
   externals: {
+    'lodash': 'umd lodash',
+    'move-js': 'umd move-js',
+    'promise': 'umd promise',
+    'rc-animate': 'umd rc-animate',
+    'rc-trigger': 'umd rc-trigger',
     'react': 'umd react',
-    'react-dom': 'umd react-dom'
-  }
+    'react-dom': 'umd react-dom',
+    'velocity-animate': 'umd velocity-animate',
+  },
+  devtool: 'source-map'
 };
+
