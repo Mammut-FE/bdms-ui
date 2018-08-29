@@ -1,5 +1,5 @@
 {
-  "name": "bdms-ui",
+  "name": "bdmsui",
   "version": "0.1.0",
   "files": [
     "lib",
@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
     "build": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
-    "test": "exit 1;"
+    "test": "exit 1;",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@types/classnames": "^2.2.4",
