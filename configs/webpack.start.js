@@ -29,7 +29,12 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
+            },
             {
               loader: 'sass-loader',
               options: {
@@ -75,6 +80,5 @@ module.exports = {
       template: path.join(paths.appRoot, 'index.html')
     }),
     new ExtractTextPlugin('style.css')
-  ],
-  devServer: {}
+  ]
 };
