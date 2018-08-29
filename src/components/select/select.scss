@@ -1,89 +1,33 @@
-@import "../../style/color.scss";
-@import "../../style/func.scss";
-@import "../../style/base.scss";
-
 .u-select {
-    position: relative;
-    cursor: pointer;
-    max-width: 100%;
-    input {
-        cursor: pointer;
-    }
-    .u-menu {
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        left: 0;
-        animation: slideShow .5s;
-    }
-    .multi-selected {
-        font-size: 14px;
-        min-height: 32px;
-        height: auto;
-        line-height: 30px;
-        border-radius: 2px;
-        color: #666;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        padding: 0 12px;
-        vertical-align: middle;
-        position: relative;
-        text-align: left;
-        @at-root #{&}-xsmall {
-            width: $xsmall-width;
-            height: 28px;
-        }
-    
-        @at-root #{&}-small {
-            width: $small-width;
-        }
-    
-        @at-root #{&}-normal {
-            width: $normal-width;
-        }
-    
-        @at-root #{&}-large {
-            width: $large-width;
-        }
-        .icon-chevron-down, .icon-chevron-up {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-        }
-    }
+  width: 160px;
+  position: relative;
 }
-
-@keyframes slideShow {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.input {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  outline: none;
+  display: inline-block;
+  padding-left: 12px;
+  border: 1px solid #ccc;
+  color: #333;
+  background-color: #fff;
+  border-radius: 2px;
+  font-size: 14px;
+  text-transform: inherit;
+  transition: ease-in-out 0.15s;
+  overflow: hidden;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
-@-webkit-keyframes slideShow {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.vareticon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
 }
-@-moz-keyframes slideShow {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-o-keyframes slideShow {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.selectmenu {
+  position: absolute;
+  z-index: 100;
 }

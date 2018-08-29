@@ -91,8 +91,14 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
+input {
+  box-sizing: border-box;
+}
+
 /* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -107,28 +113,36 @@ nav,
 section {
   display: block;
 }
+
 /* HTML5 hidden-attribute fix for newer browsers */
+
 *[hidden] {
   display: none;
 }
+
 body {
   line-height: 1;
+  box-sizing: border-box;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;

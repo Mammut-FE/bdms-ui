@@ -3,10 +3,37 @@
   flex-direction: column;
   flex: auto;
   height: 100%;
+  &.layout-with-sider {
+    flex-direction: row;
+  }
 }
 
 .u-header,
 .u-footer,
 .u-sider {
   flex: 0 0 auto;
+}
+
+.u-sider {
+  position: relative;
+  border-right: 1px solid #eaeaea;
+  .drag-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    cursor: ew-resize;
+  }
+}
+
+.u-footer {
+  height: 56px;
+  line-height: 56px;
+}
+
+.u-content {
+  flex: auto;
+  height: 100%;
+  overflow: auto;
 }

@@ -1,7 +1,7 @@
-@import "color.scss";
+@import 'color.scss';
 .u-label {
   cursor: pointer;
-  &+.u-label {
+  & + .u-label {
     margin-left: 15px;
   }
   position: relative;
@@ -35,11 +35,17 @@
       }
     }
     &.indeterminate {
+      &:hover {
+        .u-checkbox-inner {
+          background: $base-color;
+          border-color: $base-color;
+        }
+      }
       .u-checkbox-inner {
         background: $base-color;
         border-color: $base-color;
         &:after {
-          content: "";
+          content: '';
           width: 8px;
           height: 0;
           border: 2px solid #fff;
@@ -82,7 +88,7 @@
           }
         }
       }
-      &+.u-checkbox-text {
+      & + .u-checkbox-text {
         color: #ccc;
         cursor: not-allowed;
       }
@@ -101,7 +107,7 @@
           border-color: #cecece;
         }
       }
-      &+.u-checkbox-text {
+      & + .u-checkbox-text {
         color: #ccc;
         cursor: not-allowed;
       }
@@ -122,9 +128,10 @@
       background: #fff;
       z-index: 1;
       cursor: pointer;
-      transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46), background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+      transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+        background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
       &:after {
-        content: "";
+        content: '';
         width: 4px;
         height: 8px;
         border: 2px solid #fff;
@@ -147,5 +154,23 @@
       top: 0;
       z-index: -1;
     }
+  }
+}
+
+.u-label-box {
+  display: inline-block;
+  width: calc(100% - 36px);
+  margin-left: 0;
+  height: 32px;
+  line-height: 32px;
+  text-align: left;
+  padding-left: 36px;
+  color: #666;
+  font-size: 14px;
+  & + .u-label {
+    margin-left: 0;
+  }
+  .u-checkbox-input {
+    left: 12px;
   }
 }

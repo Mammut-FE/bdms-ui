@@ -1,14 +1,15 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": [
-      "config/**/*.js",
-      "node_modules/**/*.ts",
-      "src/**/*.js",
-      "src/lesson/**"
-    ]
+    "exclude": ["node_modules/**/*.ts","lib/**/*.ts"]
   },
   "rules": {
-    "no-console": false
+    "no-console": false,
+    "ordered-imports": false,
+    "no-empty": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "jsdoc-format": false
   }
 }
