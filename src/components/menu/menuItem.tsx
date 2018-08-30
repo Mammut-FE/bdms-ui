@@ -31,7 +31,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
     const { className, style, children, value, icon, disabled, subtitle, ...otherProps } = this.props;
     return (<Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick, mode, hasCheckBox, visible } = Object.assign({}, valueProp, otherProps);
+          const { selected, clickItem, isTick, mode, hasCheckBox, visible, ...others } = Object.assign({}, valueProp, otherProps);
           let menuItemClasses;
           let menuItem;
           if (!hasCheckBox) {
@@ -70,7 +70,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                     clickItem(value);
                   }
                 }}
-                {...otherProps}
+                {...others}
               >
                 {isTick && typeof selected === 'string' && (selected as string) === value &&
                 <Icon className={cx('tick-icon')} name="ture"/>}
@@ -81,7 +81,7 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
               </div>);
           } else {
-            menuItem = (<div className={menuItemClasses} style={style} {...otherProps}>
+            menuItem = (<div className={menuItemClasses} style={style} {...others}>
                 <Checkbox
                   value={value!}
                   disabled={disabled}
