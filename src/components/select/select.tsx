@@ -40,6 +40,7 @@ interface ISelectState {
   showMenu: boolean;
   selected: string[];
   searchKey: string;
+  isFocused: boolean;
 }
 
 /**
@@ -90,7 +91,8 @@ export class Select extends Component<ISelectProps, ISelectState> {
     value: this.props.title,
     showMenu: false,
     selected: [],
-    searchKey: ''
+    searchKey: '',
+    isFocused: false
   };
   public selectDom: React.RefObject<any> = React.createRef<any>();
 
@@ -113,12 +115,13 @@ export class Select extends Component<ISelectProps, ISelectState> {
   public clickHandler(e) {
     const selectDom = this.selectDom.current;
     const {onBlur} = this.props;
-    const {selected} = this.state;
+    const {selected, isFocused} = this.state;
     if (!selectDom.contains(e.target)) {
       this.setState({
-        showMenu: false
+        showMenu: false,
+        isFocused: false
       });
-      if (onBlur) {
+      if (onBlur && isFocused) {
         onBlur(selected);
       }
     }
@@ -159,8 +162,16 @@ export class Select extends Component<ISelectProps, ISelectState> {
     this.setState({
       showMenu: !showMenu
     }, () => {
+      if (this.state.showMenu) {
+        this.setState({
+          isFocused: true
+        })
+      }
       if (!this.state.showMenu && onBlur) {
         onBlur(selected);
+        this.setState({
+          isFocused: false
+        })
       }
     });
   }
