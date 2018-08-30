@@ -31,7 +31,8 @@ interface ISelectProps {
   style?: React.CSSProperties;
   source: SourceItem[]; // select的数据源
   title: string; //  selectAll的文案
-  onSelect: (selected: string[], current: string) => void;
+  onSelect?: (selected: string[], current) => void;
+  onBlur?:  (selected: string[]) => void
 }
 
 interface ISelectState {
@@ -111,15 +112,20 @@ export class Select extends Component<ISelectProps, ISelectState> {
 
   public clickHandler(e) {
     const selectDom = this.selectDom.current;
+    const {onBlur} = this.props;
+    const {selected} = this.state;
     if (!selectDom.contains(e.target)) {
       this.setState({
         showMenu: false
       });
+      if (onBlur) {
+        onBlur(selected);
+      }
     }
   }
   
   public selectItem(selected, current) {
-    const { title, onSelect } = this.props;
+    const { title, onSelect} = this.props;
     if (current === "ALL") {
       this.setState({
         selected: [],
@@ -132,7 +138,11 @@ export class Select extends Component<ISelectProps, ISelectState> {
       });
     }
     if (onSelect) {
-      onSelect(selected, current)
+      if (current === "ALL") {
+        onSelect([], current)
+      } else {
+        onSelect(selected, current)
+      }
     }
   }
 
@@ -144,9 +154,14 @@ export class Select extends Component<ISelectProps, ISelectState> {
   }
 
   public changeDropDown() {
-    const { showMenu } = this.state;
+    const { showMenu,selected } = this.state;
+    const {onBlur} = this.props;
     this.setState({
       showMenu: !showMenu
+    }, () => {
+      if (!this.state.showMenu && onBlur) {
+        onBlur(selected);
+      }
     });
   }
 
