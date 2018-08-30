@@ -31,6 +31,7 @@ interface ISelectProps {
   style?: React.CSSProperties;
   source: SourceItem[]; // select的数据源
   title: string; //  selectAll的文案
+  onSelect: (selected: string[], current: string) => void;
 }
 
 interface ISelectState {
@@ -118,7 +119,7 @@ export class Select extends Component<ISelectProps, ISelectState> {
   }
   
   public selectItem(selected, current) {
-    const { title } = this.props;
+    const { title, onSelect } = this.props;
     if (current === "ALL") {
       this.setState({
         selected: [],
@@ -129,6 +130,9 @@ export class Select extends Component<ISelectProps, ISelectState> {
         selected,
         value: selected.length ? title.split('全部')[1] + '（已选' + selected.length + '项）' : title
       });
+    }
+    if (onSelect) {
+      onSelect(selected, current)
     }
   }
 
