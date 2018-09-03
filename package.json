@@ -31,9 +31,7 @@
     "velocity-animate": "^1.5.1"
   },
   "devDependencies": {
-    "@types/jest": "^22.2.3",
     "@types/node": "^10.1.4",
-    "autoprefixer": "7.1.6",
     "css-loader": "0.28.7",
     "cz-conventional-changelog": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
@@ -41,7 +39,6 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
-    "source-map-loader": "^0.2.1",
     "style-loader": "^0.23.0",
     "ts-loader": "^4.5.0",
     "tslint": "^5.7.0",
@@ -51,7 +48,7 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.7"
   },
   "config": {
     "commitizen": {
