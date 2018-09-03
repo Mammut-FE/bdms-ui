@@ -1,6 +1,6 @@
 {
-  "name": "bdmsui",
-  "version": "0.1.5",
+  "name": "@mammut-fe/bdms-ui",
+  "version": "0.1.6",
   "files": [
     "lib",
     "types"

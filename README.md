@@ -1,14 +1,15 @@
 # bdms-ui
 
 ## Install
-`npm install bdmsui --save`
 
-## Use 
+`npm install @mammut-fe/bdms-ui --save`
+
+## Use
 
 1. import `style.css`
 
-2. import component from `bdmsui`
+2. import component from `@mammut-fe/bdms-ui`
 
-  ```typescript
-  import { Button } from 'bamsui'
-  ```
+```typescript
+import { Button } from '@mammut-fe/bdms-ui';
+```
