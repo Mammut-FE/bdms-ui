@@ -31,6 +31,8 @@ interface ISelectProps {
   style?: React.CSSProperties;
   source: SourceItem[]; // select的数据源
   title: string; //  selectAll的文案
+  onSelect?: (selected: string[], current) => void;
+  onBlur?:  (selected: string[]) => void
 }
 
 interface ISelectState {
@@ -38,6 +40,7 @@ interface ISelectState {
   showMenu: boolean;
   selected: string[];
   searchKey: string;
+  isFocused: boolean;
 }
 
 /**
@@ -88,7 +91,8 @@ export class Select extends Component<ISelectProps, ISelectState> {
     value: this.props.title,
     showMenu: false,
     selected: [],
-    searchKey: ''
+    searchKey: '',
+    isFocused: false
   };
   public selectDom: React.RefObject<any> = React.createRef<any>();
 
@@ -110,15 +114,21 @@ export class Select extends Component<ISelectProps, ISelectState> {
 
   public clickHandler(e) {
     const selectDom = this.selectDom.current;
+    const {onBlur} = this.props;
+    const {selected, isFocused} = this.state;
     if (!selectDom.contains(e.target)) {
       this.setState({
-        showMenu: false
+        showMenu: false,
+        isFocused: false
       });
+      if (onBlur && isFocused) {
+        onBlur(selected);
+      }
     }
   }
   
   public selectItem(selected, current) {
-    const { title } = this.props;
+    const { title, onSelect} = this.props;
     if (current === "ALL") {
       this.setState({
         selected: [],
@@ -130,6 +140,13 @@ export class Select extends Component<ISelectProps, ISelectState> {
         value: selected.length ? title.split('全部')[1] + '（已选' + selected.length + '项）' : title
       });
     }
+    if (onSelect) {
+      if (current === "ALL") {
+        onSelect([], current)
+      } else {
+        onSelect(selected, current)
+      }
+    }
   }
 
   public search(e) {
@@ -140,9 +157,22 @@ export class Select extends Component<ISelectProps, ISelectState> {
   }
 
   public changeDropDown() {
-    const { showMenu } = this.state;
+    const { showMenu,selected } = this.state;
+    const {onBlur} = this.props;
     this.setState({
       showMenu: !showMenu
+    }, () => {
+      if (this.state.showMenu) {
+        this.setState({
+          isFocused: true
+        })
+      }
+      if (!this.state.showMenu && onBlur) {
+        onBlur(selected);
+        this.setState({
+          isFocused: false
+        })
+      }
     });
   }
 

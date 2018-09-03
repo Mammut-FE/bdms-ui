@@ -3,7 +3,7 @@
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
  * @Last Modified time: 2018-06-19 16:18:40
- * @Last Modified time: 2018-07-02 15:30:18
+ * @Last Modified time: 2018-08-30 14:18:24
  */
 import React, { Component } from 'react';
 
@@ -162,6 +162,10 @@ export default class App extends Component<any, any> {
   }
 
   public selectItemWithCheck(selected) {
+    console.log(selected);
+  }
+
+  public selectHandle(selected) {
     console.log(selected);
   }
 
@@ -470,7 +474,7 @@ export default class App extends Component<any, any> {
         <Row>
           <Col xs={3}>
             <div className={cx('item')}>
-              <Select source={source} title="全部动作">
+              <Select source={source} title="全部动作" onBlur={this.selectHandle}>
                 恩
               </Select>
             </div>
