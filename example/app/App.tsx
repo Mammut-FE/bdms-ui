@@ -3,7 +3,7 @@
  * @Date: 2018-06-06 13:42:37 
  * @Last Modified by: jessica(gujing_hy@163.com)
  * @Last Modified time: 2018-06-19 16:18:40
- * @Last Modified time: 2018-08-30 14:18:24
+ * @Last Modified time: 2018-09-04 11:32:44
  */
 import React, { Component } from 'react';
 
@@ -15,6 +15,7 @@ import { Button, Checkbox, Col, Grid, Row, Icon, Layout, Switch, Tag, Menu, Sele
 const cx = classNames.bind(styles);
 
 const icons = [
+  'details',
   'file-mini',
   'ture',
   'order-down',
