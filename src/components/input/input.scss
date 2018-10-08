@@ -1,0 +1,19 @@
+.u-input {
+  line-height: 32px;
+  border: 1px solid #CCCCCC;
+  font-size: 14px;
+  padding: 0 8px;
+  outline: 0;
+  border-radius: 2px;
+  background: white;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #0099FF;
+  }
+
+  &:focus {
+    border-color:#0099FF;
+    box-shadow: 0 0 2px 2px rgba(#0099FF, 0.2);
+  }
+}

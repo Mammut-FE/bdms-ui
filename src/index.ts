@@ -7,5 +7,6 @@ export { Switch } from './components/switch';
 export { Tag } from './components/tag';
 export { Menu } from './components/menu';
 export { Select } from './components/select';
+export { Input } from './components/input';
 
 import './index.scss';
