@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 // import { Cartesian, Detail, Example, Library } from "@compositor/kit";
 import classNames from 'classnames/bind';
 import styles from './App.scss';
-import { Button, Checkbox, Col, Grid, Row, Icon, Layout, Switch, Tag, Menu, Select } from '../../src';
+import { Button, Checkbox, Col, Grid, Row, Icon, Layout, Switch, Tag, Menu, Select, Input } from '../../src';
 
 const cx = classNames.bind(styles);
 
@@ -485,6 +485,11 @@ export default class App extends Component<any, any> {
           <Col xs={3}>
             <div style={{ height: 500 }}/>
           </Col>
+        </Row>
+        <Row>
+          <Input/>
+          <Input placeholder="Input Here"/>
+          <Input value="固定值"/>
         </Row>
       </Grid>
     </Layout>);
