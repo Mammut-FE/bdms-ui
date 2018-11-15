@@ -11,6 +11,7 @@
     "object-literal-sort-keys": false,
     "no-shadowed-variable": false,
     "jsdoc-format": false,
-    "interface-name": false
+    "interface-name": false,
+    "max-classes-per-file": false
   }
 }

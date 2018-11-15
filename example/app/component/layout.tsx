@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import { Samples } from "../demo";
+import * as React from "react";
+import { Layout, Header, Content, Sider, Footer } from "../../../src";
 
-import { Layout, Header, Footer, Content, Sider } from '../../src';
-
-class Container extends Component<any, any> {
-  constructor(props) {
-    super(props);
-  }
-
-  public render() {
-    return (<Layout>
+const samples: Samples = [{
+  title: '基础布局',
+  description: 'xxx',
+  component: () => (
+    <Layout>
       <Header style={{
         backgroundColor: '#09f',
         color: '#fff',
@@ -21,8 +19,8 @@ class Container extends Component<any, any> {
         </Layout>
       </Content>
       <Footer>底部</Footer>
-    </Layout>);
-  }
-}
+    </Layout>
+  )
+}]
 
-export default Container;
+export default samples

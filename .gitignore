@@ -28,3 +28,4 @@ package-lock.json
 .idea
 .vscode
 
+/example/app/Playground.tsx

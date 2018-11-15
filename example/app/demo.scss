@@ -1,0 +1,42 @@
+.demo-page {
+  padding: 16px;
+}
+
+.demo-card {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  position: relative;
+  margin-top: 32px;
+}
+
+.demo-area {
+  padding: 16px;
+  border-bottom: 1px solid lightgray;
+  box-shadow: inset 0 0 8px 4px rgba(gray, 0.2);
+}
+
+.demo-title {
+  font-size: 14px;
+  position: absolute;
+  top: -0.5em;
+  display: inline-block;
+  background: white;
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.demo-description {
+  padding: 8px 16px;
+  font-size: 12px;
+  opacity: 0.75;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.demo-row {
+  padding: 4px 0;
+}
