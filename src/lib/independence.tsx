@@ -17,7 +17,7 @@ export interface PropertyOptions {
 export type PropertyOption = string | {
   defaultName?: string
   onChangeName?: string
-  defaultValue: any
+  defaultValue?: any
 }
 
 export interface IndependenceOption {
@@ -71,9 +71,8 @@ export function Independence(propsMapper: PropertyOptions, {
 
         const state = {}
         for (const prop of properties) {
-          state[prop.name] = props[prop.defaultName] || prop.defaultValue || null
+          state[prop.name] = props[prop.defaultName] || prop.defaultValue
         }
-        console.log(state, properties)
 
         this.state = state
       }
