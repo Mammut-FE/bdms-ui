@@ -36,7 +36,7 @@ export default class App extends Component<any> {
       </Sider>
       <Content classNames={cx('app-content')}>
         <Switch>
-          {router.map(route => (<Route {...route}/>))}
+          {router.map(route => (<Route key={route.path} {...route}/>))}
           <Redirect to={router[0].path}/>
         </Switch>
       </Content>

@@ -1,6 +1,6 @@
-import { Samples } from "../demo";
 import * as React from "react";
 import { Select } from "../../../src";
+import { Samples } from "../Demo";
 
 const source = [
   {

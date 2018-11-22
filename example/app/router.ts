@@ -1,5 +1,5 @@
-import demos from './component'
-import { buildDemo } from './demo';
+import demos from './component';
+import { buildDemo } from './Demo';
 import PlaygroundChecker from './PlaygroundChecker';
 
 const routers = demos.map(demo => ({
