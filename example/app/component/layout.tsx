@@ -1,4 +1,4 @@
-import { Samples } from "../demo";
+import { Samples } from "../Demo";
 import * as React from "react";
 import { Layout, Header, Content, Sider, Footer } from "../../../src";
 

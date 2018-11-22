@@ -1,4 +1,4 @@
-import { Samples } from "../demo";
+import { Samples } from "../Demo";
 import { Icon } from "../../../src";
 import React from "react";
 

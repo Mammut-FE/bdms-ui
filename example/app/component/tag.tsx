@@ -1,4 +1,4 @@
-import { Samples } from "../demo";
+import { Samples } from "../Demo";
 import * as React from "react";
 import { Tag } from "../../../src";
 

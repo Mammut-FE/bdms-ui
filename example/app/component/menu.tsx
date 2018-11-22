@@ -1,4 +1,4 @@
-import { Samples } from "../demo";
+import { Samples } from "../Demo";
 import React from "react";
 import { Menu, Row, Col } from "../../../src";
 

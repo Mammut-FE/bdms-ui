@@ -1,4 +1,4 @@
-import { Samples } from "../demo";
+import { Samples } from "../Demo";
 import { Switch } from "../../../src";
 import * as React from "react";
 import DemoRow from "../DemoRow";

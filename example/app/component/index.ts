@@ -1,4 +1,4 @@
-import { Demo } from "../demo";
+import { Demo } from "../Demo";
 
 import buttonSamples from './button'
 import switchSamples from './switch'
