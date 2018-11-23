@@ -1,0 +1,115 @@
+$cube-size: 24px;
+$highlight-color: red;//#f2f9ff;
+$active-color: #0987E5;
+$disabled-color: #999;
+$hover-color: #d0e8fe;
+
+@mixin concatGap {
+  content: "";
+  position: absolute;
+  width: 6px; // 比 margin 宽一点去覆盖圆角
+  height: 100%;
+  background: $highlight-color;
+}
+
+@mixin concatBefore {
+  @include concatGap();
+  left: -4px;
+}
+
+@mixin concatAfter {
+  @include concatGap();
+  right: -4px;
+}
+
+.ma-calendar {
+  width: ($cube-size + 8px) * 7;
+  font-size: 14px;
+}
+
+.ma-calendar-cube {
+  display: inline-block;
+  width: $cube-size;
+  height: $cube-size;
+  line-height: $cube-size;
+  text-align: center;
+  margin: 4px;
+  border-radius: 2px;
+  &:hover {
+    background: $hover-color;
+  }
+}
+
+.ma-calendar-body__header {
+  color: $disabled-color;
+}
+
+.ma-calendar-days {
+
+}
+
+.ma-calendar-header {
+  display: flex;
+  flex-direction: row;
+  width: ($cube-size + 8px) * 7;
+  font-size: 14px;
+  line-height: 48px;
+  padding: 0 4px;
+
+  &__icon {
+    flex: none;
+    cursor: pointer;
+    line-height: 48px;
+  }
+
+  &__date {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.ma-calendar-date {
+  cursor: pointer;
+  position: relative;
+
+  &_highlight {
+    background: $highlight-color;
+    &:hover {
+      background: $highlight-color;
+    }
+  }
+
+  @mixin active {
+    background: $active-color;
+    color: white;
+    &:hover {
+      background: $active-color;
+    }
+  }
+
+  &_disabled {
+    color: $disabled-color;
+  }
+
+  &__ranger {
+    > .ma-calendar-date {
+      background: $highlight-color;
+
+      &:not(:first-child)::before {
+        @include concatBefore();
+      }
+
+      &:not(:last-child)::after {
+        @include concatAfter();
+      }
+    }
+
+    &_active_start > .ma-calendar-date:first-child {
+      @include active();
+    }
+
+    &_active_end > .ma-calendar-date:last-child {
+      @include active();
+    }
+  }
+}
