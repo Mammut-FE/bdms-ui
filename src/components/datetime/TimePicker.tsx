@@ -6,6 +6,7 @@ import { Omit } from "../../lib/type";
 import { Independence } from "../../lib/independence";
 import DropdownTrigger from "../helpers/DropdownTrigger";
 import cx from 'classnames'
+import { Icon } from "../icon";
 
 export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' | 'defaultValue' | 'onBlur'> {
   value?: Date
@@ -124,8 +125,14 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     }
   }
 
+  public resetValue = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+    this.fireChange(new Date())
+  }
+
   public render() {
     const { value, defaultValue, onChange, onFocus, centered, ...restProps } = this.props
+    const suffix = this.state.value ? (<Icon className="ma-time-picker__reset" name="close-circle" onClick={this.resetValue}/>) : null
     return (
       <DropdownTrigger shown={this.state.shown} onShownChange={this.changeShown}>
         <div className={cx('ma-time-picker', {
@@ -138,6 +145,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyPress}
             onBlur={this.confirmValue}
+            suffix={suffix}
           />
           {this.state.shown && this.renderDropdown()}
         </div>

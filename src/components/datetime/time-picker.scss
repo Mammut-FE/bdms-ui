@@ -8,6 +8,15 @@ $active-color: #d0e8fe;
   display: inline-block;
   outline: none;
 
+  &__reset {
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: #999;
+    }
+  }
+
   &_centered {
     #{$root}__input {
       text-align: center;

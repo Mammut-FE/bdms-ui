@@ -39,7 +39,7 @@ function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a:
       name,
       defaultName: defaultPropName(name),
       onChangeName: onChangePropName(name),
-      defaultValue: null
+      defaultValue: undefined
     }
 
     const value = options[name]
