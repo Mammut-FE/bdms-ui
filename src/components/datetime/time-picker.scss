@@ -1,0 +1,68 @@
+$hover-color: #d0e8fe;
+$active-color: #d0e8fe;
+
+.ma-time-picker {
+  $root: &;
+
+  position: relative;
+  display: inline-block;
+  outline: none;
+
+  &_centered {
+    #{$root}__input {
+      text-align: center;
+    }
+    #{$root}__dropdown {
+      left: 50%;
+      transform: translate(-50%);
+    }
+  }
+
+  &__dropdown {
+    border: 1px solid #ddd;
+    position: absolute;
+    margin-top: 4px;
+    top: 100%;
+    left: 0;
+  }
+
+  &-dropdown {
+    display: flex;
+    flex-direction: row;
+
+    &__select {
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 32px * 5;
+      flex: none;
+      border-right: 1px solid #ddd;
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    &__option {
+      height: 32px;
+      width: 56px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        background: $hover-color;
+      }
+
+      &_active {
+        background: $active-color;
+      }
+
+      &_empty {
+        &:hover {
+          background: none
+        }
+
+        cursor: initial;
+      }
+    }
+  }
+}

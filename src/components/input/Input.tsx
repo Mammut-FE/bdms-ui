@@ -26,7 +26,7 @@ export class Input extends React.Component<InputProps> {
   }
 
   public render() {
-    const {value, ...restProps} = this.props
-    return <input className={cx('u-input')} type="text" value={value} {...restProps} onChange={this.onChange}/>
+    const {value, className, ...restProps} = this.props
+    return <input className={cx('u-input', className)} type="text" value={value} {...restProps} onChange={this.onChange}/>
   }
 }
