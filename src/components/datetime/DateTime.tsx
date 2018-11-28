@@ -101,6 +101,7 @@ export default class DateTime extends React.Component<DateTimeProps> {
               centered={true}
               value={value}
               onChange={this.onTimeChange}
+              size="small"
             />
           )}
         </div>
