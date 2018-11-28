@@ -12,10 +12,6 @@ export interface DropdownTriggerProps {
   onShownChange?: (shown: boolean) => void
 }
 
-export interface DropdownTriggerState {
-  shown: boolean
-}
-
 @Independence({
   shown: {
     defaultValue: false
@@ -23,23 +19,31 @@ export interface DropdownTriggerState {
 })
 export default class DropdownTrigger extends React.PureComponent<DropdownTriggerProps> {
   public $component = React.createRef<HTMLElement>()
-  private blurTimer: number
+  private blurTimer: any
 
   public onBlur = (evt: React.FocusEvent<HTMLElement>) => {
     this.blurTimer = setTimeout(() => {
-      if (this.props.onShownChange) { this.props.onShownChange(false) }
-      if (this.props.onBlur) { this.props.onBlur(evt)}
+      if (this.props.shown) { this.fireChange(false) }
+      if (this.props.onBlur) { this.props.onBlur(evt) }
     }, 10)
   }
 
   public onFocus = (evt: React.FocusEvent<HTMLElement>) => {
-    if (this.props.onShownChange) { this.props.onShownChange(true) }
+    if (!this.props.shown) { this.fireChange(true) }
+
     if (this.props.onFocus) { this.props.onFocus(evt) }
   }
 
   public onClick = (evt: React.MouseEvent<HTMLElement>) => {
     if (this.blurTimer) {
       clearTimeout(this.blurTimer)
+      this.blurTimer = null
+    }
+  }
+
+  public fireChange(shown: boolean) {
+    if (this.props.onShownChange) {
+      this.props.onShownChange(shown)
     }
   }
 
@@ -68,6 +72,6 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
       onClick: this.onClick,
       ref: this.$component,
       tabIndex: -1,
-    }, children.props.children, this.props.shown ? this.renderDropdown() : null)
+    }, children.props.children, this.props.shown && this.renderDropdown())
   }
 }

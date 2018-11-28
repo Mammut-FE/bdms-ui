@@ -48,6 +48,7 @@ $active-color: #d0e8fe;
       height: 32px * 5;
       flex: none;
       border-right: 1px solid #ddd;
+      user-select: none;
       &:last-child {
         border-right: none;
       }
