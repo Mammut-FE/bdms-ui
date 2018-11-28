@@ -11,6 +11,7 @@ $input-line-height: 32px;
   outline: 0;
   border-radius: 2px;
   background: white;
+  width: 100%;
   transition: all 0.3s;
 
   &:hover {
@@ -35,6 +36,8 @@ $input-line-height: 32px;
   &__wrapper {
     position: relative;
     line-height: $input-line-height;
+    display: inline-block;
+    width: 100%;
   }
 
   &__prefix, &__suffix {
