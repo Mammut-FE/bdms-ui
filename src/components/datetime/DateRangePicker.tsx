@@ -9,7 +9,6 @@ import { Input } from '../input';
 import { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
 import {format as dateFormat} from 'date-fns';
-import { TimePickerProps } from './TimePicker';
 
 const bem = bemClassnames('ma-date-picker')
 
@@ -18,7 +17,6 @@ export interface DateRangePickerProps extends Omit<DatePickerProps, 'value' | 'd
   defaultValue?: [Date, Date],
   onChange?: (range: [Date, Date]) => void
   format?: string | ((range: [Date, Date]) => string)
-  showTime?: boolean | TimePickerProps
 }
 
 export interface DateRangePickerState {
@@ -61,7 +59,12 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
   }
 
   public renderDropdown = () => {
-    const {value: [start, end] = [new Date(), new Date()]} = this.props
+    const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText} = this.props
+    const dateTimeProps = {
+      showTime,
+      showToday,
+      todayText
+    }
 
     const rangeStart = start.getDate()
     const rangeEnd = end.getDate()
@@ -75,7 +78,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
           rangeEnd={sameMonth ? rangeEnd : void 0}
           rangeHighlight={sameMonth ? 'both' : 'start'}
           onChange={time => this.onRangeChange(time, end, true)}
-          showTime={this.props.showTime}
+          {...dateTimeProps}
         />
         <span className={bem('range-middle')}>~</span>
         <DateTime
@@ -84,14 +87,15 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
           rangeEnd={rangeEnd}
           rangeHighlight={sameMonth ? 'both' : 'end'}
           onChange={time => this.onRangeChange(start, time, false)}
-          showTime={this.props.showTime}
+          showTime={showTime}
+          {...dateTimeProps}
         />
       </>
     )
   }
 
   public render() {
-    const { showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value, defaultValue, onChange, ...inputProps } = this.props
+    const { showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value, defaultValue, onChange, showToday, todayText, ...inputProps } = this.props
     const inputValue = value ?
       typeof format === 'string' ? `${dateFormat(value[0], format)} ~ ${dateFormat(value[1], format)}` : format(value)
       : ''
@@ -100,7 +104,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
         shown={this.state.shown}
         onShownChange={this.onShownChange}
         dropdown={this.renderDropdown}
-        dropdownClassName={bem('dropdown')}
+        dropdownClassName={bem('dropdown range-dropdown')}
       >
         <div className={bem()}>
           <Input

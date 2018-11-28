@@ -48,7 +48,7 @@ function defaultRenderDropdown(props: TimePickerDropdownProps) {
     onChangeName: 'onChange'
   }
 })
-export class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
+export default class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
   public state = {
     shown: false,
     value: (this.props.value && formatTime(this.props.value)) || ''

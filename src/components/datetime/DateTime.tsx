@@ -5,15 +5,15 @@ import { bemClassnames } from '../../lib/classnames';
 import { Independence } from '../../lib/independence';
 import Calendar from "./Calendar"
 import { CalendarBodyProps } from './CalendarBody';
-import { TimePicker, TimePickerProps } from './TimePicker';
+import TimePicker, { TimePickerProps } from './TimePicker';
 import { Button } from "../button"
 
 const bem = bemClassnames('ma-date-time')
 
-export interface DateTimePickerProps extends Pick<CalendarBodyProps, 'rangeStart' | 'rangeEnd' | 'rangeHighlight'>{
-  value?: Date
-  onChange?: (date: Date) => void
-  defaultValue?: Date
+/**
+ * 基础组件共用数据
+ */
+export interface DateTimeMixins {
   /**
    * 是否显示今天按钮
    */
@@ -28,13 +28,19 @@ export interface DateTimePickerProps extends Pick<CalendarBodyProps, 'rangeStart
   showTime?: boolean | TimePickerProps
 }
 
+export interface DateTimeProps extends Pick<CalendarBodyProps, 'rangeStart' | 'rangeEnd' | 'rangeHighlight'>, DateTimeMixins {
+  value?: Date
+  onChange?: (date: Date) => void
+  defaultValue?: Date
+}
+
 @Independence({
   value: {
     onChangeName: 'onChange',
     defaultValue: new Date()
   }
 })
-export default class DateTime extends React.Component<DateTimePickerProps> {
+export default class DateTime extends React.Component<DateTimeProps> {
   public fireChange = (time: Date) => {
     if (this.props.onChange) {
       this.props.onChange(time)
@@ -70,7 +76,7 @@ export default class DateTime extends React.Component<DateTimePickerProps> {
   }
 
   public render() {
-    const { value = new Date(), rangeStart, rangeEnd, rangeHighlight, showTime } = this.props
+    const { value = new Date(), rangeStart, rangeEnd, rangeHighlight, showTime, showToday, todayText } = this.props
     return (
       <div className={bem()}>
         <Calendar
@@ -81,25 +87,23 @@ export default class DateTime extends React.Component<DateTimePickerProps> {
           rangeEnd={rangeEnd}
           onDateChange={this.onDateChange}
         />
-        {
-          showTime && (
-            <div className={bem('time')}>
-              {this.props.showToday && (
-                <Button
-                  type="text"
-                  className={bem('current')}
-                  onClick={this.gotoToday}
-                >{this.props.todayText || "此刻"}</Button>
-              )}
-              <TimePicker
-                className={bem('time-picker')}
-                centered={true}
-                value={value}
-                onChange={this.onTimeChange}
-              />
-            </div>
-          )
-        }
+        <div className={bem('time')}>
+          {showToday && (
+            <Button
+              type="text"
+              className={bem('current')}
+              onClick={this.gotoToday}
+            >{todayText || "此刻"}</Button>
+          )}
+          {showTime && (
+            <TimePicker
+              className={bem('time-picker')}
+              centered={true}
+              value={value}
+              onChange={this.onTimeChange}
+            />
+          )}
+        </div>
       </div>
     )
   }

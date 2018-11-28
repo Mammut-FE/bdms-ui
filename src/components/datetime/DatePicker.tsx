@@ -8,18 +8,16 @@ import { Icon } from '../icon';
 import { Input } from '../input';
 import { InputProps } from '../input/Input';
 import DateRangePicker from './DateRangePicker';
-import DateTime from './DateTime';
+import DateTime, { DateTimeMixins } from './DateTime';
 import dateFormat from 'date-fns/format'
-import { TimePickerProps } from './TimePicker';
 
 const bem = bemClassnames('ma-date-picker')
 
-export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange'> {
+export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange'>, DateTimeMixins {
   value?: Date
   defaultValue?: Date
   onChange?: (date: Date) => void
   format?: string | ((date: Date) => string)
-  showTime?: boolean | TimePickerProps
 }
 
 export interface DatePickerState {
@@ -60,12 +58,14 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         rangeStart={day}
         rangeEnd={day}
         showTime={this.props.showTime}
+        showToday={this.props.showToday}
+        todayText={this.props.todayText}
       />
     )
   }
 
   public render() {
-    const { value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), defaultValue, onChange, ...inputProps } = this.props
+    const { value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), defaultValue, onChange, todayText, showToday, ...inputProps } = this.props
 
     const inputValue = value ?
       typeof format === 'string' ? dateFormat(value, format) : format(value)

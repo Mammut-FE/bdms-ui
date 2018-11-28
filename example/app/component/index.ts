@@ -9,6 +9,7 @@ import tagSamples from './tag'
 import menuSamples from './menu'
 import selectSamples from './select'
 import inputSamples from './input'
+import datePickerSamples from './date-picker'
 
 const demos: Demo[] = [{
   name: 'layout',
@@ -57,6 +58,12 @@ const demos: Demo[] = [{
   title: 'Input 输入框',
   description: '输入框',
   samples: inputSamples
+}, {
+  name: 'date-picker',
+  title: 'DatePicker 时间选择器',
+  description: '时间选择器',
+  samples: datePickerSamples,
+  col: 6
 }]
 
 export default demos
