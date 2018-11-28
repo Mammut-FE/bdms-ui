@@ -18,12 +18,12 @@
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-  
+
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   .icon-details:before {
     content: "\e98a";
   }
@@ -218,6 +218,14 @@
   .icon-left:before {
     content: "\e93a";
   }
+  .icon-left-double:before {
+    content: "\e93a\e93a";
+    letter-spacing: -0.6em;
+    // fix width problem caused by letter-spacing
+    margin-left: -0.2em;
+    padding-right: 0.3em;
+    padding-left: 0.1em;
+  }
   .icon-light-off:before {
     content: "\e93b";
   }
@@ -346,6 +354,14 @@
   }
   .icon-right:before {
     content: "\e965";
+  }
+  .icon-right-double:before {
+    content: "\e965\e965";
+    letter-spacing: -0.6em;
+    // same as left-double
+    margin-left: -0.2em;
+    padding-right: 0.3em;
+    padding-left: 0.1em;
   }
   .icon-role:before {
     content: "\e966";

@@ -83,7 +83,9 @@ const icons = [
   'edit',
   'view',
   'right',
+  'right-double',
   'left',
+  'left-double',
   'arrow'
 ];
 
