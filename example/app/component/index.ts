@@ -57,7 +57,8 @@ const demos: Demo[] = [{
   name: 'input',
   title: 'Input 输入框',
   description: '输入框',
-  samples: inputSamples
+  samples: inputSamples,
+  col: 6
 }, {
   name: 'date-picker',
   title: 'DatePicker 时间选择器',

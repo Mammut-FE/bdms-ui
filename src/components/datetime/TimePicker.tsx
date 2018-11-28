@@ -127,7 +127,7 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
   }
 
   public render() {
-    const { value, defaultValue, onChange, onFocus, centered, ...restProps } = this.props
+    const { value, defaultValue, onChange, onFocus, className, centered, ...restProps } = this.props
     const suffix = this.state.value ? (<Icon className="ma-time-picker__reset" name="close-circle" onClick={this.clearValue}/>) : null
     return (
       <DropdownTrigger
@@ -138,15 +138,15 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
       >
         <div className={cx('ma-time-picker', {
           'ma-time-picker_centered': centered
-        }, this.props.className)}>
+        }, className)}>
           <Input
+            suffix={suffix}
             {...restProps}
             className="ma-time-picker__input"
             value={this.state.value}
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyPress}
             onBlur={this.confirmValue}
-            suffix={suffix}
           />
         </div>
       </DropdownTrigger>

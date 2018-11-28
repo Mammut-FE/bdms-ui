@@ -11,12 +11,16 @@ export function bemClassnames(blockName: string) {
     }
     return cn(...args).split(' ').map(cls => {
       if (cls[0] === '_') {
-        // is Modifier
+        // is Modifier, '_a-b' => 'block-name--a-b'
         return `${blockName}--${cls.slice(1)}`
       } else if (cls[0] === '$') {
-        // global class
+        // global class '$ant-btn' => 'ant-btn'
         return cls.slice(1)
+      } else if (cls === '@') {
+        // block name '@' => 'block-name'
+        return blockName
       } else {
+        // normal element 'wrapper' => 'block-name__wrapper'
         return `${blockName}__${cls}`
       }
     }).join(' ')

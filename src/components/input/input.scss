@@ -1,10 +1,12 @@
 $prefix-suffix-size: 28px;
-$input-line-height: 32px;
+$input-normal-line-height: 32px;
+$input-small-line-height: 28px;
+$input-large-line-height: 36px;
 
 .ma-input {
   $root: &;
 
-  line-height: $input-line-height;
+  line-height: $input-normal-line-height;
   border: 1px solid #CCCCCC;
   font-size: 14px;
   padding: 0 8px;
@@ -23,39 +25,43 @@ $input-line-height: 32px;
     box-shadow: 0 0 2px 2px rgba(#0099FF, 0.2);
   }
 
-  &_has {
-    &_prefix {
+  &--size-large {
+    line-height: $input-large-line-height;
+  }
+
+  &--size-small {
+    line-height: $input-small-line-height;
+  }
+
+  &--has {
+    &-prefix {
       padding-left: $prefix-suffix-size;
     }
 
-    &_suffix {
+    &-suffix {
       padding-right: $prefix-suffix-size;
     }
   }
 
   &__wrapper {
     position: relative;
-    line-height: $input-line-height;
+    line-height: $input-normal-line-height;
     display: inline-block;
     width: 100%;
   }
 
   &__prefix, &__suffix {
     position: absolute;
-    width: $prefix-suffix-size;
     text-align: center;
-
-    .icon {
-      // 修复行高
-      line-height: $input-line-height;
-    }
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &__prefix {
-    left: 0;
+    left: $prefix-suffix-size / 3;
   }
 
   &__suffix {
-    right: 0;
+    right: $prefix-suffix-size / 3;
   }
 }
