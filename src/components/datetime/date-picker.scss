@@ -1,0 +1,20 @@
+.ma-date-picker {
+  position: relative;
+  outline: none;
+
+  &__icon {
+    color: #ccc;
+  }
+
+  &__dropdown {
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+
+  &__range-middle {
+    vertical-align: top;
+    line-height: 48px;
+    color: #ccc;
+  }
+}

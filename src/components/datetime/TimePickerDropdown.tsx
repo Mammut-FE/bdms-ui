@@ -1,6 +1,7 @@
 import './time-picker.scss'
 import * as React from "react"
 import cx from 'classnames'
+import { padStart } from 'lodash'
 
 const defaultHourRanger = new Array<number>(24).fill(0).map((_, index) => index)
 const defaultMintueRanger = new Array<number>(60).fill(0).map((_, index) => index)
@@ -10,6 +11,14 @@ export interface TimePickerDropdownProps {
   time: [number, number],
   ranger?: [number[], number[]],
   onClick?: (values: [number, number]) => void
+}
+
+function normalizeTime(time: number) {
+  if (typeof time !== 'number') {
+    return 0
+  }
+
+  return time || 0
 }
 
 export default class TimePickerDropdown extends React.Component<TimePickerDropdownProps> {
@@ -25,7 +34,7 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
 
   public onClick = (time) => {
     if (this.props.onClick) {
-      this.props.onClick(time)
+      this.props.onClick(time.map(normalizeTime))
     }
   }
 
@@ -45,7 +54,7 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
                   props.ref = this.moveToTop
                   props.className = cx(props.className, 'ma-time-picker-dropdown__option_active')
                 } else {
-                  props.onClick = () => {
+                  props.onClick = (e) => {
                     const array = [...time]
                     array[index] = option
                     this.onClick(array)
@@ -53,7 +62,7 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
                 }
 
                 return (
-                  <div key={option} {...props}>{option}</div>
+                  <div key={option} {...props}>{padStart(`${option}`, 2, '0')}</div>
                 )
               })}
               {emptyBlock}

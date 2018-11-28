@@ -25,7 +25,7 @@ export default function CalendarHeader(props: {
       <Icon {...iconProps} name="left" onClick={() => onChange(year, month - 1)}/>
       <span className="ma-calendar-header__date">{props.year} 年 {props.month + 1} 月</span>
       <Icon {...iconProps} name="right" onClick={() => onChange(year, month + 1)}/>
-      <Icon {...iconProps} name="double-right" onClick={() => onChange(year + 1, month)}/>
+      <Icon {...iconProps} name="right-double" onClick={() => onChange(year + 1, month)}/>
     </div>
   )
 }

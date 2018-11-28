@@ -1,0 +1,22 @@
+.ma-date-time {
+  $root: &;
+
+  display: inline-block;
+  padding: 0 10px;
+  background: white;
+
+  &__time {
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+  }
+
+  &__time-picker {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__current {
+    flex: none;
+  }
+}

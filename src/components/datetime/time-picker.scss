@@ -8,6 +8,10 @@ $active-color: #d0e8fe;
   display: inline-block;
   outline: none;
 
+  &__input {
+    font-size: 14px;
+  }
+
   &__reset {
     color: #ccc;
     cursor: pointer;
@@ -29,15 +33,14 @@ $active-color: #d0e8fe;
 
   &__dropdown {
     border: 1px solid #ddd;
-    position: absolute;
     margin-top: 4px;
-    top: 100%;
     left: 0;
   }
 
   &-dropdown {
     display: flex;
     flex-direction: row;
+    background: white;
 
     &__select {
       overflow-y: auto;

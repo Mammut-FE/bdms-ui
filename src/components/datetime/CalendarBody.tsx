@@ -66,7 +66,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
 
     // 上一个月的列表
     for (let i = firstDay - 1; i >= 0; i--) {
-      dayNodes.push(<CalendarDate disabled={true} onClick={() => onClick(year, month - 1, prevLastDate - i)}>{prevLastDate - i}</CalendarDate>)
+      dayNodes.push(<CalendarDate key={`prev-${i}`} disabled={true} onClick={() => onClick(year, month - 1, prevLastDate - i)}>{prevLastDate - i}</CalendarDate>)
     }
 
     // 当前月
@@ -76,11 +76,11 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
         const nodes: React.ReactNodeArray = []
         for (let j = rangeStart; j <= rangeEnd; j++) {
           nodes.push(
-            <CalendarDate onClick={() => onClick(year, month, j)}>{j}</CalendarDate>
+            <CalendarDate key={`now-${j}`} onClick={() => onClick(year, month, j)}>{j}</CalendarDate>
           )
         }
         dayNodes.push(
-          <span className={cx('ma-calendar-date__ranger', {
+          <span key="now-range" className={cx('ma-calendar-date__ranger', {
             'ma-calendar-date__ranger_active_start': hlStart,
             'ma-calendar-date__ranger_active_end': hlEnd,
           })}>{nodes}</span>
@@ -88,15 +88,16 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
         i = rangeEnd
       } else {
         dayNodes.push(
-          <CalendarDate onClick={() => onClick(year, month, i)}>{i}</CalendarDate>
+          <CalendarDate key={`now-${i}`} onClick={() => onClick(year, month, i)}>{i}</CalendarDate>
         )
       }
     }
 
+    const endWeek = lastDate - 28 + firstDay > 7 ? 7 : 7 * 2
     // 下一个月
-    for (let i = lastDay + 1; i < 7; i++) {
+    for (let i = lastDay + 1; i < endWeek; i++) {
       dayNodes.push(
-        <CalendarDate disabled={true} onClick={() => onClick(year, month + 1, i - lastDay)}>{i - lastDay}</CalendarDate>
+        <CalendarDate key={`next-${i}`} disabled={true} onClick={() => onClick(year, month + 1, i - lastDay)}>{i - lastDay}</CalendarDate>
       )
     }
 
@@ -107,7 +108,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
     return (
       <div className="ma-calendar-body__header">
         {Array.from(weekNameMap.values()).map(text => (
-          <span className="ma-calendar-cube ma-calendar-header__day">{text}</span>
+          <span key={text} className="ma-calendar-cube ma-calendar-header__day">{text}</span>
         ))}
       </div>
     )

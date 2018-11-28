@@ -10,7 +10,7 @@ import { Icon } from "../icon";
 
 export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' | 'defaultValue' | 'onBlur'> {
   value?: Date
-  onChange?: (time: Date) => void
+  onChange?: (time?: Date) => void
   defaultValue?: Date
   onBlur?: () => void
   renderDropdown?: (props: TimePickerDropdownProps) => React.ReactNode
@@ -30,7 +30,7 @@ function parseTime(time: string): Date {
   return date
 }
 
-function formatTime(time: Date = new Date()) {
+function formatTime(time: Date) {
   return `${`0${time.getHours()}`.slice(-2)}:${`0${time.getMinutes()}`.slice(-2)}`
 }
 
@@ -51,7 +51,7 @@ function defaultRenderDropdown(props: TimePickerDropdownProps) {
 export class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
   public state = {
     shown: false,
-    value: formatTime(this.props.value)
+    value: (this.props.value && formatTime(this.props.value)) || ''
   }
 
   public $self = React.createRef<HTMLDivElement>()
@@ -59,12 +59,12 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
   public componentDidUpdate(prevProps: TimePickerProps, prevState: TimePickerState) {
     if (prevProps.value !== this.props.value) {
       this.setState({
-        value: formatTime(this.props.value)
+        value: this.props.value ? formatTime(this.props.value) : ''
       })
     }
   }
 
-  public fireChange = (value: Date) => {
+  public fireChange = (value?: Date) => {
     if (this.props.onChange) {
       this.props.onChange(value)
     }
@@ -96,16 +96,12 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     this.setState({shown})
   }
 
-  public renderDropdown() {
-    const { renderDropdown = defaultRenderDropdown, value = new Date() } = this.props
-    return (
-      <div className="ma-time-picker__dropdown">
-        {renderDropdown({
-          time: [value.getHours(), value.getMinutes()],
-          onClick: this.toChange
-        })}
-      </div>
-    )
+  public renderDropdown = () => {
+    const { renderDropdown = defaultRenderDropdown, value } = this.props
+    return renderDropdown({
+      time: value ? [value.getHours(), value.getMinutes()] : [0, 0],
+      onClick: this.toChange
+    })
   }
 
   public confirmValue = () => {
@@ -125,29 +121,33 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     }
   }
 
-  public resetValue = (e: React.MouseEvent<HTMLElement>) => {
+  public clearValue = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation()
-    this.fireChange(new Date())
+    this.fireChange()
   }
 
   public render() {
     const { value, defaultValue, onChange, onFocus, centered, ...restProps } = this.props
-    const suffix = this.state.value ? (<Icon className="ma-time-picker__reset" name="close-circle" onClick={this.resetValue}/>) : null
+    const suffix = this.state.value ? (<Icon className="ma-time-picker__reset" name="close-circle" onClick={this.clearValue}/>) : null
     return (
-      <DropdownTrigger shown={this.state.shown} onShownChange={this.changeShown}>
+      <DropdownTrigger
+        shown={this.state.shown}
+        onShownChange={this.changeShown}
+        dropdown={this.renderDropdown}
+        dropdownClassName={'ma-time-picker__dropdown'}
+      >
         <div className={cx('ma-time-picker', {
           'ma-time-picker_centered': centered
-        })}>
+        }, this.props.className)}>
           <Input
+            {...restProps}
             className="ma-time-picker__input"
             value={this.state.value}
-            {...restProps}
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyPress}
             onBlur={this.confirmValue}
             suffix={suffix}
           />
-          {this.state.shown && this.renderDropdown()}
         </div>
       </DropdownTrigger>
     )

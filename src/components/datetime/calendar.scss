@@ -1,5 +1,5 @@
 $cube-size: 24px;
-$highlight-color: red;//#f2f9ff;
+$highlight-color: #f2f9ff;
 $active-color: #0987E5;
 $disabled-color: #999;
 $hover-color: #d0e8fe;
@@ -7,7 +7,7 @@ $hover-color: #d0e8fe;
 @mixin concatGap {
   content: "";
   position: absolute;
-  width: 6px; // 比 margin 宽一点去覆盖圆角
+  width: 4px;
   height: 100%;
   background: $highlight-color;
 }
@@ -60,6 +60,7 @@ $hover-color: #d0e8fe;
     flex: none;
     cursor: pointer;
     line-height: 48px;
+    color: #999;
   }
 
   &__date {
@@ -69,6 +70,7 @@ $hover-color: #d0e8fe;
 }
 
 .ma-calendar-date {
+  $root: &;
   cursor: pointer;
   position: relative;
 
@@ -92,7 +94,7 @@ $hover-color: #d0e8fe;
   }
 
   &__ranger {
-    > .ma-calendar-date {
+    > #{$root} {
       background: $highlight-color;
 
       &:not(:first-child)::before {
@@ -104,11 +106,11 @@ $hover-color: #d0e8fe;
       }
     }
 
-    &_active_start > .ma-calendar-date:first-child {
+    &_active_start > #{$root}:first-child {
       @include active();
     }
 
-    &_active_end > .ma-calendar-date:last-child {
+    &_active_end > #{$root}:last-child {
       @include active();
     }
   }
