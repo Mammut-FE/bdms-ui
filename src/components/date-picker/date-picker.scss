@@ -1,0 +1,25 @@
+.host {
+  position: relative;
+  outline: none;
+}
+
+.input-icon {
+  color: #ccc;
+}
+
+.dropdown {
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  min-width: 226px;
+}
+
+.range-dropdown {
+  min-width: 500px;
+}
+
+.range-middle {
+  vertical-align: top;
+  line-height: 48px;
+  color: #ccc;
+}

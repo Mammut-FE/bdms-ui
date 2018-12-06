@@ -1,16 +1,19 @@
+import cn from 'classnames/bind';
 import * as React from 'react';
 import { Independence } from '../../lib/independence';
-import ClassNames from 'classnames/bind'
+import { Omit } from '../../lib/type';
 import styles from './input.scss'
-import { Omit } from '../../lib/type'
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+const cx = cn.bind(styles)
+
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'prefix' | 'size'> {
   value?: string
   onChange?: (value: string) => void
   defaultValue?: string
+  prefix?: React.ReactNode
+  suffix?: React.ReactNode
+  size?: 'normal' | 'small' | 'large' | string
 }
-
-const cx = ClassNames.bind(styles)
 
 @Independence({
   value: {
@@ -26,7 +29,22 @@ export class Input extends React.Component<InputProps> {
   }
 
   public render() {
-    const {value, ...restProps} = this.props
-    return <input className={cx('u-input')} type="text" value={value} {...restProps} onChange={this.onChange}/>
+    const {value, className, prefix, suffix, size = 'normal', ...restProps} = this.props
+    const needWrapper = !!(prefix || suffix)
+    const input = <input className={cx('input', `input--size-${size}`, {
+      'input--has-prefix': !!prefix,
+      'input--has-suffix': !!suffix,
+    }, className)} type="text" value={value} {...restProps} onChange={this.onChange}/>
+    if (needWrapper) {
+      return (
+        <span className={cx('wrapper')}>
+          {prefix ? (<span className={cx('prefix')}>{prefix}</span>) : null}
+          {input}
+          {suffix ? (<span className={cx('suffix')}>{suffix}</span>) : null}
+        </span>
+      )
+    } else {
+      return input
+    }
   }
 }

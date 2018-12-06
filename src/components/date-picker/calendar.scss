@@ -1,0 +1,117 @@
+$cube-size: 24px;
+$highlight-color: #f2f9ff;
+$active-color: #0987E5;
+$disabled-color: #999;
+$hover-color: #d0e8fe;
+
+@mixin concatGap {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: $highlight-color;
+}
+
+@mixin concatBefore {
+  @include concatGap();
+  left: -4px;
+}
+
+@mixin concatAfter {
+  @include concatGap();
+  right: -4px;
+}
+
+.body {
+  width: ($cube-size + 8px) * 7;
+  font-size: 14px;
+}
+
+.cube {
+  display: inline-block;
+  width: $cube-size;
+  height: $cube-size;
+  line-height: $cube-size;
+  text-align: center;
+  margin: 4px;
+  border-radius: 2px;
+  &:hover {
+    background: $hover-color;
+  }
+}
+
+.days-header {
+  color: $disabled-color;
+}
+
+.days-body {
+
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: ($cube-size + 8px) * 7;
+  font-size: 14px;
+  line-height: 48px;
+  padding: 0 4px;
+  align-items: center;
+
+  &-icon {
+    flex: none;
+    cursor: pointer;
+    color: #999;
+  }
+
+  &-date {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.date-cube {
+  $root: &;
+  cursor: pointer;
+  position: relative;
+
+  &--highlight {
+    background: $highlight-color;
+    &:hover {
+      background: $highlight-color;
+    }
+  }
+
+  @mixin active {
+    background: $active-color;
+    color: white;
+    &:hover {
+      background: $active-color;
+    }
+  }
+
+  &--disabled {
+    color: $disabled-color;
+  }
+
+  &-ranger {
+    > #{$root} {
+      background: $highlight-color;
+
+      &:not(:first-child)::before {
+        @include concatBefore();
+      }
+
+      &:not(:last-child)::after {
+        @include concatAfter();
+      }
+    }
+
+    &--active-start > #{$root}:first-child {
+      @include active();
+    }
+
+    &--active-end > #{$root}:last-child {
+      @include active();
+    }
+  }
+}

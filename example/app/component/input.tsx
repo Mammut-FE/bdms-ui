@@ -1,6 +1,6 @@
 import { Samples } from "../Demo";
 import * as React from "react";
-import { Input } from "../../../src";
+import { Icon, Input } from '../../../src';
 
 const samples: Samples = [{
   title: '输入框',
@@ -25,6 +25,25 @@ const samples: Samples = [{
       )
     }
   }
+}, {
+  title: '前置后置标签',
+  description: '通过 prefix 和 suffix 指定标签',
+  component: () => (
+    <>
+      <Input suffix="/"/>
+      <Input prefix="@" suffix={<Icon name="left"/>}/>
+    </>
+  )
+}, {
+  title: '大小控制',
+  description: '支持 size = normal | large | small',
+  component: () => (
+    <>
+      <Input size="small" defaultValue="small" suffix="/"/>
+      <Input size="normal" defaultValue="normal" prefix="@"/>
+      <Input size="large" defaultValue="large" prefix="@" suffix="/"/>
+    </>
+  )
 }]
 
 export default samples

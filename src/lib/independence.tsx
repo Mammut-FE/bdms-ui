@@ -39,7 +39,7 @@ function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a:
       name,
       defaultName: defaultPropName(name),
       onChangeName: onChangePropName(name),
-      defaultValue: null
+      defaultValue: undefined
     }
 
     const value = options[name]
@@ -55,6 +55,13 @@ function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a:
   return properties
 }
 
+/**
+ * 让组件支持可控和自主两种状态，当传入对应的值时，进入可控状态，由用户管理组件的状态。
+ * 当不传入对应的值的时候，组件进入自主模式，由组件自己维护状态，用户只需要关心 onChange 等变化事件
+ * @param propsMapper
+ * @param defaultPropName
+ * @param onChangePropName
+ */
 export function Independence(propsMapper: PropertyOptions, {
   defaultPropName = DefaultPropName,
   onChangePropName = OnChangePropName
