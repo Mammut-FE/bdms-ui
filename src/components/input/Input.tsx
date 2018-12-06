@@ -1,11 +1,10 @@
-import cx from 'classnames';
+import cn from 'classnames/bind';
 import * as React from 'react';
-import { bemClassnames } from '../../lib/classnames';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
-import './input.scss'
+import styles from './input.scss'
 
-const bem = bemClassnames('ma-input')
+const cx = cn.bind(styles)
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'prefix' | 'size'> {
   value?: string
@@ -32,16 +31,16 @@ export class Input extends React.Component<InputProps> {
   public render() {
     const {value, className, prefix, suffix, size = 'normal', ...restProps} = this.props
     const needWrapper = !!(prefix || suffix)
-    const input = <input className={cx(bem('@', `_size-${size}`, {
-      '_has-prefix': !!prefix,
-      '_has-suffix': !!suffix,
-    }), className)} type="text" value={value} {...restProps} onChange={this.onChange}/>
+    const input = <input className={cx('input', `input--size-${size}`, {
+      'input--has-prefix': !!prefix,
+      'input--has-suffix': !!suffix,
+    }, className)} type="text" value={value} {...restProps} onChange={this.onChange}/>
     if (needWrapper) {
       return (
-        <span className={bem('wrapper')}>
-          {prefix ? (<span className={bem('prefix')}>{prefix}</span>) : null}
+        <span className={cx('wrapper')}>
+          {prefix ? (<span className={cx('prefix')}>{prefix}</span>) : null}
           {input}
-          {suffix ? (<span className={bem('suffix')}>{suffix}</span>) : null}
+          {suffix ? (<span className={cx('suffix')}>{suffix}</span>) : null}
         </span>
       )
     } else {

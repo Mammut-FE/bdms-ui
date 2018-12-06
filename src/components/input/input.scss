@@ -3,9 +3,7 @@ $input-normal-line-height: 32px;
 $input-small-line-height: 28px;
 $input-large-line-height: 36px;
 
-.ma-input {
-  $root: &;
-
+.input {
   line-height: $input-normal-line-height;
   border: 1px solid #CCCCCC;
   font-size: 14px;
@@ -42,25 +40,25 @@ $input-large-line-height: 36px;
       padding-right: $prefix-suffix-size;
     }
   }
+}
 
-  &__wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-  }
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
 
-  &__prefix, &__suffix {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.prefix, .suffix {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  &__prefix {
-    left: $prefix-suffix-size / 3;
-  }
+.prefix {
+  left: $prefix-suffix-size / 3;
+}
 
-  &__suffix {
-    right: $prefix-suffix-size / 3;
-  }
+.suffix {
+  right: $prefix-suffix-size / 3;
 }

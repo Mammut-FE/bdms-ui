@@ -22,7 +22,7 @@ export default function Calendar(props: CalendarProps) {
   month = Number.isInteger(month) ? month : now.getMonth()
 
   return (
-    <div className="ma-calendar">
+    <div>
       <CalendarHeader
         year={year}
         month={month}

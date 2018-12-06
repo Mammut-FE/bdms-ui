@@ -1,81 +1,80 @@
 $hover-color: #d0e8fe;
 $active-color: #d0e8fe;
 
-.ma-time-picker {
-  $root: &;
-
+.container {
   position: relative;
   display: inline-block;
   outline: none;
+}
 
-  &__input {
-    font-size: 14px;
+.input {
+  font-size: 14px;
+}
+
+.reset {
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: #999;
   }
+}
 
-  &__reset {
-    color: #ccc;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      color: #999;
-    }
+.container--centered {
+  .input {
+    text-align: center;
   }
-
-  &_centered {
-    #{$root}__input {
-      text-align: center;
-    }
-    #{$root}__dropdown {
-      left: 50%;
-      transform: translate(-50%);
-    }
+  .dropdown {
+    left: 50%;
+    transform: translate(-50%);
   }
+}
 
-  &__dropdown {
-    border: 1px solid #ddd;
-    margin-top: 4px;
-    left: 0;
-  }
+.dropdown {
+  border: 1px solid #ddd;
+  margin-top: 4px;
+  left: 0;
 
-  &-dropdown {
+  &-content {
     display: flex;
     flex-direction: row;
     background: white;
+  }
 
-    &__select {
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: 32px * 5;
-      flex: none;
-      border-right: 1px solid #ddd;
-      user-select: none;
-      &:last-child {
-        border-right: none;
-      }
+  &-select {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 32px * 5;
+    flex: none;
+    border-right: 1px solid #ddd;
+    user-select: none;
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &-option {
+    height: 32px;
+    width: 56px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background: $hover-color;
     }
 
-    &__option {
-      height: 32px;
-      width: 56px;
-      line-height: 32px;
-      text-align: center;
-      cursor: pointer;
+    &--active {
+      background: $active-color;
+    }
 
+    &--empty {
       &:hover {
-        background: $hover-color;
+        background: none
       }
 
-      &_active {
-        background: $active-color;
-      }
-
-      &_empty {
-        &:hover {
-          background: none
-        }
-
-        cursor: initial;
-      }
+      cursor: initial;
     }
   }
 }
+

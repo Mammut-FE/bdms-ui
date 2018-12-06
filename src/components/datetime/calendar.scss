@@ -22,12 +22,12 @@ $hover-color: #d0e8fe;
   right: -4px;
 }
 
-.ma-calendar {
+.body {
   width: ($cube-size + 8px) * 7;
   font-size: 14px;
 }
 
-.ma-calendar-cube {
+.cube {
   display: inline-block;
   width: $cube-size;
   height: $cube-size;
@@ -40,41 +40,41 @@ $hover-color: #d0e8fe;
   }
 }
 
-.ma-calendar-body__header {
+.days-header {
   color: $disabled-color;
 }
 
-.ma-calendar-days {
+.days-body {
 
 }
 
-.ma-calendar-header {
+.header {
   display: flex;
   flex-direction: row;
   width: ($cube-size + 8px) * 7;
   font-size: 14px;
   line-height: 48px;
   padding: 0 4px;
+  align-items: center;
 
-  &__icon {
+  &-icon {
     flex: none;
     cursor: pointer;
-    line-height: 48px;
     color: #999;
   }
 
-  &__date {
+  &-date {
     flex: 1 1 auto;
     text-align: center;
   }
 }
 
-.ma-calendar-date {
+.date-cube {
   $root: &;
   cursor: pointer;
   position: relative;
 
-  &_highlight {
+  &--highlight {
     background: $highlight-color;
     &:hover {
       background: $highlight-color;
@@ -89,11 +89,11 @@ $hover-color: #d0e8fe;
     }
   }
 
-  &_disabled {
+  &--disabled {
     color: $disabled-color;
   }
 
-  &__ranger {
+  &-ranger {
     > #{$root} {
       background: $highlight-color;
 
@@ -106,11 +106,11 @@ $hover-color: #d0e8fe;
       }
     }
 
-    &_active_start > #{$root}:first-child {
+    &--active-start > #{$root}:first-child {
       @include active();
     }
 
-    &_active_end > #{$root}:last-child {
+    &--active-end > #{$root}:last-child {
       @include active();
     }
   }

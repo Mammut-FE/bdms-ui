@@ -1,8 +1,9 @@
 import * as React from "react";
 import { getCalendarRange } from "../../lib/datetime";
 import CalendarDate from "./CalendarDate";
-import cx from 'classnames';
-import './calendar.scss'
+import styles from './calendar.scss'
+import cnb from 'classnames/bind'
+const cx = cnb.bind(styles)
 
 const weekNameMap: Map<number, string> = new Map([
   [0, '日'],
@@ -80,9 +81,9 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
           )
         }
         dayNodes.push(
-          <span key="now-range" className={cx('ma-calendar-date__ranger', {
-            'ma-calendar-date__ranger_active_start': hlStart,
-            'ma-calendar-date__ranger_active_end': hlEnd,
+          <span key="now-range" className={cx('date-cube-ranger', {
+            'date-cube-ranger--active-start': hlStart,
+            'date-cube-ranger--active-end': hlEnd,
           })}>{nodes}</span>
         )
         i = rangeEnd
@@ -104,11 +105,11 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
     return dayNodes
   }
 
-  public renderCalendarHeader() {
+  public renderDayHeader() {
     return (
-      <div className="ma-calendar-body__header">
+      <div className={cx("days-header")}>
         {Array.from(weekNameMap.values()).map(text => (
-          <span key={text} className="ma-calendar-cube ma-calendar-header__day">{text}</span>
+          <span key={text} className={cx('cube')}>{text}</span>
         ))}
       </div>
     )
@@ -116,9 +117,9 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
 
   public render() {
     return (
-      <div className="ma-calendar">
-        {this.renderCalendarHeader()}
-        <div className="ma-calendar-days">
+      <div className={cx("body")}>
+        {this.renderDayHeader()}
+        <div className={cx('days-body')}>
           {this.renderDayNodes()}
         </div>
       </div>

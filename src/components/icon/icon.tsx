@@ -17,7 +17,7 @@ interface IIconProps {
 export class Icon extends Component<IIconProps, any> {
   public render() {
     const { name, className, onClick, style } = this.props;
-    const iconClass = classNames('icon', className, `icon-${name}`);
+    const iconClass = classNames('icon', `icon-${name}`, className);
     return <i className={iconClass} style={style} onClick={onClick} />;
   }
 }

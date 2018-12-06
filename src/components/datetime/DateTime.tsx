@@ -1,14 +1,13 @@
-import './date-time.scss'
-
-import * as React from "react"
-import { bemClassnames } from '../../lib/classnames';
+import cnb from 'classnames/bind';
+import * as React from 'react';
 import { Independence } from '../../lib/independence';
-import Calendar from "./Calendar"
+import { Button } from '../button';
+import Calendar from './Calendar';
 import { CalendarBodyProps } from './CalendarBody';
+import styles from './date-time.scss';
 import TimePicker, { TimePickerProps } from './TimePicker';
-import { Button } from "../button"
 
-const bem = bemClassnames('ma-date-time')
+const cx = cnb.bind(styles)
 
 /**
  * 基础组件共用数据
@@ -78,7 +77,7 @@ export default class DateTime extends React.Component<DateTimeProps> {
   public render() {
     const { value = new Date(), rangeStart, rangeEnd, rangeHighlight, showTime, showToday, todayText } = this.props
     return (
-      <div className={bem()}>
+      <div className={cx('host')}>
         <Calendar
           rangeHighlight={rangeHighlight}
           year={value.getFullYear()}
@@ -87,17 +86,17 @@ export default class DateTime extends React.Component<DateTimeProps> {
           rangeEnd={rangeEnd}
           onDateChange={this.onDateChange}
         />
-        <div className={bem('time')}>
+        <div className={cx('time-area')}>
           {showToday && (
             <Button
               type="text"
-              className={bem('current')}
+              className={cx('time-current')}
               onClick={this.gotoToday}
             >{todayText || "此刻"}</Button>
           )}
           {showTime && (
             <TimePicker
-              className={bem('time-picker')}
+              className={cx('time-picker')}
               centered={true}
               value={value}
               onChange={this.onTimeChange}

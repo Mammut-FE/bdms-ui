@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { Icon } from '../icon';
-import './calendar.scss'
+import styles from './calendar.scss'
+import cnb from 'classnames/bind'
+
+const cx = cnb.bind(styles)
 
 const iconProps = {
-  className: 'ma-calendar-header__icon'
+  className: cx('header-icon')
 }
 
 export default function CalendarHeader(props: {
@@ -20,10 +23,10 @@ export default function CalendarHeader(props: {
   }
 
   return (
-    <div className="ma-calendar-header">
+    <div className={cx('header')}>
       <Icon {...iconProps} name="left-double" onClick={() => onChange(year - 1, month)}/>
       <Icon {...iconProps} name="left" onClick={() => onChange(year, month - 1)}/>
-      <span className="ma-calendar-header__date">{props.year} 年 {props.month + 1} 月</span>
+      <span className={cx("header-date")}>{props.year} 年 {props.month + 1} 月</span>
       <Icon {...iconProps} name="right" onClick={() => onChange(year, month + 1)}/>
       <Icon {...iconProps} name="right-double" onClick={() => onChange(year + 1, month)}/>
     </div>

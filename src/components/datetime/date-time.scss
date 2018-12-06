@@ -1,23 +1,21 @@
-.ma-date-time {
-  $root: &;
-
+.host {
   display: inline-block;
   padding: 0 10px;
   background: white;
   width: 244px;
+}
 
-  &__time {
-    display: flex;
-    flex-direction: row;
-    padding: 12px;
-  }
+.time-area {
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+}
 
-  &__time-picker {
-    flex-grow: 1;
-    flex-shrink: 1;
-  }
+.time-picker {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
 
-  &__current {
-    flex: none;
-  }
+.time-current {
+  flex: none;
 }

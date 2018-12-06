@@ -1,7 +1,10 @@
-import './dropdown.scss'
 import * as React from "react";
 import { Independence } from "../../lib/independence";
-import cx from 'classnames'
+
+import styles from './dropdown.scss'
+import cn from 'classnames'
+import cnb from 'classnames/bind'
+const cx = cnb.bind(styles)
 
 export interface DropdownTriggerProps {
   shown?: boolean
@@ -53,7 +56,7 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
     }
 
     return (
-      <div className={cx('ma-dropdown', this.props.dropdownClassName)}>
+      <div className={cn(cx('dropdown'), this.props.dropdownClassName)}>
         {typeof this.props.dropdown === 'function' ? this.props.dropdown() : this.props.dropdown}
       </div>
     )

@@ -5,8 +5,13 @@ import { InputProps } from "../input/Input";
 import { Omit } from "../../lib/type";
 import { Independence } from "../../lib/independence";
 import DropdownTrigger from "../helpers/DropdownTrigger";
-import cx from 'classnames'
 import { Icon } from "../icon";
+
+import cnb from 'classnames/bind'
+import cn from 'classnames'
+import styles from './time-picker.scss'
+
+const cx = cnb.bind(styles)
 
 export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' | 'defaultValue' | 'onBlur'> {
   value?: Date
@@ -128,21 +133,21 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
 
   public render() {
     const { value, defaultValue, onChange, onFocus, className, centered, ...restProps } = this.props
-    const suffix = this.state.value ? (<Icon className="ma-time-picker__reset" name="close-circle" onClick={this.clearValue}/>) : null
+    const suffix = this.state.value ? (<Icon className={cx('reset')} name="close-circle" onClick={this.clearValue}/>) : null
     return (
       <DropdownTrigger
         shown={this.state.shown}
         onShownChange={this.changeShown}
         dropdown={this.renderDropdown}
-        dropdownClassName={'ma-time-picker__dropdown'}
+        dropdownClassName={cx('dropdown')}
       >
-        <div className={cx('ma-time-picker', {
-          'ma-time-picker_centered': centered
-        }, className)}>
+        <div className={cn(cx('container', {
+          'container--centered': centered
+        }), className)}>
           <Input
             suffix={suffix}
             {...restProps}
-            className="ma-time-picker__input"
+            className={cx('input')}
             value={this.state.value}
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyPress}

@@ -1,16 +1,16 @@
-import { isBefore, isSameMonth, parse } from 'date-fns';
+import cnb from 'classnames/bind';
+import { format as dateFormat, isBefore, isSameMonth, parse } from 'date-fns';
 import * as React from 'react';
-import { bemClassnames } from '../../lib/classnames';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
 import DropdownTrigger from '../helpers/DropdownTrigger';
 import { Icon } from '../icon';
 import { Input } from '../input';
+import styles from './date-picker.scss';
 import { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
-import {format as dateFormat} from 'date-fns';
 
-const bem = bemClassnames('ma-date-picker')
+const cx = cnb.bind(styles)
 
 export interface DateRangePickerProps extends Omit<DatePickerProps, 'value' | 'defaultValue' | 'onChange' | 'format'> {
   value?: [Date, Date],
@@ -80,7 +80,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
           onChange={time => this.onRangeChange(time, end, true)}
           {...dateTimeProps}
         />
-        <span className={bem('range-middle')}>~</span>
+        <span className={cx('range-middle')}>~</span>
         <DateTime
           value={end}
           rangeStart={sameMonth ? rangeStart : void 0}
@@ -104,11 +104,11 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
         shown={this.state.shown}
         onShownChange={this.onShownChange}
         dropdown={this.renderDropdown}
-        dropdownClassName={bem('dropdown range-dropdown')}
+        dropdownClassName={cx('dropdown',  'range-dropdown')}
       >
-        <div className={bem()}>
+        <div className={cx('host')}>
           <Input
-            suffix={<Icon name="calendar" className={bem('icon')}/>}
+            suffix={<Icon name="calendar" className={cx('input-icon')}/>}
             {...inputProps}
             readOnly={true}
             value={inputValue}

@@ -1,25 +1,25 @@
-.ma-date-picker {
+.host {
   position: relative;
   outline: none;
+}
 
-  &__icon {
-    color: #ccc;
-  }
+.input-icon {
+  color: #ccc;
+}
 
-  &__dropdown {
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    min-width: 226px;
-  }
+.dropdown {
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  min-width: 226px;
+}
 
-  &__range-dropdown {
-    min-width: 500px;
-  }
+.range-dropdown {
+  min-width: 500px;
+}
 
-  &__range-middle {
-    vertical-align: top;
-    line-height: 48px;
-    color: #ccc;
-  }
+.range-middle {
+  vertical-align: top;
+  line-height: 48px;
+  color: #ccc;
 }

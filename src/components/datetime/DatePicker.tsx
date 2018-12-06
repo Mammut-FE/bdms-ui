@@ -1,17 +1,17 @@
-import './date-picker.scss'
+import cnb from 'classnames/bind';
+import dateFormat from 'date-fns/format';
 import * as React from 'react';
-import { bemClassnames } from '../../lib/classnames';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
 import DropdownTrigger from '../helpers/DropdownTrigger';
 import { Icon } from '../icon';
 import { Input } from '../input';
 import { InputProps } from '../input/Input';
+import styles from './date-picker.scss';
 import DateRangePicker from './DateRangePicker';
 import DateTime, { DateTimeMixins } from './DateTime';
-import dateFormat from 'date-fns/format'
 
-const bem = bemClassnames('ma-date-picker')
+const cx = cnb.bind(styles)
 
 export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange'>, DateTimeMixins {
   value?: Date
@@ -76,11 +76,11 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         shown={this.state.shown}
         onShownChange={this.onShownChange}
         dropdown={this.renderDropdown}
-        dropdownClassName={bem('dropdown')}
+        dropdownClassName={cx('dropdown')}
       >
-        <div className={bem()}>
+        <div className={cx('host')}>
           <Input
-            suffix={<Icon name="calendar" className={bem('icon')}/>}
+            suffix={<Icon name="calendar" className={cx('input-icon')}/>}
             {...inputProps}
             readOnly={true}
             value={inputValue}
