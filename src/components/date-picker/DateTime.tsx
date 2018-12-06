@@ -5,7 +5,7 @@ import { Button } from '../button';
 import Calendar from './Calendar';
 import { CalendarBodyProps } from './CalendarBody';
 import styles from './date-time.scss';
-import TimePicker, { TimePickerProps } from './TimePicker';
+import TimePicker, { TimePickerProps } from '../time-picker/TimePicker';
 
 const cx = cnb.bind(styles)
 
@@ -96,6 +96,7 @@ export default class DateTime extends React.Component<DateTimeProps> {
           )}
           {showTime && (
             <TimePicker
+              {...showTime}
               className={cx('time-picker')}
               centered={true}
               value={value}
