@@ -19,6 +19,9 @@ export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' |
   defaultValue?: Date
   onBlur?: () => void
   renderDropdown?: (props: TimePickerDropdownProps) => React.ReactNode
+  /**
+   * 是否居中显示内容和下拉列表
+   */
   centered?: boolean
 }
 

@@ -15,6 +15,10 @@ export interface DropdownTriggerProps {
   onShownChange?: (shown: boolean) => void
 }
 
+/**
+ * 下拉列表触发器，会给第一个子元素添加显示下拉列表的能力
+ * 下拉列表通过 dropdown props 传入
+ */
 @Independence({
   shown: {
     defaultValue: false
