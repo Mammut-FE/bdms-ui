@@ -26,29 +26,47 @@ export interface DropdownTriggerProps {
 })
 export default class DropdownTrigger extends React.PureComponent<DropdownTriggerProps> {
   public $component = React.createRef<HTMLElement>()
-  private blurTimer: any
+  private delayTimer: any
 
   public onBlur = (evt: React.FocusEvent<HTMLElement>) => {
-    this.blurTimer = setTimeout(() => {
-      if (this.props.shown) { this.fireChange(false) }
-      if (this.props.onBlur) { this.props.onBlur(evt) }
-    }, 10)
+    console.log('blur', evt.target)
+    if (this.props.onBlur) { this.props.onBlur(evt) }
+    this.clearTimer()
+    if (this.props.shown) { this.delayChange(false, 10) }
   }
 
   public onFocus = (evt: React.FocusEvent<HTMLElement>) => {
+    console.log('focus', evt.target)
     if (this.props.onFocus) { this.props.onFocus(evt) }
+    this.clearTimer()
+    if (!this.props.shown) { this.delayChange(true, 10) }
   }
 
   public onClick = (evt: React.MouseEvent<HTMLElement>) => {
-    if (this.blurTimer) {
-      clearTimeout(this.blurTimer)
-      this.blurTimer = null
+    console.log('click', evt.target)
+    this.clearTimer()
+    if (!this.props.shown) {
+      this.delayChange(true, 10)
     }
+  }
 
-    if (!this.props.shown) { this.fireChange(true) }
+  public clearTimer() {
+    if (this.delayTimer) {
+      clearTimeout(this.delayTimer)
+      this.delayTimer = null
+    }
+  }
+
+  public delayChange(shown: boolean, delay: number = 0) {
+    if (delay) {
+      this.delayTimer = setTimeout(() => this.fireChange(shown), delay)
+    } else {
+      this.fireChange(shown)
+    }
   }
 
   public fireChange(shown: boolean) {
+    console.log('fire', shown)
     if (this.props.onShownChange) {
       this.props.onShownChange(shown)
     }
