@@ -1,15 +1,15 @@
-import * as React from "react";
-import { Input } from "../input";
-import TimePickerDropdown, { TimePickerDropdownProps } from "./TimePickerDropdown";
-import { InputProps } from "../input/Input";
-import { Omit } from "../../lib/type";
-import { Independence } from "../../lib/independence";
-import DropdownTrigger from "../helpers/DropdownTrigger";
-import { Icon } from "../icon";
+import cn from 'classnames';
 
-import cnb from 'classnames/bind'
-import cn from 'classnames'
-import styles from './time-picker.scss'
+import cnb from 'classnames/bind';
+import * as React from 'react';
+import { Independence } from '../../lib/independence';
+import { Omit } from '../../lib/type';
+import DropdownTrigger from '../helpers/DropdownTrigger';
+import { Icon } from '../icon';
+import { Input } from '../input';
+import { InputProps } from '../input/Input';
+import styles from './time-picker.scss';
+import TimePickerDropdown, { TimePickerDropdownProps } from './TimePickerDropdown';
 
 const cx = cnb.bind(styles)
 
@@ -135,7 +135,7 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
   }
 
   public render() {
-    const { value, defaultValue, onChange, onFocus, className, centered, ...restProps } = this.props
+    const { value, defaultValue, onChange, onFocus, className, style, centered, ...restProps } = this.props
     const suffix = this.state.value ? (<Icon className={cx('reset')} name="close-circle" onClick={this.clearValue}/>) : null
     return (
       <DropdownTrigger
@@ -146,7 +146,7 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
       >
         <div className={cn(cx('container', {
           'container--centered': centered
-        }), className)}>
+        }), className)} style={style}>
           <Input
             suffix={suffix}
             {...restProps}

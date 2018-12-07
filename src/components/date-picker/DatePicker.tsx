@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import cnb from 'classnames/bind';
 import dateFormat from 'date-fns/format';
 import * as React from 'react';
@@ -65,7 +66,11 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
   }
 
   public render() {
-    const { value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), defaultValue, onChange, todayText, showToday, ...inputProps } = this.props
+    const {
+      value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime),
+      defaultValue, onChange, todayText, showToday, className, style,
+      ...inputProps
+    } = this.props
 
     const inputValue = value ?
       typeof format === 'string' ? dateFormat(value, format) : format(value)
@@ -78,7 +83,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         dropdown={this.renderDropdown}
         dropdownClassName={cx('dropdown')}
       >
-        <div className={cx('host')}>
+        <div className={cn(cx('host'), className)} style={style}>
           <Input
             suffix={<Icon name="calendar" className={cx('input-icon')}/>}
             {...inputProps}

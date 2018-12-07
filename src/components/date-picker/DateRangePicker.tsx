@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import cnb from 'classnames/bind';
 import { format as dateFormat, isBefore, isSameMonth, parse } from 'date-fns';
 import * as React from 'react';
@@ -95,7 +96,11 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
   }
 
   public render() {
-    const { showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value, defaultValue, onChange, showToday, todayText, ...inputProps } = this.props
+    const {
+      showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value,
+      defaultValue, onChange, showToday, todayText, className, style,
+      ...inputProps
+    } = this.props
     const inputValue = value ?
       typeof format === 'string' ? `${dateFormat(value[0], format)} ~ ${dateFormat(value[1], format)}` : format(value)
       : ''
@@ -106,7 +111,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
         dropdown={this.renderDropdown}
         dropdownClassName={cx('dropdown',  'range-dropdown')}
       >
-        <div className={cx('host')}>
+        <div className={cn(cx('host'), className)} style={style}>
           <Input
             suffix={<Icon name="calendar" className={cx('input-icon')}/>}
             {...inputProps}
