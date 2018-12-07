@@ -1,15 +1,17 @@
 $cube-size: 24px;
-$highlight-color: #f2f9ff;
-$active-color: #0987E5;
-$disabled-color: #999;
-$hover-color: #d0e8fe;
+$ranger-bg-color: #f2f9ff; // 高亮的范围背景颜色
+$active-color: #0987E5; // 活跃颜色，选中的某一天，以及今天的颜色
+$disabled-color: #999; // 禁用的颜色
+$hover-bg-color: #d0e8fe; // 背景色
+$minor-color: #999; // 次要颜色，主要是用于前一个月后一个月的文字颜色
+// 主要颜色就是黑色了
 
 @mixin concatGap {
   content: "";
   position: absolute;
   width: 4px;
   height: 100%;
-  background: $highlight-color;
+  background: $ranger-bg-color;
 }
 
 @mixin concatBefore {
@@ -36,12 +38,12 @@ $hover-color: #d0e8fe;
   margin: 4px;
   border-radius: 2px;
   &:hover {
-    background: $hover-color;
+    background: $hover-bg-color;
   }
 }
 
 .days-header {
-  color: $disabled-color;
+  color: $minor-color;
 }
 
 .days-body {
@@ -74,11 +76,13 @@ $hover-color: #d0e8fe;
   cursor: pointer;
   position: relative;
 
-  &--highlight {
-    background: $highlight-color;
-    &:hover {
-      background: $highlight-color;
-    }
+  .other-month-ranger > & {
+    color: $minor-color;
+  }
+
+  &--today {
+    color: $active-color;
+    border-bottom: 2px solid $active-color;
   }
 
   @mixin active {
@@ -95,7 +99,7 @@ $hover-color: #d0e8fe;
 
   &-ranger {
     > #{$root} {
-      background: $highlight-color;
+      background: $ranger-bg-color;
 
       &:not(:first-child)::before {
         @include concatBefore();

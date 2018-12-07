@@ -39,6 +39,8 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
     const month = this.props.month
     const { firstDay, firstDate, lastDate, lastDay, prevLastDate } = getCalendarRange(year, month)
     const { rangeHighlight = 'both' } = this.props
+    const nowDate = new Date()
+    const today = nowDate.getFullYear() === year && nowDate.getMonth() === month ? nowDate.getDate() : -1
     let { rangeStart, rangeEnd } = this.props
 
     if (typeof rangeStart !== 'number' && typeof rangeEnd !== 'number') {
@@ -65,10 +67,19 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
       }
     }
 
-    // 上一个月的列表
-    for (let i = firstDay - 1; i >= 0; i--) {
-      dayNodes.push(<CalendarDate key={`prev-${i}`} disabled={true} onClick={() => onClick(year, month - 1, prevLastDate - i)}>{prevLastDate - i}</CalendarDate>)
-    }
+    // 前一个月
+    dayNodes.push(
+      <span key="prev-month" className={cx('other-month-ranger')}>
+        {Array.from(Array(firstDay).keys()).reverse().map(i => (
+          <CalendarDate
+            key={`prev-${i}`}
+            onClick={() => onClick(year, month - 1, prevLastDate - i)}
+          >
+            {prevLastDate - i}
+          </CalendarDate>
+        ))}
+      </span>
+    )
 
     // 当前月
     for (let i = firstDate; i <= lastDate; i++) {
@@ -77,7 +88,11 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
         const nodes: React.ReactNodeArray = []
         for (let j = rangeStart; j <= rangeEnd; j++) {
           nodes.push(
-            <CalendarDate key={`now-${j}`} onClick={() => onClick(year, month, j)}>{j}</CalendarDate>
+            <CalendarDate
+              key={`now-${j}`}
+              onClick={() => onClick(year, month, j)}
+              isToday={j === today}
+            >{j}</CalendarDate>
           )
         }
         dayNodes.push(
@@ -89,18 +104,28 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
         i = rangeEnd
       } else {
         dayNodes.push(
-          <CalendarDate key={`now-${i}`} onClick={() => onClick(year, month, i)}>{i}</CalendarDate>
+          <CalendarDate
+            key={`now-${i}`}
+            onClick={() => onClick(year, month, i)}
+            isToday={i === today}
+          >{i}</CalendarDate>
         )
       }
     }
 
     const endWeek = lastDate - 28 + firstDay > 7 ? 7 : 7 * 2
+
     // 下一个月
-    for (let i = lastDay + 1; i < endWeek; i++) {
-      dayNodes.push(
-        <CalendarDate key={`next-${i}`} disabled={true} onClick={() => onClick(year, month + 1, i - lastDay)}>{i - lastDay}</CalendarDate>
-      )
-    }
+    dayNodes.push(
+      <span className={cx('other-month-ranger')}>
+        {Array.from(Array(endWeek).keys()).slice(lastDay + 1).map(i => (
+          <CalendarDate
+            key={`next-${i}`}
+            onClick={() => onClick(year, month + 1, i - lastDay)}
+          >{i - lastDay}</CalendarDate>
+        ))}
+      </span>
+    )
 
     return dayNodes
   }
