@@ -36,8 +36,6 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
   }
 
   public onFocus = (evt: React.FocusEvent<HTMLElement>) => {
-    if (!this.props.shown) { this.fireChange(true) }
-
     if (this.props.onFocus) { this.props.onFocus(evt) }
   }
 
@@ -46,6 +44,8 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
       clearTimeout(this.blurTimer)
       this.blurTimer = null
     }
+
+    if (!this.props.shown) { this.fireChange(true) }
   }
 
   public fireChange(shown: boolean) {
