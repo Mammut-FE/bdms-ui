@@ -8,7 +8,7 @@ export { Tag } from './components/tag';
 export { Menu } from './components/menu';
 export { Select } from './components/select';
 export { Input } from './components/input';
-export { DatePicker } from './components/date-picker'
+export { DatePicker, DateRangePicker } from './components/date-picker'
 export { TimePicker } from './components/time-picker'
 
 import './index.scss';
