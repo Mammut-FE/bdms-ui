@@ -117,7 +117,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
 
     // 下一个月
     dayNodes.push(
-      <span className={cx('other-month-ranger')}>
+      <span key="next-month" className={cx('other-month-ranger')}>
         {Array.from(Array(endWeek).keys()).slice(lastDay + 1).map(i => (
           <CalendarDate
             key={`next-${i}`}

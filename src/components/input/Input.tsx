@@ -1,10 +1,11 @@
-import cn from 'classnames/bind';
+import cn from 'classnames'
+import cnb from 'classnames/bind';
 import * as React from 'react';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
 import styles from './input.scss'
 
-const cx = cn.bind(styles)
+const cx = cnb.bind(styles)
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'prefix' | 'size'> {
   value?: string
@@ -34,17 +35,19 @@ export class Input extends React.Component<InputProps> {
     const input = <input className={cx('input', `input--size-${size}`, {
       'input--has-prefix': !!prefix,
       'input--has-suffix': !!suffix,
-    }, className)} type="text" value={value} {...restProps} onChange={this.onChange}/>
+    })} type="text" value={value} {...restProps} onChange={this.onChange}/>
     if (needWrapper) {
       return (
-        <span className={cx('wrapper')}>
+        <span className={cn(cx('wrapper'), className)}>
           {prefix ? (<span className={cx('prefix')}>{prefix}</span>) : null}
           {input}
           {suffix ? (<span className={cx('suffix')}>{suffix}</span>) : null}
         </span>
       )
     } else {
-      return input
+      return React.cloneElement(input, {
+        className: cn(input.props.className, className)
+      })
     }
   }
 }
