@@ -8,6 +8,13 @@
   color: #ccc;
 }
 
+.clear-icon {
+  cursor: pointer;
+  &:hover {
+    color: #999;
+  }
+}
+
 .dropdown {
   margin: 4px 0;
   border: 1px solid #ccc;

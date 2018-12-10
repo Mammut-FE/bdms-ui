@@ -17,7 +17,7 @@ const cx = cnb.bind(styles)
 export interface DateRangePickerProps extends Omit<DatePickerProps, 'value' | 'defaultValue' | 'onChange' | 'format'> {
   value?: [Date, Date],
   defaultValue?: [Date, Date],
-  onChange?: (range: [Date, Date]) => void
+  onChange?: (range?: [Date, Date]) => void
   format?: string | ((range: [Date, Date]) => string)
 }
 
@@ -62,6 +62,12 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
     }
   }
 
+  public clear() {
+    if (this.props.onChange) {
+      this.props.onChange()
+    }
+  }
+
   public renderDropdown = () => {
     const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText, min, max} = this.props
     const dateTimeProps = {
@@ -100,10 +106,18 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
     )
   }
 
+  public renderInputSuffix() {
+    const { hideClear, value } = this.props
+    const suffixIcon = <Icon name="calendar" className={cx('input-icon')}/>
+    return hideClear ? suffixIcon : (
+      value ? (<Icon name="close-circle" className={cx('input-icon', 'clear-icon')} onClick={this.clear}/>) : suffixIcon
+    )
+  }
+
   public render() {
     const {
       showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value,
-      defaultValue, onChange, showToday, todayText, min, max, className, style,
+      defaultValue, onChange, showToday, todayText, min, max, className, style, hideClear,
       ...inputProps
     } = this.props
     const inputValue = value ?
@@ -119,7 +133,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
       >
         <div className={cn(cx('host'), className)} style={style}>
           <Input
-            suffix={<Icon name="calendar" className={cx('input-icon')}/>}
+            suffix={this.renderInputSuffix()}
             {...inputProps}
             readOnly={true}
             value={inputValue}

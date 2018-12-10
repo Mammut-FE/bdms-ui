@@ -89,6 +89,7 @@ export default class DateTime extends React.Component<DateTimeProps> {
     if (max) {
       maxDate = differenceInCalendarDays(max, startDate) + 1
     }
+
     return (
       <div className={cx('host')}>
         <Calendar

@@ -22,6 +22,7 @@ export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' |
    * 是否居中显示内容和下拉列表
    */
   centered?: boolean
+  hideClear?: boolean
 }
 
 export interface TimePickerState {
@@ -129,8 +130,8 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
   }
 
   public render() {
-    const { value, defaultValue, onChange, className, style, centered, ...restInputProps } = this.props
-    const suffix = this.state.value ? (<Icon className={cx('reset')} name="close-circle" onClick={this.clearValue}/>) : null
+    const { value, defaultValue, onChange, className, style, hideClear, centered, ...restInputProps } = this.props
+    const suffix = this.state.value && !hideClear ? (<Icon className={cx('reset')} name="close-circle" onClick={this.clearValue}/>) : null
     return (
       <DropdownTrigger
         shown={this.state.shown}

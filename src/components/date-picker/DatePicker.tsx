@@ -18,8 +18,9 @@ const cx = cnb.bind(styles)
 export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'>, DateTimeMixins {
   value?: Date
   defaultValue?: Date
-  onChange?: (date: Date) => void
+  onChange?: (date?: Date) => void
   format?: string | ((date: Date) => string)
+  hideClear?: boolean
 }
 
 export interface DatePickerState {
@@ -51,6 +52,10 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
     this.fireChange(time)
   }
 
+  public clear = () => {
+    this.fireChange()
+  }
+
   public renderDropdown = () => {
     const {value = new Date()} = this.props
     const day = value.getDate()
@@ -70,10 +75,18 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
     )
   }
 
+  public renderInputSuffix() {
+    const { hideClear, value } = this.props
+    const suffixIcon = <Icon name="calendar" className={cx('input-icon')}/>
+    return hideClear ? suffixIcon : (
+      value ? (<Icon name="close-circle" className={cx('input-icon', 'clear-icon')} onClick={this.clear}/>) : suffixIcon
+    )
+  }
+
   public render() {
     const {
       value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime),
-      defaultValue, onChange, todayText, showToday, min, max, className, style,
+      defaultValue, onChange, todayText, showToday, min, max, hideClear, className, style,
       ...inputProps
     } = this.props
 
@@ -91,7 +104,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
       >
         <div className={cn(cx('host'), className)} style={style}>
           <Input
-            suffix={<Icon name="calendar" className={cx('input-icon')}/>}
+            suffix={this.renderInputSuffix()}
             {...inputProps}
             readOnly={true}
             value={inputValue}
