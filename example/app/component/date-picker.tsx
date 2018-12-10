@@ -1,3 +1,4 @@
+import { addDays, subDays } from 'date-fns';
 import * as React from 'react';
 import { DatePicker } from '../../../src';
 import { Samples } from '../Demo';
@@ -39,6 +40,16 @@ const samples: Samples = [{
       <DateRangePicker showTime={true} placeholder="范围时间选择"/>
       <DateRangePicker defaultValue={[new Date(), new Date()]} format={range => `星期 ${range[0].getDay()} 到 星期${range[1].getDay()}`} placeholder="自定义格式化参数"/>
       <DateRangePicker placeholder="支持显示当前" showToday={true} showTime={true}/>
+    </>
+  )
+}, {
+  title: '对范围进行限制',
+  description: '通过 `max` `min` 字段进行限制，时间戳或者 Date 对象',
+  component: () => (
+    <>
+      <DatePicker placeholder="只能选择今天之前的" max={new Date()}/>
+      <DatePicker placeholder="只能选择前天之后的" min={subDays(new Date(), 2)}/>
+      <DateRangePicker placeholder="范围选择同样支持" min={subDays(new Date(), 5)} max={addDays(new Date(), 5)}/>
     </>
   )
 }]

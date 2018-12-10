@@ -62,7 +62,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
     }
   }
 
-  public clear() {
+  public clear = () => {
     if (this.props.onChange) {
       this.props.onChange()
     }
