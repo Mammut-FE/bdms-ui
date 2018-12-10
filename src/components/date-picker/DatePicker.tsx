@@ -2,6 +2,7 @@ import cn from 'classnames';
 import cnb from 'classnames/bind';
 import dateFormat from 'date-fns/format';
 import * as React from 'react';
+import { clampDateDay } from '../../lib/datetime';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
 import DropdownTrigger from '../helpers/DropdownTrigger';
@@ -14,7 +15,7 @@ import DateTime, { DateTimeMixins } from './DateTime';
 
 const cx = cnb.bind(styles)
 
-export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange'>, DateTimeMixins {
+export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'>, DateTimeMixins {
   value?: Date
   defaultValue?: Date
   onChange?: (date: Date) => void
@@ -42,9 +43,11 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
 
   public onShownChange = (shown) => this.setState({shown})
 
-  public fireChange = (value) => this.props.onChange && this.props.onChange(value)
+  public fireChange = (value?) => this.props.onChange && this.props.onChange(value)
 
   public onChange = (time: Date) => {
+    time = clampDateDay(time, this.props.max, this.props.min)
+    // 只对日期进行修正，对时间不限制
     this.fireChange(time)
   }
 
@@ -61,6 +64,8 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         showTime={this.props.showTime}
         showToday={this.props.showToday}
         todayText={this.props.todayText}
+        min={this.props.min}
+        max={this.props.max}
       />
     )
   }
@@ -68,7 +73,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
   public render() {
     const {
       value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime),
-      defaultValue, onChange, todayText, showToday, className, style,
+      defaultValue, onChange, todayText, showToday, min, max, className, style,
       ...inputProps
     } = this.props
 

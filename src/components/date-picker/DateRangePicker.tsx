@@ -2,6 +2,7 @@ import cn from 'classnames';
 import cnb from 'classnames/bind';
 import { format as dateFormat, isBefore, isSameMonth, parse } from 'date-fns';
 import * as React from 'react';
+import { clampDateDay } from '../../lib/datetime';
 import { Independence } from '../../lib/independence';
 import { Omit } from '../../lib/type';
 import DropdownTrigger from '../helpers/DropdownTrigger';
@@ -54,17 +55,21 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
         start = parse(end)
       }
     }
+    start = clampDateDay(start, this.props.max, this.props.min)
+    end = clampDateDay(end, this.props.max, this.props.min)
     if (this.props.onChange) {
       this.props.onChange([start, end])
     }
   }
 
   public renderDropdown = () => {
-    const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText} = this.props
+    const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText, min, max} = this.props
     const dateTimeProps = {
       showTime,
       showToday,
-      todayText
+      todayText,
+      min,
+      max,
     }
 
     const rangeStart = start.getDate()
@@ -98,7 +103,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
   public render() {
     const {
       showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value,
-      defaultValue, onChange, showToday, todayText, className, style,
+      defaultValue, onChange, showToday, todayText, min, max, className, style,
       ...inputProps
     } = this.props
     const inputValue = value ?

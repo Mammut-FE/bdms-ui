@@ -7,7 +7,7 @@ import CalendarBody, { CalendarBodyProps } from "./CalendarBody";
 import CalendarHeader from "./CalendarHeader";
 import './calendar.scss'
 
-export interface CalendarProps extends Pick<CalendarBodyProps, 'rangeStart' | 'rangeEnd' | 'rangeHighlight'> {
+export interface CalendarProps extends Pick<CalendarBodyProps, 'rangeStart' | 'rangeEnd' | 'rangeHighlight' | 'min' | 'max'> {
   year?: number
   month?: number
   onDateChange?: (year: number, month: number, date?: number) => void
@@ -35,6 +35,8 @@ export default function Calendar(props: CalendarProps) {
         rangeStart={props.rangeStart}
         rangeEnd={props.rangeEnd}
         rangeHighlight={props.rangeHighlight}
+        min={props.min}
+        max={props.max}
       />
     </div>
   )

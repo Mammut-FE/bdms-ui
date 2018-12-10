@@ -31,14 +31,26 @@ export interface CalendarBodyProps {
    */
   rangeEnd?: number
   onDateClick?: (year: number, month: number, date: number) => void
+
+  /**
+   * 最小可用日期，大于等于这个日期可用
+   */
+  min?: number
+  /**
+   * 最大可用日期，小于等于这个日期可用
+   */
+  max?: number
 }
 
+/**
+ * 日历组件主体，主要负责渲染操作，所有相关传入的参数都和时间无关
+ */
 export default class CalendarBody extends React.PureComponent<CalendarBodyProps> {
   public renderDayNodes() {
     const year = this.props.year
     const month = this.props.month
     const { firstDay, firstDate, lastDate, lastDay, prevLastDate } = getCalendarRange(year, month)
-    const { rangeHighlight = 'both' } = this.props
+    const { rangeHighlight = 'both', min = -Infinity, max = Infinity } = this.props
     const nowDate = new Date()
     const today = nowDate.getFullYear() === year && nowDate.getMonth() === month ? nowDate.getDate() : -1
     let { rangeStart, rangeEnd } = this.props
@@ -74,6 +86,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
           <CalendarDate
             key={`prev-${i}`}
             onClick={() => onClick(year, month - 1, prevLastDate - i)}
+            disabled={-i < min || -i > max}
           >
             {prevLastDate - i}
           </CalendarDate>
@@ -108,6 +121,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
             key={`now-${i}`}
             onClick={() => onClick(year, month, i)}
             isToday={i === today}
+            disabled={i < min || i > max}
           >{i}</CalendarDate>
         )
       }
@@ -122,6 +136,7 @@ export default class CalendarBody extends React.PureComponent<CalendarBodyProps>
           <CalendarDate
             key={`next-${i}`}
             onClick={() => onClick(year, month + 1, i - lastDay)}
+            disabled={lastDate + i - lastDay < min || lastDate + i - lastDay > max}
           >{i - lastDay}</CalendarDate>
         ))}
       </span>

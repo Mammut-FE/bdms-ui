@@ -54,7 +54,10 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
                   props.ref = this.moveToTop
                   props.className = cx(props.className, 'dropdown-option--active')
                 } else {
-                  props.onClick = (e) => {
+                  props.onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+                    // HACK: 阻止冒泡的原因是 RcTrigger 的 popup 的归属权的判定不正确，如果出现嵌套的情况，可能会出现问题
+                    // 主要由于时间选择器组件出现了嵌套，这里暂时 Hack 一下。因为 React 的事件特性，只能使用 stopImmediatePropagation
+                    e.nativeEvent.stopImmediatePropagation()
                     const array = [...time]
                     array[index] = option
                     this.onClick(array)

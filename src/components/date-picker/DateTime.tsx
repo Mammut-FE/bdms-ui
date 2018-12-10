@@ -1,4 +1,5 @@
 import cnb from 'classnames/bind';
+import { differenceInCalendarDays, startOfMonth } from 'date-fns';
 import * as React from 'react';
 import { Independence } from '../../lib/independence';
 import { Button } from '../button';
@@ -25,6 +26,8 @@ export interface DateTimeMixins {
    * 是否显示时间选择
    */
   showTime?: boolean | TimePickerProps
+  min?: Date | number
+  max?: Date | number
 }
 
 export interface DateTimeProps extends Pick<CalendarBodyProps, 'rangeStart' | 'rangeEnd' | 'rangeHighlight'>, DateTimeMixins {
@@ -75,7 +78,17 @@ export default class DateTime extends React.Component<DateTimeProps> {
   }
 
   public render() {
-    const { value = new Date(), rangeStart, rangeEnd, rangeHighlight, showTime, showToday, todayText } = this.props
+    const { value = new Date(), rangeStart, rangeEnd, rangeHighlight, showTime, showToday, todayText, min, max } = this.props
+    const startDate = startOfMonth(value)
+    let minDate = -Infinity
+    let maxDate = Infinity
+
+    if (min) {
+      minDate = differenceInCalendarDays(min, startDate) + 1
+    }
+    if (max) {
+      maxDate = differenceInCalendarDays(max, startDate) + 1
+    }
     return (
       <div className={cx('host')}>
         <Calendar
@@ -85,6 +98,8 @@ export default class DateTime extends React.Component<DateTimeProps> {
           rangeStart={rangeStart}
           rangeEnd={rangeEnd}
           onDateChange={this.onDateChange}
+          min={minDate}
+          max={maxDate}
         />
         <div className={cx('time-area')}>
           {showToday && (

@@ -75,6 +75,7 @@ $minor-color: #999; // 次要颜色，主要是用于前一个月后一个月的
   $root: &;
   cursor: pointer;
   position: relative;
+  user-select: none;
 
   .other-month-ranger > & {
     color: $minor-color;
@@ -95,6 +96,11 @@ $minor-color: #999; // 次要颜色，主要是用于前一个月后一个月的
 
   &--disabled {
     color: $disabled-color;
+    cursor: not-allowed;
+
+    &:hover {
+      background: none;
+    }
   }
 
   &-ranger {
