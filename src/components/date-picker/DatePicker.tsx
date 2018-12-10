@@ -82,6 +82,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         onShownChange={this.onShownChange}
         dropdown={this.renderDropdown}
         dropdownClassName={cx('dropdown')}
+        action={['click']}
       >
         <div className={cn(cx('host'), className)} style={style}>
           <Input

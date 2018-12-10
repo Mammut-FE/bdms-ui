@@ -13,11 +13,10 @@ import TimePickerDropdown, { TimePickerDropdownProps } from './TimePickerDropdow
 
 const cx = cnb.bind(styles)
 
-export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' | 'defaultValue' | 'onBlur'> {
+export interface TimePickerProps extends Omit<InputProps, 'value' | 'onChange' | 'defaultValue'> {
   value?: Date
   onChange?: (time?: Date) => void
   defaultValue?: Date
-  onBlur?: () => void
   renderDropdown?: (props: TimePickerDropdownProps) => React.ReactNode
   /**
    * 是否居中显示内容和下拉列表
@@ -30,7 +29,8 @@ export interface TimePickerState {
   value: string
 }
 
-function parseTime(time: string): Date {
+function parseTime(time: string): Date | undefined {
+  if (!time) { return }
   const [ hour = 0, min = 0 ] = time.split(':').map(v => parseInt(v, 10))
   const date = new Date();
   date.setHours(hour)
@@ -62,8 +62,6 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
     value: (this.props.value && formatTime(this.props.value)) || ''
   }
 
-  public $self = React.createRef<HTMLDivElement>()
-
   public componentDidUpdate(prevProps: TimePickerProps, prevState: TimePickerState) {
     if (prevProps.value !== this.props.value) {
       this.setState({
@@ -75,21 +73,6 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
   public fireChange = (value?: Date) => {
     if (this.props.onChange) {
       this.props.onChange(value)
-    }
-  }
-
-  public onFocus = (evt) => {
-    this.setState({shown: true})
-    if (this.props.onFocus) {
-      this.props.onFocus(evt)
-    }
-  }
-
-  public onBlur = (evt: React.FocusEvent<HTMLDivElement>) => {
-    if (evt.target !== this.$self.current) { return }
-    this.setState({shown: false})
-    if (this.props.onBlur) {
-      this.props.onBlur()
     }
   }
 
@@ -127,15 +110,26 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
       // enter code
       this.confirmValue()
     }
+
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(evt)
+    }
   }
 
   public clearValue = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation()
     this.fireChange()
   }
+  
+  public onInputBlur = (e) => {
+    this.confirmValue()
+    if (this.props.onBlur) {
+      this.props.onBlur(e)
+    }
+  }
 
   public render() {
-    const { value, defaultValue, onChange, onFocus, className, style, centered, ...restProps } = this.props
+    const { value, defaultValue, onChange, className, style, centered, ...restInputProps } = this.props
     const suffix = this.state.value ? (<Icon className={cx('reset')} name="close-circle" onClick={this.clearValue}/>) : null
     return (
       <DropdownTrigger
@@ -143,18 +137,20 @@ export default class TimePicker extends React.Component<TimePickerProps, TimePic
         onShownChange={this.changeShown}
         dropdown={this.renderDropdown}
         dropdownClassName={cx('dropdown')}
+        dropdownPlacement={centered ? 'bottom' : 'bottomLeft'}
+        action={['click']}
       >
         <div className={cn(cx('container', {
           'container--centered': centered
         }), className)} style={style}>
           <Input
             suffix={suffix}
-            {...restProps}
+            {...restInputProps}
             className={cx('input')}
             value={this.state.value}
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyPress}
-            onBlur={this.confirmValue}
+            onBlur={this.onInputBlur}
           />
         </div>
       </DropdownTrigger>

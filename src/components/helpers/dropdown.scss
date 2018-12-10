@@ -1,6 +1,8 @@
-.dropdown {
-  position: absolute;
-  top: 100%;
-  z-index: 1000;
+.trigger-dropdown {
+  display: inline-block;
+}
+
+.inner-dropdown {
   background: white;
+  display: inline-block;
 }

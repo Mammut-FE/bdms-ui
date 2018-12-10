@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export const requestAnimationFrame = window.requestAnimationFrame || function requestAnimationFrameTimeout() {
   return setTimeout(arguments[0], 10);
 }
@@ -45,4 +47,12 @@ export function smoothScroll(el: HTMLElement, targetTop: number, duration = 300)
   }
 
   requestAnimationFrame(doOnceScroll)
+}
+
+/**
+ * 尝试获取有可能为函数的组件，如果是普通组件，那么直接返回，否则是函数工厂，调用后返回组件
+ * @param node
+ */
+export function tryGetFuntionalNode(node: React.ReactNode | (() => React.ReactNode)): React.ReactNode {
+  return typeof node === 'function' ? node() : node
 }

@@ -24,16 +24,14 @@ $active-color: #d0e8fe;
   .input input {
     text-align: center;
   }
-  .dropdown {
-    left: 50%;
-    transform: translate(-50%);
-  }
 }
 
 .dropdown {
   border: 1px solid #ddd;
-  margin-top: 4px;
+  margin: 4px 0;
   left: 0;
+  display: inline-block;
+  position: relative;
 
   &-content {
     display: flex;

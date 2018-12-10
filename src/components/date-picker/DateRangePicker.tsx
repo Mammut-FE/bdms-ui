@@ -110,6 +110,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
         onShownChange={this.onShownChange}
         dropdown={this.renderDropdown}
         dropdownClassName={cx('dropdown',  'range-dropdown')}
+        action={['click']}
       >
         <div className={cn(cx('host'), className)} style={style}>
           <Input

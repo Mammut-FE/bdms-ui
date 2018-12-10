@@ -1,16 +1,50 @@
 import * as React from "react";
-import { Independence } from "../../lib/independence";
+import Trigger from 'rc-trigger'
 
 import styles from './dropdown.scss'
 import cn from 'classnames'
 import cnb from 'classnames/bind'
 const cx = cnb.bind(styles)
 
+const builtinPlacements = {
+  left: {
+    points: ['cr', 'cl'],
+  },
+  right: {
+    points: ['cl', 'cr'],
+  },
+  top: {
+    points: ['bc', 'tc'],
+  },
+  bottom: {
+    points: ['tc', 'bc'],
+  },
+  topLeft: {
+    points: ['bl', 'tl'],
+  },
+  topRight: {
+    points: ['br', 'tr'],
+  },
+  bottomRight: {
+    points: ['tr', 'br'],
+  },
+  bottomLeft: {
+    points: ['tl', 'bl'],
+  },
+}
+
+export type TriggerAction = 'click' | 'hover' | 'focus' | 'contextMenu'
+
+/**
+ * 处理 Dropdown 相关的触发操作
+ */
 export interface DropdownTriggerProps {
   shown?: boolean
+  action?: TriggerAction[]
   onBlur?: (evt: React.FocusEvent<HTMLElement>) => void
   onFocus?: (evt: React.FocusEvent<HTMLElement>) => void
   dropdown?: React.ReactNode | (() => React.ReactNode)
+  dropdownPlacement?: keyof typeof builtinPlacements
   dropdownClassName?: string
   onShownChange?: (shown: boolean) => void
 }
@@ -19,81 +53,41 @@ export interface DropdownTriggerProps {
  * 下拉列表触发器，会给第一个子元素添加显示下拉列表的能力
  * 下拉列表通过 dropdown props 传入
  */
-@Independence({
-  shown: {
-    defaultValue: false
-  }
-})
 export default class DropdownTrigger extends React.PureComponent<DropdownTriggerProps> {
-  public $component = React.createRef<HTMLElement>()
-  private delayTimer: any
-
-  public onBlur = (evt: React.FocusEvent<HTMLElement>) => {
-    if (this.props.onBlur) { this.props.onBlur(evt) }
-    this.clearTimer()
-    if (this.props.shown) { this.delayChange(false, 10) }
-  }
-
-  public onFocus = (evt: React.FocusEvent<HTMLElement>) => {
-    if (this.props.onFocus) { this.props.onFocus(evt) }
-    this.clearTimer()
-    if (!this.props.shown) { this.delayChange(true, 10) }
-  }
-
-  public onClick = (evt: React.MouseEvent<HTMLElement>) => {
-    this.clearTimer()
-    if (!this.props.shown) {
-      this.delayChange(true, 10)
-    }
-  }
-
-  public clearTimer() {
-    if (this.delayTimer) {
-      clearTimeout(this.delayTimer)
-      this.delayTimer = null
-    }
-  }
-
-  public delayChange(shown: boolean, delay: number = 0) {
-    if (delay) {
-      this.delayTimer = setTimeout(() => this.fireChange(shown), delay)
-    } else {
-      this.fireChange(shown)
-    }
-  }
-
-  public fireChange(shown: boolean) {
-    console.log('fire', shown)
-    if (this.props.onShownChange) {
-      this.props.onShownChange(shown)
-    }
-  }
-
   public renderDropdown() {
     if (!this.props.dropdown) {
       return null
     }
 
     return (
-      <div className={cn(cx('dropdown'), this.props.dropdownClassName)}>
+      <div className={cn(cx('inner-dropdown'), this.props.dropdownClassName)}>
         {typeof this.props.dropdown === 'function' ? this.props.dropdown() : this.props.dropdown}
       </div>
     )
   }
 
   public render() {
-    const { children } = this.props
+    const { children, dropdownPlacement, action, shown, onShownChange } = this.props
 
-    if (typeof children !== 'object' || !children || !('props' in children)) {
-      return children
-    }
-
-    return React.cloneElement(children, {
-      onBlur: this.onBlur,
-      onFocus: this.onFocus,
-      onClick: this.onClick,
-      ref: this.$component,
-      tabIndex: -1,
-    }, children.props.children, this.props.shown && this.renderDropdown())
+    return (
+      <Trigger
+        action={action || ['click']}
+        builtinPlacements={builtinPlacements}
+        popupPlacement={dropdownPlacement || 'bottomLeft'}
+        popup={this.renderDropdown()}
+        popupClassName={cx('trigger-dropdown')}
+        destroyPopupOnHide={true}
+        popupVisible={shown}
+        onPopupVisibleChange={onShownChange}
+        popupAlign={{
+          overflow: {
+            adjustX: true,
+            adjustY: true,
+          }
+        }}
+      >
+        {children}
+      </Trigger>
+    )
   }
 }
