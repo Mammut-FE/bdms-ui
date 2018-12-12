@@ -10,6 +10,7 @@ import menuSamples from './menu'
 import selectSamples from './select'
 import inputSamples from './input'
 import datePickerSamples from './date-picker'
+import tooltipSamples from './tooltip'
 
 const demos: Demo[] = [{
   name: 'layout',
@@ -64,6 +65,12 @@ const demos: Demo[] = [{
   title: 'DatePicker 时间选择器',
   description: '时间选择器',
   samples: datePickerSamples,
+  col: 6
+}, {
+  name: 'tooltip',
+  title: 'Tooltip 工具提示',
+  description: '工具提示',
+  samples: tooltipSamples,
   col: 6
 }]
 
