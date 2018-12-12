@@ -14,7 +14,7 @@ export interface PropertyOptions {
   [k: string]: PropertyOption
 }
 
-export type PropertyOption = string | {
+export interface PropertyOption {
   defaultName?: string
   onChangeName?: string
   defaultValue?: any
@@ -43,11 +43,7 @@ function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a:
     }
 
     const value = options[name]
-    if (typeof value === 'string') {
-      property.defaultValue = value
-    } else {
-      Object.assign(property, value)
-    }
+    Object.assign(property, value)
 
     properties.push(property)
   }
