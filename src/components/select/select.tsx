@@ -32,7 +32,7 @@ interface ISelectProps {
   source: SourceItem[]; // select的数据源
   title: string; //  selectAll的文案
   onSelect?: (selected: string[], current) => void;
-  onBlur?:  (selected: string[]) => void
+  onBlur?: (selected: string[]) => void;
 }
 
 interface ISelectState {
@@ -114,8 +114,8 @@ export class Select extends Component<ISelectProps, ISelectState> {
 
   public clickHandler(e) {
     const selectDom = this.selectDom.current;
-    const {onBlur} = this.props;
-    const {selected, isFocused} = this.state;
+    const { onBlur } = this.props;
+    const { selected, isFocused } = this.state;
     if (!selectDom.contains(e.target)) {
       this.setState({
         showMenu: false,
@@ -126,14 +126,14 @@ export class Select extends Component<ISelectProps, ISelectState> {
       }
     }
   }
-  
+
   public selectItem(selected, current) {
-    const { title, onSelect} = this.props;
-    if (current === "ALL") {
+    const { title, onSelect } = this.props;
+    if (current === 'ALL') {
       this.setState({
         selected: [],
         value: title
-      })
+      });
     } else {
       this.setState({
         selected,
@@ -141,10 +141,10 @@ export class Select extends Component<ISelectProps, ISelectState> {
       });
     }
     if (onSelect) {
-      if (current === "ALL") {
-        onSelect([], current)
+      if (current === 'ALL') {
+        onSelect([], current);
       } else {
-        onSelect(selected, current)
+        onSelect(selected, current);
       }
     }
   }
@@ -157,23 +157,26 @@ export class Select extends Component<ISelectProps, ISelectState> {
   }
 
   public changeDropDown() {
-    const { showMenu,selected } = this.state;
-    const {onBlur} = this.props;
-    this.setState({
-      showMenu: !showMenu
-    }, () => {
-      if (this.state.showMenu) {
-        this.setState({
-          isFocused: true
-        })
+    const { showMenu, selected } = this.state;
+    const { onBlur } = this.props;
+    this.setState(
+      {
+        showMenu: !showMenu
+      },
+      () => {
+        if (this.state.showMenu) {
+          this.setState({
+            isFocused: true
+          });
+        }
+        if (!this.state.showMenu && onBlur) {
+          onBlur(selected);
+          this.setState({
+            isFocused: false
+          });
+        }
       }
-      if (!this.state.showMenu && onBlur) {
-        onBlur(selected);
-        this.setState({
-          isFocused: false
-        })
-      }
-    });
+    );
   }
 
   public getSelected() {
@@ -185,49 +188,59 @@ export class Select extends Component<ISelectProps, ISelectState> {
     const { showMenu, value, searchKey, selected } = this.state;
     const classes = cx('u-select', className);
     const inputClasses = cx('input');
-    return (<div className={classes} style={style} ref={this.selectDom}>
-      <input
-        type="text"
-        className={inputClasses}
-        value={searchKey}
-        placeholder={value}
-        onClick={this.changeDropDown}
-        onChange={this.search}
-      />
-      <Icon name="caret-down" className={cx('vareticon')}/>
-      {showMenu && (<Menu
-        className={cx('selectmenu')}
-        isTick={true}
-        multiple={true}
-        onSelect={this.selectItem}
-        selected={selected}
-      >
-        <Item value="ALL">{title}</Item>
-        <Menu.Divider/>
-        {source.map((item: SourceItem) => {
-          if ((item as ISourceGroup).title) {
-            return (<ItemGroup key={(item as ISourceGroup).title} title={(item as ISourceGroup).title}>
-              {(item as ISourceGroup).options.map(option => {
-                return (<Item
-                  key={option.key}
-                  value={option.key}
-                  visible={!searchKey || option.name.indexOf(searchKey) !== -1}
-                >
-                  {option.name}
-                </Item>);
-              })}
-            </ItemGroup>);
-          } else {
-            return (<Item
-              key={(item as ISourceOption).key}
-              value={(item as ISourceOption).key}
-              visible={!searchKey || (item as ISourceOption).name.indexOf(searchKey) !== -1}
-            >
-              {(item as ISourceOption).name}
-            </Item>);
-          }
-        })}
-      </Menu>)}
-    </div>);
+    return (
+      <div className={classes} style={style} ref={this.selectDom}>
+        <input
+          type="text"
+          className={inputClasses}
+          value={searchKey}
+          placeholder={value}
+          onClick={this.changeDropDown}
+          onChange={this.search}
+        />
+        <Icon name="caret-down" className={cx('vareticon')} />
+        {showMenu && (
+          <Menu
+            className={cx('selectmenu')}
+            isTick={true}
+            multiple={true}
+            onSelect={this.selectItem}
+            selected={selected}
+          >
+            <Item value="ALL">{title}</Item>
+            <Menu.Divider />
+            {source.map((item: SourceItem) => {
+              if ((item as ISourceGroup).title) {
+                return (
+                  <ItemGroup key={(item as ISourceGroup).title} title={(item as ISourceGroup).title}>
+                    {(item as ISourceGroup).options.map(option => {
+                      return (
+                        <Item
+                          key={option.key}
+                          value={option.key}
+                          visible={!searchKey || option.name.indexOf(searchKey) !== -1}
+                        >
+                          {option.name}
+                        </Item>
+                      );
+                    })}
+                  </ItemGroup>
+                );
+              } else {
+                return (
+                  <Item
+                    key={(item as ISourceOption).key}
+                    value={(item as ISourceOption).key}
+                    visible={!searchKey || (item as ISourceOption).name.indexOf(searchKey) !== -1}
+                  >
+                    {(item as ISourceOption).name}
+                  </Item>
+                );
+              }
+            })}
+          </Menu>
+        )}
+      </div>
+    );
   }
 }

@@ -56,8 +56,10 @@ export class Switch extends Component<ISwitchProps, ISwitchState> {
       open
     });
 
-    return (<span className={classes} onClick={this.onChange}>
-        <span className={cx('switch-button')}/>
-      </span>);
+    return (
+      <span className={classes} onClick={this.onChange}>
+        <span className={cx('switch-button')} />
+      </span>
+    );
   }
 }

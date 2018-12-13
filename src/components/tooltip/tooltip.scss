@@ -1,47 +1,51 @@
 $arrow-size: 5px;
 
 $arrow-position: (
-  top: (topLeft top topRight),
+  top: (
+    topLeft top topRight
+  ),
   bottom: bottomLeft bottom bottomRight,
   left: leftTop left leftBottom,
-  right: rightTop right rightBottom,
+  right: rightTop right rightBottom
 );
 
 $position-revert: (
   top: bottom,
   bottom: top,
   left: right,
-  right: left,
+  right: left
 );
 
 $position-rotate: (
   top: left,
   bottom: left,
   left: top,
-  right: top,
+  right: top
 );
 
 $type-color: (
   error: #e65c5c,
   warning: #f3b230,
   primary: blue,
-  normal: black,
+  normal: black
 );
 
 .container {
   $root: &;
   display: inline-block;
   position: absolute;
-  transition: all .3s;
+  transition: all 0.3s;
   font-size: 14px;
   max-width: 300px;
 
   // 动画
-  &-enter, &-appear {
+  &-enter,
+  &-appear {
     opacity: 0;
   }
 
-  &-enter-active, &-appear-active {
+  &-enter-active,
+  &-appear-active {
     opacity: 1;
   }
 
@@ -70,11 +74,14 @@ $type-color: (
 
             @if (str_index($dir, 'Right')) {
               right: 6px;
-            } @elseif (str_index($dir, 'Left')) {
+            }
+            @elseif (str_index($dir, 'Left')) {
               left: 6px;
-            } @elseif (str_index($dir, 'Top')) {
+            }
+            @elseif (str_index($dir, 'Top')) {
               top: 6px;
-            } @elseif (str_index($dir, 'Bottom')) {
+            }
+            @elseif (str_index($dir, 'Bottom')) {
               bottom: 6px;
             } @else {
               // 居中
@@ -97,7 +104,7 @@ $type-color: (
   @each $type, $color in $type-color {
     &--type-#{$type} .content {
       background-color: $color;
-      box-shadow: 0 2px 8px rgba($color, .15);
+      box-shadow: 0 2px 8px rgba($color, 0.15);
     }
   }
 }
@@ -114,7 +121,6 @@ $type-color: (
 }
 
 .content {
-
   .popup--size-small & {
     padding: 3px 8px;
     font-size: 12px;
@@ -131,7 +137,7 @@ $type-color: (
   color: white;
   background-color: map_get($type-color, normal);
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   min-height: 32px;
   line-height: 1.5;
   word-wrap: break-word;

@@ -29,9 +29,14 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
 
   public render() {
     const { className, style, children, value, icon, disabled, subtitle, ...otherProps } = this.props;
-    return (<Consumer>
+    return (
+      <Consumer>
         {valueProp => {
-          const { selected, clickItem, isTick, mode, hasCheckBox, visible, ...others } = Object.assign({}, valueProp, otherProps);
+          const { selected, clickItem, isTick, mode, hasCheckBox, visible, ...others } = Object.assign(
+            {},
+            valueProp,
+            otherProps
+          );
           let menuItemClasses;
           let menuItem;
           if (!hasCheckBox) {
@@ -62,7 +67,8 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
           }
 
           if (!hasCheckBox) {
-            menuItem = (<div
+            menuItem = (
+              <div
                 className={menuItemClasses}
                 style={style}
                 onClick={() => {
@@ -72,16 +78,20 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                 }}
                 {...others}
               >
-                {isTick && typeof selected === 'string' && (selected as string) === value &&
-                <Icon className={cx('tick-icon')} name="ture"/>}
-                {isTick && selected instanceof Array && (selected as string[]).indexOf(value!) !== -1 &&
-                <Icon className={cx('tick-icon')} name="ture"/>}
-                {icon && <Icon name={icon}/>}
+                {isTick && typeof selected === 'string' && (selected as string) === value && (
+                  <Icon className={cx('tick-icon')} name="ture" />
+                )}
+                {isTick && selected instanceof Array && (selected as string[]).indexOf(value!) !== -1 && (
+                  <Icon className={cx('tick-icon')} name="ture" />
+                )}
+                {icon && <Icon name={icon} />}
                 {children}
                 {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
-              </div>);
+              </div>
+            );
           } else {
-            menuItem = (<div className={menuItemClasses} style={style} {...others}>
+            menuItem = (
+              <div className={menuItemClasses} style={style} {...others}>
                 <Checkbox
                   value={value!}
                   disabled={disabled}
@@ -94,10 +104,12 @@ export default class MenuItem extends Component<IMenuItemProps, any> {
                   {children}
                 </Checkbox>
                 {subtitle && <div className={cx('subtitle')}>{subtitle}</div>}
-              </div>);
+              </div>
+            );
           }
           return visible && menuItem;
         }}
-      </Consumer>);
+      </Consumer>
+    );
   }
 }

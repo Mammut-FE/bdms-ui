@@ -1,6 +1,6 @@
-import { Samples } from "../Demo";
-import { Icon } from "../../../src";
-import React from "react";
+import { Samples } from '../Demo';
+import { Icon } from '../../../src';
+import React from 'react';
 
 const icons = [
   'details',
@@ -91,37 +91,47 @@ const icons = [
 
 function IconGroup(props) {
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap'
-    }}>{props.children}</div>
-  )
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+      }}
+    >
+      {props.children}
+    </div>
+  );
 }
 
-function IconSample({name}: any) {
+function IconSample({ name }: any) {
   return (
-    <div style={{
-      flex: 'none',
-      width: '80px',
-      textAlign: 'center',
-      padding: '12px 8px',
-      fontSize: '14px'
-    }}>
-      <Icon name={name}/>
+    <div
+      style={{
+        flex: 'none',
+        width: '80px',
+        textAlign: 'center',
+        padding: '12px 8px',
+        fontSize: '14px'
+      }}
+    >
+      <Icon name={name} />
       <div>{name}</div>
     </div>
-  )
+  );
 }
 
-const samples: Samples = [{
-  title: '所有图标',
-  description: '所有图标',
-  component: () => (
-    <IconGroup>
-      {icons.map((icon) => (<IconSample name={icon} key={icon}/>))}
-    </IconGroup>
-  )
-}]
+const samples: Samples = [
+  {
+    title: '所有图标',
+    description: '所有图标',
+    component: () => (
+      <IconGroup>
+        {icons.map(icon => (
+          <IconSample name={icon} key={icon} />
+        ))}
+      </IconGroup>
+    )
+  }
+];
 
-export default samples
+export default samples;

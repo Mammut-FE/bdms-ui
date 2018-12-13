@@ -120,18 +120,24 @@ export default class MenuWrap extends Component<IMenuWrapProps, IMenuWrapState> 
     const { className, children } = this.props;
     const { showBottomOverflow, showTopOverflow } = this.state;
     const menuWrapClasses = cx('u-menu', className);
-    return (<div className={menuWrapClasses}>
-        {showTopOverflow && (<div className={cx('handle-top')} onClick={this.clickScrollUp}>
-            <Icon name="chevron-up"/>
-          </div>)}
+    return (
+      <div className={menuWrapClasses}>
+        {showTopOverflow && (
+          <div className={cx('handle-top')} onClick={this.clickScrollUp}>
+            <Icon name="chevron-up" />
+          </div>
+        )}
         <div className={cx('content')} ref={this.menuContentDom} onScroll={this.scroll} onWheel={this.wheel}>
           {React.Children.map(children, (child: ReactElement<any>) => {
             return React.cloneElement(child);
           })}
         </div>
-        {showBottomOverflow && (<div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
-            <Icon name="chevron-down"/>
-          </div>)}
-      </div>);
+        {showBottomOverflow && (
+          <div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
+            <Icon name="chevron-down" />
+          </div>
+        )}
+      </div>
+    );
   }
 }

@@ -1,54 +1,58 @@
-import React from 'react'
+import React from 'react';
 
 export function DefaultPropName(prop: string) {
-  return `default${prop[0].toUpperCase()}${prop.slice(1)}`
+  return `default${prop[0].toUpperCase()}${prop.slice(1)}`;
 }
 
 export function OnChangePropName(prop: string) {
-  return `on${prop[0].toUpperCase()}${prop.slice(1)}Change`
+  return `on${prop[0].toUpperCase()}${prop.slice(1)}Change`;
 }
 
-export function noop() { }
+export function noop() {}
 
 export interface PropertyOptions {
-  [k: string]: PropertyOption
+  [k: string]: PropertyOption;
 }
 
 export interface PropertyOption {
-  defaultName?: string
-  onChangeName?: string
-  defaultValue?: any
+  defaultName?: string;
+  onChangeName?: string;
+  defaultValue?: any;
 }
 
 export interface IndependenceOption {
-  defaultPropName?: (prop: string) => string
-  onChangePropName?: (prop: string) => string
+  defaultPropName?: (prop: string) => string;
+  onChangePropName?: (prop: string) => string;
 }
 
 export interface Property {
-  name: string
-  defaultName: string
-  onChangeName: string
-  defaultValue: any
+  name: string;
+  defaultName: string;
+  onChangeName: string;
+  defaultValue: any;
 }
 
-function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a: string) => string, onChangePropName: (a: string) => string): Property[] {
-  const properties: Property[] = []
+function normalizePropertyOptions(
+  options: PropertyOptions,
+  defaultPropName: (a: string) => string,
+  onChangePropName: (a: string) => string
+): Property[] {
+  const properties: Property[] = [];
   for (const name of Object.keys(options)) {
     const property: Property = {
       name,
       defaultName: defaultPropName(name),
       onChangeName: onChangePropName(name),
       defaultValue: undefined
-    }
+    };
 
-    const value = options[name]
-    Object.assign(property, value)
+    const value = options[name];
+    Object.assign(property, value);
 
-    properties.push(property)
+    properties.push(property);
   }
 
-  return properties
+  return properties;
 }
 
 /**
@@ -58,70 +62,70 @@ function normalizePropertyOptions(options: PropertyOptions, defaultPropName: (a:
  * @param defaultPropName
  * @param onChangePropName
  */
-export function Independence(propsMapper: PropertyOptions, {
-  defaultPropName = DefaultPropName,
-  onChangePropName = OnChangePropName
-}: IndependenceOption = {}) {
-  const properties = normalizePropertyOptions(propsMapper, defaultPropName, onChangePropName)
+export function Independence(
+  propsMapper: PropertyOptions,
+  { defaultPropName = DefaultPropName, onChangePropName = OnChangePropName }: IndependenceOption = {}
+) {
+  const properties = normalizePropertyOptions(propsMapper, defaultPropName, onChangePropName);
 
   return (Component: any) => {
     class WrapperComponent extends React.Component<any> {
-      public static displayName = `${Component.name || Component.displayName || 'Component'}(Independence)`
-      private onChangeCache: object = {}
+      public static displayName = `${Component.name || Component.displayName || 'Component'}(Independence)`;
+      private onChangeCache: object = {};
 
       constructor(props) {
-        super(props)
+        super(props);
 
-        const state = {}
+        const state = {};
         for (const prop of properties) {
-          state[prop.name] = props[prop.defaultName] || prop.defaultValue
+          state[prop.name] = props[prop.defaultName] || prop.defaultValue;
         }
 
-        this.state = state
+        this.state = state;
       }
 
       public render() {
-        const {wrapperRef, ...restProps} = this.props
-        const props = {}
+        const { wrapperRef, ...restProps } = this.props;
+        const props = {};
 
         for (const prop of properties) {
           if (prop.name in this.props) {
-            Object.assign(props, this.ctlProp(prop))
+            Object.assign(props, this.ctlProp(prop));
           } else {
-            Object.assign(props, this.indepProp(prop))
+            Object.assign(props, this.indepProp(prop));
           }
         }
 
-        return (
-          <Component {...restProps} {...props} ref={wrapperRef}/>
-        )
+        return <Component {...restProps} {...props} ref={wrapperRef} />;
       }
 
       private ctlProp(prop: Property) {
         return {
           [prop.name]: this.props[prop.name],
           [prop.onChangeName]: this.props[prop.onChangeName] || noop
-        }
+        };
       }
 
       private indepProp(prop: Property) {
-        const onChange = this.onChangeCache[prop.name] || ((value) => {
-          this.setState({[prop.name]: value})
-          if (this.props[prop.onChangeName]) {
-            this.props[prop.onChangeName](value)
-          }
-        })
+        const onChange =
+          this.onChangeCache[prop.name] ||
+          (value => {
+            this.setState({ [prop.name]: value });
+            if (this.props[prop.onChangeName]) {
+              this.props[prop.onChangeName](value);
+            }
+          });
 
-        this.onChangeCache[prop.name] = onChange
+        this.onChangeCache[prop.name] = onChange;
         return {
           [prop.name]: this.state[prop.name],
-          [prop.onChangeName]: onChange,
-        }
+          [prop.onChangeName]: onChange
+        };
       }
     }
 
     return React.forwardRef<any, any>((props, ref) => {
-      return <WrapperComponent {...props} wrapperRef={ref}/>
-    }) as any
-  }
+      return <WrapperComponent {...props} wrapperRef={ref} />;
+    }) as any;
+  };
 }

@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
     "build": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
-    "test": "exit 1;",
+    "format": "prettier \"src/**/*.{ts,tsx,scss}\" \"example/**/*.{ts,tsx,scss}\" --write",
+    "precommit": "pretty-quick --staged",
     "prepublish": "npm run build"
   },
   "dependencies": {
@@ -41,7 +42,10 @@
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.2.0",
     "node-sass": "^4.9.3",
+    "prettier": "^1.15.3",
+    "pretty-quick": "^1.8.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0",

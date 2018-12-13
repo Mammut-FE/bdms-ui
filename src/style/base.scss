@@ -1,58 +1,58 @@
 // Base
-$body-background        : #fff;
-$font-family            : "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", tahoma, simsun, "宋体";
-$font-size-base         : 12px;
-$font-size-normal       : 14px;
-$font-size-big          : 16px;
-$line-height-base       : 1.5;
+$body-background: #fff;
+$font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft YaHei', tahoma, simsun,
+  '宋体';
+$font-size-base: 12px;
+$font-size-normal: 14px;
+$font-size-big: 16px;
+$line-height-base: 1.5;
 
 // cursor
-$cursor-default         : default;
-$cursor-disabled        : not-allowed;
-$cursor-ns-resize       : ns-resize;
-$cursor-pointer         : pointer;
-$cursor-move            : move;
+$cursor-default: default;
+$cursor-disabled: not-allowed;
+$cursor-ns-resize: ns-resize;
+$cursor-pointer: pointer;
+$cursor-move: move;
 
 // z-index list
-$zindex-affix           : 10;
-$zindex-back-top        : 10;
-$zindex-editnode        : 400;
-$zindex-notification    : 1200;
-$zindex-message         : 1010;
-$zindex-popover         : 1030;
-$zindex-picker          : 1050;
-$zindex-dropdown        : 1050;
-$zindex-contextmenu     : 1050;
-$zindex-tooltip         : 1060;
-$zindex-modal-mask      : 1100;
-$zindex-modal           : 1100;
-$zindex-fullscreen      : 1100;
-$zindex-codemirror      : 1100;
-$zindex-loading			: 1150;
+$zindex-affix: 10;
+$zindex-back-top: 10;
+$zindex-editnode: 400;
+$zindex-notification: 1200;
+$zindex-message: 1010;
+$zindex-popover: 1030;
+$zindex-picker: 1050;
+$zindex-dropdown: 1050;
+$zindex-contextmenu: 1050;
+$zindex-tooltip: 1060;
+$zindex-modal-mask: 1100;
+$zindex-modal: 1100;
+$zindex-fullscreen: 1100;
+$zindex-codemirror: 1100;
+$zindex-loading: 1150;
 
 // border
-$no-border              : none;
-$border-default-width   : 1px;
-$border-default-style   : solid;
-$border-radius-small    : 2px;
-$border-radius-default  : 3px;
-$transparent-border     : 1px solid transparent;
+$no-border: none;
+$border-default-width: 1px;
+$border-default-style: solid;
+$border-radius-small: 2px;
+$border-radius-default: 3px;
+$transparent-border: 1px solid transparent;
 
 // outline
-$no-outline             : none;
+$no-outline: none;
 
 // input
-$input-height           : 32px;
+$input-height: 32px;
 
 // select
-$select-top-distance    : 3px;
+$select-top-distance: 3px;
 
 //width
-$xsmall-width           : 146px;
-$small-width            : 240px;
-$normal-width           : 376px;
-$large-width            : 480px;
-
+$xsmall-width: 146px;
+$small-width: 240px;
+$normal-width: 376px;
+$large-width: 480px;
 
 /**
  * 布局间距定义

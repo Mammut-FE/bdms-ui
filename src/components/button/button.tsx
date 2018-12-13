@@ -45,13 +45,15 @@ export class Button extends Component<IButtonProps, any> {
       [`u-btn-${size}`]: true
     });
 
-    const iconNode = others.icon ? <Icon name={others.icon}/> : null;
+    const iconNode = others.icon ? <Icon name={others.icon} /> : null;
 
     const ComponentProp = others.href ? 'a' : 'button';
 
-    return (<ComponentProp className={classes} disabled={disabled} onClick={this.onClick} {...others}>
-      {iconNode}
-      <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
-    </ComponentProp>);
+    return (
+      <ComponentProp className={classes} disabled={disabled} onClick={this.onClick} {...others}>
+        {iconNode}
+        <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
+      </ComponentProp>
+    );
   }
 }

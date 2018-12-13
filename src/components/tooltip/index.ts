@@ -1,4 +1,4 @@
-import Tooltip from './Tooltip'
-import IconTooltip from './IconTooltip'
+import Tooltip from './Tooltip';
+import IconTooltip from './IconTooltip';
 
-export { Tooltip, IconTooltip }
+export { Tooltip, IconTooltip };
