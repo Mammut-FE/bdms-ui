@@ -75,10 +75,11 @@
   &.u-btn-small {
     line-height: 26px;
   }
-  &:disabled {
+  &.disabled {
     color: #999;
     border: 1px solid transparent;
     background: #fff;
+    cursor: not-allowed;
     &:active {
       background: #fff;
       border: 1px solid transparent;

@@ -32,7 +32,8 @@ export class Button extends Component<IButtonProps, any> {
   }
 
   public onClick = e => {
-    if (this.props.onClick) {
+    e.preventDefault()
+    if (this.props.onClick && !this.props.disabled) {
       this.props.onClick(e);
     }
   };
@@ -42,16 +43,27 @@ export class Button extends Component<IButtonProps, any> {
 
     const classes = cx('u-btn', className, {
       [`u-btn-${type}`]: true,
-      [`u-btn-${size}`]: true
+      [`u-btn-${size}`]: true,
+      'disabled' : type === 'text' && disabled
     });
 
     const iconNode = others.icon ? <Icon name={others.icon}/> : null;
 
-    const ComponentProp = others.href ? 'a' : 'button';
 
-    return (<ComponentProp className={classes} disabled={disabled} onClick={this.onClick} {...others}>
-      {iconNode}
-      <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
-    </ComponentProp>);
+    if ('href' in others) {
+      return (
+        <a className={classes} onClick={this.onClick} {...others}>
+          {iconNode}
+          <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
+        </a>
+      )
+    } else {
+      return (<button className={classes} disabled={disabled} onClick={this.onClick} {...others}>
+        {iconNode}
+        <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
+      </button>);
+    }
+
+    
   }
 }

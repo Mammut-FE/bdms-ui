@@ -42,7 +42,7 @@ const samples: Samples = [{
   description: '通过 href 和 target 可以指定按钮的链接',
   component: () => (
     <div>
-      <Button type="text" href="http://www.baidu.com">
+      <Button type="text" href="http://www.baidu.com" disabled={true}>
         Go to baidu.com
       </Button>
       <Button type="text" size="small" href="http://www.baidu.com" target="_blank">
