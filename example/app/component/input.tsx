@@ -18,7 +18,7 @@ const samples: Samples = [
       public render() {
         return (
           <div>
-            <Input />
+            <Input defaultValue="Default Value" onChange={console.log} />
             <Input placeholder="Input Here" />
             <Input value="固定值" />
             <Input value={this.state.text} onChange={this.onChange} />
