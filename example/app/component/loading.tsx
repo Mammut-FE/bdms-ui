@@ -7,12 +7,21 @@ import { Row, Col, Button } from '../../../src';
 const samples: Samples = [
   {
     title: '基础使用',
-    description: '不带任何参数可以正常使用，内置了两种 indicator，"cube" 和 "circle"，默认是 "circle"，支持自定义',
+    description:
+      '不带任何参数可以正常使用，内置了两种 indicator，"cube" 和 "circle"，默认是 "circle"，支持自定义。其中 "circle" 支持自定义大小',
     component: () => (
       <div>
-        <Loading />
-        <Loading indicator="cube" />
-        <Loading indicator={<Icon name="right" />} />
+        <div>
+          <Loading />
+          <Loading indicator="cube" />
+          <Loading indicator={<Icon name="right" />} />
+        </div>
+        <div>
+          <p>只有 "circle" 类型支持大小号的调节</p>
+          <Loading size="small" tip="小号" />
+          <Loading size="normal" tip="正常号" />
+          <Loading size="large" tip="大号" />
+        </div>
       </div>
     )
   },
