@@ -85,15 +85,16 @@ export function Independence(
       }
 
       public render() {
-        const { wrapperRef, ...restProps } = this.props;
+        const { wrapperRef, ...restProps } = { ...this.props } as any;
         const props = {};
 
         for (const prop of properties) {
-          if (prop.name in this.props) {
+          if (prop.name in restProps) {
             Object.assign(props, this.ctlProp(prop));
           } else {
             Object.assign(props, this.indepProp(prop));
           }
+          delete restProps[prop.defaultName];
         }
 
         return <Component {...restProps} {...props} ref={wrapperRef} />;
