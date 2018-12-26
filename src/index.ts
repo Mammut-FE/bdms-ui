@@ -11,5 +11,6 @@ export { Input } from './components/input';
 export { DatePicker, DateRangePicker } from './components/date-picker';
 export { TimePicker } from './components/time-picker';
 export { Tooltip, IconTooltip } from './components/tooltip';
+export { Message, Notification } from './components/message';
 
 import './index.scss';

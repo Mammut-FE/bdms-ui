@@ -1,0 +1,108 @@
+.u-notification {
+  position: fixed;
+  padding: 0;
+  width: 100%;
+  font-size: 14px;
+  top: 64px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+:global {
+
+  .notice-enter,
+  .notice-appear,
+  .notification-enter,
+  .notification-appear {
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+  }
+
+  .notice-enter.notice-enter-active,
+  .notice-appear.notice-appear-active {
+    animation-name: noticeFadeIn;
+    animation-play-state: running;
+  }
+
+  .notice-leave,
+  .notification-leave {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+  }
+
+  .notice-leave.notice-leave-active {
+    animation-name: noticeFadeOut;
+    animation-play-state: running;
+    pointer-events: none;
+  }
+
+  .notification-enter.notification-enter-active,
+  .notification-appear.notification-appear-active {
+    animation-name: notificationFadeIn;
+    animation-play-state: running;
+  }
+
+  .notification-leave.notification-leave-active {
+    animation-name: notificationFadeOut;
+    animation-play-state: running;
+    pointer-events: none;
+  }
+}
+
+@keyframes :global(noticeFadeIn) {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 0.9;
+  }
+}
+
+@keyframes :global(noticeFadeOut) {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes :global(notificationFadeIn) {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes :global(notificationFadeOut) {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
