@@ -7,7 +7,6 @@ import iconStamples from './icon';
 import checkboxSamples from './checkbox';
 import tagSamples from './tag';
 import menuSamples from './menu';
-import selectSamples from './select';
 import inputSamples from './input';
 import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
@@ -56,12 +55,6 @@ const demos: Demo[] = [
     title: 'Menu 菜单',
     description: '菜单',
     samples: menuSamples
-  },
-  {
-    name: 'select',
-    title: 'Select 选择器',
-    description: '选择器',
-    samples: selectSamples
   },
   {
     name: 'input',

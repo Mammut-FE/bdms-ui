@@ -29,6 +29,7 @@
     "rc-trigger": "^2.5.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-error-boundary": "^1.2.3",
     "react-flexbox-grid": "^2.1.2",
     "velocity-animate": "^1.5.1"
   },
