@@ -28,16 +28,25 @@ export default class Notice extends React.Component<INoticeProps, {}> {
 
   private closeTimer: any = null;
 
+  constructor(props: INoticeProps) {
+    super(props);
+    this.close = this.close.bind(this);
+  }
+
   public componentDidMount() {
     const duration = this.props.duration;
-    duration && (this.closeTimer = setTimeout(() => {
-      this.close();
-    }, duration));
+    if (duration) {
+      this.closeTimer = setTimeout(() => {
+        this.close();
+      }, duration);
+    }
   }
 
   public componentWillUnmount() {
-    this.closeTimer && clearTimeout(this.closeTimer);
-    this.closeTimer = null;
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
   }
 
   public render() {
@@ -57,7 +66,7 @@ export default class Notice extends React.Component<INoticeProps, {}> {
         top: '14px'
       } : {
           fontSize: '20px',
-          marginRight: '12px',
+          marginRight: '8px',
           verticalAlign: 'middle'
         }} className={'icon-' + iconName} />
     ) : null;
@@ -70,7 +79,7 @@ export default class Notice extends React.Component<INoticeProps, {}> {
         top: '20px',
         color: '#666',
         cursor: 'pointer'
-      }} className='icon-close' onClick={this.close.bind(this)} />
+      }} className='icon-close' onClick={this.close} />
     ) : null;
 
     return isnotice ? (
@@ -89,6 +98,8 @@ export default class Notice extends React.Component<INoticeProps, {}> {
   }
 
   private close() {
-    this.props.onClose && this.props.onClose();
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 }

@@ -14,7 +14,7 @@
   .notice-appear,
   .notification-enter,
   .notification-appear {
-    animation-duration: .3s;
+    animation-duration: .5s;
     animation-fill-mode: both;
     animation-play-state: paused;
   }
@@ -27,7 +27,7 @@
 
   .notice-leave,
   .notification-leave {
-    animation-duration: .5s;
+    animation-duration: .3s;
     animation-fill-mode: both;
     animation-play-state: paused;
   }

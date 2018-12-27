@@ -30,7 +30,9 @@ const show = (args: IMessageProps) => {
   const target = key++;
 
   const callback = () => {
-    typeof args.onClose === 'function' && args.onClose();
+    if (typeof args.onClose === 'function') {
+      args.onClose();
+    }
   };
 
   getMessageInstance(instance => {
@@ -66,13 +68,5 @@ export const Message = {
       type: 'error',
       content, duration, onClose
     });
-  },
-  notice(args) {
-    return show(Object.assign({
-      duration: 5000,
-      closable: true
-    }, args, {
-      isnotice: true
-    }));
   }
 };

@@ -30,7 +30,9 @@ const show = (args: INotificationProps) => {
   const target = key++;
 
   const callback = () => {
-    typeof args.onClose === 'function' && args.onClose();
+    if (typeof args.onClose === 'function') {
+      args.onClose();
+    }
   };
 
   getNotificationInstance(instance => {

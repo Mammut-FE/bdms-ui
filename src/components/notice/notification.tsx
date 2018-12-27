@@ -30,6 +30,37 @@ class Notification extends React.Component<INotificationProps, INotificationStat
     animationName: 'notice'
   };
 
+  public static newInstance(props = {}, callback) {
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+
+    let called = false;
+
+    const ref = (notification) => {
+      if (called) {
+        return;
+      }
+      called = true;
+      callback({
+        notice(noticeProps: INoticeProps) {
+          notification.add(noticeProps);
+        },
+        removeNotice(id: string) {
+          notification.remove(id);
+        },
+        component: notification,
+        destroy() {
+          ReactDOM.unmountComponentAtNode(div);
+          if (div.parentNode) {
+            div.parentNode.removeChild(div);
+          }
+        }
+      });
+    }
+
+    ReactDOM.render(<Notification {...props} ref={ref} />, div);
+  }
+
   public readonly state: Readonly<INotificationState> = {
     notices: []
   };
@@ -76,39 +107,16 @@ class Notification extends React.Component<INotificationProps, INotificationStat
 
     return (
       <div className={classes} style={style}>
-        <ReactCSSTransitionGroup transitionName={animationName}>{noticeNodes}</ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          transitionName={animationName}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          {noticeNodes}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }
 }
-
-Notification.newInstance = (props = {}, callback) => {
-  const div = document.createElement('div');
-  document.body.appendChild(div);
-
-  let called = false;
-
-  const ref = (notification) => {
-    if (called) {
-      return;
-    }
-    called = true;
-    callback({
-      notice(noticeProps) {
-        notification.add(noticeProps);
-      },
-      removeNotice(id) {
-        notification.remove(id);
-      },
-      component: notification,
-      destroy() {
-        ReactDOM.unmountComponentAtNode(div);
-        div.parentNode && div.parentNode.removeChild(div);
-      }
-    });
-  }
-
-  ReactDOM.render(<Notification {...props} ref={ref} />, div);
-};
 
 export default Notification;
