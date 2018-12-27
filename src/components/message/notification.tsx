@@ -16,7 +16,7 @@ const getNotificationInstance = (callback: (i: any) => void) => {
 
 type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'notice';
 
-interface INoticifationProps {
+interface INotificationProps {
   content: string;
   duration?: number;
   type: NoticeType;
@@ -26,7 +26,7 @@ interface INoticifationProps {
   onClose?: () => void;
 }
 
-const show = (args: INoticifationProps) => {
+const show = (args: INotificationProps) => {
   const target = key++;
 
   const callback = () => {

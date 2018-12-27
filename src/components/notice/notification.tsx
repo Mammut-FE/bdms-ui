@@ -6,11 +6,11 @@ import styles from './notification.scss';
 import Notice, { INoticeProps } from './notice';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-interface INoticifationState {
+interface INotificationState {
   readonly notices: INoticeProps[]
 };
 
-interface INoticifationProps {
+interface INotificationProps {
   className?: string;
   style?: CSSProperties;
   animationName?: string;
@@ -24,13 +24,13 @@ const getUuid = () => {
 
 const cx = classNames.bind(styles);
 
-class Notification extends React.Component<INoticifationProps, INoticifationState> {
+class Notification extends React.Component<INotificationProps, INotificationState> {
 
-  public static defaultProps: Partial<INoticifationProps> = {
+  public static defaultProps: Partial<INotificationProps> = {
     animationName: 'notice'
   };
 
-  public readonly state: Readonly<INoticifationState> = {
+  public readonly state: Readonly<INotificationState> = {
     notices: []
   };
 
@@ -45,7 +45,7 @@ class Notification extends React.Component<INoticifationProps, INoticifationStat
   };
 
   public remove = (id: string) => {
-    this.setState((previousState: INoticifationState) => {
+    this.setState((previousState: INotificationState) => {
       return {
         notices: previousState.notices.filter(notice => notice.id !== id),
       };
