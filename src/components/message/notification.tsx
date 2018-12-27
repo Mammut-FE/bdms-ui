@@ -16,14 +16,16 @@ const getNotificationInstance = (callback: (i: any) => void) => {
 
 type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'notice';
 
-interface INotificationProps {
+interface INotificationNoTypeProps {
   content: React.ReactNode;
   icon?: React.ReactNode;
   duration?: number;
-  type: NoticeType;
   title?: React.ReactNode;
   closable?: boolean;
   onClose?: () => void;
+}
+interface INotificationProps extends INotificationNoTypeProps {
+  type: NoticeType;
 }
 
 const DEFAULT_ARGS = {
@@ -54,25 +56,25 @@ const show = (args: INotificationProps) => {
 }
 
 export const Notification = {
-  info(args: INotificationProps) {
+  info(args: INotificationNoTypeProps) {
     return show({
       ...args,
       type: 'info'
     });
   },
-  warning(args: INotificationProps) {
+  warning(args: INotificationNoTypeProps) {
     return show({
       ...args,
       type: 'warning'
     });
   },
-  success(args: INotificationProps) {
+  success(args: INotificationNoTypeProps) {
     return show({
       ...args,
       type: 'success'
     });
   },
-  error(args: INotificationProps) {
+  error(args: INotificationNoTypeProps) {
     return show({
       ...args,
       type: 'error'
