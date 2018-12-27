@@ -71,3 +71,25 @@
   text-align: left;
   margin-top: 12px;
 }
+
+.i-notification {
+  position: absolute;
+  font-size: 28px;
+  left: 20px;
+  top: 14px;
+}
+
+.i-notice {
+  font-size: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.i-close {
+  position: absolute;
+  font-size: 12px;
+  right: 20px;
+  top: 20px;
+  color: #666;
+  cursor: pointer;
+}

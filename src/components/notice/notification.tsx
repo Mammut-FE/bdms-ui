@@ -30,13 +30,13 @@ class Notification extends React.Component<INotificationProps, INotificationStat
     animationName: 'notice'
   };
 
-  public static newInstance(props = {}, callback) {
+  public static newInstance(props: INotificationProps, callback: (i: any) => void) {
     const div = document.createElement('div');
     document.body.appendChild(div);
 
     let called = false;
 
-    const ref = (notification) => {
+    const ref = (notification: Notification) => {
       if (called) {
         return;
       }
@@ -68,7 +68,7 @@ class Notification extends React.Component<INotificationProps, INotificationStat
   public add = (notice: INoticeProps) => {
     const { notices } = this.state;
     const cloneNotices = notices.concat();
-    const id = notice.id ? notice.id : notice.id = getUuid();
+    const id = notice.id || (notice.id = getUuid());
     if (cloneNotices.every(item => item.id !== id)) {
       cloneNotices.push(notice);
       this.setState({ notices: cloneNotices });

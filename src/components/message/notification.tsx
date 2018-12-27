@@ -17,14 +17,20 @@ const getNotificationInstance = (callback: (i: any) => void) => {
 type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'notice';
 
 interface INotificationProps {
-  content: string;
+  content: React.ReactNode;
+  icon?: React.ReactNode;
   duration?: number;
   type: NoticeType;
-  isnotice?: boolean;
-  title?: string;
+  title?: React.ReactNode;
   closable?: boolean;
   onClose?: () => void;
 }
+
+const DEFAULT_ARGS = {
+  type: 'info',
+  duration: 5000,
+  closable: true
+};
 
 const show = (args: INotificationProps) => {
   const target = key++;
@@ -36,39 +42,43 @@ const show = (args: INotificationProps) => {
   };
 
   getNotificationInstance(instance => {
-    instance.notice(Object.assign({}, args, {
+    instance.notice({
+      ...DEFAULT_ARGS,
+      ...args,
+      isNotice: true,
       key: target,
       style: {},
       onClose: callback
-    }));
+    });
   });
 }
 
-const DEFAULT_ARGS = {
-  duration: 5000,
-  closable: true,
-  isnotice: true
-};
-
 export const Notification = {
-  info(args) {
-    return show(Object.assign({}, DEFAULT_ARGS, args, {
+  info(args: INotificationProps) {
+    return show({
+      ...args,
       type: 'info'
-    }));
+    });
   },
-  warning(args) {
-    return show(Object.assign({}, DEFAULT_ARGS, args, {
+  warning(args: INotificationProps) {
+    return show({
+      ...args,
       type: 'warning'
-    }));
+    });
   },
-  success(args) {
-    return show(Object.assign({}, DEFAULT_ARGS, args, {
+  success(args: INotificationProps) {
+    return show({
+      ...args,
       type: 'success'
-    }));
+    });
   },
-  error(args) {
-    return show(Object.assign({}, DEFAULT_ARGS, args, {
+  error(args: INotificationProps) {
+    return show({
+      ...args,
       type: 'error'
-    }));
+    });
+  },
+  show(args: INotificationProps) {
+    return show(args);
   }
 };

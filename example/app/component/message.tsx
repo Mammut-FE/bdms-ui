@@ -20,6 +20,7 @@ const showError = () => {
 
 const showNotice = () => {
   Notification.info({
+    type: 'info',
     title: '通知',
     content: '这是一条很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的消息通知'
   });

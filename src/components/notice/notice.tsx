@@ -7,12 +7,13 @@ export interface INoticeProps {
   id?: string;
   duration?: number;
   type?: string;
-  title?: string;
-  content?: string;
+  title?: React.ReactNode;
+  content?: React.ReactNode;
+  icon?: React.ReactNode;
   className?: string;
   style?: CSSProperties;
   closable?: boolean;
-  isnotice?: boolean;
+  isNotice?: boolean;
   onClose?: () => void;
 }
 
@@ -23,7 +24,7 @@ export default class Notice extends React.Component<INoticeProps, {}> {
     type: 'warning',
     duration: 2000,
     closable: false,
-    isnotice: false
+    isNotice: false
   };
 
   private closeTimer: any = null;
@@ -50,48 +51,32 @@ export default class Notice extends React.Component<INoticeProps, {}> {
   }
 
   public render() {
-    const { type, title = '', content = '', className, style, closable, isnotice } = this.props;
+    const { type, title = '', content = '', icon, className, style, closable, isNotice } = this.props;
 
     const classes = cx('u-notice', className, {
       [`u-notice-${type}`]: true,
-      ['u-notice-notification']: isnotice
+      ['u-notice-notification']: isNotice
     });
 
     const iconName = type ? type === 'success' ? 'ok' : (type === 'info' ? 'waiting' : type) : null;
-    const IconNode = iconName ? (
-      <i style={isnotice ? {
-        position: 'absolute',
-        fontSize: '28px',
-        left: '20px',
-        top: '14px'
-      } : {
-          fontSize: '20px',
-          marginRight: '8px',
-          verticalAlign: 'middle'
-        }} className={'icon-' + iconName} />
+    const iconNode = icon ? icon : iconName ? (
+      <i className={cx(isNotice ? 'i-notification' : 'i-notice') + ' icon-' + iconName} />
     ) : null;
 
-    const closeNode = isnotice && closable ? (
-      <i style={{
-        position: 'absolute',
-        fontSize: '12px',
-        right: '20px',
-        top: '20px',
-        color: '#666',
-        cursor: 'pointer'
-      }} className='icon-close' onClick={this.close} />
+    const closeNode = isNotice && closable ? (
+      <i className={cx('i-close') + ' icon-close'} onClick={this.close} />
     ) : null;
 
-    return isnotice ? (
+    return isNotice ? (
       <div className={classes} style={style}>
-        {IconNode}
+        {iconNode}
         <div className={cx('u-notice-title')}>{title}</div>
         {closeNode}
         <div className={cx('u-notice-desc')}>{content}</div>
       </div>
     ) : (
         <div className={classes} style={style}>
-          {IconNode}
+          {iconNode}
           <span>{content}</span>
         </div>
       );

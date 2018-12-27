@@ -17,12 +17,10 @@ const getMessageInstance = (callback: (i: any) => void) => {
 type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'notice';
 
 interface IMessageProps {
-  content: string;
+  content: React.ReactNode;
+  icon?: React.ReactNode;
   duration?: number;
   type: NoticeType;
-  isnotice?: boolean;
-  title?: string;
-  closable?: boolean;
   onClose?: () => void;
 }
 
@@ -36,11 +34,12 @@ const show = (args: IMessageProps) => {
   };
 
   getMessageInstance(instance => {
-    instance.notice(Object.assign({}, args, {
+    instance.notice({
+      ...args,
       key: target,
       style: {},
       onClose: callback
-    }));
+    });
   });
 }
 
@@ -68,5 +67,8 @@ export const Message = {
       type: 'error',
       content, duration, onClose
     });
+  },
+  show(args: IMessageProps) {
+    return show(args);
   }
 };
