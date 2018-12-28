@@ -10,7 +10,12 @@ function defaultClick() {
 const samples: Samples = [{
   title: '普通按钮',
   description: '普通按钮示例',
-  component: () => (<Button>按钮</Button>)
+  component: () => (
+    <div>
+      <Button>按钮</Button>
+      <Button disabled={true}>disabled</Button>
+    </div>
+  )
 }, {
   title: '有 Icon 按钮',
   description: '有 Icon',
