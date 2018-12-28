@@ -1,14 +1,18 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, CSSProperties } from 'react';
 import { Icon } from '../icon';
+import Animate from 'rc-animate';
 
 import styles from './backTop.scss';
 import classNames from 'classnames/bind';
+
+import { smoothScroll } from '../../lib/util';
 
 interface IBackTopProps {
   target?: () => HTMLElement | null;
   visibilityHeight?: number;
   onClick?: (e: MouseEvent<HTMLDivElement>) => void;
   className?: string;
+  style?: CSSProperties;
 }
 
 interface IBackTopState {
@@ -35,7 +39,7 @@ export class BackTop extends React.Component<IBackTopProps, IBackTopState> {
   }
 
   public render() {
-    const { className, children } = this.props;
+    const { className, style, children } = this.props;
 
     const iconNode = (
       <div className={cx('back-top-icon')}>
@@ -43,14 +47,16 @@ export class BackTop extends React.Component<IBackTopProps, IBackTopState> {
       </div>
     );
 
-    const classes = cx('back-top', className, {
-      ['back-top-hide']: !this.state.visible
-    });
+    const classes = cx('back-top', className);
 
-    return (
-      <div className={classes} onClick={this.scrollToTop}>
+    const btnNode = this.state.visible ? (
+      <div className={classes} style={style} onClick={this.scrollToTop}>
         {children || iconNode}
       </div>
+    ) : null;
+
+    return (
+      <Animate transitionName={cx('back-top-fade')}>{btnNode}</Animate>
     );
   }
 
@@ -64,7 +70,7 @@ export class BackTop extends React.Component<IBackTopProps, IBackTopState> {
   }
 
   private scrollToTop(e: MouseEvent<HTMLDivElement>) {
-    this.targetDom.scrollTop = 0;
+    smoothScroll(this.targetDom, 0);
     if (this.props.onClick) {
       this.props.onClick(e);
     }
