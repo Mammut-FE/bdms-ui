@@ -6,9 +6,8 @@
   line-height: 1.5;
   font-size: 14px;
   opacity: .9;
-  color: #333;
+  color: #fff;
   border-radius: 2px;
-  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,26 +19,26 @@
 }
 
 .u-notice-success {
-  background: rgba(229, 249, 243, 0.90);
-  border: 1px solid #9bdec8;
-  color: #3eae89;
+  background: #e5faf3;
+  border: 1px solid #5cd6ad;
+  color: #3c9;
 }
 
 .u-notice-error {
-  background: rgba(255, 238, 238, 0.90);
-  border: 1px solid #ecaeae;
-  color: #c64040;
+  background: #ffeeee;
+  border: 1px solid #ed8888;
+  color: #e65c5c;
 }
 
 .u-notice-warning {
-  background: rgba(254, 247, 236, 0.90);
-  border: 1px solid #eccc93;
-  color: #dd900c;
+  background: #fef7ec;
+  border: 1px solid #f6c460;
+  color: #f3b230;
 }
 
 
 .u-notice-info {
-  background: rgba(239, 249, 255, 0.90);
+  background: #effaff;
   border: 1px solid #a3d3eb;
   color: #309ce4;
 }
@@ -81,7 +80,7 @@
 
 .i-notice {
   font-size: 20px;
-  margin-right: 8px;
+  margin-right: 16px;
   vertical-align: middle;
 }
 

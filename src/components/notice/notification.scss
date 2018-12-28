@@ -8,50 +8,53 @@
   pointer-events: none;
 }
 
-:global {
+.notice {
+  display: block;
 
-  .notice-enter,
-  .notice-appear,
-  .notification-enter,
-  .notification-appear {
-    animation-duration: .5s;
-    animation-fill-mode: both;
-    animation-play-state: paused;
+  &-enter,
+  &-appear {
+    opacity: 0 !important;
+    animation-duration: 0.5s;
+
+    &-active {
+      animation-name: noticeFadeIn;
+    }
   }
 
-  .notice-enter.notice-enter-active,
-  .notice-appear.notice-appear-active {
-    animation-name: noticeFadeIn;
-    animation-play-state: running;
-  }
+  &-leave {
+    animation-duration: 0.3s;
 
-  .notice-leave,
-  .notification-leave {
-    animation-duration: .3s;
-    animation-fill-mode: both;
-    animation-play-state: paused;
-  }
-
-  .notice-leave.notice-leave-active {
-    animation-name: noticeFadeOut;
-    animation-play-state: running;
-    pointer-events: none;
-  }
-
-  .notification-enter.notification-enter-active,
-  .notification-appear.notification-appear-active {
-    animation-name: notificationFadeIn;
-    animation-play-state: running;
-  }
-
-  .notification-leave.notification-leave-active {
-    animation-name: notificationFadeOut;
-    animation-play-state: running;
-    pointer-events: none;
+    &-active {
+      animation-name: noticeFadeOut;
+      pointer-events: none;
+    }
   }
 }
 
-@keyframes :global(noticeFadeIn) {
+.notification {
+  display: block;
+
+  &-enter,
+  &-appear {
+    opacity: 0 !important;
+    animation-duration: 0.5s;
+
+    &-active {
+      animation-name: notificationFadeIn;
+    }
+  }
+
+  &-leave {
+    animation-duration: 0.3s;
+
+    &-active {
+      animation-name: notificationFadeOut;
+      pointer-events: none;
+    }
+  }
+}
+
+@keyframes noticeFadeIn {
   0% {
     transform-origin: 0 0;
     transform: translateY(-100%);
@@ -65,7 +68,7 @@
   }
 }
 
-@keyframes :global(noticeFadeOut) {
+@keyframes noticeFadeOut {
   0% {
     transform-origin: 0 0;
     transform: translateY(0%);
@@ -79,7 +82,7 @@
   }
 }
 
-@keyframes :global(notificationFadeIn) {
+@keyframes notificationFadeIn {
   0% {
     opacity: 0;
     transform-origin: 0 0;
@@ -93,7 +96,7 @@
   }
 }
 
-@keyframes :global(notificationFadeOut) {
+@keyframes notificationFadeOut {
   0% {
     transform-origin: 0 0;
     transform: translateX(0%);

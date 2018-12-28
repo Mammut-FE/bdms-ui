@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import styles from './notification.scss';
 import Notice, { INoticeProps } from './notice';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Animate from 'rc-animate';
 
 interface INotificationState {
   readonly notices: INoticeProps[]
@@ -107,13 +107,7 @@ class Notification extends React.Component<INotificationProps, INotificationStat
 
     return (
       <div className={classes} style={style}>
-        <ReactCSSTransitionGroup
-          transitionName={animationName}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          {noticeNodes}
-        </ReactCSSTransitionGroup>
+        <Animate transitionName={cx(animationName)}>{noticeNodes}</Animate>
       </div>
     );
   }
