@@ -16,30 +16,34 @@ import demos from './component';
 import router from './router';
 
 const cx = classNames.bind(styles);
-const { Sider, Content } = Layout
-const { Item: MenuItem } = Menu
+const { Sider, Content } = Layout;
+const { Item: MenuItem } = Menu;
 
 export default class App extends Component<any> {
   public render() {
-    return (<Layout hasSider={true}>
-      <Sider className={cx('app-sidebar')}>
-        <Menu mode="inline" multiple={false}>
-          <MenuItem key="/playground" value="/playground">
-            <Link to="/playground">Playground</Link>
-          </MenuItem>
-          {demos.map(demo => (
-            <MenuItem key={demo.name} value={demo.name}>
-              <Link to={'/' + demo.name}>{demo.title}</Link>
+    return (
+      <Layout hasSider={true}>
+        <Sider className={cx('app-sidebar')}>
+          <Menu mode="inline" multiple={false}>
+            <MenuItem key="/playground" value="/playground">
+              <Link to="/playground">Playground</Link>
             </MenuItem>
-          ))}
-        </Menu>
-      </Sider>
-      <Content classNames={cx('app-content')}>
-        <Switch>
-          {router.map(route => (<Route key={route.path} {...route}/>))}
-          <Redirect to={router[0].path}/>
-        </Switch>
-      </Content>
-    </Layout>);
+            {demos.map(demo => (
+              <MenuItem key={demo.name} value={demo.name}>
+                <Link to={'/' + demo.name}>{demo.title}</Link>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Sider>
+        <Content classNames={cx('app-content')}>
+          <Switch>
+            {router.map(route => (
+              <Route key={route.path} {...route} />
+            ))}
+            <Redirect to={router[0].path} />
+          </Switch>
+        </Content>
+      </Layout>
+    );
   }
 }

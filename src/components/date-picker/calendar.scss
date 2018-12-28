@@ -1,13 +1,13 @@
 $cube-size: 24px;
 $ranger-bg-color: #f2f9ff; // 高亮的范围背景颜色
-$active-color: #0987E5; // 活跃颜色，选中的某一天，以及今天的颜色
+$active-color: #0987e5; // 活跃颜色，选中的某一天，以及今天的颜色
 $disabled-color: #999; // 禁用的颜色
 $hover-bg-color: #d0e8fe; // 背景色
 $minor-color: #999; // 次要颜色，主要是用于前一个月后一个月的文字颜色
 // 主要颜色就是黑色了
 
 @mixin concatGap {
-  content: "";
+  content: '';
   position: absolute;
   width: 4px;
   height: 100%;
@@ -47,7 +47,6 @@ $minor-color: #999; // 次要颜色，主要是用于前一个月后一个月的
 }
 
 .days-body {
-
 }
 
 .header {

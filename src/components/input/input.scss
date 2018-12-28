@@ -5,7 +5,7 @@ $input-large-line-height: 36px;
 
 .input {
   line-height: $input-normal-line-height;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   font-size: 14px;
   padding: 0 8px;
   outline: 0;
@@ -15,12 +15,12 @@ $input-large-line-height: 36px;
   transition: all 0.3s;
 
   &:hover {
-    border-color: #0099FF;
+    border-color: #0099ff;
   }
 
   &:focus {
-    border-color:#0099FF;
-    box-shadow: 0 0 2px 2px rgba(#0099FF, 0.2);
+    border-color: #0099ff;
+    box-shadow: 0 0 2px 2px rgba(#0099ff, 0.2);
   }
 
   &--size-large {
@@ -48,7 +48,8 @@ $input-large-line-height: 36px;
   width: 100%;
 }
 
-.prefix, .suffix {
+.prefix,
+.suffix {
   position: absolute;
   text-align: center;
   top: 50%;

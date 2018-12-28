@@ -7,8 +7,8 @@
   border-radius: 100px;
   position: relative;
   cursor: pointer;
-  transition: all .25s ease-in-out;
-  &+.u-switch {
+  transition: all 0.25s ease-in-out;
+  & + .u-switch {
     margin-left: 15px;
   }
   &.open {
@@ -37,5 +37,5 @@
   top: 2px;
   left: 50%;
   margin-left: -18px;
-  transition: all .25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }

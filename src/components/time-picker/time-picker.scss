@@ -21,7 +21,8 @@ $active-color: #d0e8fe;
 }
 
 .container--centered {
-  .input input, .input {
+  .input input,
+  .input {
     text-align: center;
   }
 }
@@ -68,11 +69,10 @@ $active-color: #d0e8fe;
 
     &--empty {
       &:hover {
-        background: none
+        background: none;
       }
 
       cursor: initial;
     }
   }
 }
-

@@ -59,11 +59,13 @@ export class Tag extends Component<ITagProps, ITagState> {
     };
 
     if (visible) {
-      return (<div className={tagClass}>
-        {iconName && <Icon name={iconName} style={iconStyle}/>}
-        {children}
-        {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle}/>}
-      </div>);
+      return (
+        <div className={tagClass}>
+          {iconName && <Icon name={iconName} style={iconStyle} />}
+          {children}
+          {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
+        </div>
+      );
     } else {
       return null;
     }

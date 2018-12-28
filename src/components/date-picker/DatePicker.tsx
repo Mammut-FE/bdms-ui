@@ -13,22 +13,24 @@ import styles from './date-picker.scss';
 import DateRangePicker from './DateRangePicker';
 import DateTime, { DateTimeMixins } from './DateTime';
 
-const cx = cnb.bind(styles)
+const cx = cnb.bind(styles);
 
-export interface DatePickerProps extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'>, DateTimeMixins {
-  value?: Date
-  defaultValue?: Date
-  onChange?: (date?: Date) => void
-  format?: string | ((date: Date) => string)
-  hideClear?: boolean
+export interface DatePickerProps
+  extends Omit<InputProps, 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'>,
+    DateTimeMixins {
+  value?: Date;
+  defaultValue?: Date;
+  onChange?: (date?: Date) => void;
+  format?: string | ((date: Date) => string);
+  hideClear?: boolean;
 }
 
 export interface DatePickerState {
-  shown: boolean
+  shown: boolean;
 }
 
-const defaultFormatWithoutTime = (date: Date) => date && dateFormat(date, 'YYYY-MM-DD')
-const defaultFormat = (date: Date) => dateFormat(date, 'YYYY-MM-DD HH:mm')
+const defaultFormatWithoutTime = (date: Date) => date && dateFormat(date, 'YYYY-MM-DD');
+const defaultFormat = (date: Date) => dateFormat(date, 'YYYY-MM-DD HH:mm');
 
 @Independence({
   value: {
@@ -36,29 +38,29 @@ const defaultFormat = (date: Date) => dateFormat(date, 'YYYY-MM-DD HH:mm')
   }
 })
 export default class DatePicker extends React.Component<DatePickerProps, DatePickerState> {
-  public static DateRangePicker: typeof DateRangePicker
+  public static DateRangePicker: typeof DateRangePicker;
 
   public state = {
     shown: false
-  }
+  };
 
-  public onShownChange = (shown) => this.setState({shown})
+  public onShownChange = shown => this.setState({ shown });
 
-  public fireChange = (value?) => this.props.onChange && this.props.onChange(value)
+  public fireChange = (value?) => this.props.onChange && this.props.onChange(value);
 
   public onChange = (time: Date) => {
-    time = clampDateDay(time, this.props.max, this.props.min)
+    time = clampDateDay(time, this.props.max, this.props.min);
     // 只对日期进行修正，对时间不限制
-    this.fireChange(time)
-  }
+    this.fireChange(time);
+  };
 
   public clear = () => {
-    this.fireChange()
-  }
+    this.fireChange();
+  };
 
   public renderDropdown = () => {
-    const {value = new Date()} = this.props
-    const day = value.getDate()
+    const { value = new Date() } = this.props;
+    const day = value.getDate();
     return (
       <DateTime
         value={value}
@@ -72,27 +74,39 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         min={this.props.min}
         max={this.props.max}
       />
-    )
-  }
+    );
+  };
 
   public renderInputSuffix() {
-    const { hideClear, value } = this.props
-    const suffixIcon = <Icon name="calendar" className={cx('input-icon')}/>
-    return hideClear ? suffixIcon : (
-      value ? (<Icon name="close-circle" className={cx('input-icon', 'clear-icon')} onClick={this.clear}/>) : suffixIcon
-    )
+    const { hideClear, value } = this.props;
+    const suffixIcon = <Icon name="calendar" className={cx('input-icon')} />;
+    return hideClear ? (
+      suffixIcon
+    ) : value ? (
+      <Icon name="close-circle" className={cx('input-icon', 'clear-icon')} onClick={this.clear} />
+    ) : (
+      suffixIcon
+    );
   }
 
   public render() {
     const {
-      value, showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime),
-      defaultValue, onChange, todayText, showToday, min, max, hideClear, className, style,
+      value,
+      showTime,
+      format = showTime ? defaultFormat : defaultFormatWithoutTime,
+      defaultValue,
+      onChange,
+      todayText,
+      showToday,
+      min,
+      max,
+      hideClear,
+      className,
+      style,
       ...inputProps
-    } = this.props
+    } = this.props;
 
-    const inputValue = value ?
-      typeof format === 'string' ? dateFormat(value, format) : format(value)
-      : ''
+    const inputValue = value ? (typeof format === 'string' ? dateFormat(value, format) : format(value)) : '';
 
     return (
       <DropdownTrigger
@@ -103,16 +117,11 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         action={['click']}
       >
         <div className={cn(cx('host'), className)} style={style}>
-          <Input
-            suffix={this.renderInputSuffix()}
-            {...inputProps}
-            readOnly={true}
-            value={inputValue}
-          />
+          <Input suffix={this.renderInputSuffix()} {...inputProps} readOnly={true} value={inputValue} />
         </div>
       </DropdownTrigger>
-    )
+    );
   }
 }
 
-DatePicker.DateRangePicker = DateRangePicker
+DatePicker.DateRangePicker = DateRangePicker;

@@ -48,8 +48,10 @@ export class Menu extends Component<IMenuProps, IMenuState> {
   };
   public static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.selected && nextProps.selected !== prevState.value.selected) {
-      return Object.assign({}, prevState, {value: Object.assign({}, prevState.value, {selected: nextProps.selected})})
-    } 
+      return Object.assign({}, prevState, {
+        value: Object.assign({}, prevState.value, { selected: nextProps.selected })
+      });
+    }
     return null;
   }
   public menuContentDom: React.RefObject<any> = React.createRef<any>();
@@ -74,7 +76,6 @@ export class Menu extends Component<IMenuProps, IMenuState> {
     this.clickScrollUp = this.clickScrollUp.bind(this);
     this.clickScrollBottom = this.clickScrollBottom.bind(this);
   }
-  
 
   public clickItem(key) {
     const { multiple, onSelect } = this.props;
@@ -184,37 +185,47 @@ export class Menu extends Component<IMenuProps, IMenuState> {
     let menuCom;
     if (mode === 'vertical') {
       menuClasses = cx('u-menu', className);
-      menuCom = (<div className={menuClasses}>
-        {showTopOverflow && (<div className={cx('handle-top')} onClick={this.clickScrollUp}>
-          <Icon name="chevron-up"/>
-        </div>)}
-        <div className={cx('content')} ref={this.menuContentDom} onScroll={this.scroll} onWheel={this.wheel}>
-          {React.Children.map(children, (child: ReactElement<any>) => {
-            return React.cloneElement(child);
-          })}
+      menuCom = (
+        <div className={menuClasses}>
+          {showTopOverflow && (
+            <div className={cx('handle-top')} onClick={this.clickScrollUp}>
+              <Icon name="chevron-up" />
+            </div>
+          )}
+          <div className={cx('content')} ref={this.menuContentDom} onScroll={this.scroll} onWheel={this.wheel}>
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
+          </div>
+          {showBottomOverflow && (
+            <div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
+              <Icon name="chevron-down" />
+            </div>
+          )}
         </div>
-        {showBottomOverflow && (<div className={cx('handle-bottom')} onClick={this.clickScrollBottom}>
-          <Icon name="chevron-down"/>
-        </div>)}
-      </div>);
+      );
     } else if (mode === 'horizontal') {
       menuClasses = cx('u-menu-horizontal', className);
-      menuCom = (<div className={menuClasses}>
-        <div className={cx('content-horizontal')} ref={this.menuContentDom}>
-          {React.Children.map(children, (child: ReactElement<any>) => {
-            return React.cloneElement(child);
-          })}
+      menuCom = (
+        <div className={menuClasses}>
+          <div className={cx('content-horizontal')} ref={this.menuContentDom}>
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
+          </div>
         </div>
-      </div>);
+      );
     } else if (mode === 'inline') {
       menuClasses = cx('u-menu-inline', className);
-      menuCom = (<div className={menuClasses}>
-        <div className={cx('content-inline')} ref={this.menuContentDom}>
-          {React.Children.map(children, (child: ReactElement<any>) => {
-            return React.cloneElement(child);
-          })}
+      menuCom = (
+        <div className={menuClasses}>
+          <div className={cx('content-inline')} ref={this.menuContentDom}>
+            {React.Children.map(children, (child: ReactElement<any>) => {
+              return React.cloneElement(child);
+            })}
+          </div>
         </div>
-      </div>);
+      );
     }
 
     return <Provider value={this.state.value}>{menuCom}</Provider>;

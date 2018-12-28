@@ -1,0 +1,169 @@
+$arrow-size: 5px;
+
+$arrow-position: (
+  top: (
+    topLeft top topRight
+  ),
+  bottom: bottomLeft bottom bottomRight,
+  left: leftTop left leftBottom,
+  right: rightTop right rightBottom
+);
+
+$position-revert: (
+  top: bottom,
+  bottom: top,
+  left: right,
+  right: left
+);
+
+$position-rotate: (
+  top: left,
+  bottom: left,
+  left: top,
+  right: top
+);
+
+$type-color: (
+  error: #e65c5c,
+  warning: #f3b230,
+  primary: blue,
+  normal: black
+);
+
+.container {
+  $root: &;
+  display: inline-block;
+  position: absolute;
+  transition: all 0.3s;
+  font-size: 14px;
+  max-width: 300px;
+
+  // 动画
+  &-enter,
+  &-appear {
+    opacity: 0;
+  }
+
+  &-enter-active,
+  &-appear-active {
+    opacity: 1;
+  }
+
+  &-leave {
+    opacity: 1;
+  }
+
+  &-leave-active {
+    opacity: 0;
+  }
+
+  &-hidden {
+    display: none;
+  }
+
+  &-placement {
+    @each $main-dir, $dirs in $arrow-position {
+      @each $dir in $dirs {
+        &-#{$dir} {
+          $revert-dir: map_get($position-revert, $main-dir);
+          padding-#{$revert-dir}: 8px;
+
+          .arrow {
+            border-#{$main-dir}-color: map_get($type-color, normal);
+            #{$revert-dir}: -2px;
+
+            @if (str_index($dir, 'Right')) {
+              right: 6px;
+            }
+            @elseif (str_index($dir, 'Left')) {
+              left: 6px;
+            }
+            @elseif (str_index($dir, 'Top')) {
+              top: 6px;
+            }
+            @elseif (str_index($dir, 'Bottom')) {
+              bottom: 6px;
+            } @else {
+              // 居中
+              $rotate-dir: map_get($position-rotate, $main-dir);
+              #{$rotate-dir}: 50%;
+              margin-#{$rotate-dir}: -$arrow-size;
+            }
+
+            @each $type, $color in $type-color {
+              @at-root #{$root}--type-#{$type}#{&} {
+                border-#{$main-dir}-color: $color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @each $type, $color in $type-color {
+    &--type-#{$type} .content {
+      background-color: $color;
+      box-shadow: 0 2px 8px rgba($color, 0.15);
+    }
+  }
+}
+
+.popup {
+  display: inline-block;
+}
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: $arrow-size solid transparent;
+}
+
+.content {
+  .popup--size-small & {
+    padding: 3px 8px;
+    font-size: 12px;
+    min-height: 24px;
+  }
+
+  .popup--size-large & {
+    font-size: 16px;
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+
+  padding: 6px 8px;
+  color: white;
+  background-color: map_get($type-color, normal);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-height: 32px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+// IconTooltip
+.icon {
+  font-size: 18px;
+  line-height: 22px;
+  display: inline-block;
+}
+
+.icon-wrapper {
+  display: inline-block;
+}
+
+.icon--size {
+  &-small {
+    line-height: 24px;
+  }
+
+  &-normal {
+    line-height: 32px;
+  }
+
+  &-large {
+    line-height: 36px;
+  }
+}

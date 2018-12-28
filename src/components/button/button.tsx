@@ -47,7 +47,7 @@ export class Button extends Component<IButtonProps, any> {
       'disabled' : type === 'text' && disabled
     });
 
-    const iconNode = others.icon ? <Icon name={others.icon}/> : null;
+    const iconNode = others.icon ? <Icon name={others.icon} /> : null;
 
 
     if ('href' in others) {

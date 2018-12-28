@@ -1,7 +1,7 @@
-import { Samples } from "../Demo";
-import { Button } from "../../../src";
-import * as React from "react"
-import DemoRow from "../DemoRow";
+import { Samples } from '../Demo';
+import { Button } from '../../../src';
+import * as React from 'react';
+import DemoRow from '../DemoRow';
 
 function defaultClick() {
   alert('You clicked');
@@ -37,7 +37,11 @@ const samples: Samples = [{
     <div>
       {['small', 'normal'].map((size: any) => (
         <DemoRow>
-          {['primary', 'default', 'text'].map((type: any) => (<Button size={size} type={type}>{type} - {size}</Button>))}
+          <Button.Group>
+            <Button onClick={defaultClick}>默认文字1</Button>
+            <Button onClick={defaultClick}>默认文字2</Button>
+            <Button onClick={defaultClick}>默认文字3</Button>
+          </Button.Group>
         </DemoRow>
       ))}
     </div>
@@ -78,4 +82,4 @@ const samples: Samples = [{
   )
 }]
 
-export default samples
+export default samples;
