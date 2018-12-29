@@ -1,12 +1,12 @@
 import * as React from 'react';
-import SelectOption from './option';
+import SelectOption, { SelectOptionProps } from './option';
 import SelectDefault from './default';
 import { Icon } from '../icon';
 
 export interface SelectPropsInterface {
   width?: number;
   icon?: Icon;
-  onChange?: (value) => void;
+  onChange?: (value: any, optionProps: SelectOptionProps) => void;
 }
 
 interface SelectProps {
@@ -18,7 +18,8 @@ export class Select extends React.Component<SelectProps> {
   public static option = SelectOption;
 
   public static defaultProps: Partial<SelectProps> = {
-    mode: 'default'
+    mode: 'default',
+    width: 180
   };
 
   public static Components = {

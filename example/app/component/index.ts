@@ -10,6 +10,7 @@ import menuSamples from './menu';
 import inputSamples from './input';
 import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
+import selectSamples from './select';
 
 const demos: Demo[] = [
   {
@@ -62,6 +63,12 @@ const demos: Demo[] = [
     description: '输入框',
     samples: inputSamples,
     col: 6
+  },
+  {
+    name: 'select',
+    title: 'Select 下拉框',
+    description: '下拉框',
+    samples: selectSamples
   },
   {
     name: 'date-picker',

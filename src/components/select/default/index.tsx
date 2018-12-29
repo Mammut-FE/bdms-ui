@@ -37,18 +37,22 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
     hoverIndex: -1
   };
 
-  public handleOptionClick = (optionProps: SelectOptionProps) => {
+  public onChange = (optionProps: SelectOptionProps) => {
     const { onChange } = this.props;
 
+    onChange && onChange(SelectOption.getDisplayValue(optionProps), optionProps);
+  };
+
+  public handleOptionClick = (optionProps: SelectOptionProps) => {
     if (optionProps.disabled) return;
-    onChange && onChange(SelectOption.getDisplayValue(optionProps));
+    this.onChange(optionProps);
     this.setState({
       shown: false
     });
   };
 
   public handleInputEnter = () => {
-    const { children, onChange } = this.props;
+    const { children } = this.props;
     const { hoverIndex } = this.state;
 
     if (!(children instanceof Array)) return;
@@ -56,7 +60,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
     if (React.isValidElement(child)) {
       const childProps = child.props as SelectOptionProps;
       if (!childProps.disabled) {
-        onChange && onChange(SelectOption.getDisplayValue(childProps));
+        this.onChange(childProps);
         this.setState({
           shown: false
         });
@@ -129,7 +133,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
   public render(): React.ReactNode {
     const { shown, keyword } = this.state;
     const { value, width, icon, searchable, children, onChange, ...props } = this.props;
-    const inputValue = shown ? keyword : value;
+    const inputValue = shown && searchable ? keyword : value;
 
     return (
       <DropdownTrigger
