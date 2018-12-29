@@ -1,0 +1,111 @@
+.u-notification {
+  position: fixed;
+  padding: 0;
+  width: 100%;
+  font-size: 14px;
+  top: 64px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.notice {
+  display: block;
+
+  &-enter,
+  &-appear {
+    opacity: 0 !important;
+    animation-duration: 0.5s;
+
+    &-active {
+      animation-name: noticeFadeIn;
+    }
+  }
+
+  &-leave {
+    animation-duration: 0.3s;
+
+    &-active {
+      animation-name: noticeFadeOut;
+      pointer-events: none;
+    }
+  }
+}
+
+.notification {
+  display: block;
+
+  &-enter,
+  &-appear {
+    opacity: 0 !important;
+    animation-duration: 0.5s;
+
+    &-active {
+      animation-name: notificationFadeIn;
+    }
+  }
+
+  &-leave {
+    animation-duration: 0.3s;
+
+    &-active {
+      animation-name: notificationFadeOut;
+      pointer-events: none;
+    }
+  }
+}
+
+@keyframes noticeFadeIn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 0.9;
+  }
+}
+
+@keyframes noticeFadeOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes notificationFadeIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes notificationFadeOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

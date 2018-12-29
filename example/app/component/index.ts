@@ -11,6 +11,7 @@ import selectSamples from './select';
 import inputSamples from './input';
 import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
+import messageSamples from './message';
 
 const demos: Demo[] = [
   {
@@ -83,6 +84,11 @@ const demos: Demo[] = [
     description: '工具提示',
     samples: tooltipSamples,
     col: 6
+  }, {
+    name: 'message',
+    title: 'Message 消息提示',
+    description: '消息提示',
+    samples: messageSamples
   }
 ];
 
