@@ -1,7 +1,8 @@
 import { Samples } from '../Demo';
-// import {Select} from '../../../src';
 import * as React from 'react';
 import { Select } from '../../../src/components/select';
+import DemoRow from '../DemoRow';
+import { Icon } from '../../../src/components/icon';
 
 const options = [
   {
@@ -38,11 +39,16 @@ function createSelectSampleClass(renderContent) {
   return class extends React.Component {
     public state = {
       options,
-      value: options[0].name
+      value: options[0].name,
+      selected: null
     };
 
-    public handleChange = value => {
-      this.setState({ value });
+    public handleChange = (value, selected) => {
+      console.log(value, selected);
+      this.setState({
+        value,
+        selected
+      });
     };
 
     public render() {
@@ -53,18 +59,51 @@ function createSelectSampleClass(renderContent) {
 
 const samples: Samples = [
   {
-    title: '单选不可输入下拉框',
-    description: '单选不可输入下拉框示例',
+    title: '单选下拉框',
+    description: '单选下拉框示例',
     component: createSelectSampleClass(function(self) {
       const { options, value } = self.state;
 
       return (
         <div>
-          <Select options={options} selected={value} onChange={self.handleChange}>
-            {options.map(option => (
-              <Select.option key={option.id} title={option.name} />
-            ))}
-          </Select>
+          <DemoRow>
+            <h5>不可输入</h5>
+            <br />
+            <Select options={options} selected={value} onChange={self.handleChange}>
+              {options.map(option => (
+                <Select.option key={option.id} title={option.name} param={option} />
+              ))}
+            </Select>
+          </DemoRow>
+          <DemoRow>
+            <h5>可输入</h5>
+            <br />
+            <Select searchable options={options} selected={value} onChange={self.handleChange}>
+              {options.map(option => (
+                <Select.option key={option.id} title={option.name} param={option} />
+              ))}
+            </Select>
+          </DemoRow>
+          <DemoRow>
+            <h5>特殊样式</h5>
+            <br />
+            <Select
+              searchable
+              icon={<Icon name={'database'} />}
+              options={options}
+              selected={value}
+              onChange={self.handleChange}
+            >
+              {options.map(option => (
+                <Select.option
+                  key={option.id}
+                  disabled={option.id === 'operation'}
+                  title={option.name}
+                  param={option}
+                />
+              ))}
+            </Select>
+          </DemoRow>
         </div>
       );
     })

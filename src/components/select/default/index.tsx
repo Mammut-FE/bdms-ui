@@ -40,7 +40,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
   public onChange = (optionProps: SelectOptionProps) => {
     const { onChange } = this.props;
 
-    onChange && onChange(SelectOption.getDisplayValue(optionProps), optionProps);
+    onChange && onChange(SelectOption.getDisplayValue(optionProps), { ...optionProps });
   };
 
   public handleOptionClick = (optionProps: SelectOptionProps) => {

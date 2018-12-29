@@ -5,13 +5,17 @@ import SelectOption, { SelectOptionProps } from './option';
 
 const cx = classNames.bind(style);
 
+const SelectDropdownEmpty = () => {
+  return <div className={cx('option', 'option--disabled')}>无信息</div>;
+};
+
 export interface SelectDropdownProps {
   hoverIndex?: number;
   optionProps: SelectOptionProps[];
   onOptionClick?: (optionProps: SelectOptionProps) => void;
 }
 
-export default class SelectInput extends React.Component<SelectDropdownProps> {
+export default class SelectDropdown extends React.Component<SelectDropdownProps> {
   private hoverIndexBefore: number = -1;
   public static defaultProps: Partial<SelectDropdownProps> = {
     hoverIndex: -1
@@ -58,9 +62,11 @@ export default class SelectInput extends React.Component<SelectDropdownProps> {
   };
 
   public render(): React.ReactNode {
+    const content = this.renderContent();
+
     return (
       <div ref={ref => this.setScrollTop(ref)} className={cx('dropdown')}>
-        {this.renderContent()}
+        {content.length ? content : <SelectDropdownEmpty />}
       </div>
     );
   }
