@@ -8,6 +8,7 @@ import SelectInput from '../input';
 import SelectDropdown from '../dropdown';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import { Independence } from '../../../lib/independence';
+import { Icon } from '../../icon';
 
 const cx = classNames.bind(style);
 
@@ -149,6 +150,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
             onChange={this.handleKeywordChange}
             {...props}
           />
+          <Icon name={'caret-down'} className={cx('caret')} />
         </SelectWrap>
       </DropdownTrigger>
     );

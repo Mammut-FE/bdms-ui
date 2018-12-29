@@ -13,11 +13,18 @@
   }
 }
 
-.input {
+input.input {
   cursor: pointer;
+  padding-right: 28px;
   &--searchable {
     cursor: text;
   }
+}
+
+.caret {
+  position: absolute;
+  right: 8px;
+  top: 10px;
 }
 
 .dropdown-wrap {
