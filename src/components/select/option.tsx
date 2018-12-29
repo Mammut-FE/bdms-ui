@@ -5,21 +5,39 @@ import style from './select.scss';
 const cx = classNames.bind(style);
 
 export interface SelectOptionProps {
-  title?: string;
+  title: string;
   subtitle?: string;
-  filterBy?: string | string[];
+  filterBy?: string[];
   displayBy?: string;
   before?: React.ReactNode;
   after?: React.ReactNode;
+  hover?: boolean;
+  disabled?: boolean;
   [propName: string]: any;
 }
 
 export default class Option extends React.Component<SelectOptionProps> {
-  render(): React.ReactNode {
-    const { title, subtitle, before, after, ...props } = this.props;
+  static isIncluded = (optionProps: SelectOptionProps, keyword: string): boolean => {
+    if (optionProps.filterBy) {
+      return optionProps.filterBy.some(f => {
+        return f.includes(keyword);
+      });
+    } else {
+      return optionProps.title.includes(keyword);
+    }
+  };
+
+  static getDisplayValue = (optionProps: SelectOptionProps): string => {
+    return optionProps.displayBy || optionProps.title;
+  };
+
+  public render(): React.ReactNode {
+    const { title, subtitle, before, after, hover, disabled, ...props } = this.props;
     const optionClassName = cx({
-      option_before: !!before,
-      option_after: !!after
+      'option--before': !!before,
+      'option--after': !!after,
+      'option--hover': hover,
+      'option--disabled': disabled
     });
 
     return (

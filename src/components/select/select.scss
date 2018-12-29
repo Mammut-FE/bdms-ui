@@ -1,5 +1,27 @@
 .container {
+  position: relative;
   font-size: 14px;
+  cursor: pointer;
+  &-before {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &--hasBefore .input {
+    padding-left: 28px;
+  }
+}
+
+.input {
+  cursor: pointer;
+  &--searchable {
+    cursor: text;
+  }
+}
+
+.dropdown-wrap {
+  width: 100%;
 }
 
 .dropdown {
@@ -19,7 +41,13 @@
   line-height: 20px;
   font-size: 14px;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &--hover {
     background-color: #dff0ff;
+  }
+  &--disabled {
+    color: #999 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
   }
 }
