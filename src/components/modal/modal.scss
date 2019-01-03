@@ -1,0 +1,182 @@
+@import '../../style/color';
+
+$builtin-left: 40px;
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s;
+
+  &-enter,
+  &-appear {
+    background: transparent;
+  }
+
+  &-enter-active,
+  &-appear-active {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  &-leave {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  &-leave-active {
+    background: transparent;
+  }
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  overflow: hidden;
+  transition: all 0.3s;
+
+  &--scroll {
+    overflow: auto;
+
+    .modal {
+      flex: none;
+    }
+  }
+
+  &-enter,
+  &-appear {
+    opacity: 0;
+
+    &-active {
+      opacity: 1;
+    }
+  }
+
+  &-leave {
+    opacity: 1;
+    &-active {
+      opacity: 0;
+    }
+  }
+}
+
+.modal {
+  margin: auto;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+
+  &--placement {
+    &-center {
+      // default
+    }
+    &-top {
+      margin-top: 0;
+    }
+
+    &-bottom {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.header {
+  padding: 24px 32px 16px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 22px;
+  flex: none;
+
+  &-close {
+    flex: none;
+    font-size: 12px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #aaa;
+    }
+  }
+
+  &-content {
+    flex: 1 1 auto;
+  }
+}
+
+.footer {
+  padding: 16px 32px 24px 32px;
+  text-align: right;
+  flex: none;
+
+  button + button {
+    margin-left: 8px;
+  }
+}
+
+.body {
+  padding: 0 32px;
+
+  &--scroll {
+    overflow: auto;
+  }
+}
+
+// Modal Dialog
+.dialog {
+  $root: &;
+
+  &-layer {
+    padding: 8px 0;
+  }
+  &-header {
+    position: relative;
+    line-height: 24px;
+    margin-bottom: 18px;
+    font-size: 14px;
+  }
+
+  &-icon {
+    position: absolute;
+    left: 0;
+    font-size: 24px;
+    color: $warning-color;
+
+    #{$root}--info & {
+      color: $blue-color;
+    }
+
+    #{$root}--success {
+      color: $success-color;
+    }
+
+    #{$root}--error {
+      color: $error-color;
+    }
+
+    #{$root}--warning {
+      color: $warning-color;
+    }
+  }
+
+  &-title {
+    position: relative;
+    padding-left: $builtin-left;
+  }
+
+  &-content {
+    padding-left: $builtin-left;
+    font-size: 14px;
+  }
+}

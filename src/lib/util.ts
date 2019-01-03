@@ -1,3 +1,4 @@
+import { isValidElement, ReactNode } from 'react';
 import * as React from 'react';
 
 export const requestAnimationFrame =
@@ -58,4 +59,12 @@ export function smoothScroll(el: HTMLElement, targetTop: number, duration = 300)
  */
 export function tryGetFunctionalNode(node: React.ReactNode | (() => React.ReactNode), ...args: any[]): React.ReactNode {
   return typeof node === 'function' ? node.apply(null, args) : node;
+}
+
+/**
+ * 检查 node 是否是 ReactNode
+ * @param node
+ */
+export function isReactNode(node: any): node is ReactNode {
+  return !(typeof node === 'object' && !isValidElement(node));
 }
