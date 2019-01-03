@@ -72,7 +72,7 @@ export interface ModalProps {
 
   /**
    * 当显示的时候锁定 Document 的滚动条
-   * @default true
+   * @default false
    */
   lockDocument?: boolean;
 
@@ -98,14 +98,50 @@ export default class Modal extends React.Component<ModalProps> {
   public static setDefaultModalProps: typeof setDefaultModalProps;
 
   private wrapperRef = createRef<HTMLDivElement>();
+  private prevDocumentOverflow: string | null = null;
 
   public componentDidUpdate(prevProps: Readonly<ModalProps>, prevState: Readonly<{}>, snapshot?: any): void {
-    if (this.props.visible !== prevProps.visible && !this.props.visible) {
-      if (this.props.onClose) {
+    if (this.props.visible !== prevProps.visible) {
+      if (!this.props.visible && this.props.onClose) {
         this.props.onClose();
+      }
+
+      if (this.props.visible) {
+        this.lock();
+      } else {
+        this.unlock();
       }
     }
   }
+
+  public componentDidMount(): void {
+    if (this.props.visible) {
+      // 针对第一次渲染就是 true 的情况
+      this.lock();
+    }
+  }
+
+  public componentWillUnmount(): void {
+    if (this.props.visible) {
+      // 针对 true 的情况下被卸载的情况
+      this.unlock();
+    }
+  }
+
+  public lock = () => {
+    if (!this.props.lockDocument) {
+      return;
+    }
+    this.prevDocumentOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  };
+
+  public unlock = () => {
+    if (!this.props.lockDocument) {
+      return;
+    }
+    document.body.style.overflow = this.prevDocumentOverflow;
+  };
 
   public close = () => {
     // 触发 visible 改变事件
