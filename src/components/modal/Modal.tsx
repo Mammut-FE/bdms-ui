@@ -32,6 +32,15 @@ export interface DefaultsModalProps extends Required<Pick<ModalProps, 'scrollInM
   };
 }
 
+export type ModalFooterBuilder = (
+  args: {
+    readonly okButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
+    readonly cancelButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
+    readonly onOk: () => any;
+    readonly onCancel: () => any;
+  }
+) => ReactNode;
+
 export interface ModalProps {
   visible?: boolean;
   onVisibleChange?: (visible: boolean) => void;
@@ -43,16 +52,7 @@ export interface ModalProps {
   okText?: ReactNode;
   cancelText?: ReactNode;
   placement?: 'top' | 'bottom' | 'center';
-  footer?:
-    | ReactNode
-    | ((
-        args: {
-          readonly okButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
-          readonly cancelButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
-          readonly onOk: () => any;
-          readonly onCancel: () => any;
-        }
-      ) => ReactNode);
+  footer?: ReactNode | ModalFooterBuilder;
   header?: ReactNode;
   zIndex?: number;
   hideMask?: boolean;
