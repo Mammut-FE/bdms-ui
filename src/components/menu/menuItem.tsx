@@ -18,6 +18,10 @@ interface IMenuItemProps {
 
 const cx = classNames.bind(styles);
 
+/**
+ * @name Item
+ * @parent Menu
+ */
 export default class MenuItem extends Component<IMenuItemProps, any> {
   public static defaultProps: Partial<IMenuItemProps> = {
     visible: true

@@ -8,8 +8,9 @@
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
-    "build": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
+    "start": "styleguidist server",
+    "build:lib": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
+    "build:doc": "styleguidist build",
     "format": "prettier \"src/**/*.{ts,tsx,scss}\" \"example/**/*.{ts,tsx,scss}\" --write",
     "precommit": "pretty-quick --staged",
     "prepublish": "npm run build"
@@ -47,8 +48,10 @@
     "node-sass": "^4.9.3",
     "prettier": "^1.15.3",
     "pretty-quick": "^1.8.0",
+    "react-docgen-typescript": "^1.12.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-styleguidist": "^8.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "ts-loader": "^5.3.3",

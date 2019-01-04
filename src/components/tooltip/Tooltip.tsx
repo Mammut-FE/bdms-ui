@@ -25,6 +25,10 @@ const builtinPlacements = {
 
 export interface TooltipProps {
   placement?: keyof typeof builtinPlacements;
+  /**
+   * 触发类型
+   * @default 'hover'
+   */
   trigger?: 'click' | 'focus' | 'hover' | 'contextMenu';
   visible?: boolean;
   defaultVisible?: boolean;
@@ -34,6 +38,10 @@ export interface TooltipProps {
   className?: string;
   disableAutoAdjust?: boolean;
   align?: object;
+  /**
+   * Tooltip 类型
+   * @default 'normal'
+   */
   type?: 'normal' | 'warning' | 'error';
   content?: React.ReactNode | (() => React.ReactNode);
   getPopupContainer?: () => HTMLElement;

@@ -9,6 +9,9 @@ interface IDivider {
 
 const cx = classNames.bind(styles);
 
+/**
+ * @visibleName Menu.Divider
+ */
 export default class Divider extends Component<IDivider, any> {
   public render() {
     const { className, style } = this.props;
