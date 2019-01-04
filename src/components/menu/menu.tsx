@@ -34,6 +34,9 @@ interface IMenuState {
 
 const cx = classNames.bind(styles);
 
+/**
+ * @title 菜单
+ */
 export class Menu extends Component<IMenuProps, IMenuState> {
   public static Item = MenuItem;
   public static Divider = Divider;

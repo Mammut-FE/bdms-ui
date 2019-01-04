@@ -37,6 +37,9 @@ interface ISubMenuState {
   readonly inlineVisible: boolean;
 }
 
+/**
+ * @visibleName Menu.SubMenu
+ */
 export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
   public static defaultProps: Partial<ISubMenuProps> = {
     inlineVisible: false

@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: paths.appIndex,
+  entry: paths.libIndex,
   output: {
     path: paths.tmpOut,
     filename: 'bundle.js'
@@ -15,7 +15,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/, use: [
+        test: /\.tsx?$/,
+        use: [
           {
             loader: 'ts-loader',
             options: {
@@ -49,9 +50,7 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            'css-loader'
-          ]
+          use: ['css-loader']
         })
       },
       {
@@ -76,10 +75,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(paths.appRoot, 'index.html')
-    }),
-    new ExtractTextPlugin('style.css')
-  ]
+  plugins: [new ExtractTextPlugin('style.css')]
 };

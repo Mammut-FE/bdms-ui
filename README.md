@@ -13,3 +13,7 @@
 ```typescript
 import { Button } from '@mammut-fe/bdms-ui';
 ```
+
+## Contribution
+
+Please follow [CODE_STYLE](./CODE_STYLE.md)
