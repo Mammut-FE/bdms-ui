@@ -151,20 +151,21 @@ export default class Loading extends React.Component<LoadingProps, LoadingState>
    * 渲染加载指示器
    */
   public renderIndicator() {
-    let indicator: any = this.props.indicator;
+    let indicator: any = this.props.indicator || Loading.defaultIndicator;
     const { size = 'normal' } = this.props;
     const indicatorProps = {
       size
     };
 
-    indicator = typeof indicator === 'string' ? builtinIndicator[indicator] : indicator;
+    if (typeof indicator === 'string') {
+      // indicator 是内置类型字符串
+      indicator = builtinIndicator[indicator];
+    }
 
-    indicator = typeof indicator === 'function' ? indicator(indicatorProps) : indicator;
-    indicator =
-      indicator ||
-      (typeof Loading.defaultIndicator === 'function'
-        ? Loading.defaultIndicator(indicatorProps)
-        : Loading.defaultIndicator);
+    if (typeof indicator === 'function') {
+      // indicator 是函数，就调用之
+      indicator = indicator(indicatorProps);
+    }
 
     return indicator as React.ReactNode;
   }
