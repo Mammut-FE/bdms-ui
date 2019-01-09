@@ -1,6 +1,6 @@
 import { Samples } from '../Demo';
 import React from 'react';
-import { Menu, Row, Col } from '../../../src';
+import { Menu, Row, Col, Checkbox } from '../../../src';
 
 const samples: Samples = [
   {
@@ -153,6 +153,33 @@ const samples: Samples = [
       <Menu multiple={true} hasCheckBox={true}>
         <Menu.Item value="haha">哈哈</Menu.Item>
         <Menu.Item value="haha2">哈哈2</Menu.Item>
+      </Menu>
+    )
+  },
+  {
+    title: '多选菜单2',
+    description: '多选菜单2',
+    component: () => (
+      <Menu>
+        <Checkbox.Group
+          mode="vertical"
+          data={[
+            {
+              value: 'en',
+              checked: false,
+              text: '中文'
+            },
+            {
+              value: 'check-2',
+              checked: true
+            },
+            {
+              value: 'check3',
+              checked: true,
+              text: '英文'
+            }
+          ]}
+        />
       </Menu>
     )
   }

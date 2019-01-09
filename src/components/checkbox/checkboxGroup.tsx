@@ -1,10 +1,11 @@
 import classNames from 'classnames/bind';
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import { Checkbox } from './checkbox';
 import checkboxClass from './checkbox.scss';
 
-interface ICheckData {
+interface ICheckOptions {
   checked: boolean;
   value: string;
   disabled?: boolean;
@@ -14,14 +15,14 @@ interface ICheckData {
 
 interface ICheckboxGroupProps {
   indeterminate?: boolean;
-  data: ICheckData[];
-  onChange?: (lists: ICheckData[]) => void;
+  data: ICheckOptions[];
+  onChange?: (lists: ICheckOptions[]) => void;
   className?: string;
   mode?: 'horizontal' | 'vertical'; // 是否让checkbox变成inline-block定位
 }
 
 interface ICheckboxGroupState {
-  readonly checkLists: ICheckData[];
+  readonly checkLists: ICheckOptions[];
   readonly isIndeterminate: boolean;
   readonly checkAll: boolean;
 }
@@ -79,11 +80,11 @@ export default class CheckboxGroup extends Component<ICheckboxGroupProps, ICheck
     }
   }
 
-  public getCheckLists(props) {
-    return props.data;
+  public getCheckLists(props: ICheckboxGroupProps) {
+    return _.cloneDeep(props.data);
   }
 
-  public changeAll(value, checked) {
+  public changeAll(value, checked: boolean) {
     const { checkLists } = this.state;
     this.setState({
       checkAll: checked,
