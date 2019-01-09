@@ -7,35 +7,75 @@ function defaultClick() {
   alert('You clicked');
 }
 
-const samples: Samples = [{
-  title: '普通按钮',
-  description: '普通按钮示例',
-  component: () => (
-    <div>
-      <Button>按钮</Button>
-      <Button disabled={true}>disabled</Button>
-    </div>
-  )
-}, {
-  title: '有 Icon 按钮',
-  description: '有 Icon',
-  component: () => (<Button icon="add">有icon</Button>)
-}, {
-  title: '各个状态的按钮',
-  description: '有 primary, default, text',
-  component: () => (
-    <div>
-      <Button type="primary">primary</Button>
-      <Button type="default">default</Button>
-      <Button type="text">text</Button>
-    </div>
-  )
-}, {
-  title: '大小控制',
-  description: '通过 size 控制大小，有 small, normal',
-  component: () => (
-    <div>
-      {['small', 'normal'].map((size: any) => (
+const samples: Samples = [
+  {
+    title: '普通按钮',
+    description: '普通按钮示例',
+    component: () => (
+      <div>
+        <Button style={{ marginRight: 10 }}>按钮</Button>
+        <Button disabled={true}>disabled</Button>
+      </div>
+    )
+  },
+  {
+    title: '有 Icon 按钮',
+    description: '有 Icon',
+    component: () => (
+      <div>
+        <Button icon="add" style={{ marginRight: 10 }}>
+          有icon
+        </Button>
+        <Button icon="table" style={{ marginRight: 10 }}>
+          table
+        </Button>
+        <Button type="primary" icon="table">
+          table
+        </Button>
+      </div>
+    )
+  },
+  {
+    title: '各个状态的按钮',
+    description: '有 primary, default, text',
+    component: () => (
+      <div>
+        <Button type="primary" style={{ marginRight: 10 }}>
+          primary
+        </Button>
+        <Button type="default" style={{ marginRight: 10 }}>
+          default
+        </Button>
+        <Button type="text">text</Button>
+      </div>
+    )
+  },
+  {
+    title: '大小控制',
+    description: '通过 size 控制大小，有 small, normal',
+    component: () => (
+      <div>
+        {['small', 'normal'].map((size: any) => (
+          <DemoRow key={size}>
+            <Button type="primary" size={size} style={{ marginRight: 10 }}>
+              primary
+            </Button>
+            <Button type="default" size={size} style={{ marginRight: 10 }}>
+              default
+            </Button>
+            <Button type="text" size={size}>
+              text
+            </Button>
+          </DemoRow>
+        ))}
+      </div>
+    )
+  },
+  {
+    title: '按钮组',
+    description: 'Button.Group 按钮组',
+    component: () => (
+      <div>
         <DemoRow>
           <Button.Group>
             <Button onClick={defaultClick}>默认文字1</Button>
@@ -43,43 +83,53 @@ const samples: Samples = [{
             <Button onClick={defaultClick}>默认文字3</Button>
           </Button.Group>
         </DemoRow>
-      ))}
-    </div>
-  )
-}, {
-  title: '超链接',
-  description: '通过 href 和 target 可以指定按钮的链接',
-  component: () => (
-    <div>
-      <Button type="text" href="http://www.baidu.com" disabled={true}>
-        Go to baidu.com
-      </Button>
-      <Button type="text" size="small" href="http://www.baidu.com" target="_blank">
-        Go to baidu.com with target = _blank
-      </Button>
-    </div>
-  )
-}, {
-  title: '按钮组',
-  description: 'Button.Group 按钮组',
-  component: () => (
-    <div>
-      <DemoRow>
-        <Button.Group>
-          <Button onClick={defaultClick}>默认文字1</Button>
-          <Button onClick={defaultClick}>默认文字2</Button>
-          <Button onClick={defaultClick}>默认文字3</Button>
-        </Button.Group>
-      </DemoRow>
-      <DemoRow>
-        <Button.Group>
-          <Button type="primary" onClick={defaultClick}>默认文字1</Button>
-          <Button type="primary" onClick={defaultClick}>默认文字2</Button>
-          <Button type="primary" onClick={defaultClick}>默认文字3</Button>
-        </Button.Group>
-      </DemoRow>
-    </div>
-  )
-}]
+        <DemoRow>
+          <Button.Group>
+            <Button type="primary" onClick={defaultClick}>
+              默认文字1
+            </Button>
+            <Button type="primary" onClick={defaultClick}>
+              默认文字2
+            </Button>
+            <Button type="primary" onClick={defaultClick}>
+              默认文字3
+            </Button>
+          </Button.Group>
+        </DemoRow>
+      </div>
+    )
+  },
+  {
+    title: '按钮组大小控制',
+    description: '通过 size 控制大小，有 small, normal',
+    component: () => (
+      <div>
+        {['small', 'normal'].map((size: any) => (
+          <DemoRow key={size}>
+            <Button.Group size={size}>
+              <Button onClick={defaultClick}>默认文字1</Button>
+              <Button onClick={defaultClick}>默认文字2</Button>
+              <Button onClick={defaultClick}>默认文字3</Button>
+            </Button.Group>
+          </DemoRow>
+        ))}
+      </div>
+    )
+  },
+  {
+    title: '超链接',
+    description: '通过 href 和 target 可以指定按钮的链接',
+    component: () => (
+      <div>
+        <Button type="text" href="http://www.baidu.com" disabled={true}>
+          Go to baidu.com
+        </Button>
+        <Button type="text" size="small" href="http://www.baidu.com" target="_blank">
+          Go to baidu.com with target = _blank
+        </Button>
+      </div>
+    )
+  }
+];
 
 export default samples;

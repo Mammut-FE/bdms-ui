@@ -1,6 +1,6 @@
 @import 'color.scss';
 
-.u-btn {
+.btn {
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
   padding: 0 12px;
@@ -13,10 +13,10 @@
     border: 1px solid #e0e0e0;
     color: #aaa;
     cursor: not-allowed;
-    &.u-btn-normal {
+    &.btn-normal {
       line-height: 30px;
     }
-    &.u-btn-small {
+    &.btn-small {
       line-height: 26px;
     }
     &:active {
@@ -28,7 +28,7 @@
   }
 }
 
-.u-btn-primary {
+.btn-primary {
   border: none;
   background: $base-color;
   color: #fff;
@@ -40,7 +40,7 @@
   }
 }
 
-.u-btn-default {
+.btn-default {
   background: #fff;
   border: 1px solid #999;
   color: #333;
@@ -50,14 +50,14 @@
   &:active {
     background: #ccc;
   }
-  &.u-btn-normal {
+  &.btn-normal {
     line-height: 30px;
   }
-  &.u-btn-small {
+  &.btn-small {
     line-height: 26px;
   }
 }
-.u-btn-text {
+.btn-text {
   border: 1px solid transparent;
   background: #fff;
   color: $link-color;
@@ -69,10 +69,10 @@
     border: 1px solid transparent;
     background: #fff;
   }
-  &.u-btn-normal {
+  &.btn-normal {
     line-height: 30px;
   }
-  &.u-btn-small {
+  &.btn-small {
     line-height: 26px;
   }
   &.disabled {
@@ -89,19 +89,19 @@
   }
 }
 
-.u-btn-normal {
+.btn-normal {
   height: 32px;
   line-height: 32px;
   font-size: 14px;
 }
 
-.u-btn-small {
+.btn-small {
   height: 28px;
   line-height: 28px;
   font-size: 12px;
 }
 
-.u-button-group {
+.button-group {
   button {
     border-radius: 0;
     &:first-child {
@@ -113,19 +113,19 @@
       border-bottom-right-radius: 2px;
     }
   }
-  .u-btn-primary {
+  .btn-primary {
     border-right: 1px solid #fff;
     &:last-child {
       border-right: none;
     }
   }
-  .u-btn-default {
+  .btn-default {
     border-right: none;
     &:last-child {
       border-right: 1px solid #999;
     }
   }
-  .u-btn-text {
+  .btn-text {
     &:last-child {
       border-right: 1px solid transparent;
       &:hover {
@@ -134,6 +134,17 @@
       &:active {
         border: 1px solid #999;
       }
+    }
+  }
+}
+
+.button-group-small {
+  button {
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    &.btn-normal {
+      line-height: 28px;
     }
   }
 }
