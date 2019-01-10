@@ -3,14 +3,15 @@ import classNames from 'classnames/bind';
 import style from './select.scss';
 import { Input } from '../input';
 import { InputProps } from '../input/Input';
-import SelectOption, { SelectOptionProps } from './option';
+import { SelectOptionProps } from './option';
+import { isSelectOptionIncluded } from './util';
 
 const cx = classNames.bind(style);
 
 export interface SelectInputProps extends InputProps {
   searchable?: boolean;
   hoverIndex?: number;
-  options?: React.ReactNode[];
+  options?: React.ReactElement<SelectOptionProps>[];
   onEnter?: (optionProps: SelectOptionProps) => void;
   onHoverIndexChange?: (hoverIndex: number) => void;
   onDelete?: () => void;
@@ -48,12 +49,7 @@ export default class SelectInput extends React.Component<SelectInputProps> {
     const { options, hoverIndex, onEnter } = this.props;
 
     if (!options || hoverIndex === undefined) return;
-    const option = options[hoverIndex];
-    if (React.isValidElement(option)) {
-      const optionProps = option.props as SelectOptionProps;
-
-      onEnter && onEnter(optionProps);
-    }
+    onEnter && onEnter(options[hoverIndex].props);
   }
 
   public handleHoverIndexChange(position) {
@@ -68,13 +64,9 @@ export default class SelectInput extends React.Component<SelectInputProps> {
       hoverIndex = options.length - 1;
     }
     while (hoverIndex < options.length && hoverIndex >= 0) {
-      const child = options[hoverIndex];
-      if (React.isValidElement(child)) {
-        const childProps = child.props as SelectOptionProps;
-        if (!childProps.disabled && SelectOption.isIncluded(childProps, value || '')) {
-          break;
-        }
-      }
+      const childProps = options[hoverIndex].props;
+
+      if (!childProps.disabled && isSelectOptionIncluded(childProps, value || '')) break;
       hoverIndex += position;
     }
     if (hoverIndex > options.length - 1) {

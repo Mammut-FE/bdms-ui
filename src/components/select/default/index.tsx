@@ -3,10 +3,11 @@ import classNames from 'classnames/bind';
 import childrenToArray from 'rc-util/lib/Children/toArray';
 import style from '../select.scss';
 import { SelectPropsInterface } from '../select';
-import SelectOption, { SelectOptionProps } from '../option';
+import { SelectOptionProps } from '../option';
 import SelectWrap from '../wrap';
 import SelectInput from '../input';
 import SelectDropdown from '../dropdown';
+import { getSelectOptionDisplayTitle } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import SelectSelectableOption from './selectable-option';
 import { Independence } from '../../../lib/independence';
@@ -43,7 +44,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
   public onChange = (optionProps: SelectOptionProps) => {
     const { onChange } = this.props;
 
-    onChange && onChange(SelectOption.getDisplayValue(optionProps), { ...optionProps });
+    onChange && onChange(getSelectOptionDisplayTitle(optionProps), { ...optionProps });
   };
 
   public handleOptionSelect = (optionProps: SelectOptionProps) => {

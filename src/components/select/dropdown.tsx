@@ -1,7 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames/bind';
 import style from './select.scss';
-import SelectOption, { SelectOptionProps } from './option';
+import { SelectOptionProps } from './option';
+import { isSelectOptionIncluded } from './util';
 
 const cx = classNames.bind(style);
 
@@ -40,7 +41,7 @@ export default class SelectDropdown extends React.Component<SelectDropdownProps>
       const childProps = child.props;
       const title = childProps.title;
 
-      if (title && SelectOption.isIncluded(childProps, keyword!)) {
+      if (title && isSelectOptionIncluded(childProps, keyword!)) {
         options.push(
           <child.type
             {...childProps}

@@ -19,7 +19,7 @@ interface SelectProps {
 }
 
 export class Select extends React.Component<SelectProps> {
-  public static option = SelectOption;
+  public static Option = SelectOption;
 
   public static defaultProps: Partial<SelectProps> = {
     mode: 'default',

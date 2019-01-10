@@ -18,20 +18,6 @@ export interface SelectOptionProps {
 }
 
 export default class Option extends React.Component<SelectOptionProps> {
-  static isIncluded = (optionProps: SelectOptionProps, keyword: string): boolean => {
-    if (optionProps.filterBy) {
-      return optionProps.filterBy.some(f => {
-        return f.includes(keyword);
-      });
-    } else {
-      return optionProps.title.includes(keyword);
-    }
-  };
-
-  static getDisplayValue = (optionProps: SelectOptionProps): string => {
-    return optionProps.displayBy || optionProps.title;
-  };
-
   public render(): React.ReactNode {
     const { title, subtitle, before, after, hover, disabled, onClick, className } = this.props;
     const optionClassName = cx({
@@ -45,7 +31,7 @@ export default class Option extends React.Component<SelectOptionProps> {
       <div className={cx('option', optionClassName, className)} title={title} onClick={onClick}>
         {before}
         {title}
-        {subtitle && <span className={cx('option-subtitle')}>（{subtitle}）</span>}
+        {subtitle && <span className={cx('Option-subtitle')}>（{subtitle}）</span>}
         {after}
       </div>
     );

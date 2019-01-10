@@ -73,7 +73,7 @@ const samples: Samples = [
             <br />
             <Select value={self.state.value} onChange={self.handleChange}>
               {options.map(option => (
-                <Select.option key={option.id} title={option.name} param={option} />
+                <Select.Option key={option.id} title={option.name} param={option} />
               ))}
             </Select>
           </DemoRow>
@@ -82,7 +82,7 @@ const samples: Samples = [
             <br />
             <Select searchable defaultValue={options[0].name}>
               {options.map(option => (
-                <Select.option key={option.id} title={option.name} param={option} />
+                <Select.Option key={option.id} title={option.name} param={option} />
               ))}
             </Select>
           </DemoRow>
@@ -103,7 +103,7 @@ const samples: Samples = [
               )}
             >
               {options.map(option => (
-                <Select.option
+                <Select.Option
                   key={option.id}
                   disabled={option.id === 'operation'}
                   title={option.name}
