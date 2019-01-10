@@ -5,11 +5,11 @@ import React from 'react';
 const icons = [
   'details',
   'file-mini',
-  'ture',
+  'true',
   'order-down',
   'order-up',
   'choose',
-  'choose-cancle',
+  'choose-cancel',
   'stop',
   'log-big',
   'more',

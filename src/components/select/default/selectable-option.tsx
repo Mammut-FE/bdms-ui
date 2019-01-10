@@ -8,8 +8,8 @@ const cx = classNames.bind(style);
 const SelectSelectableOption = function({ selected, title, ...props }) {
   let optionBefore;
 
-  if (selected) optionBefore = <Icon name={'true'} className={cx('Option--selectable-true')} />;
-  return <SelectOption {...props} title={title} before={optionBefore} className={cx('Option--selectable')} />;
+  if (selected) optionBefore = <Icon name={'true'} className={cx('option--selectable-true')} />;
+  return <SelectOption {...props} title={title} before={optionBefore} className={cx('option--selectable')} />;
 };
 
 export default SelectSelectableOption;

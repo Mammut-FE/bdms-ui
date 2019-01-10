@@ -22,21 +22,25 @@ export default class SelectInput extends React.Component<SelectInputProps> {
     searchable: false,
     hoverIndex: -1
   };
+  /**
+   * 处理键盘事件
+   * @param event
+   */
   public handleKeyDown = event => {
     const { searchable, onDelete, onKeyDown } = this.props;
 
     if (!searchable) return;
     switch (event.which) {
-      case 8:
+      case 8: // 删除键
         onDelete && onDelete();
         break;
-      case 13:
+      case 13: // 回车键
         this.handleEnter();
         break;
-      case 40:
+      case 40: // 方向键上键
         this.handleHoverIndexChange(1);
         break;
-      case 38:
+      case 38: // 方向键下键
         this.handleHoverIndexChange(-1);
         break;
       default:
@@ -45,6 +49,9 @@ export default class SelectInput extends React.Component<SelectInputProps> {
     onKeyDown && onKeyDown(event);
   };
 
+  /**
+   * 处理回车事件
+   */
   public handleEnter() {
     const { options, hoverIndex, onEnter } = this.props;
 
@@ -52,6 +59,10 @@ export default class SelectInput extends React.Component<SelectInputProps> {
     onEnter && onEnter(options[hoverIndex].props);
   }
 
+  /**
+   * 处理方向键事件
+   * @param position
+   */
   public handleHoverIndexChange(position) {
     const { options, value, onHoverIndexChange } = this.props;
     let hoverIndex = this.props.hoverIndex + position;
@@ -63,6 +74,7 @@ export default class SelectInput extends React.Component<SelectInputProps> {
     if (hoverIndex < 0) {
       hoverIndex = options.length - 1;
     }
+    // 查找下一个（上一个）不为disabled的option
     while (hoverIndex < options.length && hoverIndex >= 0) {
       const childProps = options[hoverIndex].props;
 

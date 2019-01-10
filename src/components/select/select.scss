@@ -46,6 +46,9 @@ input.input {
   padding: 6px 12px;
   line-height: 20px;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
   &-subtitle {
     color: #999;

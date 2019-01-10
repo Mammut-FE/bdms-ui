@@ -7,7 +7,7 @@ import { SelectOptionProps } from '../option';
 import SelectWrap from '../wrap';
 import SelectInput from '../input';
 import SelectDropdown from '../dropdown';
-import { getSelectOptionDisplayTitle } from '../util';
+import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import SelectSelectableOption from './selectable-option';
 import { Independence } from '../../../lib/independence';
@@ -44,7 +44,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
   public onChange = (optionProps: SelectOptionProps) => {
     const { onChange } = this.props;
 
-    onChange && onChange(getSelectOptionDisplayTitle(optionProps), { ...optionProps });
+    onChange && onChange(getSelectOptionDisplayValue(optionProps), { ...optionProps });
   };
 
   public handleOptionSelect = (optionProps: SelectOptionProps) => {

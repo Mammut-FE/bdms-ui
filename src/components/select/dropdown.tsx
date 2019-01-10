@@ -5,7 +5,10 @@ import { SelectOptionProps } from './option';
 import { isSelectOptionIncluded } from './util';
 
 const cx = classNames.bind(style);
-
+/**
+ * 空态组件
+ * @constructor
+ */
 const SelectDropdownEmpty = () => {
   return <div className={cx('option', 'option--disabled')}>无信息</div>;
 };
@@ -27,11 +30,15 @@ export default class SelectDropdown extends React.Component<SelectDropdownProps>
   };
 
   public componentWillReceiveProps(nextProps: Readonly<SelectDropdownProps>) {
+    // 记录上次的hoverIndex值
     if (nextProps.hoverIndex !== this.props.hoverIndex) {
       this.hoverIndexBefore = this.props.hoverIndex!;
     }
   }
 
+  /**
+   * 渲染下拉框中的项目
+   */
   public renderOptions = () => {
     const { children, hoverIndex, onOptionClick, keyword } = this.props;
     const options: React.ReactNode[] = [];
@@ -55,7 +62,10 @@ export default class SelectDropdown extends React.Component<SelectDropdownProps>
 
     return options;
   };
-
+  /**
+   * 动态设置scrollTop
+   * @param ref
+   */
   public setScrollTop = ref => {
     if (!ref) return;
     const { hoverIndex } = this.props;
