@@ -1,33 +1,70 @@
-.u-select {
-  width: 160px;
+.container {
   position: relative;
-}
-.input {
-  width: 100%;
-  height: 32px;
-  line-height: 32px;
-  outline: none;
-  display: inline-block;
-  padding-left: 12px;
-  border: 1px solid #ccc;
-  color: #333;
-  background-color: #fff;
-  border-radius: 2px;
   font-size: 14px;
-  text-transform: inherit;
-  transition: ease-in-out 0.15s;
-  overflow: hidden;
-  word-wrap: normal;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   cursor: pointer;
+  &-before {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &--hasBefore .input {
+    padding-left: 28px;
+  }
 }
-.vareticon {
-  position: absolute;
-  right: 10px;
-  top: 8px;
+
+input.input {
+  cursor: pointer;
+  padding-right: 28px;
+  &--searchable {
+    cursor: text;
+  }
 }
-.selectmenu {
+
+.caret {
   position: absolute;
-  z-index: 100;
+  right: 8px;
+  top: 10px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  max-height: 330px;
+  overflow: auto;
+  @media (max-height: 700px) {
+    max-height: 162px;
+  }
+  &-wrap {
+    width: 100%;
+  }
+}
+
+.option {
+  padding: 6px 12px;
+  line-height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  &-subtitle {
+    color: #999;
+  }
+  &:hover,
+  &--hover {
+    background-color: #dff0ff;
+  }
+  &--disabled {
+    color: #999 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+  }
+  &--selectable {
+    padding-left: 32px;
+    &-true {
+      float: left;
+      margin-left: -22px;
+      margin-top: 4px;
+    }
+  }
 }

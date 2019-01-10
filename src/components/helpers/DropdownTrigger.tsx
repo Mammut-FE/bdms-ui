@@ -47,6 +47,7 @@ export interface DropdownTriggerProps {
   dropdownPlacement?: keyof typeof builtinPlacements;
   dropdownClassName?: string;
   onShownChange?: (shown: boolean) => void;
+  [propName: string]: any;
 }
 
 /**
@@ -67,7 +68,7 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
   }
 
   public render() {
-    const { children, dropdownPlacement, action, shown, onShownChange } = this.props;
+    const { children, dropdownPlacement, action, shown, onShownChange, ...props } = this.props;
 
     return (
       <Trigger
@@ -85,6 +86,7 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
             adjustY: true
           }
         }}
+        {...props}
       >
         {children}
       </Trigger>

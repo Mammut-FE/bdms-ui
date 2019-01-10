@@ -110,10 +110,10 @@ export function Independence(
       private indepProp(prop: Property) {
         const onChange =
           this.onChangeCache[prop.name] ||
-          (value => {
+          ((value, ...args) => {
             this.setState({ [prop.name]: value });
             if (this.props[prop.onChangeName]) {
-              this.props[prop.onChangeName](value);
+              this.props[prop.onChangeName](value, ...args);
             }
           });
 
