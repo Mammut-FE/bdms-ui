@@ -1,0 +1,86 @@
+.treenode {
+
+  &-title {
+    font-size: 0;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    color: #666;
+    user-select: none;
+
+    &:hover,
+    &.active,
+    &.drag-over {
+      background-color: #eff8ff;
+      color: #0987e5;
+      box-shadow: -70px 0 0 #eff8ff, -140px 0 0 #eff8ff, -70px 0 0 #eff8ff, -210px 0 0 #eff8ff;
+    }
+  }
+
+  :global {
+    .icon-caret-down {
+      font-size: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      margin-left: 0;
+    }
+
+    .icon-caret-down:before {
+      display: inline-block;
+      transform: rotate(0);
+    }
+  }
+
+  &-checkbox {
+    display: inline-block;
+    padding-left: 22px;
+
+    span {
+      left: initial !important;
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 18px;
+  }
+
+  &-switch {
+    position: absolute;
+
+    &.closed:before {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &-name {
+    width: 100%;
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    padding-left: 22px;
+    box-sizing: border-box;
+  }
+
+  &-icon+&-name {
+    padding-left: 40px;
+  }
+
+  &-desc {
+    position: absolute;
+    right: 4px;
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+    color: #999;
+  }
+}

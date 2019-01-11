@@ -12,6 +12,7 @@ import inputSamples from './input';
 import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
 import messageSamples from './message';
+import TreeSamples from './tree';
 
 const demos: Demo[] = [
   {
@@ -89,6 +90,11 @@ const demos: Demo[] = [
     title: 'Message 消息提示',
     description: '消息提示',
     samples: messageSamples
+  }, {
+    name: 'tree',
+    title: 'Tree 树形结构',
+    description: '树形结构',
+    samples: TreeSamples
   }
 ];
 
