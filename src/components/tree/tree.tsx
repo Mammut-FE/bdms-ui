@@ -5,14 +5,18 @@ import toArray from 'rc-util/lib/Children/toArray';
 
 import classNames from 'classnames/bind';
 import styles from './tree.scss';
-import { convertTreeToEntities, conductCheck, mapChildren, arrAdd, arrDel } from './util';
+import { convertTreeToEntities, conductCheck, mapChildren, arrAdd, arrDel, calcSelectedKeys } from './util';
 
-interface TreeProps {
+export interface TreeProps {
   /**
    * 节点前是否显示复选框
    * @default false
    */
   checkable?: boolean;
+  /**
+   * 勾选的节点
+   */
+  checkedKeys?: string[];
   /**
    * 默认选中的节点（复选框模式下）
    * @default []
@@ -24,10 +28,23 @@ interface TreeProps {
    */
   selectable?: boolean;
   /**
+   * 是否支持多选
+   * @default false
+   */
+  multiple?: boolean;
+  /**
+   * 选中的节点
+   */
+  selectedKeys?: string[];
+  /**
    * 默认选中的节点
    * @default []
    */
   defaultSelectedKeys?: string[];
+  /**
+   * 展开的节点
+   */
+  expandedKeys?: string[];
   /**
    * 默认展开的节点
    * @default []
@@ -117,6 +134,7 @@ interface TreeProps {
 }
 
 interface TreeState {
+  prevProps: TreeProps | null;
   treeNode: any;
   expandedKeys: string[];
   selectedKeys: string[];
@@ -135,6 +153,7 @@ export class Tree extends React.Component<TreeProps, TreeState> {
     checkable: false,
     defaultCheckedKeys: [],
     selectable: true,
+    multiple: false,
     defaultSelectedKeys: [],
     defaultExpandedKeys: [],
     defaultExpandAll: false,
@@ -152,7 +171,65 @@ export class Tree extends React.Component<TreeProps, TreeState> {
     selectable: PropTypes.bool
   };
 
+  public static getDerivedStateFromProps(nextProps: TreeProps, prevState: TreeState) {
+    const { prevProps } = prevState;
+    const newState = {
+      prevProps: nextProps
+    } as TreeState;
+
+    const needSync = (name: string) => {
+      return (!prevProps && name in nextProps) || (prevProps && prevProps[name] !== nextProps[name]);
+    }
+
+    const { children, checkable = false, defaultCheckedKeys = [], checkedKeys = [], defaultExpandAll = [], defaultExpandedKeys = [], expandedKeys = [],
+      defaultSelectedKeys = [], selectable = true, multiple = false, selectedKeys = [] } = nextProps;
+
+    let treeNode = null;
+    if (needSync('children')) {
+      treeNode = toArray(children) || null;
+    }
+    if (treeNode) {
+      newState.treeNode = treeNode;
+      newState.treeEntities = convertTreeToEntities(treeNode);
+    }
+
+    const treeEntities = newState.treeEntities;
+
+    if (needSync('expandedKeys')) {
+      newState.expandedKeys = expandedKeys;
+    } else if (!prevProps && defaultExpandAll) {
+      newState.expandedKeys = Object.keys(treeEntities);
+    } else if (!prevProps && defaultExpandedKeys) {
+      newState.expandedKeys = defaultExpandedKeys;
+    }
+
+    if (selectable) {
+      if (needSync('selectedKeys')) {
+        newState.selectedKeys = calcSelectedKeys(selectedKeys, multiple);
+      } else if (!prevProps && defaultSelectedKeys) {
+        newState.selectedKeys = calcSelectedKeys(defaultSelectedKeys, multiple);
+      }
+    }
+
+    if (checkable) {
+      let keys: string[] | null = null;
+      if (needSync('checkedKeys')) {
+        keys = checkedKeys;
+      } else if (!prevProps && defaultCheckedKeys) {
+        keys = defaultCheckedKeys;
+      }
+      if (keys) {
+        const conductKeys = conductCheck(keys, true, treeEntities);
+        newState.checkedKeys = conductKeys.checkedKeys || [];
+        newState.halfCheckedKeys = conductKeys.halfCheckedKeys || [];
+      }
+    }
+
+    return newState;
+  }
+
   public state: Readonly<TreeState> = {
+    prevProps: null,
     treeNode: null,
     expandedKeys: [],
     selectedKeys: [],
@@ -163,11 +240,6 @@ export class Tree extends React.Component<TreeProps, TreeState> {
   };
 
   private dragNode: TreeNode | null;
-
-  constructor(props: TreeProps) {
-    super(props);
-    this.initProps();
-  }
 
   public getChildContext() {
     const { showIcon = true, checkable = false, selectable = true, draggable = false } = this.props;
@@ -192,33 +264,6 @@ export class Tree extends React.Component<TreeProps, TreeState> {
         ))}
       </ul>
     );
-  }
-
-  private initProps = () => {
-    const { children, checkable = false, defaultCheckedKeys = [], defaultExpandAll = [], defaultExpandedKeys = [],
-      defaultSelectedKeys = [], selectable = true } = this.props;
-
-    const newState = {} as TreeState;
-
-    const treeNode = children && toArray(children) || null;
-    if (treeNode) {
-      newState.treeNode = treeNode;
-      newState.treeEntities = convertTreeToEntities(treeNode);
-    }
-
-    const treeEntities = newState.treeEntities;
-
-    newState.expandedKeys = defaultExpandAll ? Object.keys(treeEntities) : (defaultExpandedKeys || []);
-
-    newState.selectedKeys = selectable && defaultSelectedKeys && defaultSelectedKeys.length ? [defaultSelectedKeys[0]] : [];
-
-    if (checkable) {
-      const conductKeys = conductCheck(defaultCheckedKeys || [], true, treeEntities);
-      newState.checkedKeys = conductKeys.checkedKeys || [];
-      newState.halfCheckedKeys = conductKeys.halfCheckedKeys || [];
-    }
-
-    this.state = newState;
   }
 
   private onNodeExpand = (e: MouseEvent<HTMLElement>, node: TreeNode) => {

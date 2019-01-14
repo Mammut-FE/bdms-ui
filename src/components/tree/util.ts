@@ -34,13 +34,13 @@ export interface TreeNodeEntity {
   children?: TreeNodeEntity[];
 }
 
+export const getNodeChildren = (children: any) => {
+  return toArray(children).filter((node: any) => node && node.type && node.type.isTreeNode);
+}
+
 const traverseTreeNodes = (treeNodes: any, callback: (data: TreeNodeEntity) => void) => {
   const getPosition = (level: string | number, index?: number): string => {
     return `${level}-${index}`;
-  }
-
-  const getNodeChildren = (children: any) => {
-    return toArray(children).filter((node: any) => node && node.type && node.type.isTreeNode);
   }
 
   const processNode = (node: any, index?: number, parent?: TreeNodeEntity) => {
@@ -85,6 +85,10 @@ export function convertTreeToEntities(treeNodes: any) {
   });
 
   return keyEntities;
+}
+
+export const calcSelectedKeys = (selectedKeys: string[] = [], multiple: boolean = false) => {
+  return multiple ? selectedKeys.slice() : (selectedKeys.length ? [selectedKeys[0]] : selectedKeys);
 }
 
 interface CheckedStatus {

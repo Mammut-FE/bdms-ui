@@ -1,8 +1,7 @@
 import React, { CSSProperties, MouseEvent } from 'react';
 import { Checkbox } from '../checkbox';
 import PropTypes from 'prop-types';
-import toArray from 'rc-util/lib/Children/toArray';
-import { mapChildren } from './util';
+import { mapChildren, getNodeChildren } from './util';
 
 import classNames from 'classnames/bind';
 import styles from './treeNode.scss';
@@ -24,6 +23,11 @@ export interface TreeNodeProps {
    * 同key
    */
   nodeKey?: string;
+  /**
+   * 是否父节点
+   * @default false
+   */
+  isParent?: boolean;
   /**
    * 节点元素的title信息，默认和name一样
    */
@@ -141,11 +145,16 @@ export class TreeNode extends React.Component<TreeNodeProps, {}> {
     selectable: PropTypes.bool
   };
 
+  private nodeList: any[];
+  private hasChildren: boolean;
+
   public render() {
-    const { name, title, icon, description, style, className,
+    const { name, title, icon, description, style, className, children, isParent = false,
       disabled = false, expanded = false, selected = false, checked = false, halfChecked = false, disableCheckbox = false, dragOver = false } = this.props;
     const { showIcon, checkable, draggable } = this.context;
-    const hasChildren = this.getNodeChildren().length !== 0;
+
+    const nodeList = this.nodeList = getNodeChildren(children);
+    const hasChildren = this.hasChildren = nodeList.length !== 0 || isParent;
 
     const classes = cx('treenode', className);
 
@@ -195,11 +204,9 @@ export class TreeNode extends React.Component<TreeNodeProps, {}> {
     const { expanded = false, level = 0 } = this.props;
     const { genTreeNode } = this.context;
 
-    const nodeList = this.getNodeChildren();
-
-    return expanded && nodeList.length ? (
+    return expanded && this.nodeList.length ? (
       <ul className={cx('treenode-child', `tree-level-${level}`)}>
-        {mapChildren(nodeList, (node: any) => (
+        {mapChildren(this.nodeList, (node: any) => (
           genTreeNode(node, level + 1)
         ))}
       </ul>
@@ -208,8 +215,7 @@ export class TreeNode extends React.Component<TreeNodeProps, {}> {
 
   private handleClick = (e: MouseEvent<HTMLElement>) => {
     const { onNodeExpand, onNodeSelect } = this.props;
-    const hasChildren = this.getNodeChildren().length !== 0;
-    hasChildren && onNodeExpand && onNodeExpand(e, this);
+    this.hasChildren && onNodeExpand && onNodeExpand(e, this);
     this.context.selectable && onNodeSelect && onNodeSelect(e, this);
   }
 
@@ -266,10 +272,5 @@ export class TreeNode extends React.Component<TreeNodeProps, {}> {
   private handleDoubleClick = (e: MouseEvent<HTMLElement>) => {
     const { onNodeDoubleClick } = this.props;
     onNodeDoubleClick && onNodeDoubleClick(e, this);
-  }
-
-  private getNodeChildren = () => {
-    const { children } = this.props;
-    return toArray(children).filter((node: any) => node && node.type && node.type.isTreeNode);
   }
 }

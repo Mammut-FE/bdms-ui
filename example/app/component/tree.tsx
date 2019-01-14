@@ -1,8 +1,42 @@
 import React from 'react';
-import { Tree } from '../../../src';
+import { Tree, ExplorerTree } from '../../../src';
 import { Samples } from '../Demo';
 
 const TreeNode = Tree.TreeNode;
+
+const sourceData = [{
+  name: 'parent 0',
+  key: '0-0',
+  children: [{
+    name: 'parent 0-1',
+    key: '0-0-0',
+    children: [{
+      name: 'leaf',
+      key: '0-0-0-0',
+    }, {
+      name: 'leaf',
+      key: '0-0-0-1',
+    }]
+  }, {
+    name: 'parent 0-2',
+    key: '0-0-1',
+    isParent: true
+  }]
+}, {
+  name: 'parent 1',
+  key: '0-1',
+  children: [{
+    name: 'leaf',
+    key: '0-1-0'
+  }, {
+    name: 'parent 1-1',
+    key: '0-1-1',
+    children: [{
+      name: 'leaf',
+      key: '0-1-1-0'
+    }]
+  }]
+}];
 
 const samples: Samples = [{
   title: '基本',
@@ -19,6 +53,8 @@ const samples: Samples = [{
             <TreeNode name="sss" key="0-0-1-0" />
           </TreeNode>
         </TreeNode>
+        <TreeNode name="parent 2" isParent={true} key="0-1" />
+        <TreeNode name="parent 3" key="0-2" />
       </Tree>
     );
   }
@@ -92,6 +128,14 @@ const samples: Samples = [{
           </TreeNode>
         </TreeNode>
       </Tree>
+    );
+  }
+}, {
+  title: '资源树',
+  description: '资源树组件',
+  component: () => {
+    return (
+      <ExplorerTree sourceData={sourceData} nodeComponent={TreeNode} />
     );
   }
 }];

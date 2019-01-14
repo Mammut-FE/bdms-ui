@@ -17,21 +17,6 @@
     }
   }
 
-  :global {
-    .icon-caret-down {
-      font-size: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      margin-left: 0;
-    }
-
-    .icon-caret-down:before {
-      display: inline-block;
-      transform: rotate(0);
-    }
-  }
-
   &-checkbox {
     display: inline-block;
     padding-left: 22px;
@@ -51,6 +36,16 @@
 
   &-switch {
     position: absolute;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    margin-left: 0;
+
+    &:before {
+      display: inline-block;
+      transform: rotate(0);
+    }
 
     &.closed:before {
       transform: rotate(-90deg);
