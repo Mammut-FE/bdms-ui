@@ -1,0 +1,19 @@
+.tree {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  :global {
+    .tree-level-0 {
+      padding-left: 18px;
+    }
+
+    @for $i from 1 to 20 {
+      .tree-level-#{$i} {
+        margin-left: -($i * 18px);
+        padding-left: ($i + 1) * 18px;
+      }
+    }
+  }
+}

@@ -86,6 +86,7 @@ module.exports = {
     'move-js': 'umd move-js',
     'promise': 'umd promise',
     'rc-animate': 'umd rc-animate',
+    'rc-util': 'umd rc-util',
     'rc-trigger': 'umd rc-trigger',
     'react': 'umd react',
     'react-dom': 'umd react-dom',
