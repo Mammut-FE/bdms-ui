@@ -57,11 +57,9 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
     const { onChange } = this.props;
     const { activeKey } = this.state;
     if (activeKey !== key) {
-      // if (!('activeKey' in this.props)) {
-        this.setState({
-          activeKey: key
-        });
-      // }
+      this.setState({
+        activeKey: key
+      });
       if (onChange) {
         onChange(key);
       }
