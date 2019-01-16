@@ -12,7 +12,7 @@ const samples: Samples = [
       }
       return (
         <Tabs activeKey="0" onChange={handleChange}>
-          <Tabs.Tab title='tab01' tabKey='1' key='1'>
+          <Tabs.Tab title='tab01' tabKey='1'>
             <p>tab01</p>
             <div>abc</div>
           </Tabs.Tab>
