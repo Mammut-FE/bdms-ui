@@ -29,10 +29,10 @@ export default class SelectDropdown extends React.Component<SelectDropdownProps>
     contentRender: options => options
   };
 
-  public componentWillReceiveProps(nextProps: Readonly<SelectDropdownProps>) {
+  public componentDidUpdate(prevProps: Readonly<SelectDropdownProps>) {
     // 记录上次的hoverIndex值
-    if (nextProps.hoverIndex !== this.props.hoverIndex) {
-      this.hoverIndexBefore = this.props.hoverIndex!;
+    if (prevProps.hoverIndex !== this.props.hoverIndex) {
+      this.hoverIndexBefore = prevProps.hoverIndex!;
     }
   }
 
