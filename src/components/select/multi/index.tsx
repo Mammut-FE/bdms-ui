@@ -21,7 +21,9 @@ export interface SelectMultiProps extends SelectPropsInterface {
   value?: string[];
   defaultValue?: string[];
   displayParser?: (value: string[]) => string;
-  onChange?: (value: string[], selected: SelectOptionProps[], type: 'select' | 'deselect') => void;
+  displayRender?: (SelectInput: React.ReactNode, value?: string[]) => React.ReactNode;
+  showAllSelect?: boolean;
+  onChange?: (value: string[], selected: SelectOptionProps[], action: 'select' | 'deselect') => void;
 }
 
 export interface SelectMultiState {
@@ -44,19 +46,20 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
   };
 
   public static defaultProps: Partial<SelectMultiProps> = {
-    displayParser: value => `已选${value.length}项`
+    displayParser: value => `已选${value.length}项`,
+    displayRender: SelectInput => SelectInput
   };
 
   private isAllSelected = (options: React.ReactElement<SelectOptionProps>[], value: string[]) => {
     return options.filter(child => !child.props.disabled).length === value.length;
   };
 
-  public onChange = (type: 'select' | 'deselect', target: string[]) => {
+  public onChange = (action: 'select' | 'deselect', target: string[]) => {
     const { onChange, value, children } = this.props;
     const newValue = [...value!];
     const selected: SelectOptionProps[] = [];
 
-    if (type === 'select') {
+    if (action === 'select') {
       React.Children.forEach(children, (child: React.ReactElement<SelectOptionProps>) => {
         const childProps = child.props;
         const displayValue = getSelectOptionDisplayValue(childProps);
@@ -86,7 +89,7 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
         }
       });
     }
-    onChange && onChange(newValue, selected, type);
+    onChange && onChange(newValue, selected, action);
   };
 
   public handleOptionSelect = (optionProps: SelectOptionProps) => {
@@ -148,9 +151,11 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
       width,
       icon,
       searchable,
+      showAllSelect,
       children,
       onChange,
       displayParser,
+      displayRender,
       dropdownRender,
       placeholder,
       ...props
@@ -175,8 +180,8 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
         contentRender={dropdownRender}
         onOptionClick={childProps => this.handleOptionSelect(childProps)}
       >
-        {allSelectOption}
-        <SelectSplit />
+        {showAllSelect && allSelectOption}
+        {showAllSelect && <SelectSplit />}
         {childrenArray.map(child => {
           const childProps = child.props;
           return (
@@ -200,17 +205,20 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
         popupStyle={{ width: width + 'px' }}
       >
         <SelectWrap before={icon} width={width} onClick={() => this.handleShownChange(true)}>
-          <SelectInput
-            value={inputValue}
-            placeholder={placeholderValue}
-            options={[allSelectOption, ...childrenArray]}
-            hoverIndex={hoverIndex}
-            searchable={searchable}
-            onEnter={this.handleOptionSelect}
-            onHoverIndexChange={this.handleHoverIndexChange}
-            onChange={this.handleKeywordChange}
-            {...props}
-          />
+          {displayRender!(
+            <SelectInput
+              value={inputValue}
+              placeholder={placeholderValue}
+              options={showAllSelect ? [allSelectOption, ...childrenArray] : childrenArray}
+              hoverIndex={hoverIndex}
+              searchable={searchable}
+              onEnter={this.handleOptionSelect}
+              onHoverIndexChange={this.handleHoverIndexChange}
+              onChange={this.handleKeywordChange}
+              {...props}
+            />,
+            value
+          )}
           <Icon name={'caret-down'} className={cx('caret')} />
         </SelectWrap>
       </DropdownTrigger>

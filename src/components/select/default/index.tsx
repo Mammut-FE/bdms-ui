@@ -73,8 +73,9 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
 
   public render(): React.ReactNode {
     const { shown, keyword, hoverIndex } = this.state;
-    const { value, width, icon, searchable, children, onChange, dropdownRender, ...props } = this.props;
+    const { value, width, icon, searchable, children, onChange, dropdownRender, placeholder, ...props } = this.props;
     const childrenArray = childrenToArray(children);
+    const placeholderValue = shown && value ? value : placeholder;
     const inputValue = shown && searchable ? keyword : value;
     const dropdownContent = (
       <SelectDropdown
@@ -99,6 +100,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
         <SelectWrap before={icon} width={width} onClick={() => this.handleShownChange(true)}>
           <SelectInput
             value={inputValue}
+            placeholder={placeholderValue}
             options={childrenArray}
             hoverIndex={hoverIndex}
             searchable={searchable}

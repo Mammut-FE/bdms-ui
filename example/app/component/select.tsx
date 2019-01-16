@@ -42,14 +42,20 @@ function createSelectSampleClass(renderContent) {
     public state = {
       options,
       value: options[0].name,
-      selected: null
+      values: []
     };
 
-    public handleChange = (value, selected) => {
+    public handleValueChange = (value, selected) => {
       console.log(value, selected);
       this.setState({
-        value,
-        selected
+        value
+      });
+    };
+
+    public handleValuesChange = (values, selected, action) => {
+      console.log(values, selected, action);
+      this.setState({
+        values
       });
     };
 
@@ -71,7 +77,7 @@ const samples: Samples = [
           <DemoRow>
             <h5>不可输入</h5>
             <br />
-            <Select value={self.state.value} onChange={self.handleChange}>
+            <Select value={self.state.value} onChange={self.handleValueChange}>
               {options.map(option => (
                 <Select.Option key={option.id} title={option.name} param={option} />
               ))}
@@ -110,6 +116,44 @@ const samples: Samples = [
                   subtitle={option.subtitle}
                   param={option}
                 />
+              ))}
+            </Select>
+          </DemoRow>
+        </div>
+      );
+    })
+  },
+  {
+    title: '多选下拉框',
+    description: '多选下拉框示例',
+    component: createSelectSampleClass(function(self) {
+      const { options } = self.state;
+
+      return (
+        <div>
+          <DemoRow>
+            <h5>普通</h5>
+            <br />
+            <Select searchable mode={'multi'} value={self.state.values} onChange={self.handleValuesChange}>
+              {options.map(option => (
+                <Select.Option key={option.id} title={option.name} param={option} />
+              ))}
+            </Select>
+          </DemoRow>
+          <DemoRow>
+            <h5>全选功能</h5>
+            <br />
+            <Select
+              width={600}
+              mode={'multi'}
+              searchable
+              showAllSelect
+              displayParser={value => `${value.join('，')}（已选${value.length}项）`}
+              value={self.state.values}
+              onChange={self.handleValuesChange}
+            >
+              {options.map(option => (
+                <Select.Option key={option.id} title={option.name} param={option} />
               ))}
             </Select>
           </DemoRow>

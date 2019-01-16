@@ -10,7 +10,7 @@ export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'val
   width?: number;
   disabled?: boolean;
   icon?: Icon;
-  dropdownRender?: (options: React.ReactNode[] | React.ReactNode) => React.ReactNode;
+  dropdownRender?: (options: React.ReactNode) => React.ReactNode;
   children?: React.ReactElement<SelectOptionProps>[];
   onChange?: (value: string | string[], ...args) => void;
 }
