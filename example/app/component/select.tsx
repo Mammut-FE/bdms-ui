@@ -92,7 +92,6 @@ const samples: Samples = [
             <Select
               defaultValue={self.state.value}
               searchable
-              selectable
               icon={<Icon name={'database'} />}
               dropdownRender={options => (
                 <div>

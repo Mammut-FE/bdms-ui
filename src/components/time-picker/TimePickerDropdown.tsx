@@ -44,7 +44,7 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
     const { time, ranger = defaultRanger } = this.props;
     const emptyBlock = new Array(4)
       .fill(0)
-      .map((_, index) => <div key={`empty-${index}`} className={cx('dropdown-Option', 'dropdown-Option--empty')} />);
+      .map((_, index) => <div key={`empty-${index}`} className={cx('dropdown-option', 'dropdown-option--empty')} />);
     return (
       <div className={cx('dropdown-content')}>
         {time.map((value, index) => {
@@ -52,11 +52,11 @@ export default class TimePickerDropdown extends React.Component<TimePickerDropdo
           return (
             <div key={index} className={cx('dropdown-select')}>
               {range.map(option => {
-                const props: any = { className: cx('dropdown-Option') };
+                const props: any = { className: cx('dropdown-option') };
 
                 if (option === value) {
                   props.ref = this.moveToTop;
-                  props.className = cx(props.className, 'dropdown-Option--active');
+                  props.className = cx(props.className, 'dropdown-option--active');
                 } else {
                   props.onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
                     // HACK: 阻止冒泡的原因是 RcTrigger 的 popup 的归属权的判定不正确，如果出现嵌套的情况，可能会出现问题

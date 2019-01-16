@@ -16,8 +16,8 @@ const SelectDropdownEmpty = () => {
 export interface SelectDropdownProps extends React.AllHTMLAttributes<HTMLDivElement> {
   hoverIndex?: number;
   keyword?: string;
-  children?: React.ReactNode[];
-  contentRender?: (options: React.ReactNode[] | React.ReactNode) => React.ReactNode;
+  children?: React.ReactNode;
+  contentRender?: (options: React.ReactNode) => React.ReactNode;
   onOptionClick?: (optionProps: SelectOptionProps) => void;
 }
 
@@ -41,26 +41,35 @@ export default class SelectDropdown extends React.Component<SelectDropdownProps>
    */
   public renderOptions = () => {
     const { children, hoverIndex, onOptionClick, keyword } = this.props;
-    const options: React.ReactNode[] = [];
+    const content: React.ReactNode[] = [];
+    let optionCount = 0;
 
-    if (!children) return [];
-    children.forEach((child: React.ReactElement<SelectOptionProps>, index) => {
-      const childProps = child.props;
-      const title = childProps.title;
+    React.Children.forEach(children, (child, index) => {
+      if (React.isValidElement(child)) {
+        const childProps = child.props as SelectOptionProps;
+        const title = childProps.title;
 
-      if (title && isSelectOptionIncluded(childProps, keyword!)) {
-        options.push(
-          <child.type
-            {...childProps}
-            key={child.key || index}
-            hover={hoverIndex === index}
-            onClick={() => onOptionClick && onOptionClick(childProps)}
-          />
-        );
+        if (title) {
+          if (childProps.ignore || isSelectOptionIncluded(childProps, keyword || '')) {
+            content.push(
+              <child.type
+                key={index}
+                hover={hoverIndex === optionCount}
+                onClick={() => onOptionClick && onOptionClick(childProps)}
+                {...childProps}
+              />
+            );
+          }
+          optionCount++;
+        } else {
+          content.push(child);
+        }
+      } else {
+        content.push(child);
       }
     });
 
-    return options;
+    return content;
   };
   /**
    * 动态设置scrollTop

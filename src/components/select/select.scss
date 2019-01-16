@@ -42,6 +42,11 @@ input.input {
   }
 }
 
+.split {
+  margin: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
 .option {
   padding: 6px 12px;
   line-height: 20px;
@@ -53,6 +58,12 @@ input.input {
   &-subtitle {
     color: #999;
   }
+  &-icon {
+    float: right;
+    color: #09f;
+    margin-right: -22px;
+    margin-top: 4px;
+  }
   &:hover,
   &--hover {
     background-color: #dff0ff;
@@ -62,12 +73,7 @@ input.input {
     cursor: not-allowed !important;
     background-color: transparent !important;
   }
-  &--selectable {
-    padding-left: 32px;
-    &-true {
-      float: left;
-      margin-left: -22px;
-      margin-top: 4px;
-    }
+  &--multi {
+    padding-right: 32px;
   }
 }

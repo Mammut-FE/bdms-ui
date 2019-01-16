@@ -13,6 +13,7 @@ export interface SelectOptionProps {
   after?: React.ReactNode;
   hover?: boolean; // hover状态
   disabled?: boolean; // 禁用
+  ignore?: boolean; //是否会被搜索
   onClick?: () => void;
   [propName: string]: any;
 }

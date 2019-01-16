@@ -9,7 +9,6 @@ import SelectInput from '../input';
 import SelectDropdown from '../dropdown';
 import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
-import SelectSelectableOption from './selectable-option';
 import { Independence } from '../../../lib/independence';
 import { Icon } from '../../icon';
 
@@ -17,9 +16,9 @@ const cx = classNames.bind(style);
 
 export interface SelectDefaultProps extends SelectPropsInterface {
   searchable?: boolean;
-  selectable?: boolean;
   value?: string;
   defaultValue?: string;
+  onChange?: (value: string, selected: SelectOptionProps) => void;
 }
 
 export interface SelectDefaultState {
@@ -74,7 +73,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
 
   public render(): React.ReactNode {
     const { shown, keyword, hoverIndex } = this.state;
-    const { value, width, icon, searchable, selectable, children, onChange, dropdownRender, ...props } = this.props;
+    const { value, width, icon, searchable, children, onChange, dropdownRender, ...props } = this.props;
     const childrenArray = childrenToArray(children);
     const inputValue = shown && searchable ? keyword : value;
     const dropdownContent = (
@@ -84,12 +83,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
         contentRender={dropdownRender}
         onOptionClick={childProps => this.handleOptionSelect(childProps)}
       >
-        {selectable
-          ? childrenArray.map(child => {
-              const childProps = child.props;
-              return <SelectSelectableOption key={child.key} selected={value === childProps.title} {...childProps} />;
-            })
-          : childrenArray}
+        {childrenArray}
       </SelectDropdown>
     );
 
