@@ -12,6 +12,7 @@ import inputSamples from './input';
 import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
 import messageSamples from './message';
+import tabsSamples from './tabs';
 
 const demos: Demo[] = [
   {
@@ -89,6 +90,11 @@ const demos: Demo[] = [
     title: 'Message 消息提示',
     description: '消息提示',
     samples: messageSamples
+  }, {
+    name: 'tabs',
+    title: 'Tabs 标签页',
+    description: '标签页',
+    samples: tabsSamples
   }
 ];
 

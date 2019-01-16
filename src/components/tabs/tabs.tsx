@@ -45,7 +45,7 @@ const getStateFromProps = (props: ITabsProps): ITabsState => {
   };
 }
 
-export default class Tabs extends Component<ITabsProps, ITabsState> {
+export class Tabs extends Component<ITabsProps, ITabsState> {
   public static Tab = Tab;
   public readonly state: Readonly<ITabsState> = getStateFromProps(this.props);
 
@@ -57,22 +57,23 @@ export default class Tabs extends Component<ITabsProps, ITabsState> {
     const { onChange } = this.props;
     const { activeKey } = this.state;
     if (activeKey !== key) {
-      if (!('activeKey' in this.props)) {
+      // if (!('activeKey' in this.props)) {
         this.setState({
           activeKey: key
         });
-      }
+      // }
       if (onChange) {
         onChange(key);
       }
     }
   }
 
-  public renderChildrenWithTabsApiAsProps = () => {
+  public renderTab = () => {
     const { children } = this.props;
     const { activeKey } = this.state;
-    return React.Children.map(children, (child: ReactElement<any>) => {
+    return React.Children.map(children, (child: ReactElement<any>, index) => {
       return React.cloneElement(child, {
+        key: `tabs__tab${index}`,
         onClick: this.handleTabClick,
         tabKey: child.props.tabKey,
         isActive: child.props.tabKey === activeKey
@@ -80,22 +81,38 @@ export default class Tabs extends Component<ITabsProps, ITabsState> {
     });
   }
 
-  public renderActiveTabContent = () => {
-    if (this.state.activeKey !== undefined) {
-      const { children } = this.props;
-      const { activeKey } = this.state;
-      if (children != null) {
-        return React.Children.map(children, (child: ReactElement<any>) => {
-          if (child.props.tabKey === activeKey) {
-            return child.props.children;
-          }
-          return null;
-        });
-      } else {
-        console.dir('Error! This tab has no children!');
+  public renderTabContent = () => {
+    const { children } = this.props;
+    const { activeKey } = this.state;
+    const panes: Array<ReactElement<any>> = [];
+    React.Children.forEach(children, (child: ReactElement<any>, index) => {
+      if (!child) {
+        return;
       }
-    }
-    return null;
+      const {
+        tabKey,
+        forceRender
+      } = child.props;
+      const isActive = tabKey === activeKey;
+      const shouldRender = isActive || forceRender;
+      const cls = cx('tabs__tab-pane', {
+        ['tabs__tab-pane--active']: isActive,
+        ['tabs__tab-pane--inactive']: !isActive
+      });
+      if (shouldRender) {
+        panes.push(
+          <div
+            className={cls}
+            aria-hidden={isActive ? 'false' : 'true'}
+            role='tabpanel'
+            key={`tabs__tab-pane${index}`}
+          >
+            {child.props.children}
+          </div>
+        );
+      }
+    });
+    return panes;
   }
 
   public render() {
@@ -106,11 +123,9 @@ export default class Tabs extends Component<ITabsProps, ITabsState> {
     return (
       <div className={cx('tabs', className)} style={{...style}}>
         <ul className={cx('tabs__tab-list')}>
-          {this.renderChildrenWithTabsApiAsProps()}
+          {this.renderTab()}
         </ul>
-        <div className={cx('tabs__tab-pane')}>
-          {this.renderActiveTabContent()}
-        </div>
+        {this.renderTabContent()}
       </div>
     );
   }

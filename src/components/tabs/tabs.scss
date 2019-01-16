@@ -58,5 +58,11 @@
 
   &__tab-pane {
     padding: 16px 24px;
+    &--inactive {
+      opacity: 0;
+      height: 0;
+      pointer-events: none;
+      padding: 0 !important;
+    }
   }
 }
