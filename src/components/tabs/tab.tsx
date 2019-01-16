@@ -5,7 +5,7 @@ import styles from './tabs.scss';
 const cx = classNames.bind(styles);
 
 interface Props {
-  title: ReactNode | string;
+  title: ReactNode;
   tabKey: string;
   forceRender?: boolean;
   disabled?: boolean;
