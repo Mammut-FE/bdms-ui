@@ -13,7 +13,7 @@
 
 | 属性     | 说明                | 是否必须 | 类型     | 默认值  |
 | -------- | -------------------- | ------ | -------- | ------- |
-| title | 标签页的名称 | 是 | ReactNode \| string | - |
+| title | 标签页的名称 | 是 | ReactNode | - |
 | tabKey | 标签页的唯一标识，和activeKey对应 | 是 | string | - |
 | disabled | 是否禁用 | 否 | boolean | false |
 | forceRender | 非active状态下的标签页内容是否渲染的标志 | 否 | boolean | false |
