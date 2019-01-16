@@ -53,7 +53,22 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
     this.setState(getStateFromProps(nextProps));
   }
 
-  public handleTabClick = (key: string) => {
+  public render() {
+    const {
+      className,
+      style
+    } = this.props;
+    return (
+      <div className={cx('tabs', className)} style={{...style}}>
+        <ul className={cx('tabs__tab-list')}>
+          {this.renderTab()}
+        </ul>
+        {this.renderTabContent()}
+      </div>
+    );
+  }
+
+  private handleTabClick = (key: string) => {
     const { onChange } = this.props;
     const { activeKey } = this.state;
     if (activeKey !== key) {
@@ -66,7 +81,7 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
     }
   }
 
-  public renderTab = () => {
+  private renderTab = () => {
     const { children } = this.props;
     const { activeKey } = this.state;
     return React.Children.map(children, (child: ReactElement<any>, index) => {
@@ -79,7 +94,7 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
     });
   }
 
-  public renderTabContent = () => {
+  private renderTabContent = () => {
     const { children } = this.props;
     const { activeKey } = this.state;
     const panes: Array<ReactElement<any>> = [];
@@ -111,20 +126,5 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
       }
     });
     return panes;
-  }
-
-  public render() {
-    const {
-      className,
-      style
-    } = this.props;
-    return (
-      <div className={cx('tabs', className)} style={{...style}}>
-        <ul className={cx('tabs__tab-list')}>
-          {this.renderTab()}
-        </ul>
-        {this.renderTabContent()}
-      </div>
-    );
   }
 }
