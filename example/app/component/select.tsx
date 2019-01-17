@@ -146,6 +146,7 @@ const samples: Samples = [
             <Select
               width={600}
               mode={'multi'}
+              hideCaret
               searchable
               showAllSelect
               displayParser={value => `${value.join('，')}（已选${value.length}项）`}

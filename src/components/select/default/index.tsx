@@ -10,7 +10,6 @@ import SelectDropdown from '../dropdown';
 import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import { Independence } from '../../../lib/independence';
-import { Icon } from '../../icon';
 
 const cx = classNames.bind(style);
 
@@ -73,7 +72,18 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
 
   public render(): React.ReactNode {
     const { shown, keyword, hoverIndex } = this.state;
-    const { value, width, icon, searchable, children, onChange, dropdownRender, placeholder, ...props } = this.props;
+    const {
+      value,
+      width,
+      icon,
+      searchable,
+      children,
+      onChange,
+      hideCaret,
+      dropdownRender,
+      placeholder,
+      ...props
+    } = this.props;
     const childrenArray = childrenToArray(children);
     const placeholderValue = shown && value ? value : placeholder;
     const inputValue = shown && searchable ? keyword : value;
@@ -97,7 +107,7 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
         dropdown={dropdownContent}
         popupStyle={{ width: width + 'px' }}
       >
-        <SelectWrap before={icon} width={width} onClick={() => this.handleShownChange(true)}>
+        <SelectWrap before={icon} caret={!hideCaret} width={width} onClick={() => this.handleShownChange(true)}>
           <SelectInput
             value={inputValue}
             placeholder={placeholderValue}
@@ -109,7 +119,6 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
             onChange={this.handleKeywordChange}
             {...props}
           />
-          <Icon name={'caret-down'} className={cx('caret')} />
         </SelectWrap>
       </DropdownTrigger>
     );

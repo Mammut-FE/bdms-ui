@@ -2,6 +2,7 @@ import * as React from 'react';
 import SelectOption, { SelectOptionProps } from './option';
 import SelectDefault from './default';
 import SelectMulti from './multi';
+import SelectTag from './tag';
 import { Icon } from '../icon';
 import { Omit } from '../../lib/type';
 import { InputProps } from '../input/Input';
@@ -11,12 +12,13 @@ export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'val
   disabled?: boolean;
   icon?: Icon;
   dropdownRender?: (options: React.ReactNode) => React.ReactNode;
+  hideCaret?: boolean;
   children?: React.ReactElement<SelectOptionProps>[];
   onChange?: (value: string | string[], ...args) => void;
 }
 
 interface SelectProps {
-  mode?: 'default' | 'tag' | 'multi';
+  mode?: 'default' | 'multi' | 'tag';
   [propName: string]: any;
 }
 
@@ -30,12 +32,13 @@ export class Select extends React.Component<SelectProps> {
 
   public static Components = {
     default: SelectDefault,
-    multi: SelectMulti
+    multi: SelectMulti,
+    tag: SelectTag
   };
 
   public render(): React.ReactNode {
     const { mode, ...props } = this.props;
-    const SelectComponent = Select.Components[mode!];
+    const SelectComponent = Select.Components[mode!] as React.ReactType;
 
     return <SelectComponent {...props} />;
   }

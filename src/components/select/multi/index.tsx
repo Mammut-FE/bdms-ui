@@ -6,13 +6,12 @@ import { SelectPropsInterface } from '../select';
 import { SelectOptionProps } from '../option';
 import SelectSplit from '../split';
 import SelectWrap from '../wrap';
-import SelectInput from '../input';
+import SelectInput, { SelectInputProps } from '../input';
 import SelectDropdown from '../dropdown';
 import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import SelectMultiOption from './multi-option';
 import { Independence } from '../../../lib/independence';
-import { Icon } from '../../icon';
 
 const cx = classNames.bind(style);
 
@@ -21,7 +20,7 @@ export interface SelectMultiProps extends SelectPropsInterface {
   value?: string[];
   defaultValue?: string[];
   displayParser?: (value: string[]) => string;
-  displayRender?: (SelectInput: React.ReactNode, value?: string[]) => React.ReactNode;
+  displayRender?: (SelectInput: React.ReactElement<SelectInputProps>) => React.ReactNode;
   showAllSelect?: boolean;
   onChange?: (value: string[], selected: SelectOptionProps[], action: 'select' | 'deselect') => void;
 }
@@ -152,6 +151,7 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
       icon,
       searchable,
       showAllSelect,
+      hideCaret,
       children,
       onChange,
       displayParser,
@@ -204,7 +204,7 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
         dropdown={dropdownContent}
         popupStyle={{ width: width + 'px' }}
       >
-        <SelectWrap before={icon} width={width} onClick={() => this.handleShownChange(true)}>
+        <SelectWrap before={icon} caret={!hideCaret} width={width} onClick={() => this.handleShownChange(true)}>
           {displayRender!(
             <SelectInput
               value={inputValue}
@@ -216,10 +216,8 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
               onHoverIndexChange={this.handleHoverIndexChange}
               onChange={this.handleKeywordChange}
               {...props}
-            />,
-            value
+            />
           )}
-          <Icon name={'caret-down'} className={cx('caret')} />
         </SelectWrap>
       </DropdownTrigger>
     );

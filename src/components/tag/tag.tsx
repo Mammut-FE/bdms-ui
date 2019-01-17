@@ -3,12 +3,13 @@ import React, { Component, MouseEvent } from 'react';
 
 import { Icon } from '../icon/icon';
 import styles from './tag.scss';
+import { Omit } from '../../lib/type';
 
 interface ITagState {
   readonly visible: boolean;
 }
 
-interface ITagProps {
+interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'> {
   size?: string;
   closable?: boolean;
   iconName?: string;
@@ -45,10 +46,10 @@ export class Tag extends Component<ITagProps, ITagState> {
   }
 
   public render() {
-    const { children, size, closable, iconName } = this.props;
+    const { children, size, closable, iconName, className } = this.props;
     const { visible } = this.state;
 
-    const tagClass = cx('u-tag', `u-tag-${size}`);
+    const tagClass = cx('u-tag', `u-tag-${size}`, className);
 
     const iconCloseStyle = {
       marginLeft: '4px'
