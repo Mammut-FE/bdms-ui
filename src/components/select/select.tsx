@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames/bind';
 import SelectOption, { SelectOptionProps } from './option';
 import SelectDefault from './default';
 import SelectMulti from './multi';
@@ -7,6 +8,9 @@ import { Icon } from '../icon';
 import { Omit } from '../../lib/type';
 import { InputProps } from '../input/Input';
 import { DropdownTriggerProps } from '../helpers/DropdownTrigger';
+import style from './select.scss';
+
+const cx = classNames.bind(style);
 
 export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'value' | 'defaultValue' | 'width'> {
   width?: number;
@@ -30,7 +34,14 @@ export class Select extends React.Component<SelectProps> {
 
   public static defaultProps: Partial<SelectProps> = {
     mode: 'default',
-    width: 180
+    width: 180,
+    popupProps: {
+      action: ['click'],
+      popupAlign: {
+        offset: [0, 4]
+      },
+      dropdownClassName: cx('dropdown-wrap')
+    }
   };
 
   public static Components = {

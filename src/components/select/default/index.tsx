@@ -1,7 +1,5 @@
 import * as React from 'react';
-import classNames from 'classnames/bind';
 import childrenToArray from 'rc-util/lib/Children/toArray';
-import style from '../select.scss';
 import { SelectPropsInterface } from '../select';
 import { SelectOptionProps } from '../option';
 import SelectWrap from '../wrap';
@@ -10,8 +8,6 @@ import SelectDropdown from '../dropdown';
 import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import { Independence } from '../../../lib/independence';
-
-const cx = classNames.bind(style);
 
 export interface SelectDefaultProps extends SelectPropsInterface {
   searchable?: boolean;
@@ -105,15 +101,10 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
 
     return (
       <DropdownTrigger
-        action={['click']}
         shown={shown}
-        dropdownClassName={cx('dropdown-wrap')}
         onShownChange={this.handleShownChange}
         dropdown={dropdownContent}
         popupStyle={{ width: width + 'px' }}
-        popupAlign={{
-          offset: [0, 4]
-        }}
         {...popupProps}
       >
         <SelectWrap before={icon} caret={!hideCaret} width={width} onClick={() => this.handleShownChange(true)}>

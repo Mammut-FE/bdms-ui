@@ -21,6 +21,8 @@ interface SelectTagState {
   }
 })
 export default class SelectTag extends React.Component<SelectTagProps, SelectTagState> {
+  private container: HTMLDivElement | null;
+  private popupDomNode: HTMLDivElement | null;
   public state = {
     shown: false
   };
@@ -43,6 +45,19 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
 
     return selected;
   };
+
+  public componentDidUpdate(prevProps, prevState) {
+    const popupAlign = this.props.popupProps!.popupAlign;
+
+    // 校正下拉框位置
+    if (this.state.shown) {
+      setTimeout(() => {
+        if (this.container && this.popupDomNode && popupAlign) {
+          this.popupDomNode.style.top = this.container.getBoundingClientRect().bottom + popupAlign.offset[1] + 'px';
+        }
+      }, 150);
+    }
+  }
 
   public handleTagRemove = val => {
     const { value, onChange } = this.props;
@@ -74,12 +89,14 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
         {...props}
         placeholder={placeholderValue}
         popupProps={{
+          onPopupAlign: popupDomNode => (this.popupDomNode = popupDomNode),
           ...popupProps
         }}
         onShownChange={this.handleShownChange}
         displayRender={SelectInput => {
           return (
             <SelectTagContainer
+              containerRef={ref => (this.container = ref)}
               value={value!}
               disabled={disabled}
               focused={shown}
