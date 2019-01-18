@@ -74,7 +74,7 @@ module.exports = {
     const name = upperCamelCase(path.basename(componentPath, '.tsx'));
     return `import { ${name} } from '${package.name}'`;
   },
-  webpackConfig: require('./configs/webpack.start.js'),
+  webpackConfig: require('./configs/webpack.doc.js'),
   styleguideDir: 'docs',
   usageMode: 'expand',
   exampleMode: 'collapse',
