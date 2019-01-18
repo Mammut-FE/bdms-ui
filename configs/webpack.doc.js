@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: paths.appIndex,
+  entry: paths.libIndex,
   output: {
     path: paths.tmpOut,
     filename: 'bundle.js'
@@ -75,10 +75,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(paths.appRoot, 'index.html')
-    }),
-    new ExtractTextPlugin('style.css')
-  ]
+  plugins: [new ExtractTextPlugin('style.css')]
 };

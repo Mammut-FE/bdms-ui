@@ -8,7 +8,8 @@
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "start": "styleguidist server",
+    "start": "webpack-dev-server --config configs/webpack.start.js --mode development",
+    "start:doc": "styleguidist server",
     "build:lib": "rm -rf lib & webpack --config configs/webpack.build.js --mode=production",
     "build:doc": "styleguidist build",
     "format": "prettier \"src/**/*.{ts,tsx,scss}\" \"example/**/*.{ts,tsx,scss}\" --write",
