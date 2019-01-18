@@ -39,6 +39,7 @@ interface ISubMenuState {
 
 /**
  * @visibleName Menu.SubMenu
+ * @see 更多内容请查看 Menu 组件
  */
 export default class SubMenu extends Component<ISubMenuProps, ISubMenuState> {
   public static defaultProps: Partial<ISubMenuProps> = {

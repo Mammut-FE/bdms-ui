@@ -138,7 +138,13 @@ module.exports = {
             // 'message',
             // 'notice',
           ],
-          []
+          [],
+          [
+            {
+              name: 'Message',
+              content: 'src/components/message/message.md'
+            }
+          ]
         ),
         createComponentSection('其他', [], [])
       ],

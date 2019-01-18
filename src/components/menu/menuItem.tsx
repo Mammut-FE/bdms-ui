@@ -19,8 +19,8 @@ interface IMenuItemProps {
 const cx = classNames.bind(styles);
 
 /**
- * @name Item
- * @parent Menu
+ * @visibleName Menu.Item
+ * @see 更多内容请查看 Menu 组件
  */
 export default class MenuItem extends Component<IMenuItemProps, any> {
   public static defaultProps: Partial<IMenuItemProps> = {
