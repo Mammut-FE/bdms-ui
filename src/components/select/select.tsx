@@ -6,6 +6,7 @@ import SelectTag from './tag';
 import { Icon } from '../icon';
 import { Omit } from '../../lib/type';
 import { InputProps } from '../input/Input';
+import { DropdownTriggerProps } from '../helpers/DropdownTrigger';
 
 export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'value' | 'defaultValue' | 'width'> {
   width?: number;
@@ -15,6 +16,8 @@ export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'val
   hideCaret?: boolean;
   children?: React.ReactElement<SelectOptionProps>[];
   onChange?: (value: string | string[], ...args) => void;
+  onShownChange?: (shown: boolean) => void;
+  popupProps?: DropdownTriggerProps;
 }
 
 interface SelectProps {

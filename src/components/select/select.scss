@@ -98,4 +98,11 @@ input.input {
     margin-top: 4px;
     margin-right: 4px;
   }
+  &--focused {
+    border-color: #09f !important;
+    box-shadow: 0 0 2px 2px rgba(0, 153, 255, 0.2);
+    .input {
+      flex-basis: 80px;
+    }
+  }
 }

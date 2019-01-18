@@ -54,6 +54,9 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
   };
 
   public handleShownChange = (shown: boolean) => {
+    const { onShownChange } = this.props;
+
+    onShownChange && onShownChange(shown);
     this.setState({
       shown,
       keyword: '',
@@ -79,9 +82,11 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
       searchable,
       children,
       onChange,
+      onShownChange,
       hideCaret,
       dropdownRender,
       placeholder,
+      popupProps,
       ...props
     } = this.props;
     const childrenArray = childrenToArray(children);
@@ -106,6 +111,10 @@ export default class SelectDefault extends React.Component<SelectDefaultProps, S
         onShownChange={this.handleShownChange}
         dropdown={dropdownContent}
         popupStyle={{ width: width + 'px' }}
+        popupAlign={{
+          offset: [0, 4]
+        }}
+        {...popupProps}
       >
         <SelectWrap before={icon} caret={!hideCaret} width={width} onClick={() => this.handleShownChange(true)}>
           <SelectInput
