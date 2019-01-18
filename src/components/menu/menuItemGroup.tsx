@@ -13,6 +13,7 @@ interface IMenuItemGroup {
 
 /**
  * @visibleName Menu.ItemGroup
+ * @see 更多内容请查看 Menu 组件
  */
 export default class MenuItemGroup extends Component<IMenuItemGroup, any> {
   public render() {
