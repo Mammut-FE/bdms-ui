@@ -30,6 +30,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-flexbox-grid": "^2.1.2",
+    "react-sortable-hoc": "^1.5.0",
     "velocity-animate": "^1.5.1"
   },
   "devDependencies": {

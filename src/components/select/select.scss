@@ -83,20 +83,25 @@ input.input {
 
 .tag {
   &-con {
-    display: flex;
-    flex-wrap: wrap;
-    height: auto;
     .input {
       flex: 1 0 0;
       max-width: 100%;
       padding-left: 0;
+      padding-right: 0;
       border: none;
       box-shadow: none !important;
     }
   }
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
   &-item {
     margin-top: 4px;
     margin-right: 4px;
+    user-select: none;
+    cursor: move;
   }
   &--focused {
     border-color: #09f !important;

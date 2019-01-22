@@ -43,8 +43,9 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
     React.Children.forEach(children, (child: React.ReactElement<SelectOptionProps>) => {
       const childProps = child.props;
       const displayValue = getSelectOptionDisplayValue(childProps);
+      const valueIndex = value.indexOf(displayValue);
 
-      if (value.indexOf(displayValue) > -1) selected.push(childProps);
+      if (valueIndex > -1) selected[valueIndex] = childProps;
     });
 
     return selected;
@@ -71,6 +72,14 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
     if (onChange && valIndex > -1) {
       newValue.splice(valIndex, 1);
       onChange(newValue, this.getSelectedValueProps(newValue), 'deselect');
+    }
+  };
+
+  public handleTagSort = (value: SelectTagValue) => {
+    const { onChange } = this.props;
+
+    if (onChange) {
+      onChange(value, this.getSelectedValueProps(value), 'sort');
     }
   };
 
@@ -106,6 +115,7 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
               focused={shown}
               style={containerStyle}
               onTagRemove={this.handleTagRemove}
+              onSort={this.handleTagSort}
             >
               <SelectInput.type {...SelectInput.props} />
             </SelectTagContainer>

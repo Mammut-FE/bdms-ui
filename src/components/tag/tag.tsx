@@ -5,10 +5,6 @@ import { Icon } from '../icon/icon';
 import styles from './tag.scss';
 import { Omit } from '../../lib/type';
 
-interface ITagState {
-  readonly visible: boolean;
-}
-
 interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'> {
   size?: string;
   closable?: boolean;
@@ -18,14 +14,10 @@ interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'
 
 const cx = classNames.bind(styles);
 
-export class Tag extends Component<ITagProps, ITagState> {
+export class Tag extends Component<ITagProps> {
   public static defaultProps = {
     closable: true,
     size: 'small'
-  };
-
-  public readonly state: Readonly<ITagState> = {
-    visible: true
   };
 
   constructor(props: ITagProps) {
@@ -34,11 +26,11 @@ export class Tag extends Component<ITagProps, ITagState> {
   }
 
   public closeTag(e) {
-    this.setState({ visible: false });
     if (this.props.onClose) {
       this.props.onClose(e);
     }
     e.stopPropagation();
+    e.nativeEvent.stopPropagation();
   }
 
   public componentWillUnmount() {
@@ -47,7 +39,6 @@ export class Tag extends Component<ITagProps, ITagState> {
 
   public render() {
     const { children, size, closable, iconName, className } = this.props;
-    const { visible } = this.state;
 
     const tagClass = cx('u-tag', `u-tag-${size}`, className);
 
@@ -59,16 +50,12 @@ export class Tag extends Component<ITagProps, ITagState> {
       marginRight: '4px'
     };
 
-    if (visible) {
-      return (
-        <div className={tagClass}>
-          {iconName && <Icon name={iconName} style={iconStyle} />}
-          {children}
-          {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div className={tagClass}>
+        {iconName && <Icon name={iconName} style={iconStyle} />}
+        {children}
+        {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
+      </div>
+    );
   }
 }
