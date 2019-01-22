@@ -11,14 +11,18 @@ import DropdownTrigger from '../../helpers/DropdownTrigger';
 import SelectMultiOption from './multi-option';
 import { Independence } from '../../../lib/independence';
 
+export type SelectMultiAction = 'select' | 'deselect';
+
+export type SelectMultiValue = string[];
+
 export interface SelectMultiProps extends SelectPropsInterface {
   searchable?: boolean;
-  value?: string[];
-  defaultValue?: string[];
-  displayParser?: (value: string[]) => string;
+  value?: SelectMultiValue;
+  defaultValue?: SelectMultiValue;
+  displayParser?: (value: SelectMultiValue) => string;
   displayRender?: (SelectInput: React.ReactElement<SelectInputProps>) => React.ReactNode;
   showAllSelect?: boolean;
-  onChange?: (value: string[], selected: SelectOptionProps[], action: 'select' | 'deselect') => void;
+  onChange?: (value: SelectMultiValue, selected: SelectOptionProps[], action: SelectMultiAction) => void;
 }
 
 export interface SelectMultiState {
@@ -45,11 +49,11 @@ export default class SelectMulti extends React.Component<SelectMultiProps, Selec
     displayRender: SelectInput => SelectInput
   };
 
-  private isAllSelected = (options: React.ReactElement<SelectOptionProps>[], value: string[]) => {
+  private isAllSelected = (options: React.ReactElement<SelectOptionProps>[], value: SelectMultiValue) => {
     return options.filter(child => !child.props.disabled).length === value.length;
   };
 
-  public onChange = (action: 'select' | 'deselect', target: string[]) => {
+  public onChange = (action: SelectMultiAction, target: SelectMultiValue) => {
     const { onChange, value, children } = this.props;
     const newValue = [...value!];
     const selected: SelectOptionProps[] = [];

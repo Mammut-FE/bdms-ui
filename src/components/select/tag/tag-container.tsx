@@ -3,12 +3,13 @@ import classNames from 'classnames/bind';
 import { Tag } from '../../tag';
 import style from '../select.scss';
 import inputStyle from '../../input/input.scss';
+import { SelectTagValue } from './index';
 
 const cx = classNames.bind(style);
 const inputCx = classNames.bind(inputStyle);
 
 export interface SelectTagContainerProps extends React.AllHTMLAttributes<HTMLDivElement> {
-  value: string[];
+  value: SelectTagValue;
   onTagRemove?: (value: string) => void;
   disabled?: boolean;
   focused?: boolean;

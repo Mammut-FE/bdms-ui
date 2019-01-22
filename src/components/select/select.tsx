@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames/bind';
 import SelectOption, { SelectOptionProps } from './option';
-import SelectDefault from './default';
-import SelectMulti from './multi';
-import SelectTag from './tag';
+import SelectDefault, { SelectDefaultValue } from './default';
+import SelectMulti, { SelectMultiValue } from './multi';
+import SelectTag, { SelectTagValue } from './tag';
 import { Icon } from '../icon';
 import { Omit } from '../../lib/type';
 import { InputProps } from '../input/Input';
@@ -12,6 +12,8 @@ import style from './select.scss';
 
 const cx = classNames.bind(style);
 
+export type SelectValue = SelectDefaultValue | SelectMultiValue | SelectTagValue;
+
 export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'value' | 'defaultValue' | 'width'> {
   width?: number;
   disabled?: boolean;
@@ -19,7 +21,7 @@ export interface SelectPropsInterface extends Omit<InputProps, 'onChange' | 'val
   dropdownRender?: (options: React.ReactNode) => React.ReactNode;
   hideCaret?: boolean;
   children?: React.ReactElement<SelectOptionProps>[];
-  onChange?: (value: string | string[], ...args) => void;
+  onChange?: (value: SelectValue, ...args) => void;
   onShownChange?: (shown: boolean) => void;
   popupProps?: DropdownTriggerProps;
 }

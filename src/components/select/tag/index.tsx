@@ -5,9 +5,13 @@ import SelectTagContainer from './tag-container';
 import { Independence } from '../../../lib/independence';
 import { getSelectOptionDisplayValue } from '../util';
 
+export type SelectTagValue = string[];
+
+export type SelectTagAction = 'select' | 'deselect' | 'sort';
+
 interface SelectTagProps extends SelectMultiProps {
   sortable?: boolean;
-  onChange?: (value: string[], selected: SelectOptionProps[], action: 'select' | 'deselect' | 'sort') => void;
+  onChange?: (value: SelectTagValue, selected: SelectOptionProps[], action: SelectTagAction) => void;
 }
 
 interface SelectTagState {

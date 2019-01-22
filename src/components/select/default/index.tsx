@@ -9,11 +9,13 @@ import { getSelectOptionDisplayValue } from '../util';
 import DropdownTrigger from '../../helpers/DropdownTrigger';
 import { Independence } from '../../../lib/independence';
 
+export type SelectDefaultValue = string;
+
 export interface SelectDefaultProps extends SelectPropsInterface {
   searchable?: boolean;
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string, selected: SelectOptionProps) => void;
+  value?: SelectDefaultValue;
+  defaultValue?: SelectDefaultValue;
+  onChange?: (value: SelectDefaultValue, selected: SelectOptionProps) => void;
 }
 
 export interface SelectDefaultState {
