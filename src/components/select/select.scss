@@ -1,33 +1,113 @@
-.u-select {
-  width: 160px;
+.container {
   position: relative;
-}
-.input {
-  width: 100%;
-  height: 32px;
-  line-height: 32px;
-  outline: none;
-  display: inline-block;
-  padding-left: 12px;
-  border: 1px solid #ccc;
-  color: #333;
-  background-color: #fff;
-  border-radius: 2px;
   font-size: 14px;
-  text-transform: inherit;
-  transition: ease-in-out 0.15s;
-  overflow: hidden;
-  word-wrap: normal;
+  cursor: pointer;
+  &-before {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &--hasBefore .input {
+    padding-left: 28px;
+  }
+  &--hasCaret .input {
+    padding-right: 28px;
+  }
+}
+
+input.input {
+  cursor: pointer;
+  padding-right: 28px;
+  &--searchable {
+    cursor: text;
+  }
+}
+
+.caret {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  max-height: 330px;
+  overflow: auto;
+  @media (max-height: 700px) {
+    max-height: 162px;
+  }
+  &-wrap {
+    width: 100%;
+  }
+}
+
+.split {
+  margin: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.option {
+  padding: 6px 12px;
+  line-height: 20px;
+  font-size: 14px;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  &-subtitle {
+    color: #999;
+  }
+  &-icon {
+    float: right;
+    color: #09f;
+    margin-right: -22px;
+    margin-top: 4px;
+  }
+  &:hover,
+  &--hover {
+    background-color: #dff0ff;
+  }
+  &--disabled {
+    color: #999 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+  }
+  &--multi {
+    padding-right: 32px;
+  }
 }
-.vareticon {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-}
-.selectmenu {
-  position: absolute;
-  z-index: 100;
+
+.tag {
+  &-con {
+    .input {
+      flex: 1 0 0;
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      border: none;
+      box-shadow: none !important;
+    }
+  }
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding-left: 4px;
+  }
+  &-item {
+    margin-top: 5px;
+    margin-right: 4px;
+    user-select: none;
+  }
+  &--focused {
+    border-color: #09f !important;
+    box-shadow: 0 0 2px 2px rgba(0, 153, 255, 0.2);
+    .input {
+      flex-basis: 80px;
+    }
+  }
 }

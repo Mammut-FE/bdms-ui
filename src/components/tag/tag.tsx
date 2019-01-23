@@ -3,12 +3,9 @@ import React, { Component, MouseEvent } from 'react';
 
 import { Icon } from '../icon/icon';
 import styles from './tag.scss';
+import { Omit } from '../../lib/type';
 
-interface ITagState {
-  readonly visible: boolean;
-}
-
-interface ITagProps {
+export interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'> {
   size?: string;
   closable?: boolean;
   iconName?: string;
@@ -17,14 +14,10 @@ interface ITagProps {
 
 const cx = classNames.bind(styles);
 
-export class Tag extends Component<ITagProps, ITagState> {
+export class Tag extends Component<ITagProps> {
   public static defaultProps = {
     closable: true,
     size: 'small'
-  };
-
-  public readonly state: Readonly<ITagState> = {
-    visible: true
   };
 
   constructor(props: ITagProps) {
@@ -33,7 +26,6 @@ export class Tag extends Component<ITagProps, ITagState> {
   }
 
   public closeTag(e) {
-    this.setState({ visible: false });
     if (this.props.onClose) {
       this.props.onClose(e);
     }
@@ -45,10 +37,9 @@ export class Tag extends Component<ITagProps, ITagState> {
   }
 
   public render() {
-    const { children, size, closable, iconName } = this.props;
-    const { visible } = this.state;
+    const { children, size, closable, iconName, className, ...props } = this.props;
 
-    const tagClass = cx('u-tag', `u-tag-${size}`);
+    const tagClass = cx('u-tag', `u-tag-${size}`, className);
 
     const iconCloseStyle = {
       marginLeft: '4px'
@@ -58,16 +49,12 @@ export class Tag extends Component<ITagProps, ITagState> {
       marginRight: '4px'
     };
 
-    if (visible) {
-      return (
-        <div className={tagClass}>
-          {iconName && <Icon name={iconName} style={iconStyle} />}
-          {children}
-          {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div className={tagClass} {...props}>
+        {iconName && <Icon name={iconName} style={iconStyle} />}
+        {children}
+        {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}
+      </div>
+    );
   }
 }
