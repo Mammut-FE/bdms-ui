@@ -158,6 +158,15 @@ const samples: Samples = [
               ))}
             </Select>
           </DemoRow>
+          <DemoRow>
+            <h5>拖拽排序功能</h5>
+            <br />
+            <Select width={500} mode={'tag'} showAllSelect value={self.state.values} onChange={self.handleValuesChange}>
+              {options.map(option => (
+                <Select.Option key={option.id} title={option.name} param={option} />
+              ))}
+            </Select>
+          </DemoRow>
         </div>
       );
     })

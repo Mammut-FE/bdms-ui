@@ -96,9 +96,10 @@ input.input {
     display: flex;
     flex-wrap: wrap;
     height: auto;
+    padding-left: 4px;
   }
   &-item {
-    margin-top: 4px;
+    margin-top: 5px;
     margin-right: 4px;
     user-select: none;
   }

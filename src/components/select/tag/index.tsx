@@ -33,6 +33,7 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
 
   public static defaultProps: Partial<SelectTagProps> = {
     hideCaret: true,
+    searchable: true,
     displayParser: () => ''
   };
 

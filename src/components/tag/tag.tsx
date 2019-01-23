@@ -30,7 +30,6 @@ export class Tag extends Component<ITagProps> {
       this.props.onClose(e);
     }
     e.stopPropagation();
-    e.nativeEvent.stopPropagation();
   }
 
   public componentWillUnmount() {

@@ -58,6 +58,7 @@ export default class SelectTagContainer extends React.PureComponent<SelectTagCon
     const target = event.target as HTMLElement;
     const targetClassList = target.classList;
 
+    // 防止点击tag后显示下拉列表
     if (targetClassList.contains(cx('tag-list')) || targetClassList.contains(cx('tag-item'))) {
       event.stopPropagation();
     }
