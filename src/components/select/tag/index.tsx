@@ -117,7 +117,7 @@ export default class SelectTag extends React.Component<SelectTagProps, SelectTag
               onTagRemove={this.handleTagRemove}
               onSort={this.handleTagSort}
             >
-              <SelectInput.type {...SelectInput.props} />
+              {SelectInput}
             </SelectTagContainer>
           );
         }}
