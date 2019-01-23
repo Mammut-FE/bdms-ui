@@ -5,7 +5,7 @@ import { Icon } from '../icon/icon';
 import styles from './tag.scss';
 import { Omit } from '../../lib/type';
 
-interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'> {
+export interface ITagProps extends Omit<React.AllHTMLAttributes<HTMLDivElement>, 'size'> {
   size?: string;
   closable?: boolean;
   iconName?: string;
@@ -38,7 +38,7 @@ export class Tag extends Component<ITagProps> {
   }
 
   public render() {
-    const { children, size, closable, iconName, className } = this.props;
+    const { children, size, closable, iconName, className, ...props } = this.props;
 
     const tagClass = cx('u-tag', `u-tag-${size}`, className);
 
@@ -51,7 +51,7 @@ export class Tag extends Component<ITagProps> {
     };
 
     return (
-      <div className={tagClass}>
+      <div className={tagClass} {...props}>
         {iconName && <Icon name={iconName} style={iconStyle} />}
         {children}
         {closable && <Icon name="close" onClick={this.closeTag} style={iconCloseStyle} />}

@@ -2,9 +2,11 @@ import * as React from 'react';
 import classNames from 'classnames/bind';
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 import { Tag } from '../../tag';
+import { ITagProps } from '../../tag/tag';
 import style from '../select.scss';
 import inputStyle from '../../input/input.scss';
 import { SelectTagValue } from './index';
+import { Omit } from '../../../lib/type';
 
 const cx = classNames.bind(style);
 const inputCx = classNames.bind(inputStyle);
@@ -18,26 +20,26 @@ export interface SelectTagContainerProps extends React.AllHTMLAttributes<HTMLDiv
   containerRef?: (container: HTMLDivElement | null) => void;
 }
 
-interface SortableTagProps {
+interface SortableTagProps extends ITagProps {
   value: string;
-  [propName: string]: any;
+  onTagRemove?: (value: string) => void;
 }
 
-const SortableTag = SortableElement(({ value, ...props }: SortableTagProps) => (
-  <Tag className={cx('tag-item')} onClose={() => props.onClose && props.onClose(value)} {...props}>
+const SortableTag = SortableElement(({ value, onTagRemove, ...props }: SortableTagProps) => (
+  <Tag className={cx('tag-item')} onClose={() => onTagRemove && onTagRemove(value)} {...props}>
     {value}
   </Tag>
 ));
 
-interface SortableTagContainerProps {
+interface SortableTagContainerProps extends Omit<ITagProps, 'value'> {
   values: SelectTagValue;
-  [propName: string]: any;
+  onTagRemove?: (value: string) => void;
 }
 
 const SortableTagContainer = SortableContainer(({ values, children, ...props }: SortableTagContainerProps) => (
   <div className={cx('tag-list')}>
     {values.map((value, index) => (
-      <SortableTag key={index} index={index} value={value} onClose={props.onClose} {...props} />
+      <SortableTag key={index} index={index} value={value} onTagRemove={props.onTagRemove} {...props} />
     ))}
     {children}
   </div>
@@ -49,6 +51,15 @@ export default class SelectTagContainer extends React.PureComponent<SelectTagCon
 
     if (onSort && oldIndex !== newIndex) {
       onSort(arrayMove(value, oldIndex, newIndex));
+    }
+  };
+
+  public handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+    const targetClassList = target.classList;
+
+    if (targetClassList.contains(cx('tag-list')) || targetClassList.contains(cx('tag-item'))) {
+      event.stopPropagation();
     }
   };
 
@@ -64,12 +75,12 @@ export default class SelectTagContainer extends React.PureComponent<SelectTagCon
     );
 
     return (
-      <div ref={containerRef} className={containerClassName} {...props}>
+      <div ref={containerRef} className={containerClassName} onClick={this.handleContainerClick} {...props}>
         <SortableTagContainer
           axis={'xy'}
-          pressDelay={100}
+          distance={1}
           values={value}
-          onClose={onTagRemove}
+          onTagRemove={onTagRemove}
           onSortEnd={this.handleTagSort}
         >
           {children}
