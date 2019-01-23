@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 export const ButtonGroup = (props: ButtonGroupProps) => {
   const { size = 'normal' } = props;
   const classes = cx('button-group', {
-    [`button-group-${size}`]: size
+    [`button-group--${size}`]: size
   });
   return (
     <div className={classes} style={props.style}>

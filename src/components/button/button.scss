@@ -13,10 +13,10 @@
     border: 1px solid #e0e0e0;
     color: #aaa;
     cursor: not-allowed;
-    &.btn-normal {
+    &.btn--normal {
       line-height: 30px;
     }
-    &.btn-small {
+    &.btn--small {
       line-height: 26px;
     }
     &:active {
@@ -50,10 +50,10 @@
   &:active {
     background: #ccc;
   }
-  &.btn-normal {
+  &.btn--normal {
     line-height: 30px;
   }
-  &.btn-small {
+  &.btn--small {
     line-height: 26px;
   }
 }
@@ -69,10 +69,10 @@
     border: 1px solid transparent;
     background: #fff;
   }
-  &.btn-normal {
+  &.btn--normal {
     line-height: 30px;
   }
-  &.btn-small {
+  &.btn--small {
     line-height: 26px;
   }
   &.disabled {
@@ -89,13 +89,13 @@
   }
 }
 
-.btn-normal {
+.btn--normal {
   height: 32px;
   line-height: 32px;
   font-size: 14px;
 }
 
-.btn-small {
+.btn--small {
   height: 28px;
   line-height: 28px;
   font-size: 12px;
@@ -138,12 +138,12 @@
   }
 }
 
-.button-group-small {
+.button-group--small {
   button {
     height: 28px;
     line-height: 28px;
     font-size: 12px;
-    &.btn-normal {
+    &.btn--normal {
       line-height: 28px;
     }
   }

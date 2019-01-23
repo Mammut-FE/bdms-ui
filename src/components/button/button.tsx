@@ -61,7 +61,7 @@ export class Button extends Component<ButtonProps, any> {
 
     const classes = cx('btn', className, {
       [`btn-${type}`]: true,
-      [`btn-${size}`]: true,
+      [`btn--${size}`]: true,
       disabled: type === 'text' && disabled
     });
 
