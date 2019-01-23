@@ -78,7 +78,13 @@ export class Button extends Component<ButtonProps, any> {
       // React does not recognize the `htmlType` prop on a DOM element. Here we pick it out of `others`.
       const { htmlType, ...rest } = others;
       return (
-        <button className={classes} disabled={disabled} onClick={this.handleClick} {...rest}>
+        <button
+          type={htmlType || 'button'}
+          className={classes}
+          disabled={disabled}
+          onClick={this.handleClick}
+          {...rest}
+        >
           {iconNode}
           <span style={{ paddingLeft: others.icon && children ? '8px' : '' }}>{children}</span>
         </button>
