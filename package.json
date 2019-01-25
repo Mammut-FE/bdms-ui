@@ -14,12 +14,12 @@
     "build:doc": "styleguidist build",
     "format": "prettier \"src/**/*.{ts,tsx,scss}\" \"example/**/*.{ts,tsx,scss}\" --write",
     "precommit": "pretty-quick --staged",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build:lib"
   },
   "dependencies": {
     "@types/classnames": "^2.2.7",
     "@types/prop-types": "^15.5.8",
-    "@types/react": "^16.7.18",
+    "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
@@ -59,7 +59,7 @@
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-react": "^3.2.0",
-    "typescript": "^3.2.2",
+    "typescript": "^3.2.4",
     "url-loader": "^1.1.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",

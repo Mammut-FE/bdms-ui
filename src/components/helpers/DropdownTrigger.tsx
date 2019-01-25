@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Trigger from 'rc-trigger';
+import { tryGetFunctionalNode } from '../../lib/util';
 
 import styles from './dropdown.scss';
 import cn from 'classnames';
@@ -61,7 +62,7 @@ export default class DropdownTrigger extends React.PureComponent<DropdownTrigger
 
     return (
       <div className={cn(cx('inner-dropdown'), this.props.dropdownClassName)}>
-        {typeof this.props.dropdown === 'function' ? this.props.dropdown() : this.props.dropdown}
+        {tryGetFunctionalNode(this.props.dropdown)}
       </div>
     );
   }
