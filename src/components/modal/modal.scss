@@ -157,15 +157,15 @@ $builtin-left: 40px;
       color: $blue-color;
     }
 
-    #{$root}--success {
+    #{$root}--success & {
       color: $success-color;
     }
 
-    #{$root}--error {
+    #{$root}--error & {
       color: $error-color;
     }
 
-    #{$root}--warning {
+    #{$root}--warning & {
       color: $warning-color;
     }
   }

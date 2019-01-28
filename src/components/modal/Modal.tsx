@@ -42,23 +42,78 @@ export type ModalFooterBuilder = (
 ) => ReactNode;
 
 export interface ModalProps {
+  /**
+   * 是否显示模态框
+   */
   visible?: boolean;
+  /**
+   * 显示状态变化
+   * @param visible
+   */
   onVisibleChange?: (visible: boolean) => void;
+  /**
+   * 非可控模式下默认的状态
+   */
   defaultVisible?: boolean;
+  /**
+   * 点击确定按钮事件
+   */
   onOk?: () => any;
+  /**
+   * 点击取消按钮事件
+   */
   onCancel?: () => any;
+  /**
+   * 模态框关闭事件
+   */
   onClose?: () => any;
+  /**
+   * 模态框关闭之后事件，等待动画完成之后触发
+   */
   onAfterClose?: () => void;
+  /**
+   * 确认按钮文字
+   */
   okText?: ReactNode;
+  /**
+   * 取消按钮文字
+   */
   cancelText?: ReactNode;
+  /**
+   * 模态框的位置，支持顶部/底部/居中
+   * @default 'top'
+   */
   placement?: 'top' | 'bottom' | 'center';
+  /**
+   * 模态框底部栏自定义，支持传入 ReactNode 或者函数，null 为隐藏
+   */
   footer?: ReactNode | ModalFooterBuilder;
+  /**
+   * 模态框顶部栏自定义，null 为隐藏
+   */
   header?: ReactNode;
+  /**
+   * 模态框的 z-index 值
+   */
   zIndex?: number;
+  /**
+   * 是否隐藏模态框背景的遮罩。注意：这里只是隐藏，但是你无法点击到遮罩后面的内容
+   */
   hideMask?: boolean;
+  /**
+   * 是否可以点击模态框的遮罩关闭
+   * @default true
+   */
   maskCloseable?: boolean;
+  /**
+   * 模态框标题
+   */
   title?: ReactNode;
-  size?: 'mini' | 'small' | 'normal' | 'large' | 'fullscreen' | number;
+  /**
+   * 模态框大小，支持内置大小或者传入自定义的宽度
+   * @default normal
+   */
+  size?: 'mini' | 'small' | 'normal' | 'large' | 'fullscreen' | string | number;
   /**
    * 让 Modal Body 进行滚动，而不是 Modal 进行滚动
    * @default false
@@ -88,10 +143,34 @@ export interface ModalProps {
   }
 })
 export default class Modal extends React.Component<ModalProps> {
+  /**
+   * Modal.confirm 确认提示框
+   * @public
+   */
   public static confirm: ConfirmFunc;
+
+  /**
+   * Modal.info 一般信息提示框
+   * @public
+   */
   public static info: AlertFunc;
+
+  /**
+   * Modal.success 成功信息提示框
+   * @public
+   */
   public static success: AlertFunc;
+
+  /**
+   * Modal.warning 警告信息提示框
+   * @public
+   */
   public static warning: AlertFunc;
+
+  /**
+   * Modal.error 错误信息提示框
+   * @public
+   */
   public static error: AlertFunc;
   // TODO: 实现 Prompt 功能
 
@@ -225,7 +304,7 @@ export default class Modal extends React.Component<ModalProps> {
     return (
       <div className={cx('footer')} key="footer">
         {typeof footer === 'function'
-          ? footer({
+          ? footer.call(null, {
               okButton: this.renderOkButton,
               cancelButton: this.renderCancelButton,
               onOk: this.onOk,

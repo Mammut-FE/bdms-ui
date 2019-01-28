@@ -134,7 +134,8 @@ module.exports = {
         createComponentSection(
           '反馈提示',
           [
-            'tooltip/Tooltip'
+            'tooltip/Tooltip',
+            'modal/Modal'
             // 'message',
             // 'notice',
           ],

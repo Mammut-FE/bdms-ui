@@ -31,8 +31,25 @@ export type DialogFuncResult<P = BuiltinModalOptions, D = void> = Promise<D> & {
 export type AlertType = 'info' | 'error' | 'warning' | 'success';
 
 export interface DialogFunc<I> {
+  /**
+   * 参数选项，和 ModalProps 基本一致
+   * @param options
+   */
   (options: I): DialogFuncResult<I>;
+
+  /**
+   * 简便调用
+   * @param title 标题
+   * @param options 参数
+   */
   (title: ReactNode, options?: I): DialogFuncResult<I>;
+
+  /**
+   * 简便调用
+   * @param title 标题
+   * @param content 内容
+   * @param options 参数
+   */
   (title: ReactNode, content: ReactNode, options?: I): DialogFuncResult<I>;
 }
 
