@@ -181,13 +181,12 @@ export default class Modal extends React.Component<ModalProps> {
 
   public componentDidUpdate(prevProps: Readonly<ModalProps>, prevState: Readonly<{}>, snapshot?: any): void {
     if (this.props.visible !== prevProps.visible) {
-      if (!this.props.visible && this.props.onClose) {
-        this.props.onClose();
-      }
-
       if (this.props.visible) {
         this.lock();
       } else {
+        if (this.props.onClose) {
+          this.props.onClose();
+        }
         this.unlock();
       }
     }
@@ -216,10 +215,9 @@ export default class Modal extends React.Component<ModalProps> {
   };
 
   public unlock = () => {
-    if (!this.props.lockDocument) {
-      return;
+    if (this.props.lockDocument) {
+      document.body.style.overflow = this.prevDocumentOverflow;
     }
-    document.body.style.overflow = this.prevDocumentOverflow;
   };
 
   public close = () => {
@@ -319,11 +317,7 @@ export default class Modal extends React.Component<ModalProps> {
     // 添加这一层只是用于展示动画
     const { hideMask, visible } = this.props;
 
-    if (hideMask) {
-      return null;
-    }
-
-    return (
+    return hideMask ? null : (
       <Animate transitionName={cx('mask')} transitionAppear={true} component="" key="mask">
         {visible ? <div key="mask" className={cx('mask')} /> : null}
       </Animate>

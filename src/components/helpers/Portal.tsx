@@ -10,13 +10,7 @@ export default class Portal extends Component<PartialProps> {
 
   public getContainer() {
     const { type = 'absolute' } = this.props;
-    let container: HTMLDivElement;
-
-    if (this.container) {
-      container = this.container;
-    } else {
-      container = document.createElement('div');
-    }
+    const container: HTMLDivElement = (this.container = this.container || document.createElement('div'));
 
     container.style.position = type;
     container.style.top = '0';
@@ -24,7 +18,6 @@ export default class Portal extends Component<PartialProps> {
     container.style.width = '100%';
 
     document.body.appendChild(container);
-    this.container = container;
     return container;
   }
 
