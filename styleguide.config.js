@@ -135,7 +135,7 @@ module.exports = {
           '反馈提示',
           [
             'tooltip/Tooltip',
-            'modal/Modal'
+            'modal/modal'
             // 'message',
             // 'notice',
           ],

@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { isReactNode } from '../../lib/util';
 import { Icon } from '../icon';
-import Modal, { ModalProps } from './Modal';
+import Modal, { ModalProps } from './modal';
 import styles from './modal.scss';
 
 const cx = cnb.bind(styles);
