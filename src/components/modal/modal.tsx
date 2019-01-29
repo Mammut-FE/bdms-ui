@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Children, cloneElement, createRef, Fragment, MouseEvent, ReactElement, ReactNode } from 'react';
 import { Independence } from '../../lib/independence';
 import { Button } from '../button';
-import { IButtonProps } from '../button/button';
+import { ButtonProps } from '../button/button';
 import Portal from '../helpers/Portal';
 import { Icon } from '../icon';
 import { AlertFunc, AlertType, ConfirmFunc, createAlertFunc } from './dialog';
@@ -34,8 +34,8 @@ export interface DefaultsModalProps extends Required<Pick<ModalProps, 'scrollInM
 
 export type ModalFooterBuilder = (
   args: {
-    readonly okButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
-    readonly cancelButton: (props?: IButtonProps) => ReactElement<IButtonProps>;
+    readonly okButton: (props?: ButtonProps) => ReactElement<ButtonProps>;
+    readonly cancelButton: (props?: ButtonProps) => ReactElement<ButtonProps>;
     readonly onOk: () => any;
     readonly onCancel: () => any;
   }
@@ -268,7 +268,7 @@ export default class Modal extends React.Component<ModalProps> {
     }
   };
 
-  public renderOkButton = (buttonProps: IButtonProps = {}) => {
+  public renderOkButton = (buttonProps: ButtonProps = {}) => {
     const { okText } = this.props;
     return (
       <Button key="ok-button" type="primary" className={cx('footer-button')} {...buttonProps} onClick={this.onOk}>
@@ -277,7 +277,7 @@ export default class Modal extends React.Component<ModalProps> {
     );
   };
 
-  public renderCancelButton = (buttonProps: IButtonProps = {}) => {
+  public renderCancelButton = (buttonProps: ButtonProps = {}) => {
     const { cancelText } = this.props;
     return (
       <Button key="cancel-button" className={cx('footer-button')} {...buttonProps} onClick={this.onCancel}>
