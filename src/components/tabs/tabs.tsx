@@ -10,6 +10,7 @@ interface ITabsProps {
   onChange?: (activeKey: string) => void;
   className?: string;
   style?: React.CSSProperties;
+  size?: 'default' | 'small'
 };
 
 interface ITabsState {
@@ -47,6 +48,9 @@ const getStateFromProps = (props: ITabsProps): ITabsState => {
 
 export class Tabs extends Component<ITabsProps, ITabsState> {
   public static Tab = Tab;
+  public static readonly defaultProps: ITabsProps = {
+    size: 'default'
+  };
   public readonly state: Readonly<ITabsState> = getStateFromProps(this.props);
 
   public componentWillReceiveProps(nextProps: ITabsProps) {
@@ -56,10 +60,15 @@ export class Tabs extends Component<ITabsProps, ITabsState> {
   public render() {
     const {
       className,
-      style
+      style,
+      size
     } = this.props;
+    const cls = cx('tabs', {
+      className: !!className,
+      [`tabs--${size}`]: !!size
+    });
     return (
-      <div className={cx('tabs', className)} style={{...style}}>
+      <div className={cls} style={{...style}}>
         <ul className={cx('tabs__tab-list')}>
           {this.renderTab()}
         </ul>

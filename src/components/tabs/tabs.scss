@@ -1,3 +1,15 @@
+@import 'base.scss';
+
+.tabs--small {
+  .tabs__tab-list {
+    height: 40px;
+  }
+  .tabs__tab {
+    height: 40px;
+    line-height: 36px;
+  }
+}
+
 .tabs {
   -webkit-tap-highlight-color: transparent;
 
@@ -19,7 +31,7 @@
     color: #76808F;
     display: inline-block;
     position: relative;
-    cursor: pointer;
+    cursor: $cursor-pointer;
 
     &--selected {
       color: #333;
@@ -36,7 +48,7 @@
     }
 
     &--disabled {
-      cursor: default;
+      cursor: $cursor-disabled;
     }
   }
 
