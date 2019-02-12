@@ -10,6 +10,11 @@ interface IMenuItemGroup {
   style?: React.CSSProperties;
   title?: string; // 组名，只有标题的作用，没有任何选中等效果
 }
+
+/**
+ * @visibleName Menu.ItemGroup
+ * @see 更多内容请查看 Menu 组件
+ */
 export default class MenuItemGroup extends Component<IMenuItemGroup, any> {
   public render() {
     const { children, className, title } = this.props;

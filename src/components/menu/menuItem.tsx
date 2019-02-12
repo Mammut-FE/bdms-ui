@@ -18,6 +18,10 @@ interface IMenuItemProps {
 
 const cx = classNames.bind(styles);
 
+/**
+ * @visibleName Menu.Item
+ * @see 更多内容请查看 Menu 组件
+ */
 export default class MenuItem extends Component<IMenuItemProps, any> {
   public static defaultProps: Partial<IMenuItemProps> = {
     visible: true

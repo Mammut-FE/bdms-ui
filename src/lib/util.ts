@@ -54,7 +54,8 @@ export function smoothScroll(el: HTMLElement, targetTop: number, duration = 300)
 /**
  * 尝试获取有可能为函数的组件，如果是普通组件，那么直接返回，否则是函数工厂，调用后返回组件
  * @param node
+ * @param args 当 node 为函数的时候，传入的参数
  */
-export function tryGetFuntionalNode(node: React.ReactNode | (() => React.ReactNode)): React.ReactNode {
-  return typeof node === 'function' ? node() : node;
+export function tryGetFunctionalNode(node: React.ReactNode | (() => React.ReactNode), ...args: any[]): React.ReactNode {
+  return typeof node === 'function' ? node.apply(null, args) : node;
 }

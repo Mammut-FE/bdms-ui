@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Independence } from '../../lib/independence';
 import Trigger from 'rc-trigger';
-import { tryGetFuntionalNode } from '../../lib/util';
+import { tryGetFunctionalNode } from '../../lib/util';
 import styles from './tooltip.scss';
 import cnb from 'classnames/bind';
 import cn from 'classnames';
@@ -25,6 +25,10 @@ const builtinPlacements = {
 
 export interface TooltipProps {
   placement?: keyof typeof builtinPlacements;
+  /**
+   * 触发类型
+   * @default 'hover'
+   */
   trigger?: 'click' | 'focus' | 'hover' | 'contextMenu';
   visible?: boolean;
   defaultVisible?: boolean;
@@ -34,6 +38,10 @@ export interface TooltipProps {
   className?: string;
   disableAutoAdjust?: boolean;
   align?: object;
+  /**
+   * Tooltip 类型
+   * @default 'normal'
+   */
   type?: 'normal' | 'warning' | 'error';
   content?: React.ReactNode | (() => React.ReactNode);
   getPopupContainer?: () => HTMLElement;
@@ -44,7 +52,7 @@ export interface TooltipProps {
 })
 export default class Tooltip extends React.Component<TooltipProps> {
   public renderPopup() {
-    const content = tryGetFuntionalNode(this.props.content);
+    const content = tryGetFunctionalNode(this.props.content);
     // rc-trigger 要求 popup 有一个根元素，所以不能直接返回 falsy value
     return content ? (
       <div
@@ -52,7 +60,7 @@ export default class Tooltip extends React.Component<TooltipProps> {
         style={this.props.style}
       >
         <div className={cx('arrow')} />
-        <div className={cx('content')}>{tryGetFuntionalNode(this.props.content)}</div>
+        <div className={cx('content')}>{tryGetFunctionalNode(this.props.content)}</div>
       </div>
     ) : (
       <div />

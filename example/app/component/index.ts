@@ -13,6 +13,8 @@ import datePickerSamples from './date-picker';
 import tooltipSamples from './tooltip';
 import messageSamples from './message';
 import tabsSamples from './tabs';
+import loadingSamples from './loading';
+import backTopSamples from './back-top';
 
 const demos: Demo[] = [
   {
@@ -95,6 +97,18 @@ const demos: Demo[] = [
     title: 'Tabs 标签页',
     description: '标签页',
     samples: tabsSamples
+  },
+  {
+    name: 'Loading',
+    title: 'Loading 加载',
+    description: '加载',
+    samples: loadingSamples,
+    col: 6
+  }, {
+    name: 'back-top',
+    title: 'BackTop 回到顶部',
+    description: '回到顶部',
+    samples: backTopSamples
   }
 ];
 

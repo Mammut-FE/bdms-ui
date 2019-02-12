@@ -13,5 +13,7 @@ export { TimePicker } from './components/time-picker';
 export { Tooltip, IconTooltip } from './components/tooltip';
 export { Message, Notification } from './components/message';
 export { Tabs } from './components/tabs';
+export { Loading } from './components/loading';
+export { BackTop } from './components/back-top';
 
 import './index.scss';

@@ -11,3 +11,5 @@
 | href     | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致 | string   | -       |
 | target   | 相当于 a 链接的 target 属性，href 存在时生效          | string   | -       |
 | onClick  | click 事件的 handler                                  | function | -       |
+
+支持原生 button 的其他所有属性。

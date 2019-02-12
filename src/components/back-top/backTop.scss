@@ -1,0 +1,64 @@
+.back-top {
+  position: fixed;
+  right: 100px;
+  bottom: 50px;
+  cursor: pointer;
+  z-index: 100;
+
+  &-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #1a6dcd;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #3287ea;
+  }
+
+  &-fade {
+    display: block;
+
+    &-enter,
+    &-appear {
+      opacity: 0;
+      animation-duration: .5s;
+      animation-timing-function: linear;
+
+      &-active {
+        animation-name: fadeIn;
+      }
+    }
+
+    &-leave {
+      animation-duration: .3s;
+      animation-timing-function: linear;
+
+      &-active {
+        animation-name: fadeOut;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
