@@ -14,6 +14,7 @@ import tooltipSamples from './tooltip';
 import messageSamples from './message';
 import loadingSamples from './loading';
 import backTopSamples from './back-top';
+import modalSamples from './modal';
 
 const demos: Demo[] = [
   {
@@ -102,7 +103,13 @@ const demos: Demo[] = [
     name: 'back-top',
     title: 'BackTop 回到顶部',
     description: '回到顶部',
-    samples: backTopSamples
+    samples: backTopSamples,
+  }, {
+    name: 'Modal',
+    title: 'Modal 模态对话框',
+    description: '模态对话框',
+    samples: modalSamples,
+    col: 6
   }
 ];
 
