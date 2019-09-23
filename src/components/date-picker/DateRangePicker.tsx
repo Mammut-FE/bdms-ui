@@ -19,10 +19,13 @@ export interface DateRangePickerProps extends Omit<DatePickerProps, 'value' | 'd
   defaultValue?: [Date, Date],
   onChange?: (range?: [Date, Date]) => void
   format?: string | ((range: [Date, Date]) => string)
+  changeAfterConfirm?: boolean
 }
 
 export interface DateRangePickerState {
   shown: boolean
+  startCache?: Date
+  endCache?: Date
 }
 
 function defaultFormat(range: [Date, Date]) {
@@ -40,12 +43,15 @@ function defaultFormatWithoutTime(range: [Date, Date]) {
 })
 export default class DateRangePicker extends React.Component<DateRangePickerProps, DateRangePickerState> {
   public state = {
-    shown: false
+    shown: false,
+    startCache: this.props.value ? this.props.value[0] : new Date(),
+    endCache: this.props.value ? this.props.value[1]: new Date()
   }
 
   public onShownChange = shown => this.setState({shown})
 
   public onRangeChange = (start, end, isStartChange) => {
+    const { changeAfterConfirm } = this.props
     if (isBefore(end, start)) {
       if (isStartChange) {
         // 起始位置点到了终止位置后面
@@ -57,9 +63,23 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
     }
     start = clampDateDay(start, this.props.max, this.props.min)
     end = clampDateDay(end, this.props.max, this.props.min)
-    if (this.props.onChange) {
+    this.setState({
+      startCache: start,
+      endCache: end
+    })
+
+    if (this.props.onChange && !changeAfterConfirm) {
       this.props.onChange([start, end])
     }
+  }
+
+  public onSubmit = () => {
+    const { value: [start, end] = [new Date(), new Date()], onChange } = this.props;
+    const { startCache = start , endCache = end } = this.state;
+    if (onChange) {
+      onChange([startCache, endCache]);
+    }
+    this.onShownChange(false);
   }
 
   public clear = () => {
@@ -69,7 +89,8 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
   }
 
   public renderDropdown = () => {
-    const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText, min, max} = this.props
+    const {value: [start, end] = [new Date(), new Date()], showToday, showTime, todayText, min, max, changeAfterConfirm} = this.props
+    const { startCache = start , endCache = end } = this.state;
     const dateTimeProps = {
       showTime,
       showToday,
@@ -78,30 +99,35 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
       max,
     }
 
-    const rangeStart = start.getDate()
-    const rangeEnd = end.getDate()
-    const sameMonth = isSameMonth(start, end)
+    const rangeStart = startCache.getDate()
+    const rangeEnd = endCache.getDate()
+    const sameMonth = isSameMonth(startCache, endCache)
 
     return (
       <>
         <DateTime
-          value={start}
+          value={startCache}
           rangeStart={rangeStart}
           rangeEnd={sameMonth ? rangeEnd : void 0}
           rangeHighlight={sameMonth ? 'both' : 'start'}
-          onChange={time => this.onRangeChange(time, end, true)}
+          onChange={time => this.onRangeChange(time, endCache, true)}
           {...dateTimeProps}
         />
         <span className={cx('range-middle')}>~</span>
         <DateTime
-          value={end}
+          value={endCache}
           rangeStart={sameMonth ? rangeStart : void 0}
           rangeEnd={rangeEnd}
           rangeHighlight={sameMonth ? 'both' : 'end'}
-          onChange={time => this.onRangeChange(start, time, false)}
+          onChange={time => this.onRangeChange(startCache, time, false)}
           showTime={showTime}
           {...dateTimeProps}
         />
+        {changeAfterConfirm && (
+          <div className={cx('range-confirm-footer')}>
+            <a className={cx('range-confirm-btn')} href="javascript:void(0)" onClick={this.onSubmit}>确定</a>
+          </div>)
+        }
       </>
     )
   }
@@ -118,6 +144,7 @@ export default class DateRangePicker extends React.Component<DateRangePickerProp
     const {
       showTime, format = (showTime ? defaultFormat : defaultFormatWithoutTime), value,
       defaultValue, onChange, showToday, todayText, min, max, className, style, hideClear,
+      changeAfterConfirm,
       ...inputProps
     } = this.props
     const inputValue = value ?
